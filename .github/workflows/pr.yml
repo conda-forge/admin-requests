@@ -1,4 +1,4 @@
-name: Check Requirements
+name: Check Packages Exist on Main
 on:
   pull_request:
     branches:

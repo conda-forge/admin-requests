@@ -9,7 +9,7 @@ def split_pkg(pkg):
     plat, pkg_name = pkg.split("/")
     name_ver, build = pkg_name.rsplit('-', 1)
     name, ver = name_ver.rsplit('-', 1)
-    return name, ver, build
+    return plat, name, ver, build
 
 
 def check_packages():
@@ -18,7 +18,7 @@ def check_packages():
             pkgs = f.readlines()
             pkgs = [pkg.strip() for pkg in pkgs]
         for pkg in pkgs:
-            name, ver, build = split_pkg(pkg)
+            plat, name, ver, build = split_pkg(pkg)
             subprocess.check_call(f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} -c conda-forge --override-channels", shell=True)
 
 
@@ -27,7 +27,7 @@ def mark_broken_file(file_name):
         pkgs = f.readlines()
         pkgs = [pkg.strip() for pkg in pkgs]
     for pkg in pkgs:
-        name, ver, build = split_pkg(pkg)
+        plat, name, ver, build = split_pkg(pkg)
         try:
             subprocess.check_call(f"anaconda move --quiet -t {token_path} isuruf/{name}/{version}/{pkg} --from-label main --to-label broken", shell=True)
         except subprocess.CalledProcessError:
