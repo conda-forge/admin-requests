@@ -33,24 +33,29 @@ def mark_broken_file(file_name):
         pkgs = [pkg.strip() for pkg in pkgs]
     for pkg in pkgs:
         plat, name, ver, build = split_pkg(pkg)
-        try:
-            subprocess.check_call(f"anaconda move isuruf/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
-        except subprocess.CalledProcessError:
-            return
+        #try:
+        subprocess.check_call(f"anaconda move isuruf/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
+        #except subprocess.CalledProcessError:
+        #    return
     subprocess.check_call(f"git rm {file_name}")
     subprocess.check_call(f"git commit -m 'Remove {file_name} after marking broken'")
     subprocess.check_call("git show")
 
 
 def mark_broken():
-    if "BINSTAR_TOKEN" in os.environ:
-        os.makedirs(os.path.expanduser("~/.config/binstar"))
-        token_path = os.path.expanduser("~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
-        with open(token_path, "w") as f:
-            f.write(os.environ["BINSTAR_TOKEN"])
+    if not "BINSTAR_TOKEN" in os.environ:
+        continue
 
-    for file_name in get_files():
-        mark_broken_file(file_name)
+    os.makedirs(os.path.expanduser("~/.config/binstar"))
+    token_path = os.path.expanduser("~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
+    with open(token_path, "w") as f:
+        f.write(os.environ["BINSTAR_TOKEN"])
+
+    try:
+        for file_name in get_files():
+            mark_broken_file(file_name)
+    finally:
+        os.remove(token_path)
 
 
 if __name__ == "__main__":
