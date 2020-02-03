@@ -44,7 +44,7 @@ def mark_broken_file(file_name):
 
 def mark_broken():
     if not "BINSTAR_TOKEN" in os.environ:
-        continue
+        return
 
     os.makedirs(os.path.expanduser("~/.config/binstar"))
     token_path = os.path.expanduser("~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
