@@ -39,6 +39,7 @@ def mark_broken_file(file_name):
             return
     subprocess.check_call(f"git rm {file_name}")
     subprocess.check_call(f"git commit -m 'Remove {file_name} after marking broken'")
+    subprocess.check_call("git show")
 
 
 def mark_broken():
