@@ -43,6 +43,10 @@ def mark_broken_file(file_name):
 
 
 def mark_broken():
+    if "BINSTAR_TOKEN" in os.environ:
+        with open(token_path, "w") as f:
+            f.write(os.environ("BINSTAR_TOKEN"))
+
     for file_name in get_files():
         mark_broken_file(file_name)
 

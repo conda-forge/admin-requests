@@ -18,6 +18,8 @@ jobs:
       run: |
           conda activate cf
           python mark_broken.py mark
+      env:
+        BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
