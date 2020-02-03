@@ -43,6 +43,7 @@ def mark_broken_file(file_name):
 
 def mark_broken():
     if "BINSTAR_TOKEN" in os.environ:
+        os.makedirs(os.path.expanduser("~/.config/binstar"))
         token_path = os.path.expanduser("~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
         with open(token_path, "w") as f:
             f.write(os.environ["BINSTAR_TOKEN"])
