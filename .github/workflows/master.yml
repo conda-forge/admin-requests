@@ -1,0 +1,24 @@
+name: Mark Packages as Broken
+on:
+  push:
+    branches:
+      - master
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: goanpeca/setup-miniconda@v1
+      with:
+        activate-environment: cf
+        environment-file: environment.yml
+        auto-activate-base: true
+    - name: Mark packages as broken
+      shell: bash -l {0}
+      run: |
+          conda activate cf
+          python mark_broken.py mark
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}

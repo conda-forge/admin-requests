@@ -1,6 +1,7 @@
 import sys
 from glob import glob
 import subprocess
+import os
 
 def split_pkg(pkg):
     if not pkg.endswith(".tar.bz2"):
@@ -12,8 +13,13 @@ def split_pkg(pkg):
     return plat, name, ver, build
 
 
+def get_files():
+    return glob("pkgs/*.txt")
+
+token_path = os.path.expanduser("~/binstar.token")
+
 def check_packages():
-    for file_name in glob("pkgs/*.txt"):
+    for file_name in get_files():
         with open(file_name, "r") as f:
             pkgs = f.readlines()
             pkgs = [pkg.strip() for pkg in pkgs]
@@ -37,7 +43,7 @@ def mark_broken_file(file_name):
 
 
 def mark_broken():
-    for file_name in glob("pkgs/*.txt"):
+    for file_name in get_files():
         mark_broken_file(file_name)
 
 
