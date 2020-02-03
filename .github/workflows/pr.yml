@@ -1,0 +1,20 @@
+name: Check Requirements
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: goanpeca/setup-miniconda@v1
+      with:
+        activate-environment: cf
+        environment-file: environment.yml
+        auto-activate-base: true
+    - name: Check packages exist on main
+      shell: bash -l {0}
+      run: |
+          conda activate cf
+          python mark_broken.py check
