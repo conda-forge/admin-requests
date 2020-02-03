@@ -26,6 +26,8 @@ def check_packages():
             plat, name, ver, build = split_pkg(pkg)
             subprocess.check_call(f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} -c conda-forge --override-channels", shell=True)
 
+token_path = os.path.expanduser("~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
+
 
 def mark_broken_file(file_name):
     with open(file_name, "r") as f:
@@ -34,7 +36,7 @@ def mark_broken_file(file_name):
     for pkg in pkgs:
         plat, name, ver, build = split_pkg(pkg)
         #try:
-        subprocess.check_call(f"anaconda move isuruf/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
+        subprocess.check_call(f"anaconda -t {token_path} -v move isuruf/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
         #except subprocess.CalledProcessError:
         #    return
     subprocess.check_call(f"git rm {file_name}")
@@ -47,7 +49,6 @@ def mark_broken():
         return
 
     os.makedirs(os.path.expanduser("~/.config/binstar"))
-    token_path = os.path.expanduser("~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
     with open(token_path, "w") as f:
         f.write(os.environ["BINSTAR_TOKEN"])
 
