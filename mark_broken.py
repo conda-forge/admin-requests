@@ -14,7 +14,7 @@ def split_pkg(pkg):
 
 
 def get_files():
-    return glob("pkgs/*.txt")
+    return [f for f in glob("pkgs/*.txt") if f != "pkgs/example.txt"]
 
 
 def check_packages():
@@ -37,7 +37,7 @@ def mark_broken_file(file_name):
     for pkg in pkgs:
         plat, name, ver, build = split_pkg(pkg)
         try:
-            subprocess.check_call(f"anaconda -t {token_path} -v move isuruf/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
+            subprocess.check_call(f"anaconda -t {token_path} -v move conda-forge/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
         except subprocess.CalledProcessError:
             return
     subprocess.check_call(f"git rm {file_name}", shell=True)
