@@ -1,2 +1,1 @@
-win-64/zlib-1.2.11-h2fa13f4_1005.tar.bz2
-win-64/zlib-1.2.11-h3cc03e0_1005.tar.bz2
+win-64/symengine-0.2.0-vc14_0.tar.bz2
