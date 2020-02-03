@@ -1,1 +1,1 @@
-win-64/symengine-0.2.0-vc14_0.tar.bz2
+win-32/symengine-0.2.0-vc14_0.tar.bz2
