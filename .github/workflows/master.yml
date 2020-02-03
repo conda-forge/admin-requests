@@ -17,6 +17,8 @@ jobs:
       shell: bash -l {0}
       run: |
           conda activate cf
+          git config --global user.name "conda-forge-admin"
+          git config --global user.email "pelson.pub+conda-forge@gmail.com"
           python mark_broken.py mark
       env:
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
