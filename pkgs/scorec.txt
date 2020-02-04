@@ -1,0 +1,8 @@
+osx-64/scorec-20161004-mpi_mpich_hbc1d92b_1.tar.bz2
+osx-64/scorec-20161004-mpi_openmpi_hdba7654_1.tar.bz2
+linux-64/scorec-20161004-mpi_openmpi_hc401efc_1.tar.bz2
+linux-64/scorec-20161004-mpi_mpich_h9f7b9cf_1.tar.bz2
+osx-64/scorec-20161004-mpi_mpich_hbc1d92b_0.tar.bz2
+osx-64/scorec-20161004-mpi_openmpi_hdba7654_0.tar.bz2
+linux-64/scorec-20161004-mpi_openmpi_hc401efc_0.tar.bz2
+linux-64/scorec-20161004-mpi_mpich_h9f7b9cf_0.tar.bz2
