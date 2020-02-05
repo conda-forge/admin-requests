@@ -1,5 +1,0 @@
-win-64/grpc-cpp-1.27.0-h9f84659_0.tar.bz2
-osx-64/grpc-cpp-1.27.0-h00d9e76_0.tar.bz2
-linux-64/grpc-cpp-1.27.0-h213be95_0.tar.bz2
-linux-ppc64le/grpc-cpp-1.27.0-h4dcaefd_0.tar.bz2
-linux-aarch64/grpc-cpp-1.27.0-h213be95_0.tar.bz2
