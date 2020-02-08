@@ -1,1 +1,0 @@
-noarch/chardet-3.0.4-py_1004.tar.bz2
