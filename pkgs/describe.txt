@@ -1,0 +1,4 @@
+osx-64/dscribe-0.3.2-py37ha1b3eb9_1.tar.bz2
+linux-64/dscribe-0.3.2-py37hc9558a2_1.tar.bz2
+osx-64/dscribe-0.3.2-py37h770b8ee_0.tar.bz2
+linux-64/dscribe-0.3.2-py37hc9558a2_0.tar.bz2
