@@ -14,7 +14,7 @@ def split_pkg(pkg):
 
 
 def get_files():
-    return [f for f in glob("pkgs/*.txt") if f != "pkgs/example.txt"]
+    return [f for f in glob("pkgs/*") if f != "pkgs/example.txt"]
 
 
 def check_packages():
