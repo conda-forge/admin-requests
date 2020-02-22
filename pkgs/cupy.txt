@@ -1,0 +1,12 @@
+linux-64/cupy-7.2.0-py38h05764e2_0.tar.bz2
+linux-64/cupy-7.2.0-py38h0c141eb_0.tar.bz2
+linux-64/cupy-7.2.0-py38he57b8b9_0.tar.bz2
+linux-64/cupy-7.2.0-py38h7c96d6b_0.tar.bz2
+linux-64/cupy-7.2.0-py37h0c141eb_0.tar.bz2
+linux-64/cupy-7.2.0-py37he57b8b9_0.tar.bz2
+linux-64/cupy-7.2.0-py37h7c96d6b_0.tar.bz2
+linux-64/cupy-7.2.0-py37h05764e2_0.tar.bz2
+linux-64/cupy-7.2.0-py36he57b8b9_0.tar.bz2
+linux-64/cupy-7.2.0-py36h05764e2_0.tar.bz2
+linux-64/cupy-7.2.0-py36h0c141eb_0.tar.bz2
+linux-64/cupy-7.2.0-py36h7c96d6b_0.tar.bz2
