@@ -1,0 +1,4 @@
+linux-ppc64le/python-3.6.9-0_73_pypy.tar.bz2
+linux-aarch64/python-3.6.9-0_73_pypy.tar.bz2
+osx-64/python-3.6.9-0_73_pypy.tar.bz2
+linux-64/python-3.6.9-0_73_pypy.tar.bz2
