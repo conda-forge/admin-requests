@@ -1,2 +1,0 @@
-noarch/gpi-1.2.5-py_1.tar.bz2
-noarch/gpi-1.2.5-py_0.tar.bz2
