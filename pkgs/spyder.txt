@@ -1,0 +1,12 @@
+win-64/spyder-4.1.1-py38h32f6830_0.tar.bz2
+win-64/spyder-4.1.1-py36h9f0ad1d_0.tar.bz2
+win-64/spyder-4.1.1-py27h8c360ce_0.tar.bz2
+win-64/spyder-4.1.1-py37hc8dfbb8_0.tar.bz2
+osx-64/spyder-4.1.1-py27h8c360ce_0.tar.bz2
+osx-64/spyder-4.1.1-py38h32f6830_0.tar.bz2
+osx-64/spyder-4.1.1-py37hc8dfbb8_0.tar.bz2
+osx-64/spyder-4.1.1-py36h9f0ad1d_0.tar.bz2
+linux-64/spyder-4.1.1-py36h9f0ad1d_0.tar.bz2
+linux-64/spyder-4.1.1-py38h32f6830_0.tar.bz2
+linux-64/spyder-4.1.1-py37hc8dfbb8_0.tar.bz2
+linux-64/spyder-4.1.1-py27h8c360ce_0.tar.bz2
