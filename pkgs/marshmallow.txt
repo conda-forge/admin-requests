@@ -1,0 +1,7 @@
+noarch/marshmallow-3.0.0b7-py_0.tar.bz2
+noarch/marshmallow-3.0.0b8-py_0.tar.bz2
+noarch/marshmallow-3.0.0b19-py_0.tar.bz2
+noarch/marshmallow-3.0.0rc1-py_0.tar.bz2
+noarch/marshmallow-3.0.0rc4-py_0.tar.bz2
+noarch/marshmallow-3.0.0rc5-py_0.tar.bz2
+noarch/marshmallow-3.0.0rc8-py_0.tar.bz2
