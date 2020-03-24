@@ -23,6 +23,9 @@ def check_packages():
             pkgs = f.readlines()
             pkgs = [pkg.strip() for pkg in pkgs]
         for pkg in pkgs:
+            # ignore blank lines or Python-style comments
+            if pkg.startswith('#') or len(pkg) == 0:
+                continue
             plat, name, ver, build = split_pkg(pkg)
             subprocess.check_call(f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} -c conda-forge --override-channels", shell=True)
 
@@ -35,6 +38,9 @@ def mark_broken_file(file_name):
         pkgs = f.readlines()
         pkgs = [pkg.strip() for pkg in pkgs]
     for pkg in pkgs:
+        # ignore blank lines or Python-style comments
+        if pkg.startswith('#') or len(pkg) == 0:
+            continue
         plat, name, ver, build = split_pkg(pkg)
         try:
             subprocess.check_call(f"anaconda -t {token_path} -v move conda-forge/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
