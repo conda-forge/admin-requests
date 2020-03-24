@@ -1,18 +1,21 @@
+# PyPy builds (build no.2)
 linux-64/cupy-7.2.0-py36hf411039_2.tar.bz2
 linux-64/cupy-7.2.0-py36he7af1ec_2.tar.bz2
 linux-64/cupy-7.2.0-py36hbfcebc9_2.tar.bz2
 linux-64/cupy-7.2.0-py36h6e251b3_2.tar.bz2
 
+# PyPy builds (build no.3)
 linux-64/cupy-7.2.0-py36hf411039_3.tar.bz2
 linux-64/cupy-7.2.0-py36he7af1ec_3.tar.bz2
 linux-64/cupy-7.2.0-py36hbfcebc9_3.tar.bz2
 linux-64/cupy-7.2.0-py36h6e251b3_3.tar.bz2
 
-
+# CUDA 10.2 + CPython builds (build no.1)
 linux-64/cupy-7.2.0-py38h05764e2_1.tar.bz2
 linux-64/cupy-7.2.0-py37h05764e2_1.tar.bz2
 linux-64/cupy-7.2.0-py36h05764e2_1.tar.bz2
 
+# CUDA 10.2 + CPython builds (build no.2)
 linux-64/cupy-7.2.0-py38hb1193b0_2.tar.bz2
 linux-64/cupy-7.2.0-py37h940342b_2.tar.bz2
 linux-64/cupy-7.2.0-py36h4445f8d_2.tar.bz2
