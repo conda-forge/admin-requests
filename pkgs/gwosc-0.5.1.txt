@@ -1,1 +1,0 @@
-noarch/gwosc-0.5.1-pyh8c360ce_0.tar.bz2
