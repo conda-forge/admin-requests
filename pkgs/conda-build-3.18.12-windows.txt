@@ -1,0 +1,4 @@
+win-64/conda-build-3.18.12-py37hc8dfbb8_2.tar.bz2
+win-64/conda-build-3.18.12-py36h9f0ad1d_2.tar.bz2
+win-64/conda-build-3.18.12-py27_1.tar.bz2
+win-64/conda-build-3.18.12-py27_0.tar.bz2
