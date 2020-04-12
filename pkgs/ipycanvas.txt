@@ -1,1 +1,0 @@
-noarch/ipycanvas-0.4.4-py_0.tar.bz2
