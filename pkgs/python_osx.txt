@@ -1,2 +1,0 @@
-osx-64/python-3.6.10-h4334963_1010_cpython.tar.bz2
-osx-64/python-3.8.2-hd5f0129_6_cpython.tar.bz2
