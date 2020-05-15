@@ -1,2 +1,0 @@
-linux-ppc64le/r-base-4.0.0-h4087096_3.tar.bz2
-linux-ppc64le/r-base-4.0.0-h4087096_2.tar.bz2
