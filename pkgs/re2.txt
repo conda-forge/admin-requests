@@ -1,0 +1,5 @@
+linux-64/re2-2020.05.01-he1b5a44_0.tar.bz2
+linux-aarch64/re2-2020.05.01-he1b5a44_0.tar.bz2
+linux-ppc64le/re2-2020.05.01-hb209c28_0.tar.bz2
+osx-64/re2-2020.05.01-h4a8c4bd_0.tar.bz2
+win-64/re2-2020.05.01-vc14ha925a31_0.tar.bz2
