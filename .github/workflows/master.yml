@@ -22,6 +22,7 @@ jobs:
           python mark_broken.py mark
       env:
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.CF_GITHUB_TOKEN }}
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
