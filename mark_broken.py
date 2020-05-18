@@ -2,6 +2,8 @@ import sys
 from glob import glob
 import subprocess
 import os
+import tempfile
+
 
 def split_pkg(pkg):
     if not pkg.endswith(".tar.bz2"):
@@ -27,10 +29,15 @@ def check_packages():
             if pkg.startswith('#') or len(pkg) == 0:
                 continue
             plat, name, ver, build = split_pkg(pkg)
-            subprocess.check_call(f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} -c conda-forge --override-channels", shell=True)
+            subprocess.check_call(
+                f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
+                "-c conda-forge --override-channels",
+                shell=True,
+            )
 
 
-token_path = os.path.expanduser("~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
+token_path = os.path.expanduser(
+    "~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
 
 
 def mark_broken_file(file_name):
@@ -43,16 +50,21 @@ def mark_broken_file(file_name):
             continue
         plat, name, ver, build = split_pkg(pkg)
         try:
-            subprocess.check_call(f"anaconda -t {token_path} -v copy conda-forge/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
+            subprocess.check_call(
+                f"anaconda -t {token_path} -v copy conda-forge/{name}/{ver}/{pkg} "
+                "--from-label main --to-label broken",
+                shell=True
+            )
         except subprocess.CalledProcessError:
             return
     subprocess.check_call(f"git rm {file_name}", shell=True)
-    subprocess.check_call(f"git commit -m 'Remove {file_name} after marking broken'", shell=True)
+    subprocess.check_call(
+        f"git commit -m 'Remove {file_name} after marking broken'", shell=True)
     subprocess.check_call("git show", shell=True)
 
 
 def mark_broken():
-    if not "BINSTAR_TOKEN" in os.environ:
+    if "BINSTAR_TOKEN" not in os.environ:
         return
 
     os.makedirs(os.path.expanduser("~/.config/binstar"))
@@ -65,9 +77,34 @@ def mark_broken():
     finally:
         os.remove(token_path)
 
-        
     with tempfile.TemporaryDirectory() as tmpdir:
-        pass
+        subprocess.check_call(
+            "git clone https://github.com/conda-forge/"
+            "conda-forge-repodata-patches-feedstock.git",
+            cwd=tmpdir,
+            shell=True,
+        )
+
+        subprocess.check_call(
+            "git remote set-url --push origin "
+            "https://%s@github.com/conda-forge/"
+            "conda-forge-repodata-patches-feedstock.git" % os.environ["GITHUB_TOKEN"],
+            cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
+            shell=True
+        )
+
+        subprocess.check_call(
+            "git commit --allow-empty -am 'resync repo data for broken packages'",
+            cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
+            shell=True
+        )
+
+        subprocess.check_call(
+            "git push",
+            cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
+            shell=True
+        )
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -78,4 +115,3 @@ if __name__ == "__main__":
         mark_broken()
     else:
         raise RuntimeError(f"Unrecognized argument {sys.argv[1]}")
-
