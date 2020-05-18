@@ -65,6 +65,9 @@ def mark_broken():
     finally:
         os.remove(token_path)
 
+        
+    with tempfile.TemporaryDirectory() as tmpdir:
+        pass
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
