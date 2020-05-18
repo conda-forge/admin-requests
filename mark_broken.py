@@ -43,7 +43,7 @@ def mark_broken_file(file_name):
             continue
         plat, name, ver, build = split_pkg(pkg)
         try:
-            subprocess.check_call(f"anaconda -t {token_path} -v move conda-forge/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
+            subprocess.check_call(f"anaconda -t {token_path} -v copy conda-forge/{name}/{ver}/{pkg} --from-label main --to-label broken", shell=True)
         except subprocess.CalledProcessError:
             return
     subprocess.check_call(f"git rm {file_name}", shell=True)
