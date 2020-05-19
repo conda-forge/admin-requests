@@ -87,22 +87,22 @@ def mark_broken():
 
         subprocess.check_call(
             "git remote set-url --push origin "
-            "https://%s@github.com/conda-forge/"
-            "conda-forge-repodata-patches-feedstock.git" % os.environ["GITHUB_TOKEN"],
+            "https://${GITHUB_TOKEN}@github.com/conda-forge/"
+            "conda-forge-repodata-patches-feedstock.git",
             cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-            shell=True
+            shell=True,
         )
 
         subprocess.check_call(
             "git commit --allow-empty -am 'resync repo data for broken packages'",
             cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-            shell=True
+            shell=True,
         )
 
         subprocess.check_call(
             "git push",
             cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-            shell=True
+            shell=True,
         )
 
 
