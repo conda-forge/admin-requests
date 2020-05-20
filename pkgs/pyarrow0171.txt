@@ -1,0 +1,12 @@
+linux-aarch64/pyarrow-0.17.1-py37h110162e_0.tar.bz2
+linux-aarch64/pyarrow-0.17.1-py38h56ab25f_0.tar.bz2
+linux-aarch64/pyarrow-0.17.1-py36hca7f665_0.tar.bz2
+linux-64/pyarrow-0.17.1-py36hca7f665_0.tar.bz2
+linux-64/pyarrow-0.17.1-py37h110162e_0.tar.bz2
+linux-64/pyarrow-0.17.1-py38h56ab25f_0.tar.bz2
+win-64/pyarrow-0.17.1-py36h1010576_0.tar.bz2
+win-64/pyarrow-0.17.1-py37h6dfd932_0.tar.bz2
+win-64/pyarrow-0.17.1-py38h4809008_0.tar.bz2
+osx-64/pyarrow-0.17.1-py37ha1519f6_0.tar.bz2
+osx-64/pyarrow-0.17.1-py38hb42247f_0.tar.bz2
+osx-64/pyarrow-0.17.1-py36he3ac053_0.tar.bz2
