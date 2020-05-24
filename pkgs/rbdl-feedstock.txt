@@ -1,0 +1,4 @@
+osx-64/rbdl-2.6.0.7-eigen_h39f87c1_1.tar.bz2
+linux-64/rbdl-2.6.0.7-casadi_hfa0c8c4_1.tar.bz2
+linux-64/rbdl-2.6.0.7-eigen_h1c81da6_1.tar.bz2 
+win-64/rbdl-2.6.0.7-eigen_hc6b6c47_1.tar.bz2
