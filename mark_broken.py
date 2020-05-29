@@ -74,6 +74,7 @@ def mark_broken():
         f.write(os.environ["BINSTAR_TOKEN"])
 
     try:
+        print("found files: %s" % get_files())
         for file_name in get_files():
             print("working on file %s" % file_name)
             mark_broken_file(file_name)
