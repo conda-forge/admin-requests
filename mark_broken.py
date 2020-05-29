@@ -55,6 +55,7 @@ def mark_broken_file(file_name):
                 "--from-label main --to-label broken",
                 shell=True
             )
+            print("marked %s as broken" % pkg)
         except subprocess.CalledProcessError:
             return
     subprocess.check_call(f"git rm {file_name}", shell=True)
