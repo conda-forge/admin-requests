@@ -48,6 +48,7 @@ def mark_broken_file(file_name):
         # ignore blank lines or Python-style comments
         if pkg.startswith('#') or len(pkg) == 0:
             continue
+        print("    package: %s" % pkg)
         plat, name, ver, build = split_pkg(pkg)
         try:
             subprocess.check_call(
@@ -55,7 +56,7 @@ def mark_broken_file(file_name):
                 "--from-label main --to-label broken",
                 shell=True
             )
-            print("marked %s as broken" % pkg)
+            print("        marked broken" % pkg)
         except subprocess.CalledProcessError:
             return
     subprocess.check_call(f"git rm {file_name}", shell=True)
@@ -74,6 +75,7 @@ def mark_broken():
 
     try:
         for file_name in get_files():
+            print("working on file %s" % file_name)
             mark_broken_file(file_name)
     finally:
         os.remove(token_path)
