@@ -1,1 +1,0 @@
-noarch/sysroot_linux-64-2.17-h3a0023d_2.tar.bz2
