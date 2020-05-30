@@ -49,7 +49,7 @@ def mark_broken_file(file_name):
         # ignore blank lines or Python-style comments
         if pkg.startswith('#') or len(pkg) == 0:
             continue
-        print("    package: %s" % pkg)
+        print("    package: %s" % pkg, flush=True)
         plat, name, ver, build = split_pkg(pkg)
         r = requests.post(
             "https://api.anaconda.org/channels/conda-forge/broken",
@@ -61,10 +61,10 @@ def mark_broken_file(file_name):
             }
         )
         if r.status_code != 201:
-            print("        could not mark broken")
+            print("        could not mark broken", flush=True)
             return
         else:
-            print("        marked broken")
+            print("        marked broken", flush=True)
     subprocess.check_call(f"git rm {file_name}", shell=True)
     subprocess.check_call(
         f"git commit -m 'Remove {file_name} after marking broken'", shell=True)
@@ -75,9 +75,10 @@ def mark_broken():
     if "BINSTAR_TOKEN" not in os.environ:
         return
 
-    print("found files: %s" % get_files())
-    for file_name in get_files():
-        print("working on file %s" % file_name)
+    files = get_files()
+    print("found files: %s" % files, flush=True)
+    for file_name in files:
+        print("working on file %s" % file_name, flush=True)
         mark_broken_file(file_name)
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -96,8 +97,10 @@ def mark_broken():
             shell=True,
         )
 
+        fstr = " ".join(f for f in files)
         subprocess.check_call(
-            "git commit --allow-empty -am 'resync repo data for broken packages'",
+            "git commit --allow-empty -am 'resync repo data "
+            "for broken packages in files %s'" % fstr,
             cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
             shell=True,
         )
