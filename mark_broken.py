@@ -3,6 +3,7 @@ from glob import glob
 import subprocess
 import os
 import tempfile
+import requests
 
 
 def split_pkg(pkg):
@@ -50,15 +51,20 @@ def mark_broken_file(file_name):
             continue
         print("    package: %s" % pkg)
         plat, name, ver, build = split_pkg(pkg)
-        try:
-            subprocess.check_call(
-                f"anaconda -t {token_path} -v copy conda-forge/{name}/{ver}/{pkg} "
-                "--from-label main --to-label broken",
-                shell=True
-            )
-            print("        marked broken" % pkg)
-        except subprocess.CalledProcessError:
+        r = requests.post(
+            "https://api.anaconda.org/channels/conda-forge/broken",
+            headers={'Authorization': 'token {}'.format(os.environ["BINSTAR_TOKEN"])},
+            json={
+                "basename": pkg,
+                "package": name,
+                "version": ver,
+            }
+        )
+        if r.status_code != 201:
+            print("        could not mark broken")
             return
+        else:
+            print("        marked broken")
     subprocess.check_call(f"git rm {file_name}", shell=True)
     subprocess.check_call(
         f"git commit -m 'Remove {file_name} after marking broken'", shell=True)
@@ -69,17 +75,10 @@ def mark_broken():
     if "BINSTAR_TOKEN" not in os.environ:
         return
 
-    os.makedirs(os.path.expanduser("~/.config/binstar"))
-    with open(token_path, "w") as f:
-        f.write(os.environ["BINSTAR_TOKEN"])
-
-    try:
-        print("found files: %s" % get_files())
-        for file_name in get_files():
-            print("working on file %s" % file_name)
-            mark_broken_file(file_name)
-    finally:
-        os.remove(token_path)
+    print("found files: %s" % get_files())
+    for file_name in get_files():
+        print("working on file %s" % file_name)
+        mark_broken_file(file_name)
 
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(
