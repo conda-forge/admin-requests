@@ -1,0 +1,5 @@
+linux-64/abinit-8.10.2-h279e56a_5.tar.bz2
+linux-64/abinit-8.10.2-h279e56a_3.tar.bz2
+linux-64/abinit-8.10.2-h279e56a_2.tar.bz2
+linux-64/abinit-8.10.2-h279e56a_1.tar.bz2
+linux-64/abinit-8.10.2-hbe17f75_0.tar.bz2
