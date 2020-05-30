@@ -1,0 +1,6 @@
+linux-64/sphinxdft-2.6.1-h6ced99e_7.tar.bz2
+linux-64/sphinxdft-2.6.1-h6ced99e_8.tar.bz2
+linux-64/sphinxdft-2.6.1-h6ced99e_9.tar.bz2
+linux-64/sphinxdft-2.6.1-h0dc8829_10.tar.bz2
+linux-64/sphinxdft-2.6.1-h0dc8829_11.tar.bz2
+linux-64/sphinxdft-2.6.1-h7b8f8e9_12.tar.bz2
