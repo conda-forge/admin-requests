@@ -1,0 +1,2 @@
+noarch/pytest-executable-0.4.0-py_0.tar.bz2
+linux-64/pytest-executable-0.4.0-py38_1.tar.bz2
