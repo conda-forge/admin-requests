@@ -1,3 +1,0 @@
-noarch/sysroot_linux-64-2.17-conda_cos7_variant_hf2e4eb1_5.tar.bz2
-noarch/sysroot_linux-64-2.12-conda_variant_h77966d4_8.tar.bz2
-noarch/sysroot_linux-64-2.12-conda_cos6_variant_hb99331e_8.tar.bz2
