@@ -1,0 +1,4 @@
+noarch/sysroot_linux-aarch64-2.17-conda_cos7_variant_h1234567_5.tar.bz2
+noarch/sysroot_linux-aarch64-2.17-conda_variant_h1234567_5.tar.bz2
+noarch/sysroot_linux-ppc64le-2.17-conda_variant_h1234567_5.tar.bz2
+noarch/sysroot_linux-ppc64le-2.17-conda_cos7_variant_h1234567_5.tar.bz2
