@@ -13,13 +13,11 @@ noarch/kernel-headers_linux-64-3.10.0-h3a0023d_4.tar.bz2
 noarch/sysroot_linux-aarch64-2.17-h4744778_4.tar.bz2
 noarch/sysroot_linux-aarch64-2.17-h4744778_3.tar.bz2
 noarch/sysroot_linux-aarch64-2.17-h581f4e3_2.tar.bz2
-noarch/sysroot_linux-aarch64-2.17-h581f4e3_1.tar.bz2
 noarch/sysroot_linux-aarch64-2.17-h581f4e3_0.tar.bz2
   
 noarch/sysroot_linux-ppc64le-2.17-h8b29623_4.tar.bz2
 noarch/sysroot_linux-ppc64le-2.17-h8b29623_3.tar.bz2
 noarch/sysroot_linux-ppc64le-2.17-h46a4047_2.tar.bz2
-noarch/sysroot_linux-ppc64le-2.17-h46a4047_1.tar.bz2
 noarch/sysroot_linux-ppc64le-2.17-h46a4047_0.tar.bz2
   
 noarch/kernel-headers_linux-aarch64-4.18.0-h581f4e3_4.tar.bz2
