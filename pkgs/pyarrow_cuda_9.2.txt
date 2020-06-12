@@ -1,3 +1,0 @@
-linux-64/pyarrow-0.17.1-py36h1234567_3_cuda.tar.bz2
-linux-64/pyarrow-0.17.1-py37h1234567_3_cuda.tar.bz2
-linux-64/pyarrow-0.17.1-py38h1234567_3_cuda.tar.bz2
