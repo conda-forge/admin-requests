@@ -1,0 +1,4 @@
+osx-64/root_numpy-4.8.0-py36h31ecf39_6.tar.bz2
+osx-64/root_numpy-4.8.0-py37h9b29bbb_6.tar.bz2
+osx-64/root_numpy-4.8.0-py38h4bdf021_6.tar.bz2
+osx-64/rapidsim-1.5-h5a1702a_3.tar.bz2
