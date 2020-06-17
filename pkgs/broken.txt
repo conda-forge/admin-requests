@@ -1,1 +1,0 @@
-noarch/cdat_info-8.2.1.rc1-py_0.tar.bz2
