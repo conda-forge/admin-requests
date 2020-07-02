@@ -10,8 +10,8 @@ Cheers and thank you for contributing to conda-forge!
 
 Guidelines for marking packages as broken:
 
-* We prefer to patch the repo data (see ) instead of marking packages as
-  broken. This workflow makes environments more reproducible.
+* We prefer to patch the repo data (see [here](https://github.com/conda-forge/conda-forge-repodata-patches-feedstock))
+  instead of marking packages as broken. This alternative workflow makes environments more reproducible.
 * Packages with requirements/metadata that are too strict but otherwise work are
   not technically broken and should not be marked as such.
 * Packages with missing metadata can be marked as broken on a temporary basis
