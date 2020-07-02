@@ -16,12 +16,23 @@ def split_pkg(pkg):
     return plat, name, ver, build
 
 
-def get_files():
-    return [f for f in glob("pkgs/*") if f != "pkgs/example.txt"]
+def get_broken_files():
+    return (
+        [f for f in glob("broken/*") if f != "broken/example.txt"]
+        + [f for f in glob("pkgs/*") if f != "pkgs/example.txt"]
+    )
+
+
+def get_not_broken_files():
+    return [f for f in glob("not_broken/*") if f != "not_broken/example.txt"]
+
+
+def get_all_files():
+    return get_not_broken_files() + get_broken_files()
 
 
 def check_packages():
-    for file_name in get_files():
+    for file_name in get_all_files():
         with open(file_name, "r") as f:
             pkgs = f.readlines()
             pkgs = [pkg.strip() for pkg in pkgs]
@@ -35,10 +46,6 @@ def check_packages():
                 "-c conda-forge --override-channels",
                 shell=True,
             )
-
-
-token_path = os.path.expanduser(
-    "~/.config/binstar/https%3A%2F%2Fapi.anaconda.org.token")
 
 
 def mark_broken_file(file_name):
@@ -71,15 +78,51 @@ def mark_broken_file(file_name):
     subprocess.check_call("git show", shell=True)
 
 
+def mark_not_broken_file(file_name):
+    with open(file_name, "r") as f:
+        pkgs = f.readlines()
+        pkgs = [pkg.strip() for pkg in pkgs]
+    for pkg in pkgs:
+        # ignore blank lines or Python-style comments
+        if pkg.startswith('#') or len(pkg) == 0:
+            continue
+        print("    package: %s" % pkg, flush=True)
+        plat, name, ver, build = split_pkg(pkg)
+        r = requests.delete(
+            "https://api.anaconda.org/channels/conda-forge/broken",
+            headers={'Authorization': 'token {}'.format(os.environ["BINSTAR_TOKEN"])},
+            json={
+                "basename": pkg,
+                "package": name,
+                "version": ver,
+            }
+        )
+        if r.status_code != 201:
+            print("        could not mark not broken", flush=True)
+            return
+        else:
+            print("        marked not broken", flush=True)
+    subprocess.check_call(f"git rm {file_name}", shell=True)
+    subprocess.check_call(
+        f"git commit -m 'Remove {file_name} after marking not broken'", shell=True)
+    subprocess.check_call("git show", shell=True)
+
+
 def mark_broken():
     if "BINSTAR_TOKEN" not in os.environ:
         return
 
-    files = get_files()
+    files = get_broken_files()
     print("found files: %s" % files, flush=True)
     for file_name in files:
         print("working on file %s" % file_name, flush=True)
         mark_broken_file(file_name)
+
+    files = get_not_broken_files()
+    print("found files: %s" % files, flush=True)
+    for file_name in files:
+        print("working on file %s" % file_name, flush=True)
+        mark_not_broken_file(file_name)
 
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(
