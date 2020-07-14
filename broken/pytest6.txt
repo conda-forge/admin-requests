@@ -1,0 +1,37 @@
+417.8 kB	 | linux-64/pytest-6.0.0rc1-py38h32f6830_0.tar.bz2	 1 day and 11 hours ago	cf-staging	1229	main
+edit labels
+	conda	438.3 kB	 | win-64/pytest-6.0.0rc1-py37hc8dfbb8_0.tar.bz2	 1 day and 11 hours ago	cf-staging	434	main
+edit labels
+	conda	414.5 kB	 | linux-aarch64/pytest-6.0.0rc1-py37hc8dfbb8_0.tar.bz2	 1 day and 11 hours ago	cf-staging	14	main
+edit labels
+	conda	414.6 kB	 | linux-64/pytest-6.0.0rc1-py36h9f0ad1d_0.tar.bz2	 1 day and 11 hours ago	cf-staging	1306	main
+edit labels
+	conda	420.9 kB	 | linux-64/pytest-6.0.0rc1-py36hc560c46_0.tar.bz2	 1 day and 11 hours ago	cf-staging	27	main
+edit labels
+	conda	415.6 kB	 | linux-64/pytest-6.0.0rc1-py37hc8dfbb8_0.tar.bz2	 1 day and 11 hours ago	cf-staging	2056	main
+edit labels
+	conda	414.9 kB	 | linux-ppc64le/pytest-6.0.0rc1-py37hc8dfbb8_0.tar.bz2	 1 day and 11 hours ago	cf-staging	3	main
+edit labels
+	conda	420.7 kB	 | linux-aarch64/pytest-6.0.0rc1-py36hc560c46_0.tar.bz2	 1 day and 11 hours ago	cf-staging	2	main
+edit labels
+	conda	443.9 kB	 | win-64/pytest-6.0.0rc1-py38h32f6830_0.tar.bz2	 1 day and 11 hours ago	cf-staging	213	main
+edit labels
+	conda	417.5 kB	 | linux-aarch64/pytest-6.0.0rc1-py38h32f6830_0.tar.bz2	 1 day and 11 hours ago	cf-staging	3	main
+edit labels
+	conda	437.6 kB	 | win-64/pytest-6.0.0rc1-py36h9f0ad1d_0.tar.bz2	 1 day and 11 hours ago	cf-staging	284	main
+edit labels
+	conda	417.6 kB	 | linux-ppc64le/pytest-6.0.0rc1-py38h32f6830_0.tar.bz2	 1 day and 11 hours ago	cf-staging	4	main
+edit labels
+	conda	414.7 kB	 | linux-ppc64le/pytest-6.0.0rc1-py36h9f0ad1d_0.tar.bz2	 1 day and 11 hours ago	cf-staging	3	main
+edit labels
+	conda	415.0 kB	 | linux-aarch64/pytest-6.0.0rc1-py36h9f0ad1d_0.tar.bz2	 1 day and 11 hours ago	cf-staging	2	main
+edit labels
+	conda	420.9 kB	 | linux-ppc64le/pytest-6.0.0rc1-py36hc560c46_0.tar.bz2	 1 day and 11 hours ago	cf-staging	2	main
+edit labels
+	conda	414.3 kB	 | osx-64/pytest-6.0.0rc1-py36h9f0ad1d_0.tar.bz2	 1 day and 11 hours ago	cf-staging	112	main
+edit labels
+	conda	417.2 kB	 | osx-64/pytest-6.0.0rc1-py38h32f6830_0.tar.bz2	 1 day and 11 hours ago	cf-staging	67	main
+edit labels
+	conda	420.7 kB	 | osx-64/pytest-6.0.0rc1-py36hc560c46_0.tar.bz2	 1 day and 11 hours ago	cf-staging	8	main
+edit labels
+	conda	414.0 kB	 | osx-64/pytest-6.0.0rc1-py37hc8dfbb8_0.tar.bz2
