@@ -1,6 +1,0 @@
-osx-64/libcurl-7.71.1-he6690cf_2.tar.bz2
-osx-64/curl-7.71.1-hbdca1c0_2.tar.bz2
-osx-64/libcurl-7.71.1-he6690cf_3.tar.bz2
-osx-64/curl-7.71.1-hbdca1c0_3.tar.bz2
-osx-64/libcurl-static-7.71.1-he6690cf_3.tar.bz2
-osx-64/libcurl-static-7.71.1-he6690cf_2.tar.bz2
