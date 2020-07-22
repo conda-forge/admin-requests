@@ -1,0 +1,1 @@
+noarch/black-19.10b0-py_2.tar.bz2
