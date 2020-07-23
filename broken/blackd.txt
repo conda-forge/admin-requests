@@ -1,0 +1,1 @@
+noarch/blackd-19.10b0-2.tar.bz2
