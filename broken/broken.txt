@@ -1,0 +1,6 @@
+win-64/pyqt-5.12.3-py36h003fed8_3.tar.bz2
+win-64/pyqt-5.12.3-py37h1834ac0_3.tar.bz2
+win-64/pyqt-5.12.3-py38h7ae7562_3.tar.bz2
+win-64/pyqt-5.12.3-py36h003fed8_2.tar.bz2
+win-64/pyqt-5.12.3-py37h1834ac0_2.tar.bz2
+win-64/pyqt-5.12.3-py38h7ae7562_2.tar.bz2
