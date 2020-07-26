@@ -1,0 +1,6 @@
+win-64/sip-4.19.23-py36h003fed8_0.tar.bz2
+win-64/sip-4.19.23-py37h1834ac0_0.tar.bz2
+win-64/sip-4.19.23-py38h7ae7562_0.tar.bz2
+win-64/sip-4.19.22-py37h63f7a3c_0.tar.bz2
+win-64/sip-4.19.22-py38hb99c5c2_0.tar.bz2
+win-64/sip-4.19.22-py36hbd05846_0.tar.bz2
