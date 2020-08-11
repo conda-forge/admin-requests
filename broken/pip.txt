@@ -1,0 +1,1 @@
+noarch/pip-20.2.2-py_0.tar.bz2
