@@ -1,0 +1,6 @@
+win-64/chemfiles-lib-0.9.3-he63f309_1.tar.bz2
+osx-64/chemfiles-lib-0.9.3-hc030df3_1.tar.bz2
+linux-64/chemfiles-lib-0.9.3-ha684736_1.tar.bz2
+win-64/chemfiles-lib-0.9.3-h1d1ba74_2.tar.bz2
+osx-64/chemfiles-lib-0.9.3-hae410c0_2.tar.bz2
+linux-64/chemfiles-lib-0.9.3-hbcb5575_2.tar.bz2
