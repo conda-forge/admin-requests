@@ -1,0 +1,9 @@
+win-64/python-gssapi-1.6.9-py38hf317e7c_0.tar.bz2
+win-64/python-gssapi-1.6.9-py36hf9ada80_0.tar.bz2
+win-64/python-gssapi-1.6.9-py37h12bf67a_0.tar.bz2
+osx-64/python-gssapi-1.6.9-py37hecba344_0.tar.bz2
+osx-64/python-gssapi-1.6.9-py38hd1f13c4_0.tar.bz2
+osx-64/python-gssapi-1.6.9-py36hfefe359_0.tar.bz2
+linux-64/python-gssapi-1.6.9-py37h89bfc95_0.tar.bz2
+linux-64/python-gssapi-1.6.9-py38h38f78cb_0.tar.bz2
+linux-64/python-gssapi-1.6.9-py36he3c66b5_0.tar.bz2
