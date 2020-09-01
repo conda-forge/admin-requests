@@ -1,0 +1,7 @@
+win-64/xlwings-20.0.6-py38h32f6830_0.tar.bz2
+win-64/xlwings-20.0.6-py36h9f0ad1d_0.tar.bz2
+win-64/xlwings-20.0.6-py37hc8dfbb8_0.tar.bz2
+osx-64/xlwings-20.0.6-py36h9f0ad1d_0.tar.bz2
+osx-64/xlwings-20.0.6-py37hc8dfbb8_0.tar.bz2
+osx-64/xlwings-20.0.6-py38h32f6830_0.tar.bz2
+osx-64/xlwings-20.0.6-py36hc560c46_0.tar.bz2
