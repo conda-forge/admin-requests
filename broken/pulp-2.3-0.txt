@@ -1,1 +1,0 @@
-noarch/pulp-2.3-pyh9f0ad1d_0.tar.bz2
