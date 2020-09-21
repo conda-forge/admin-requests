@@ -1,2 +1,0 @@
-noarch/libgfortran-devel_osx-64-7.5.0-h2d743fc_8.tar.bz2
-noarch/libgfortran-devel_osx-64-9.3.0-hedc42d4_8.tar.bz2
