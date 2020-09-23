@@ -1,9 +1,0 @@
-win-64/bullet-3.0.3-py37h1834ac0_0.tar.bz2
-win-64/bullet-3.0.3-py38h7ae7562_0.tar.bz2
-win-64/bullet-3.0.3-py36h003fed8_0.tar.bz2
-osx-64/bullet-3.0.3-py38h11c0d25_0.tar.bz2
-osx-64/bullet-3.0.3-py36h27176af_0.tar.bz2
-osx-64/bullet-3.0.3-py37hdadc0f0_0.tar.bz2
-linux-64/bullet-3.0.3-py37h3340039_0.tar.bz2
-linux-64/bullet-3.0.3-py38h950e882_0.tar.bz2
-linux-64/bullet-3.0.3-py36h831f99a_0.tar.bz2
