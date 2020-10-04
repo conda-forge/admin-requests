@@ -1,1 +1,0 @@
-linux-ppc64le/pypy3.6-7.3.2-h52a2fc7_0.tar.bz2
