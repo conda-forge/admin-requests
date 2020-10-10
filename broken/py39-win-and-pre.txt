@@ -1,0 +1,2 @@
+win-64/python-3.9.0-h60c2a47_1_cpython.tar.bz2
+win-64/python-3.9.0-h60c2a47_2_cpython.tar.bz2
