@@ -1,1 +1,0 @@
-noarch/nose-1.3.7-pyh9f0ad1d_1005.tar.bz2
