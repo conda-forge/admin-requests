@@ -1,0 +1,4 @@
+ win-64/mamba-0.6.0-py36h3ce56f2_0.tar.bz2
+ win-64/mamba-0.6.0-py37h6eabccc_0.tar.bz2
+ win-64/mamba-0.6.0-py38h6cafdac_0.tar.bz2
+ win-64/mamba-0.6.0-py39h4abd31e_0.tar.bz2
