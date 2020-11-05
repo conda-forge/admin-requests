@@ -1,0 +1,12 @@
+osx-64/mpifx-20.1-hf924dc7_1.tar.bz2
+osx-64/mpifx-20.1-h4c69643_1.tar.bz2
+osx-64/mpifx-20.1-h0ee35d8_1.tar.bz2
+osx-64/mpifx-20.1-h798856c_1.tar.bz2
+linux-64/mpifx-20.1-h3d16c9e_1.tar.bz2
+linux-64/mpifx-20.1-h283aecc_1.tar.bz2
+linux-64/mpifx-20.1-hd48e553_1.tar.bz2
+linux-64/mpifx-20.1-h5cd5249_1.tar.bz2
+osx-64/mpifx-20.1-h798856c_0.tar.bz2
+osx-64/mpifx-20.1-h4c69643_0.tar.bz2
+linux-64/mpifx-20.1-h3d16c9e_0.tar.bz2
+linux-64/mpifx-20.1-h5cd5249_0.tar.bz2
