@@ -1,2 +1,0 @@
-noarch/r-magrittr-2.0.1-r36hc72bb7e_0.tar.bz2
-noarch/r-magrittr-2.0.1-r40hc72bb7e_0.tar.bz2
