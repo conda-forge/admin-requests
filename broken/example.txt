@@ -1,7 +1,2 @@
 win-64/cf-autotick-bot-test-package-0.4-py38_0.tar.bz2
 win-64/cf-autotick-bot-test-package-0.4-py27_0.tar.bz2
-win-64/openexr-2.5.0-h5dfd299_0.tar.bz2
-linux-ppc64le/openexr-2.5.0-h6332354_0.tar.bz2
-osx-64/openexr-2.5.0-h7475705_0.tar.bz2
-linux-64/openexr-2.5.0-he513fc3_0.tar.bz2
-linux-aarch64/openexr-2.5.0-he513fc3_0.tar.bz2
