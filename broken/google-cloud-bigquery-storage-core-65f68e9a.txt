@@ -1,0 +1,3 @@
+noarch/google-cloud-bigquery-storage-core-2.0.0-pyh9f0ad1d_1.tar.bz2
+noarch/google-cloud-bigquery-storage-core-2.0.1-pyh9f0ad1d_0.tar.bz2
+noarch/google-cloud-bigquery-storage-core-2.1.0-pyhd3deb0d_0.tar.bz2
