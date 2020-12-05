@@ -1,0 +1,8 @@
+osx-64/flask-debugtoolbar-0.10.1-py27_1000.tar.bz2
+osx-64/flask-debugtoolbar-0.10.1-py35_1000.tar.bz2
+osx-64/flask-debugtoolbar-0.10.1-py36_1000.tar.bz2
+osx-64/flask-debugtoolbar-0.10.1-py37_1000.tar.bz2
+win-64/flask-debugtoolbar-0.10.1-py27_1000.tar.bz2
+win-64/flask-debugtoolbar-0.10.1-py35_1000.tar.bz2
+win-64/flask-debugtoolbar-0.10.1-py36_1000.tar.bz2
+win-64/flask-debugtoolbar-0.10.1-py37_1000.tar.bz2
