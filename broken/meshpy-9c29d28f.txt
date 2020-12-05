@@ -1,4 +1,0 @@
-linux-64/meshpy-2018.2.1-py27h7eb728f_0.tar.bz2
-linux-64/meshpy-2018.2.1-py36h7eb728f_0.tar.bz2
-osx-64/meshpy-2018.2.1-py27h7eb728f_0.tar.bz2
-osx-64/meshpy-2018.2.1-py36h7eb728f_0.tar.bz2
