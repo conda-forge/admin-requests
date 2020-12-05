@@ -1,0 +1,15 @@
+linux-64/pyemd-0.5.1-py27h637b7d7_1000.tar.bz2
+linux-64/pyemd-0.5.1-py27hf8a1672_0.tar.bz2
+linux-64/pyemd-0.5.1-py36h637b7d7_1000.tar.bz2
+linux-64/pyemd-0.5.1-py36hf8a1672_0.tar.bz2
+linux-64/pyemd-0.5.1-py37h637b7d7_1000.tar.bz2
+linux-64/pyemd-0.5.1-py37hf8a1672_0.tar.bz2
+osx-64/pyemd-0.5.1-py27h1702cab_1000.tar.bz2
+osx-64/pyemd-0.5.1-py27hf8a1672_0.tar.bz2
+osx-64/pyemd-0.5.1-py36h1702cab_1000.tar.bz2
+osx-64/pyemd-0.5.1-py36hf8a1672_0.tar.bz2
+osx-64/pyemd-0.5.1-py37h1702cab_1000.tar.bz2
+osx-64/pyemd-0.5.1-py37hf8a1672_0.tar.bz2
+win-64/pyemd-0.5.1-py27h39f3610_1000.tar.bz2
+win-64/pyemd-0.5.1-py36h830ac7b_1000.tar.bz2
+win-64/pyemd-0.5.1-py37h830ac7b_1000.tar.bz2
