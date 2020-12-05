@@ -1,1 +1,0 @@
-noarch/autovizwidget-0.12.6-py_1000.tar.bz2
