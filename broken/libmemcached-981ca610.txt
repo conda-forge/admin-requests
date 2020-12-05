@@ -1,1 +1,0 @@
-osx-64/libmemcached-1.0.18-0.tar.bz2
