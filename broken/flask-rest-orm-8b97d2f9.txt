@@ -1,4 +1,0 @@
-linux-64/flask-rest-orm-0.5.0-py35_0.tar.bz2
-linux-64/flask-rest-orm-0.5.0-py36_0.tar.bz2
-win-64/flask-rest-orm-0.5.0-py35_0.tar.bz2
-win-64/flask-rest-orm-0.5.0-py36_0.tar.bz2
