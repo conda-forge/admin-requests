@@ -1,3 +1,0 @@
-win-64/gensim-3.5.0-py27h39f3610_1000.tar.bz2
-win-64/gensim-3.5.0-py36h830ac7b_1000.tar.bz2
-win-64/gensim-3.5.0-py37h830ac7b_1000.tar.bz2
