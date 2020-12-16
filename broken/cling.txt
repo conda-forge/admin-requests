@@ -1,2 +1,0 @@
-linux-64/cling-0.7-hf817b99_2.tar.bz2
-linux-aarch64/cling-0.7-h6293a0b_2.tar.bz2
