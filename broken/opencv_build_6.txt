@@ -1,0 +1,4 @@
+linux-64/libopencv-4.5.0-py36_6.tar.bz2
+linux-aarch64/libopencv-4.5.0-py36_6.tar.bz2
+linux-ppc64le/libopencv-4.5.0-py36_6.tar.bz2
+osx-64/libopencv-4.5.0-py36_6.tar.bz2
