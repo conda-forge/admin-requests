@@ -1,5 +1,0 @@
-win-64/clangdev-5.0.0-hc06fbdd_1011.tar.bz2
-osx-arm64/clangdev-5.0.0-hfaa88dd_1011.tar.bz2
-osx-64/clangdev-5.0.0-hf1592d7_1011.tar.bz2
-linux-aarch64/clangdev-5.0.0-h4aac55e_1011.tar.bz2
-linux-64/clangdev-5.0.0-h43905f9_1011.tar.bz2
