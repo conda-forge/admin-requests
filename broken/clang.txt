@@ -1,0 +1,16 @@
+linux-64/clang_osx-64-11.0.0-hc3c9db2_9.tar.bz2
+linux-64/clangxx_osx-64-11.0.0-h060219b_9.tar.bz2
+linux-64/clangxx_osx-arm64-11.0.0-h6cb47b6_9.tar.bz2
+linux-64/clang_osx-arm64-11.0.0-hbb50d1d_9.tar.bz2
+osx-64/clang_osx-64-11.0.0-hb91bd55_9.tar.bz2
+osx-64/clang_bootstrap_osx-64-11.0.0-h3b6de16_9.tar.bz2
+osx-64/clangxx_osx-64-11.0.0-h7e1b574_9.tar.bz2
+osx-64/clangxx_osx-arm64-11.0.0-hc50fe25_9.tar.bz2
+osx-64/clang_osx-arm64-11.0.0-h40be2b1_9.tar.bz2
+osx-64/clang_bootstrap_osx-arm64-11.0.0-h75a6d7f_9.tar.bz2
+osx-arm64/clangxx_osx-64-11.0.0-h8d3ee1a_9.tar.bz2
+osx-arm64/clang_osx-64-11.0.0-ha77c5c3_9.tar.bz2
+osx-arm64/clang_bootstrap_osx-64-11.0.0-ha99727f_9.tar.bz2
+osx-arm64/clang_bootstrap_osx-arm64-11.0.0-h1741c7c_9.tar.bz2
+osx-arm64/clangxx_osx-arm64-11.0.0-hb84c830_9.tar.bz2
+osx-arm64/clang_osx-arm64-11.0.0-h54d7cd3_9.tar.bz2
