@@ -1,6 +1,0 @@
-win-64/xtl-0.6.24-h5362a0b_0.tar.bz2
-linux-aarch64/xtl-0.6.24-hd62202e_0.tar.bz2
-osx-arm64/xtl-0.6.24-h260d524_0.tar.bz2
-osx-64/xtl-0.6.24-h926bf3e_0.tar.bz2
-linux-ppc64le/xtl-0.6.24-h2acdbc0_0.tar.bz2
-linux-64/xtl-0.6.24-h4bd325d_0.tar.bz2
