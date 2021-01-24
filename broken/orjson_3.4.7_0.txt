@@ -1,0 +1,2 @@
+osx-arm64/orjson-3.4.7-py38h30f7421_0.tar.bz2
+osx-arm64/orjson-3.4.7-py39h46acfd9_0.tar.bz2
