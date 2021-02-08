@@ -1,0 +1,12 @@
+win-64/basemap-1.2.2-py38h11503ac_4.tar.bz2
+win-64/basemap-1.2.2-py39h79b46d7_4.tar.bz2
+win-64/basemap-1.2.2-py36hf49ccc5_4.tar.bz2
+win-64/basemap-1.2.2-py37hb8505f4_4.tar.bz2
+osx-64/basemap-1.2.2-py37he8e7f7a_4.tar.bz2
+osx-64/basemap-1.2.2-py36h144123a_4.tar.bz2
+osx-64/basemap-1.2.2-py39h4e5df54_4.tar.bz2
+osx-64/basemap-1.2.2-py38h41e5b3f_4.tar.bz2
+linux-64/basemap-1.2.2-py37h02548d7_4.tar.bz2
+linux-64/basemap-1.2.2-py36h9f5dc44_4.tar.bz2
+linux-64/basemap-1.2.2-py39he68b33d_4.tar.bz2
+linux-64/basemap-1.2.2-py38h2516ec2_4.tar.bz2
