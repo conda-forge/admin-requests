@@ -1,3 +1,0 @@
-noarch/ipykernel-5.0.0-py_0.tar.bz2
-noarch/ipykernel-5.0.0-pyh24bf2e0_1.tar.bz2
-
