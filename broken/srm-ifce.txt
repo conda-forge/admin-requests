@@ -1,4 +1,0 @@
-linux-64/srm-ifce-1.24.4-h08bb679_0.tar.bz2
-osx-64/srm-ifce-1.24.4-hae3744b_0.tar.bz2
-linux-64/srm-ifce-1.24.4-h13806f4_1.tar.bz2
-osx-64/srm-ifce-1.24.4-he61573e_1.tar.bz2
