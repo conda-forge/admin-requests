@@ -1,0 +1,4 @@
+win-64/libfaiss-1.7.0-cuda102h75e95e8_2_cuda.tar.bz2
+win-64/libfaiss-1.7.0-cuda110h1346f91_2_cuda.tar.bz2
+win-64/libfaiss-1.7.0-cuda111h1b3ed02_2_cuda.tar.bz2
+win-64/libfaiss-1.7.0-cuda112h6b84137_2_cuda.tar.bz2
