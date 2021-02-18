@@ -1,4 +1,0 @@
-win-64/faiss-gpu-1.7.0-h949689a_2.tar.bz2
-win-64/faiss-gpu-1.7.0-h278398d_2.tar.bz2
-win-64/faiss-gpu-1.7.0-h6de129e_2.tar.bz2
-win-64/faiss-gpu-1.7.0-h79f9687_2.tar.bz2
