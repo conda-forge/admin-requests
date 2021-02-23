@@ -13,7 +13,7 @@ jobs:
         activate-environment: cf
         environment-file: environment.yml
         auto-activate-base: true
-    - name: Check packages exist on main
+    - name: Check packages exist on main (or label/broken)
       shell: bash -l {0}
       run: |
           conda activate cf

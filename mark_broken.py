@@ -27,25 +27,25 @@ def get_not_broken_files():
     return [f for f in glob("not_broken/*") if f != "not_broken/example.txt"]
 
 
-def get_all_files():
-    return get_not_broken_files() + get_broken_files()
-
-
 def check_packages():
-    for file_name in get_all_files():
-        with open(file_name, "r") as f:
-            pkgs = f.readlines()
-            pkgs = [pkg.strip() for pkg in pkgs]
-        for pkg in pkgs:
-            # ignore blank lines or Python-style comments
-            if pkg.startswith('#') or len(pkg) == 0:
-                continue
-            plat, name, ver, build = split_pkg(pkg)
-            subprocess.check_call(
-                f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
-                "-c conda-forge --override-channels",
-                shell=True,
-            )
+    for channel, filenames in (
+        ("conda-forge", get_broken_files()),
+        ("conda-forge/label/broken", get_not_broken_files()),
+    ):
+        for file_name in filenames:
+            with open(file_name, "r") as f:
+                pkgs = f.readlines()
+                pkgs = [pkg.strip() for pkg in pkgs]
+            for pkg in pkgs:
+                # ignore blank lines or Python-style comments
+                if pkg.startswith('#') or len(pkg) == 0:
+                    continue
+                plat, name, ver, build = split_pkg(pkg)
+                subprocess.check_call(
+                    f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
+                    f"-c {channel} --override-channels",
+                    shell=True,
+                )
 
 
 def mark_broken_file(file_name):
