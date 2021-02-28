@@ -1,0 +1,3 @@
+noarch/spacy-model-en_core_web_sm-3.0.0-pyh44b312d_0.tar.bz2
+noarch/spacy-model-en_core_web_md-3.0.0-pyh44b312d_0.tar.bz2
+noarch/spacy-model-en_core_web_lg-3.0.0-pyh44b312d_0.tar.bz2
