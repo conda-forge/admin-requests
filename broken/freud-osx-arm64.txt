@@ -1,2 +1,0 @@
-osx-arm64/freud-2.4.1-py39ha0bc353_1.tar.bz2
-osx-arm64/freud-2.4.1-py38ha336496_1.tar.bz2
