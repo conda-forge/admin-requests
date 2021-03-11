@@ -23,11 +23,11 @@ jobs:
     - name: fast finish
       if: ${{ steps.conversion_lock.outcome == 'success' }}
       run: |
-        set -ex
+        set -x
         # avoid wasting CI time if there is nothing to do
-        broken_count="$(ls broken/*.txt | grep -v broken/example.txt --count)"
-        not_broken_count="$(ls not_broken/*.txt | grep -v not_broken/example.txt --count)"
-        token_reset_count="$(ls token_reset/*.txt | grep -v token_reset/example.txt --count)"
+        broken_count="$(ls broken/*.txt | grep -v broken/example.txt | wc -l)"
+        not_broken_count="$(ls not_broken/*.txt | grep -v not_broken/example.txt | wc -l)"
+        token_reset_count="$(ls token_reset/*.txt | grep -v token_reset/example.txt | wc -l)"
         if [[ "${broken_count}" == "0" && "${not_broken_count}" == "0" && "${token_reset_count}" == "0" ]]; then
           echo "nothing to do, setting ci skip!"
           echo "CI_SKIP=true" >> $GITHUB_ENV
