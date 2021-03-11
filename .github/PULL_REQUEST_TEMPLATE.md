@@ -23,7 +23,8 @@ Guidelines for marking packages as broken:
 Checklist:
 
 * [ ] Make sure your package is in the right spot (`broken/*` for adding the
-  `broken` label, `not_broken/*` for removing the `broken` label)
+  `broken` label, `not_broken/*` for removing the `broken` label, or `token_reset/*`
+  for token resets)
 * [ ] Added a description of the problem with the package in the PR description.
 * [ ] Added links to any relevant issues/PRs in the PR description.
 * [ ] Pinged the team for the package for their input.
