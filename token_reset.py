@@ -176,7 +176,7 @@ def main():
         if mode == "reset":
             reset_feedstock_tokens_in_file(token_reset_file)
         else:
-            missing_feedstocks.append(
+            missing_feedstocks.extend(
                 check_for_feedstocks_in_file(token_reset_file)
             )
 
