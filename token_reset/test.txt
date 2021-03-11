@@ -1,1 +1,1 @@
-cf-autotick-bot-test-package-blah
+cf-autotick-bot-test-package
