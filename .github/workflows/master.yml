@@ -1,4 +1,4 @@
-name: Mark Packages as Broken
+name: run
 on:
   push:
     branches:
@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - uses: conda-incubator/setup-miniconda@v2
       with:
         activate-environment: cf
         environment-file: environment.yml
         auto-activate-base: true
+
     - name: Mark packages as broken
       shell: bash -l {0}
       run: |
@@ -23,6 +25,22 @@ jobs:
       env:
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.CF_GITHUB_TOKEN }}
+
+    - name: reset feedstock tokens
+      shell: bash -l {0}
+      run: |
+          conda activate cf
+          git config --global user.name "conda-forge-admin"
+          git config --global user.email "pelson.pub+conda-forge@gmail.com"
+          python token_reset.py reset
+      env:
+        STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.CF_GITHUB_TOKEN }}
+        CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
+        TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}
+        AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
+        DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
+
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:

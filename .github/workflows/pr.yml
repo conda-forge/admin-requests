@@ -1,4 +1,4 @@
-name: Check Packages Exist on Main
+name: check
 on:
   pull_request:
     branches:
@@ -8,13 +8,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - uses: conda-incubator/setup-miniconda@v2
       with:
         activate-environment: cf
         environment-file: environment.yml
         auto-activate-base: true
+
     - name: Check packages exist on main (or label/broken)
       shell: bash -l {0}
       run: |
           conda activate cf
           python mark_broken.py check
+
+    - name: Check feedstocks exist for token reset
+      shell: bash -l {0}
+      run: |
+          conda activate cf
+          python token_reset.py check
