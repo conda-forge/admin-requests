@@ -1,2 +1,0 @@
-# token reset failed for these packages - trying again later
-cf-autotick-bot-test-package
