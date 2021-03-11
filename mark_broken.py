@@ -49,6 +49,8 @@ def check_packages():
 
 
 def mark_broken_file(file_name):
+    did_one = False
+
     with open(file_name, "r") as f:
         pkgs = f.readlines()
         pkgs = [pkg.strip() for pkg in pkgs]
@@ -69,16 +71,21 @@ def mark_broken_file(file_name):
         )
         if r.status_code != 201:
             print("        could not mark broken", flush=True)
-            return
+            return did_one
         else:
             print("        marked broken", flush=True)
+            did_one = True
     subprocess.check_call(f"git rm {file_name}", shell=True)
     subprocess.check_call(
         f"git commit -m 'Remove {file_name} after marking broken'", shell=True)
     subprocess.check_call("git show", shell=True)
 
+    return did_one
+
 
 def mark_not_broken_file(file_name):
+    did_one = False
+
     with open(file_name, "r") as f:
         pkgs = f.readlines()
         pkgs = [pkg.strip() for pkg in pkgs]
@@ -99,60 +106,65 @@ def mark_not_broken_file(file_name):
         )
         if r.status_code != 201:
             print("        could not mark not broken", flush=True)
-            return
+            return did_one
         else:
             print("        marked not broken", flush=True)
+            did_one = True
     subprocess.check_call(f"git rm {file_name}", shell=True)
     subprocess.check_call(
         f"git commit -m 'Remove {file_name} after marking not broken'", shell=True)
     subprocess.check_call("git show", shell=True)
+
+    return did_one
 
 
 def mark_broken():
     if "BINSTAR_TOKEN" not in os.environ:
         return
 
+    did_any = False
     files = get_broken_files()
     print("found files: %s" % files, flush=True)
     for file_name in files:
         print("working on file %s" % file_name, flush=True)
-        mark_broken_file(file_name)
+        did_any = did_any or mark_broken_file(file_name)
 
     files = get_not_broken_files()
     print("found files: %s" % files, flush=True)
     for file_name in files:
         print("working on file %s" % file_name, flush=True)
-        mark_not_broken_file(file_name)
+        did_any = did_any or mark_not_broken_file(file_name)
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        subprocess.check_call(
-            "git clone https://github.com/conda-forge/"
-            "conda-forge-repodata-patches-feedstock.git",
-            cwd=tmpdir,
-            shell=True,
-        )
+    if did_any:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            subprocess.check_call(
+                "git clone https://github.com/conda-forge/"
+                "conda-forge-repodata-patches-feedstock.git",
+                cwd=tmpdir,
+                shell=True,
+            )
 
-        subprocess.check_call(
-            "git remote set-url --push origin "
-            "https://${GITHUB_TOKEN}@github.com/conda-forge/"
-            "conda-forge-repodata-patches-feedstock.git",
-            cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-            shell=True,
-        )
+            subprocess.check_call(
+                "git remote set-url --push origin "
+                "https://${GITHUB_TOKEN}@github.com/conda-forge/"
+                "conda-forge-repodata-patches-feedstock.git",
+                cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
+                shell=True,
+            )
 
-        fstr = " ".join(f for f in files)
-        subprocess.check_call(
-            "git commit --allow-empty -am 'resync repo data "
-            "for broken packages in files %s'" % fstr,
-            cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-            shell=True,
-        )
+            fstr = " ".join(f for f in files)
+            subprocess.check_call(
+                "git commit --allow-empty -am 'resync repo data "
+                "for broken packages in files %s'" % fstr,
+                cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
+                shell=True,
+            )
 
-        subprocess.check_call(
-            "git push",
-            cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-            shell=True,
-        )
+            subprocess.check_call(
+                "git push",
+                cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
+                shell=True,
+            )
 
 
 if __name__ == "__main__":

@@ -34,7 +34,7 @@ def write_token(name, token):
 def delete_feedstock_token(org, feedstock_name):
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(
-            "git clone https://github.com/conda-forge/"
+            "git clone https://${GITHUB_TOKEN}@github.com/conda-forge/"
             "feedstock-tokens.git",
             cwd=tmpdir,
             shell=True,
