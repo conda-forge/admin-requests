@@ -182,3 +182,7 @@ def main():
 
     if missing_feedstocks:
         raise RuntimeError("feedstocks %s could not be found!" % missing_feedstocks)
+
+
+if __name__ == "__main__":
+    main()
