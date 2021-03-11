@@ -7,15 +7,40 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+    - name: Prevent multiple jobs running in parallel
+      id: conversion_lock
+      uses: beckermr/turnstyle-python@v1
+      with:
+        abort-after-seconds: 3
+        poll-interval-seconds: 2
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+      continue-on-error: true
+
+    - name: fast finish
+      if: ${{ steps.conversion_lock.outcome == 'success' }}
+      run: |
+        # avoid wasting CI time if there is nothing to do
+        broken_count="$(ls broken/*.txt | grep -v broken/example.txt --count)"
+        not_broken_count="$(ls not_broken/*.txt | grep -v not_broken/example.txt --count)"
+        token_reset_count="$(ls token_reset/*.txt | grep -v token_reset/example.txt --count)"
+        if [[ "${broken_count}" == "0" && "${not_broken_count}" == "0" && "${token_reset_count}" == "0" ]]; then
+          echo "nothing to do, setting ci skip!"
+          echo "CI_SKIP=true" >> $GITHUB_ENV
+        fi
+
     - uses: actions/checkout@v2
+      # outcome is evaluated before continue-on-error above
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
 
     - uses: conda-incubator/setup-miniconda@v2
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       with:
         activate-environment: cf
         environment-file: environment.yml
         auto-activate-base: true
 
-    - name: Mark packages as broken
+    - name: mark packages as broken
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -l {0}
       run: |
           conda activate cf
@@ -28,6 +53,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.CF_GITHUB_TOKEN }}
 
     - name: reset feedstock tokens
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -l {0}
       run: |
           conda activate cf
@@ -43,6 +69,7 @@ jobs:
         DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
 
     - name: Push changes
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
