@@ -28,3 +28,10 @@ Guidelines for marking packages as broken:
 If you want to remove the broken label from packages on `conda-forge`, send a Pull Request
 adding a new `.txt` file in `not_broken/` with a list of the full names of the packages
 for which the label `broken` will be removed. See `not_broken/example.txt` for an example.
+
+
+## Reset your Feedstock Token
+
+If you want to reset your feedstock token to fix issues with uploads, place the name of your feedstock in
+a new `.txt` file in `token_reset/`. See `token_reset/example.txt` for an example. You should use the name
+without `-feedstock` (e.g., for `python-feedstock`, you put in just `python`).
