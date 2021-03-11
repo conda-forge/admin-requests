@@ -23,6 +23,7 @@ jobs:
     - name: fast finish
       if: ${{ steps.conversion_lock.outcome == 'success' }}
       run: |
+        set -ex
         # avoid wasting CI time if there is nothing to do
         broken_count="$(ls broken/*.txt | grep -v broken/example.txt --count)"
         not_broken_count="$(ls not_broken/*.txt | grep -v not_broken/example.txt --count)"

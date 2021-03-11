@@ -55,7 +55,9 @@ def delete_feedstock_token(org, feedstock_name):
         )
 
         subprocess.check_call(
-            "git commit --allow-empty -am 'removing token for %s'" % feedstock_name,
+            "git commit --allow-empty -am "
+            "'[ci skip] [skip ci] [cf admin skip] ***NO_CI*** removing "
+            "token for %s'" % feedstock_name,
             cwd=os.path.join(tmpdir, "feedstock-tokens"),
             shell=True,
         )
