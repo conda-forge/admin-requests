@@ -1,1 +1,0 @@
-win-64/freeimage-3.18.0-hd5a7501_6.tar.bz2
