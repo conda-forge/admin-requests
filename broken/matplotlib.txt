@@ -1,0 +1,5 @@
+win-64/matplotlib-3.4.0-py38haa244fe_0.tar.bz2
+win-64/matplotlib-3.4.0-py37h03978a9_0.tar.bz2
+win-64/matplotlib-3.4.0-py39hcbf5309_0.tar.bz2
+osx-arm64/matplotlib-3.4.0-py39hdf13c20_0.tar.bz2
+osx-arm64/matplotlib-3.4.0-py38h150bfb4_0.tar.bz2
