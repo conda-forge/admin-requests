@@ -1,8 +1,0 @@
-win-64/bullet-cpp-3.09-he38d939_0.tar.bz2
-win-64/bullet-cpp-3.09-h4c96930_0.tar.bz2
-win-64/bullet-cpp-3.09-h2e25243_0.tar.bz2
-win-64/bullet-cpp-3.09-h08fd248_0.tar.bz2
-win-64/bullet-cpp-3.09-h60cbd38_1.tar.bz2
-win-64/bullet-cpp-3.09-h90003fb_1.tar.bz2
-win-64/bullet-cpp-3.09-h2e25243_1.tar.bz2
-win-64/bullet-cpp-3.09-he8b1a61_1.tar.bz2
