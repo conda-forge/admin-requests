@@ -1,4 +1,0 @@
-win-64/xsimd-7.5.1-h2d74725_0.tar.bz2
-osx-64/xsimd-7.5.1-h940c156_0.tar.bz2
-osx-arm64/xsimd-7.5.1-hc021e02_0.tar.bz2
-linux-64/xsimd-7.5.1-h4bd325d_0.tar.bz2
