@@ -1,6 +1,0 @@
-linux-aarch64/pyopencl-2021.2-py37hce16e70_0.tar.bz2
-linux-64/pyopencl-2021.2-py39h5472131_0.tar.bz2
-linux-aarch64/pyopencl-2021.2-py36h93b45c7_0.tar.bz2
-linux-64/pyopencl-2021.2-py36h706143c_0.tar.bz2
-linux-64/pyopencl-2021.2-py37hda21425_0.tar.bz2
-linux-64/pyopencl-2021.2-py37h0379df6_0.tar.bz2
