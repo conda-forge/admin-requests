@@ -1,2 +1,0 @@
-osx-64/libcxx-12.0.0-habf9029_0.tar.bz2
-osx-arm64/libcxx-12.0.0-h168391b_0.tar.bz2
