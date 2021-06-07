@@ -1,0 +1,12 @@
+linux-aarch64/libsolv-0.7.19-h469bdbd_1.tar.bz2
+win-64/libsolv-0.7.19-h7755175_1.tar.bz2
+osx-64/libsolv-0.7.19-hcf210ce_1.tar.bz2
+linux-ppc64le/libsolv-0.7.19-h690f14c_1.tar.bz2
+osx-arm64/libsolv-0.7.19-hccf11d3_1.tar.bz2
+linux-64/libsolv-0.7.19-h780b84a_1.tar.bz2
+linux-aarch64/libsolv-static-0.7.19-h469bdbd_1.tar.bz2
+win-64/libsolv-static-0.7.19-h7755175_1.tar.bz2
+osx-64/libsolv-static-0.7.19-hcf210ce_1.tar.bz2
+linux-ppc64le/libsolv-static-0.7.19-h690f14c_1.tar.bz2
+osx-arm64/libsolv-static-0.7.19-hccf11d3_1.tar.bz2
+linux-64/libsolv-static-0.7.19-h780b84a_1.tar.bz2
