@@ -1,0 +1,4 @@
+osx-64/xeus-1.0.3-hf09c4ce_0.tar.bz2
+osx-64/xeus-1.0.2-hf09c4ce_1.tar.bz2
+osx-arm64/xeus-1.0.3-h3212551_0.tar.bz2
+osx-arm64/xeus-1.0.2-h3212551_1.tar.bz2
