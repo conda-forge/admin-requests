@@ -1,0 +1,5 @@
+osx-arm64/pari-2.13.2-h1cd4dcc_0.tar.bz2
+linux-aarch64/pari-2.13.2-h03778fe_0.tar.bz2
+linux-ppc64le/pari-2.13.2-hc26e4a5_0.tar.bz2
+linux-64/pari-2.13.2-hddaffa3_0.tar.bz2
+osx-64/pari-2.13.2-h797e938_0.tar.bz2
