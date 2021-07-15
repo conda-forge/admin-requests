@@ -1,0 +1,7 @@
+linux-64/dotnet-runtime-3.1.19-h0b14f55_1.tar.bz2
+win-64/dotnet-runtime-3.1.19-h74a9793_1.tar.bz2
+linux-64/dotnet-runtime-3.1.19-hb34047c_2.tar.bz2
+win-64/dotnet-runtime-3.1.19-h2d74725_2.tar.bz2
+linux-64/dotnet-runtime-3.1.19-hb34047c_3.tar.bz2
+win-64/dotnet-runtime-3.1.19-h2d74725_3.tar.bz2
+
