@@ -1,0 +1,6 @@
+osx-arm64/galsim-2.3.2-py39h2ec83ff_0.tar.bz2
+osx-arm64/galsim-2.3.2-py38h384881f_0.tar.bz2
+osx-64/galsim-2.3.2-py39h9186725_0.tar.bz2
+osx-64/galsim-2.3.2-py38h576f502_0.tar.bz2
+osx-64/galsim-2.3.2-py37h47425da_0.tar.bz2
+osx-64/galsim-2.3.2-py36hb00eb4f_0.tar.bz2
