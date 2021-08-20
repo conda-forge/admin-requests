@@ -43,6 +43,14 @@ jobs:
         environment-file: environment.yml
         auto-activate-base: true
 
+    - name: Generate token
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+      id: generate_token
+      uses: tibdex/github-app-token@v1
+      with:
+        app_id: ${{ secrets.CF_CURATOR_APP_ID }}
+        private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+
     - name: mark packages as broken
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -l {0}
@@ -54,7 +62,7 @@ jobs:
           python mark_broken.py mark
       env:
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.CF_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
     - name: reset feedstock tokens
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
@@ -66,7 +74,7 @@ jobs:
           python token_reset.py reset
       env:
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.CF_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
         TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}
         AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
