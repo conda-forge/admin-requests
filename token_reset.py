@@ -96,7 +96,7 @@ def reset_feedstock_token(name):
 
         subprocess.check_call(
             ['conda', 'smithy', 'rotate-binstar-token',
-             '--without-appveyor --without-azure',
+             '--without-appveyor', '--without-azure',
              '--token_name', 'STAGING_BINSTAR_TOKEN'],
             cwd=feedstock_dir)
 
