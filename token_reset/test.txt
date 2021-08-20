@@ -1,1 +1,1 @@
-cf-autotick-bot-test-package-feedstock
+cf-autotick-bot-test-package
