@@ -89,8 +89,10 @@ def reset_feedstock_token(name):
             ['conda', 'smithy', 'generate-feedstock-token',
              '--feedstock_directory', feedstock_dir] + owner_info)
         subprocess.check_call(
-            ['conda', 'smithy', 'register-feedstock-token',
-             '--feedstock_directory', feedstock_dir] + owner_info)
+            ['conda', 'smithy', 'register-feedstock-token', '--feedstock_directory', feedstock_dir] 
+            + owner_info 
+            + ['--token_repo', 'https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/feedstock-tokens']
+        )
 
         subprocess.check_call(
             ['conda', 'smithy', 'rotate-binstar-token',
