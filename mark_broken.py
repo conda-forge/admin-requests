@@ -146,7 +146,7 @@ def mark_broken():
 
             subprocess.check_call(
                 "git remote set-url --push origin "
-                "https://${GITHUB_TOKEN}@github.com/conda-forge/"
+                "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
                 "conda-forge-repodata-patches-feedstock.git",
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
                 shell=True,
