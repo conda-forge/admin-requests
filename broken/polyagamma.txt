@@ -1,8 +1,0 @@
-linux-64/polyagamma-1.3.2b3-py38h497a2fe_0.tar.bz2
-linux-64/polyagamma-1.3.2b3-py36h8f6f2f9_0.tar.bz2
-linux-64/polyagamma-1.3.2b3-py37h5e8e339_0.tar.bz2
-linux-64/polyagamma-1.3.2b3-py39h3811e60_0.tar.bz2
-osx-64/polyagamma-1.3.2b3-py38h96a0964_0.tar.bz2
-osx-64/polyagamma-1.3.2b3-py36hfa26744_0.tar.bz2
-osx-64/polyagamma-1.3.2b3-py39h89e85a6_0.tar.bz2
-osx-64/polyagamma-1.3.2b3-py37h271585c_0.tar.bz2
