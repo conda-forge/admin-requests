@@ -1,0 +1,8 @@
+osx-64/puma-3.0.0-py37hfb6df98_0.tar.bz2
+osx-64/puma-3.0.0-py38h1078ab5_0.tar.bz2
+osx-64/puma-3.0.0-py39h7812578_0.tar.bz2
+osx-64/puma-3.0.0-py36h5403bd3_0.tar.bz2
+linux-64/puma-3.0.0-py36hefa481c_0.tar.bz2
+linux-64/puma-3.0.0-py39h3d6a961_0.tar.bz2
+linux-64/puma-3.0.0-py37hf0709b1_0.tar.bz2
+linux-64/puma-3.0.0-py38haeea490_0.tar.bz2
