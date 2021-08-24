@@ -61,7 +61,7 @@ jobs:
           git config --global pull.rebase false
           python mark_broken.py mark
       env:
-        BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
+        BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
     - name: reset feedstock tokens
