@@ -76,7 +76,7 @@ jobs:
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-        TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}
+        TRAVIS_TOKEN: ${{ secrets.ORGWIDE_TRAVIS_TOKEN }}
         AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
         DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
 
