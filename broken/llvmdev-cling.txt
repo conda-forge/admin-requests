@@ -1,6 +1,0 @@
-osx-64/clangdev-9.0.1-cling_v0.9_h2c0dd1e_1.tar.bz2
-win-64/clangdev-9.0.1-cling_v0.9_hc6f1956_1.tar.bz2
-osx-arm64/clangdev-9.0.1-cling_v0.9_h6a406fe_1.tar.bz2
-linux-aarch64/clangdev-9.0.1-cling_v0.9_h8196ba5_1.tar.bz2
-linux-64/clangdev-9.0.1-cling_v0.9_hc213394_1.tar.bz2
-linux-ppc64le/clangdev-9.0.1-cling_v0.9_h8c6a852_1.tar.bz2
