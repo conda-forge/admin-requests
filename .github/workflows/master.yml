@@ -42,6 +42,8 @@ jobs:
         activate-environment: cf
         environment-file: environment.yml
         auto-activate-base: true
+        miniforge-version: latest
+        miniforge-variant: Mambaforge
 
     - name: Generate token
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
