@@ -1,1 +1,0 @@
-osx-64/python-3.8.10-hb51f844_2_cpython.tar.bz2
