@@ -14,4 +14,4 @@ linux-ppc64le/nbconvert-6.2.0rc0-py39hc1b9086_0.tar.bz2
 linux-64/nbconvert-6.2.0rc0-py39hf3d152e_0.tar.bz2
 linux-64/nbconvert-6.2.0rc0-py38h578d9bd_0.tar.bz2
 linux-64/nbconvert-6.2.0rc0-py37h9c2f6ca_0.tar.bz2
-linux-64/nbconvert-6.2.0rc0-py37h89c1867_0.tar.bz
+linux-64/nbconvert-6.2.0rc0-py37h89c1867_0.tar.bz2
