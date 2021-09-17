@@ -1,4 +1,0 @@
-linux-aarch64/nbconvert-6.2.0rc0-py39ha65689a_0.tar.bz2
-linux-aarch64/nbconvert-6.2.0rc0-py38h2063c64_0.tar.bz2
-linux-aarch64/nbconvert-6.2.0rc0-py37hd9ded2f_0.tar.bz2
-linux-aarch64/nbconvert-6.2.0rc0-py37h4bcbb9b_0.tar.bz2
