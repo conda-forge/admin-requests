@@ -123,15 +123,15 @@ def mark_broken():
         return
 
     did_any = False
-    files = get_broken_files()
-    print("found files: %s" % files, flush=True)
-    for file_name in files:
+    br_files = get_broken_files()
+    print("found files: %s" % br_files, flush=True)
+    for file_name in br_files:
         print("working on file %s" % file_name, flush=True)
         did_any = did_any or mark_broken_file(file_name)
 
-    files = get_not_broken_files()
-    print("found files: %s" % files, flush=True)
-    for file_name in files:
+    nbr_files = get_not_broken_files()
+    print("found files: %s" % nbr_files, flush=True)
+    for file_name in nbr_files:
         print("working on file %s" % file_name, flush=True)
         did_any = did_any or mark_not_broken_file(file_name)
 
@@ -152,10 +152,11 @@ def mark_broken():
                 shell=True,
             )
 
-            fstr = " ".join(f for f in files)
+            all_files = br_files + nbr_files
+            fstr = " ".join(f for f in all_files)
             subprocess.check_call(
                 "git commit --allow-empty -am 'resync repo data "
-                "for broken packages in files %s'" % fstr,
+                "for broken/notbroken packages in files %s'" % fstr,
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
                 shell=True,
             )
