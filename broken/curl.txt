@@ -1,6 +1,0 @@
-linux-64/libcurl-7.79.0-h2574ce0_0.tar.bz2
-linux-aarch64/libcurl-7.79.0-hcafe9da_0.tar.bz2
-linux-ppc64le/libcurl-7.79.0-he415e40_0.tar.bz2
-win-64/libcurl-7.79.0-h789b8ee_0.tar.bz2
-osx-arm64/libcurl-7.79.0-h8fe1914_0.tar.bz2
-osx-64/libcurl-7.79.0-hf45b732_0.tar.bz2
