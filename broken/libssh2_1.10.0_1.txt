@@ -1,2 +1,0 @@
-osx-arm64/libssh2-1.10.0-hb80f160_1.tar.bz2
-osx-arm64/libssh2-1.10.0-h7a5bd25_1.tar.bz2
