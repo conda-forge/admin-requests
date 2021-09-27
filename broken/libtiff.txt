@@ -1,6 +1,0 @@
-linux-aarch64/libtiff-4.3.0-h1ff68f6_0.tar.bz2
-win-64/libtiff-4.3.0-h0c97f57_0.tar.bz2 
-osx-64/libtiff-4.3.0-h1167814_0.tar.bz2
-linux-ppc64le/libtiff-4.3.0-h362c9b0_0.tar.bz2
-osx-arm64/libtiff-4.3.0-hc6122e1_0.tar.bz2
-linux-64/libtiff-4.3.0-hf544144_0.tar.bz2
