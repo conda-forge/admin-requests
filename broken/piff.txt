@@ -1,0 +1,10 @@
+osx-arm64/piff-1.1.0-py39h2804cbe_0.tar.bz2
+osx-64/piff-1.1.0-py37hf985489_0.tar.bz2
+osx-64/piff-1.1.0-py36h79c6626_0.tar.bz2
+osx-64/piff-1.1.0-py39h6e9494a_0.tar.bz2
+osx-64/piff-1.1.0-py38h50d1736_0.tar.bz2
+linux-64/piff-1.1.0-py36h5fab9bb_0.tar.bz2
+linux-64/piff-1.1.0-py39hf3d152e_0.tar.bz2
+osx-arm64/piff-1.1.0-py38h10201cd_0.tar.bz2
+linux-64/piff-1.1.0-py37h89c1867_0.tar.bz2
+linux-64/piff-1.1.0-py38h578d9bd_0.tar.bz2
