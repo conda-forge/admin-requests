@@ -1,6 +1,0 @@
-noarch/openslide-python-1.1.2-pyhe74cb21_1.tar.bz2
-noarch/openslide-python-1.1.2-pyhe74cb21_0.tar.bz2
-noarch/openslide-python-1.1.2-pyh4b9e410_2.tar.bz2
-noarch/openslide-python-1.1.2-pyh4b9e410_1.tar.bz2
-noarch/openslide-python-1.1.2-pyh2498e6a_1.tar.bz2
-noarch/openslide-python-1.1.2-pyh2498e6a_0.tar.bz2
