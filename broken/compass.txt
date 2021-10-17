@@ -1,0 +1,3 @@
+noarch/compass-interface-http-0.24.1-pyhd8ed1ab_4.tar.bz2
+noarch/compass-interface-http-0.24.1-pyhd8ed1ab_7.tar.bz2
+noarch/compass-interface-pandas-0.24.1-pyhd8ed1ab_4.tar.bz2
