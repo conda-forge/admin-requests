@@ -1,0 +1,1 @@
+noarch/awswrangler-2.12.0-pyhd8ed1ab_0.tar.bz2
