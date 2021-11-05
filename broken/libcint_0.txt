@@ -1,0 +1,12 @@
+linux-64/libcint-4.4.5-he1cc389_0.tar.bz2
+linux-64/libcint-4.4.5-h6237837_0.tar.bz2
+linux-64/libcint-4.4.5-hb7acda0_0.tar.bz2
+osx-64/libcint-4.4.5-hbb7fa3c_0.tar.bz2
+osx-64/libcint-4.4.5-hcac4741_0.tar.bz2
+osx-64/libcint-4.4.5-h6672201_0.tar.bz2
+linux-64/libcint-4.4.6-h6237837_0.tar.bz2
+linux-64/libcint-4.4.6-hb7acda0_0.tar.bz2
+linux-64/libcint-4.4.6-he1cc389_0.tar.bz2
+osx-64/libcint-4.4.6-hbb7fa3c_0.tar.bz2
+osx-64/libcint-4.4.6-hcac4741_0.tar.bz2
+osx-64/libcint-4.4.6-h6672201_0.tar.bz2
