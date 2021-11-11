@@ -1,0 +1,10 @@
+osx-arm64/jaxlib-0.1.73-py39h7f752ed_0.tar.bz2
+osx-arm64/jaxlib-0.1.73-py38h3777fb4_0.tar.bz2
+osx-arm64/jaxlib-0.1.72-py39h7f752ed_0.tar.bz2
+osx-arm64/jaxlib-0.1.72-py38h3777fb4_0.tar.bz2
+osx-arm64/jaxlib-0.1.71-py38h3777fb4_0.tar.bz2
+osx-arm64/jaxlib-0.1.71-py39h7f752ed_0.tar.bz2
+osx-arm64/jaxlib-0.1.70-py39h7f752ed_0.tar.bz2
+osx-arm64/jaxlib-0.1.70-py38h3777fb4_0.tar.bz2
+osx-arm64/jaxlib-0.1.69-py39h7f752ed_0.tar.bz2
+osx-arm64/jaxlib-0.1.69-py38h3777fb4_0.tar.bz2
