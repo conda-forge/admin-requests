@@ -1,0 +1,12 @@
+win-64/cf-units-3.0.1.post0-py37h02d411d_0.tar.bz2
+win-64/cf-units-3.0.1.post0-py39h5d4886f_0.tar.bz2
+win-64/cf-units-3.0.1.post0-py38h6f4d8f0_0.tar.bz2
+win-64/cf-units-3.0.1.post0-py37hec80d1f_0.tar.bz2
+osx-64/cf-units-3.0.1.post0-py37hf70a2b7_0.tar.bz2
+osx-64/cf-units-3.0.1.post0-py38hbe852b5_0.tar.bz2
+osx-64/cf-units-3.0.1.post0-py37h032687b_0.tar.bz2
+osx-64/cf-units-3.0.1.post0-py39hc89836e_0.tar.bz2
+linux-64/cf-units-3.0.1.post0-py39hce5d2b2_0.tar.bz2
+linux-64/cf-units-3.0.1.post0-py37ha757849_0.tar.bz2
+linux-64/cf-units-3.0.1.post0-py38h6c62de6_0.tar.bz2
+linux-64/cf-units-3.0.1.post0-py37hb1e94ed_0.tar.bz2
