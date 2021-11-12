@@ -1,5 +1,0 @@
- noarch/openglider-0.06-pyh9f0ad1d_0.tar.bz2
- noarch/openglider-0.05.1-pyh9f0ad1d_0.tar.bz2
- noarch/openglider-0.05-pyh9f0ad1d_0.tar.bz2
- noarch/openglider-0.04-pyh9f0ad1d_0.tar.bz2
- noarch/openglider-0.03-py_0.tar.bz2
