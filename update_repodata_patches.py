@@ -75,8 +75,16 @@ def update_repodata_patches(dry_run):
             shell=True,
         ).decode("utf-8")
 
-        if len(d) > 0:
-            print("diff:\n" + d, flush=True)
+        empty = True
+        for line in d.splitlines():
+            line = line.strip()
+            if len(line) > 0 and not line.startswith("Downloading"):
+                empty = False
+
+        print("diff:\n" + d, flush=True)
+        print("is empty:", empty, flush=True)
+
+        if len(d) > 0 and not empty:
             if not dry_run:
                 _post_issue_with_diff(d)
                 _commit_to_patches(tmpdir)
