@@ -1,5 +1,0 @@
-win-64/dotnet-sdk-6.0.100-h2d74725_0.tar.bz2
-osx-64/dotnet-sdk-6.0.100-ha205975_0.tar.bz2
-osx-arm64/dotnet-sdk-6.0.100-hd68eb72_0.tar.bz2
-linux-aarch64/dotnet-sdk-6.0.100-h25a8a10_0.tar.bz2
-linux-64/dotnet-sdk-6.0.100-h73ebe80_0.tar.bz2
