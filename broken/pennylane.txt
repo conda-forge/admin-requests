@@ -1,2 +1,0 @@
-noarch/pennylane-0.19.0-pyhd8ed1ab_0.tar.bz2
-noarch/pennylane-0.19.0-pyhd8ed1ab_1.tar.bz2
