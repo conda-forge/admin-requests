@@ -1,0 +1,12 @@
+linux-64/pennylane-lightning-0.19.0-py39hf1b4069_1.tar.bz2
+linux-64/pennylane-lightning-0.19.0-py38hd3aa62d_1.tar.bz2
+linux-64/pennylane-lightning-0.19.0-py310he3072ea_1.tar.bz2
+linux-64/pennylane-lightning-0.19.0-py37h27983e4_1.tar.bz2
+osx-64/pennylane-lightning-0.19.0-py39hb932247_1.tar.bz2
+osx-64/pennylane-lightning-0.19.0-py38hf059507_1.tar.bz2
+osx-64/pennylane-lightning-0.19.0-py310h7e58e96_1.tar.bz2
+osx-64/pennylane-lightning-0.19.0-py37h6452af0_1.tar.bz2
+win-64/pennylane-lightning-0.19.0-py310hd611064_1.tar.bz2
+win-64/pennylane-lightning-0.19.0-py39hcbbd332_1.tar.bz2
+win-64/pennylane-lightning-0.19.0-py37h008bc43_1.tar.bz2
+win-64/pennylane-lightning-0.19.0-py38h622d22c_1.tar.bz2
