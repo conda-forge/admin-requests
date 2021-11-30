@@ -1,0 +1,2 @@
+noarch/rdt-0.6.1-pyhd8ed1ab_0.tar.bz2
+noarch/sdmetrics-0.4.0-pyhd8ed1ab_0.tar.bz2
