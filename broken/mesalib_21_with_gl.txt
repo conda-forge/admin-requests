@@ -1,0 +1,13 @@
+linux-aarch64/mesalib-21.2.5-h0bd06be_2.tar.bz2
+linux-ppc64le/mesalib-21.2.5-ha5911c8_2.tar.bz2
+osx-arm64/mesalib-21.2.5-h25af579_2.tar.bz2
+osx-64/mesalib-21.2.5-h2df1e00_2.tar.bz2
+linux-64/mesalib-21.2.5-h0e4506f_2.tar.bz2
+linux-aarch64/mesalib-21.2.5-h0bd06be_1.tar.bz2
+linux-ppc64le/mesalib-21.2.5-ha5911c8_1.tar.bz2
+osx-64/mesalib-21.2.5-h2df1e00_1.tar.bz2
+linux-64/mesalib-21.2.5-h0e4506f_1.tar.bz2
+linux-aarch64/mesalib-21.2.5-h0bd06be_0.tar.bz2
+linux-ppc64le/mesalib-21.2.5-ha5911c8_0.tar.bz2
+osx-64/mesalib-21.2.5-h2df1e00_0.tar.bz2
+linux-64/mesalib-21.2.5-h0e4506f_0.tar.bz2
