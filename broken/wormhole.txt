@@ -1,1 +1,0 @@
- noarch/magic-wormhole-0.12.0-pyh9f0ad1d_0.tar.bz2
