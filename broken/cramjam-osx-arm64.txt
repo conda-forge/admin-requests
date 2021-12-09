@@ -1,0 +1,8 @@
+osx-arm64/cramjam-2.3.1-py39h5161555_0.tar.bz2
+osx-arm64/cramjam-2.3.1-py38hea4295b_0.tar.bz2
+osx-arm64/cramjam-2.3.1-py38hea4295b_1.tar.bz2
+osx-arm64/cramjam-2.3.1-py39h5161555_1.tar.bz2
+osx-arm64/cramjam-2.3.0-py39h5161555_1.tar.bz2
+osx-arm64/cramjam-2.3.0-py38hea4295b_1.tar.bz2
+osx-arm64/cramjam-2.3.0-py39h2804cbe_0.tar.bz2
+osx-arm64/cramjam-2.3.0-py38h10201cd_0.tar.bz2
