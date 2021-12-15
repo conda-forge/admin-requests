@@ -1,6 +1,0 @@
-linux-aarch64/yaml-0.2.5-hf897c2e_1.tar.bz2
-linux-ppc64le/yaml-0.2.5-h4e0d66e_1.tar.bz2
-win-64/yaml-0.2.5-h8ffe710_1.tar.bz2
-osx-arm64/yaml-0.2.5-h9b22ae9_1.tar.bz2
-osx-64/yaml-0.2.5-h0d85af4_1.tar.bz2
-linux-64/yaml-0.2.5-h7f98852_1.tar.bz2
