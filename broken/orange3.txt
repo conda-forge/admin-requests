@@ -1,6 +1,0 @@
-win-64/orange3-3.31.0-py310hf5e1058_2.tar.bz2
-osx-64/orange3-3.31.0-py310hdd25497_2.tar.bz2
-linux-64/orange3-3.31.0-py310hb5077e9_2.tar.bz2
-win-64/orange3-3.31.0-py310hf5e1058_1.tar.bz2
-osx-64/orange3-3.31.0-py310hdd25497_1.tar.bz2
-linux-64/orange3-3.31.0-py310hb5077e9_1.tar.bz2
