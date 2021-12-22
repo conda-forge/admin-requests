@@ -2,7 +2,7 @@ name: check
 on:
   pull_request:
     branches:
-      - master
+      - main
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -14,6 +14,8 @@ jobs:
         activate-environment: cf
         environment-file: environment.yml
         auto-activate-base: true
+        miniforge-version: latest
+        miniforge-variant: Mambaforge
 
     - name: Check packages exist on main (or label/broken)
       shell: bash -l {0}

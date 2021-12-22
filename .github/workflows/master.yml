@@ -2,7 +2,7 @@ name: run
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: "0,15,30,45 * * * *"
 
@@ -42,6 +42,8 @@ jobs:
         activate-environment: cf
         environment-file: environment.yml
         auto-activate-base: true
+        miniforge-version: latest
+        miniforge-variant: Mambaforge
 
     - name: Generate token
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
@@ -61,7 +63,7 @@ jobs:
           git config --global pull.rebase false
           python mark_broken.py mark
       env:
-        BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
+        BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
     - name: reset feedstock tokens
@@ -76,7 +78,7 @@ jobs:
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-        TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}
+        TRAVIS_TOKEN: ${{ secrets.ORGWIDE_TRAVIS_TOKEN }}
         AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
         DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
 
