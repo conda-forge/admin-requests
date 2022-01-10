@@ -1,0 +1,2 @@
+linux-64/julia-1.8.0.dev.1258-h989b2f6_0.tar.bz2
+osx-64/julia-1.8.0.dev.1258-h132cb31_0.tar.bz2
