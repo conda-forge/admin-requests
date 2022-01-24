@@ -1,1 +1,0 @@
-linux-64/sphinxdft-3.0.3-h1bc63a5_3.tar.bz2
