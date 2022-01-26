@@ -20,6 +20,12 @@ Guidelines for marking packages as broken:
   the maintainers only, we can allow packages to be marked broken more liberally.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
+What will happen when a package is marked broken?
+
+* Our bots will add the `broken` label to the package. The `main` label will remain on the package and this is normal.
+* Our bots will rebuild our repodata pacthes to remove this package from the repodata.
+* In a few hours after the `anaconda.org` CDN picks up the new patches, you will no longer be able to install the package from the `main` channel.
+
 Checklist:
 
 * [ ] Make sure your package is in the right spot (`broken/*` for adding the
