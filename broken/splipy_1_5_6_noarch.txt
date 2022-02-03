@@ -1,1 +1,0 @@
-noarch/splipy-1.5.6-pyhd971db8_0.tar.bz2
