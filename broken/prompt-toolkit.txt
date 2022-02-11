@@ -1,0 +1,1 @@
+noarch/prompt-toolkit-3.0.5-py_0.tar.bz2
