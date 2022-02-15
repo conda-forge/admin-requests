@@ -1,1 +1,0 @@
-linux-64/pyscf-2.0.1-py39h028202b_0.tar.bz2
