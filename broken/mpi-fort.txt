@@ -1,3 +1,0 @@
-linux-64/openmpi-mpifort-4.0.2-he991be0_3.tar.bz2
-linux-64/openmpi-mpicxx-4.0.2-hc9558a2_3.tar.bz2
-linux-64/openmpi-mpicc-4.0.2-h516909a_3.tar.bz2
