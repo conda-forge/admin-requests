@@ -1,2 +1,0 @@
-osx-64/verilator-4.034-hd9580d2_1.tar.bz2
-linux-64/verilator-4.034-h6239696_1.tar.bz2
