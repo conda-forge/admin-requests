@@ -34,7 +34,7 @@ def write_token(name, token):
 def delete_feedstock_token(org, feedstock_name):
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(
-            "git clone https://${GITHUB_TOKEN}@github.com/conda-forge/"
+            "git clone https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
             "feedstock-tokens.git",
             cwd=tmpdir,
             shell=True,
@@ -42,7 +42,7 @@ def delete_feedstock_token(org, feedstock_name):
 
         subprocess.check_call(
             "git remote set-url --push origin "
-            "https://${GITHUB_TOKEN}@github.com/conda-forge/"
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
             "feedstock-tokens.git",
             cwd=os.path.join(tmpdir, "feedstock-tokens"),
             shell=True,
@@ -89,12 +89,14 @@ def reset_feedstock_token(name):
             ['conda', 'smithy', 'generate-feedstock-token',
              '--feedstock_directory', feedstock_dir] + owner_info)
         subprocess.check_call(
-            ['conda', 'smithy', 'register-feedstock-token',
-             '--feedstock_directory', feedstock_dir] + owner_info)
+            ['conda', 'smithy', 'register-feedstock-token', '--feedstock_directory', feedstock_dir] 
+            + owner_info 
+            + ['--token_repo', 'https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/feedstock-tokens']
+        )
 
         subprocess.check_call(
             ['conda', 'smithy', 'rotate-binstar-token',
-             '--without-appveyor',
+             '--without-appveyor', '--without-azure',
              '--token_name', 'STAGING_BINSTAR_TOKEN'],
             cwd=feedstock_dir)
 

@@ -7,9 +7,12 @@ import requests
 
 
 def split_pkg(pkg):
-    if not pkg.endswith(".tar.bz2"):
-        raise RuntimeError("Can only process packages that end in .tar.bz2")
-    pkg = pkg[:-8]
+    if pkg.endswith(".tar.bz2"):
+        pkg = pkg[:-len(".tar.bz2")]
+    elif pkg.endswith(".conda"):
+        pkg = pkg[:-len(".conda")]
+    else:
+        raise RuntimeError("Can only process packages that end in .tar.bz2 or .conda!")
     plat, pkg_name = pkg.split("/")
     name_ver, build = pkg_name.rsplit('-', 1)
     name, ver = name_ver.rsplit('-', 1)
@@ -123,15 +126,15 @@ def mark_broken():
         return
 
     did_any = False
-    files = get_broken_files()
-    print("found files: %s" % files, flush=True)
-    for file_name in files:
+    br_files = get_broken_files()
+    print("found files: %s" % br_files, flush=True)
+    for file_name in br_files:
         print("working on file %s" % file_name, flush=True)
         did_any = did_any or mark_broken_file(file_name)
 
-    files = get_not_broken_files()
-    print("found files: %s" % files, flush=True)
-    for file_name in files:
+    nbr_files = get_not_broken_files()
+    print("found files: %s" % nbr_files, flush=True)
+    for file_name in nbr_files:
         print("working on file %s" % file_name, flush=True)
         did_any = did_any or mark_not_broken_file(file_name)
 
@@ -146,16 +149,17 @@ def mark_broken():
 
             subprocess.check_call(
                 "git remote set-url --push origin "
-                "https://${GITHUB_TOKEN}@github.com/conda-forge/"
+                "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
                 "conda-forge-repodata-patches-feedstock.git",
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
                 shell=True,
             )
 
-            fstr = " ".join(f for f in files)
+            all_files = br_files + nbr_files
+            fstr = " ".join(f for f in all_files)
             subprocess.check_call(
                 "git commit --allow-empty -am 'resync repo data "
-                "for broken packages in files %s'" % fstr,
+                "for broken/notbroken packages in files %s'" % fstr,
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
                 shell=True,
             )
