@@ -1,0 +1,16 @@
+osx-arm64/openmm-7.7.0-py310hdca8ec0_1_khronos.tar.bz2
+osx-arm64/openmm-7.7.0-py38h499797b_1_khronos.tar.bz2
+osx-arm64/openmm-7.7.0-py310h147248c_1_apple.tar.bz2
+osx-arm64/openmm-7.7.0-py38h2fcb312_1_apple.tar.bz2
+osx-64/openmm-7.7.0-py37h3be4b2a_1_apple.tar.bz2
+osx-arm64/openmm-7.7.0-py39h83e8822_1_khronos.tar.bz2
+osx-64/openmm-7.7.0-py38h8499687_1_apple.tar.bz2
+osx-64/openmm-7.7.0-py37h2a9eceb_1_khronos.tar.bz2
+osx-64/openmm-7.7.0-py39h807f3c3_1_khronos.tar.bz2
+osx-arm64/openmm-7.7.0-py39hbfad222_1_apple.tar.bz2
+osx-64/openmm-7.7.0-py37hea54a85_1_khronos.tar.bz2
+osx-64/openmm-7.7.0-py37h2029789_1_apple.tar.bz2
+osx-64/openmm-7.7.0-py310h52fe9ac_1_apple.tar.bz2
+osx-64/openmm-7.7.0-py38hfab746a_1_khronos.tar.bz2
+osx-64/openmm-7.7.0-py39h8a2e0eb_1_apple.tar.bz2
+osx-64/openmm-7.7.0-py310h5fb6086_1_khronos.tar.bz2
