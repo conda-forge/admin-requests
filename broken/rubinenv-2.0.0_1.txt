@@ -1,3 +1,0 @@
-osx-64/rubin-env-2.0.0-h694c41f_1.tar.bz2
-osx-arm64/rubin-env-2.0.0-hce30654_1.tar.bz2
-linux-64/rubin-env-2.0.0-ha770c72_1.tar.bz2
