@@ -1,4 +1,0 @@
-win-64/comtypes-1.1.12-py39hcbf5309_0.tar.bz2
-win-64/comtypes-1.1.12-py38haa244fe_0.tar.bz2
-win-64/comtypes-1.1.12-py37h03978a9_0.tar.bz2
-win-64/comtypes-1.1.12-py310h5588dad_0.tar.bz2
