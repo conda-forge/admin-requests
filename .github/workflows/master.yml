@@ -70,10 +70,6 @@ jobs:
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -l {0}
       run: |
-          git clone https://github.com/conda-forge/conda-smithy
-          pushd conda-smithy
-          pip install .
-          popd
           conda activate cf
           git config --global user.name "conda-forge-admin"
           git config --global user.email "pelson.pub+conda-forge@gmail.com"
