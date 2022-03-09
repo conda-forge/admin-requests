@@ -1,3 +1,0 @@
-linux-64/bonsu-3.4.3-py310hc0a5876_0.tar.bz2
-osx-64/bonsu-3.4.3-py310h55115a3_0.tar.bz2
-win-64/bonsu-3.4.3-py310hf24f00a_0.tar.bz2
