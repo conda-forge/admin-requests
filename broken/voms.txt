@@ -1,6 +1,7 @@
-osx-arm64/voms-2.1.0rc0-h50daa2a_3.tar.bz2/info/recipe/meta.yaml
-osx-arm64/voms-2.1.0rc0-h633cc78_4.tar.bz2/info/recipe/meta.yaml
-linux-ppc64le/voms-2.1.0rc0-heb2815b_3.tar.bz2/info/recipe/meta.yaml
-linux-ppc64le/voms-2.1.0rc0-h37f2aeb_4.tar.bz2/info/recipe/meta.yaml
-linux-aarch64/voms-2.1.0rc0-hc936626_3.tar.bz2/info/recipe/meta.yaml
-linux-aarch64/voms-2.1.0rc0-h801a2a0_4.tar.bz2/info/recipe/meta.yaml
+osx-arm64/voms-2.1.0rc0-h50daa2a_3.tar.bz2
+osx-arm64/voms-2.1.0rc0-h633cc78_4.tar.bz2
+osx-arm64/voms-2.1.0rc0-h22ed3c8_5.tar.bz2
+linux-ppc64le/voms-2.1.0rc0-heb2815b_3.tar.bz2
+linux-ppc64le/voms-2.1.0rc0-h37f2aeb_4.tar.bz2
+linux-aarch64/voms-2.1.0rc0-hc936626_3.tar.bz2
+linux-aarch64/voms-2.1.0rc0-h801a2a0_4.tar.bz2
