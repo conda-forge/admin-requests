@@ -1,0 +1,11 @@
+win-64/reaktoro-2.0.0rc19-py38he8b36c0_0.tar.bz2
+win-64/reaktoro-2.0.0rc19-py39hfe3dcad_0.tar.bz2
+osx-64/reaktoro-2.0.0rc19-py38h6642ab4_0.tar.bz2
+osx-64/reaktoro-2.0.0rc19-py39h850b5bc_0.tar.bz2
+win-64/reaktoro-2.0.0rc19-py37h9dcbadd_0.tar.bz2
+osx-64/reaktoro-2.0.0rc19-py37ha340c66_0.tar.bz2
+osx-64/reaktoro-2.0.0rc19-py37h3ddca66_0.tar.bz2
+linux-64/reaktoro-2.0.0rc19-py38had079c2_0.tar.bz2
+linux-64/reaktoro-2.0.0rc19-py37hb6fd525_0.tar.bz2
+linux-64/reaktoro-2.0.0rc19-py39h66d321d_0.tar.bz2
+linux-64/reaktoro-2.0.0rc19-py37h4131235_0.tar.bz2
