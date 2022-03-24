@@ -1,0 +1,8 @@
+linux-ppc64le/omniorb-libs-4.2.5-h350ef5c_1.tar.bz2
+linux-ppc64le/omniorb-libs-4.2.5-h262a72d_1.tar.bz2
+win-64/omniorb-libs-4.2.5-h8b1b97a_1.tar.bz2
+win-64/omniorb-libs-4.2.5-hc7e8586_1.tar.bz2
+osx-64/omniorb-libs-4.2.5-h942079c_1.tar.bz2
+osx-64/omniorb-libs-4.2.5-hca56917_1.tar.bz2
+linux-64/omniorb-libs-4.2.5-he49606f_1.tar.bz2
+linux-64/omniorb-libs-4.2.5-h727a467_1.tar.bz2
