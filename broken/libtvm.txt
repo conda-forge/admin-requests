@@ -1,0 +1,16 @@
+osx-arm64/libtvm-0.8.0-hdf7b55d_3_cpu.tar.bz2
+osx-64/libtvm-0.8.0-head5a03_3_cpu.tar.bz2
+osx-arm64/libtvm-0.8.0-h24504c9_3_cpu.tar.bz2
+osx-64/libtvm-0.8.0-he781eb1_3_cpu.tar.bz2
+linux-64/libtvm-0.8.0-h1162d21_3_cuda112.tar.bz2
+linux-64/libtvm-0.8.0-ha3b9936_3_cpu.tar.bz2
+osx-arm64/libtvm-0.8.0-py39h24504c9_2_cpu.tar.bz2
+osx-64/libtvm-0.8.0-py39he781eb1_2_cpu.tar.bz2
+linux-64/libtvm-0.8.0-py39112h1162d21_2_cuda.tar.bz2
+linux-64/libtvm-0.8.0-py39ha3b9936_2_cpu.tar.bz2
+osx-64/libtvm-0.8.0-py39he781eb1_1_cpu.tar.bz2
+linux-64/libtvm-0.8.0-py39112h1162d21_1_cuda.tar.bz2
+linux-64/libtvm-0.8.0-py39ha3b9936_1_cpu.tar.bz2
+osx-64/libtvm-0.8.0-py39he781eb1_0_cpu.tar.bz2
+linux-64/libtvm-0.8.0-py39112h1162d21_0_cuda.tar.bz2
+linux-64/libtvm-0.8.0-py39ha3b9936_0_cpu.tar.bz2
