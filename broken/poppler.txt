@@ -1,0 +1,2 @@
+win-64/poppler-22.01.0-h24fffdf_1.tar.bz2
+win-64/poppler-22.01.0-h24fffdf_0.tar.bz2
