@@ -1,5 +1,3 @@
-win-64/pypy3.9-7.3.8-hc3b0203_0.tar.bz2
-win-64/pypy3.9-7.3.8-h1738a25_0.tar.bz2
 osx-64/pypy3.9-7.3.8-h517dee8_0.tar.bz2
 osx-64/pypy3.9-7.3.8-h1e179d7_0.tar.bz2
 linux-ppc64le/pypy3.9-7.3.8-hf38bb15_0.tar.bz2
@@ -8,8 +6,6 @@ linux-aarch64/pypy3.9-7.3.8-h6058f72_0.tar.bz2
 linux-aarch64/pypy3.9-7.3.8-h57c6639_0.tar.bz2
 linux-64/pypy3.9-7.3.8-h986b250_0.tar.bz2
 linux-64/pypy3.9-7.3.8-h56abe6f_0.tar.bz2
-win-64/pypy3.8-7.3.8-hd58c836_0.tar.bz2
-win-64/pypy3.8-7.3.8-h4acdc65_0.tar.bz2
 osx-64/pypy3.8-7.3.8-hd7b965a_0.tar.bz2
 osx-64/pypy3.8-7.3.8-hd6ecfba_0.tar.bz2
 linux-ppc64le/pypy3.8-7.3.8-h7e6389c_0.tar.bz2
@@ -20,8 +16,6 @@ linux-64/pypy3.8-7.3.8-h5bd2d06_0.tar.bz2
 linux-64/pypy3.8-7.3.8-h5001382_0.tar.bz2
 linux-ppc64le/setuptools-61.2.0-py38hf1d151d_2.tar.bz2
 linux-ppc64le/setuptools-61.2.0-py39hb881913_2.tar.bz2
-win-64/setuptools-61.2.0-py38h32ec214_1.tar.bz2
-win-64/setuptools-61.2.0-py39h0d475fb_1.tar.bz2
 osx-64/setuptools-61.2.0-py38h25b0044_1.tar.bz2
 osx-64/setuptools-61.2.0-py39h43b90dd_1.tar.bz2
 linux-64/setuptools-61.2.0-py38h373033e_1.tar.bz2
