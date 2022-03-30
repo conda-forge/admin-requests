@@ -1,3 +1,5 @@
+linux-ppc64le/setuptools-61.2.0-py38hf1d151d_2.tar.bz2
+linux-ppc64le/setuptools-61.2.0-py39hb881913_2.tar.bz2
 win-64/setuptools-61.2.0-py38h32ec214_1.tar.bz2
 win-64/setuptools-61.2.0-py39h0d475fb_1.tar.bz2
 osx-64/setuptools-61.2.0-py38h25b0044_1.tar.bz2
