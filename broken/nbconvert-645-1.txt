@@ -1,5 +1,0 @@
-noarch/nbconvert-6.4.5-pyhd8ed1ab_1.tar.bz2
-noarch/nbconvert-all-6.4.5-pyhd8ed1ab_1.tar.bz2
-noarch/nbconvert-core-6.4.5-pyhd8ed1ab_1.tar.bz2
-noarch/nbconvert-pandoc-6.4.5-pyhd8ed1ab_1.tar.bz2
-noarch/nbconvert-webpdf-6.4.5-pyhd8ed1ab_1.tar.bz2
