@@ -77,6 +77,9 @@ def delete_feedstock_token(org, feedstock_name):
 
 def reset_feedstock_token(name):
     owner_info = ['--organization', 'conda-forge']
+    token_repo = (
+        'https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/feedstock-tokens'
+    )
 
     with tempfile.TemporaryDirectory() as tmpdir:
         feedstock_dir = os.path.join(tmpdir, name + "-feedstock")
@@ -89,15 +92,22 @@ def reset_feedstock_token(name):
             ['conda', 'smithy', 'generate-feedstock-token',
              '--feedstock_directory', feedstock_dir] + owner_info)
         subprocess.check_call(
-            ['conda', 'smithy', 'register-feedstock-token', '--feedstock_directory', feedstock_dir] 
-            + owner_info 
-            + ['--token_repo', 'https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/feedstock-tokens']
+            [
+                'conda', 'smithy', 'register-feedstock-token',
+                '--without-circle', '--without-drone',
+                '--feedstock_directory', feedstock_dir,
+            ]
+            + owner_info
+            + ['--token_repo', token_repo]
         )
 
         subprocess.check_call(
-            ['conda', 'smithy', 'rotate-binstar-token',
-             '--without-appveyor', '--without-azure',
-             '--token_name', 'STAGING_BINSTAR_TOKEN'],
+            [
+                'conda', 'smithy', 'rotate-binstar-token',
+                '--without-appveyor', '--without-azure',
+                '--without-circle', '--without-drone',
+                '--token_name', 'STAGING_BINSTAR_TOKEN'
+            ],
             cwd=feedstock_dir)
 
 
