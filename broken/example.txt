@@ -1,7 +1,2 @@
 win-64/cf-autotick-bot-test-package-0.4-py38_0.tar.bz2
 win-64/cf-autotick-bot-test-package-0.4-py27_0.tar.bz2
-osx-arm64/f2c-20210323183018-h1c322ee_1002.tar.bz2
-osx-64/f2c-20210323183018-h5eb16cf_1002.tar.bz2
-linux-ppc64le/f2c-20210323183018-hb283c62_1002.tar.bz2
-linux-aarch64/f2c-20210323183018-h4e544f5_1002.tar.bz2
-linux-64/f2c-20210323183018-h166bdaf_1002.tar.bz2
