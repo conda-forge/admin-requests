@@ -16,3 +16,5 @@ linux-64/pytorch-1.10.2-cuda112py39h4de5995_0.tar.bz2
 osx-64/pytorch-1.10.2-cpu_py37h3ff094a_0.tar.bz2
 osx-64/pytorch-1.10.2-cpu_py38h2cb30f8_0.tar.bz2
 osx-64/pytorch-1.10.2-cpu_py39h19568cb_0.tar.bz2
+osx-arm64/pytorch-1.10.2-cpu_py38h7444d52_0.tar.bz2
+osx-arm64/pytorch-1.10.2-cpu_py39hbfdb42d_0.tar.bz2

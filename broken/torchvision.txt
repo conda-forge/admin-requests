@@ -16,6 +16,8 @@ linux-64/torchvision-0.11.3-cuda112py39h14c6492_1.tar.bz2
 osx-64/torchvision-0.11.3-cpu_py37h35ea4dc_1.tar.bz2
 osx-64/torchvision-0.11.3-cpu_py38h686086e_1.tar.bz2
 osx-64/torchvision-0.11.3-cpu_py39h7c5a76e_1.tar.bz2
+osx-arm64/torchvision-0.11.3-cpu_py38h700cb6d_1.tar.bz2
+osx-arm64/torchvision-0.11.3-cpu_py39h85ba581_1.tar.bz2
 linux-64/torchvision-0.11.3-cpu_py37hff16761_0.tar.bz2
 linux-64/torchvision-0.11.3-cpu_py38hc2f561f_0.tar.bz2
 linux-64/torchvision-0.11.3-cpu_py39h5f8393d_0.tar.bz2
@@ -34,3 +36,5 @@ linux-64/torchvision-0.11.3-cuda112py39h14c6492_0.tar.bz2
 osx-64/torchvision-0.11.3-cpu_py37h35ea4dc_0.tar.bz2
 osx-64/torchvision-0.11.3-cpu_py38h686086e_0.tar.bz2
 osx-64/torchvision-0.11.3-cpu_py39h7c5a76e_0.tar.bz2
+osx-arm64/torchvision-0.11.3-cpu_py38h700cb6d_0.tar.bz2
+osx-arm64/torchvision-0.11.3-cpu_py39h85ba581_0.tar.bz2
