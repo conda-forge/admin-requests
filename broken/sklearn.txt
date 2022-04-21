@@ -1,0 +1,6 @@
+linux-64/scikit-learn-0.24.2-py310hffb9edd_2.tar.bz2
+linux-aarch64/scikit-learn-0.24.2-py310h960e1e0_2.tar.bz2
+linux-ppc64le/scikit-learn-0.24.2-py310h1063a06_2.tar.bz2
+osx-64/scikit-learn-0.24.2-py310hddb2b46_2.tar.bz2
+osx-arm64/scikit-learn-0.24.2-py310hdf675a2_2.tar.bz2
+win-32/scikit-learn-0.24.2-py310h4dafddf_2.tar.bz2
