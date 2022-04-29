@@ -1,0 +1,3 @@
+noarch/napari-0.4.15-pyh275ddea_0_pyqt.tar.bz2
+noarch/napari-0.4.15-pyh92c539f_0_pyside2.tar.bz2
+noarch/napari-menu-0.4.15-h35d5160_0.tar.bz2
