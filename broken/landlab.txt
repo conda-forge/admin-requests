@@ -1,0 +1,15 @@
+linux-64/landlab-2.5.0-py37h9e612dc_0.tar.bz2
+linux-64/landlab-2.5.0-py37hda87dfa_0.tar.bz2
+linux-64/landlab-2.5.0-py38h71d37f0_0.tar.bz2
+linux-64/landlab-2.5.0-py39hd257fcd_0.tar.bz2
+linux-64/landlab-2.5.0-py310hde88566_0.tar.bz2
+osx-64/landlab-2.5.0-py37ha46fedb_0.tar.bz2
+osx-64/landlab-2.5.0-py37h49e79e5_0.tar.bz2
+osx-64/landlab-2.5.0-py38h4277f33_0.tar.bz2
+osx-64/landlab-2.5.0-py39h86b5767_0.tar.bz2
+osx-64/landlab-2.5.0-py310h7f5fb2b_0.tar.bz2
+win-64/landlab-2.5.0-py37h02d411d_0.tar.bz2
+win-64/landlab-2.5.0-py37h3a130e4_0.tar.bz2
+win-64/landlab-2.5.0-py38hbdcd294_0.tar.bz2
+win-64/landlab-2.5.0-py39h5d4886f_0.tar.bz2
+win-64/landlab-2.5.0-py310h2873277_0.tar.bz2
