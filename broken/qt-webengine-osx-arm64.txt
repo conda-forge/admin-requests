@@ -1,2 +1,0 @@
-osx-arm64/qt-webengine-5.15.4-hcae7d30_2.tar.bz2
-osx-arm64/qt-webengine-5.15.4-h214f810_2.tar.bz2
