@@ -1,6 +1,0 @@
-win-64/svt-av1-1.1.0-h0e60522_0.tar.bz2
-linux-ppc64le/svt-av1-1.1.0-hbbae597_0.tar.bz2
-osx-64/svt-av1-1.1.0-hb486fe8_0.tar.bz2
-osx-arm64/svt-av1-1.1.0-hbe31e94_0.tar.bz2
-linux-64/svt-av1-1.1.0-h27087fc_0.tar.bz2
-linux-aarch64/svt-av1-1.1.0-h4de3ea5_0.tar.bz2
