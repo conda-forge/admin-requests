@@ -1,0 +1,1 @@
+noarch/pip-22.1-pyhd8ed1ab_0.tar.bz2
