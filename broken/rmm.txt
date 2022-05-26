@@ -1,0 +1,9 @@
+linux-ppc64le/rmm-22.02.00-py37he827b23_0.tar.bz2
+linux-ppc64le/rmm-22.02.00-py38habd7850_0.tar.bz2
+linux-ppc64le/rmm-22.02.00-py39hb0a7ebe_0.tar.bz2
+linux-64/rmm-22.02.00-py37hcb1fb21_0.tar.bz2
+linux-64/rmm-22.02.00-py38h81e7143_0.tar.bz2
+linux-64/rmm-22.02.00-py39hbcfe0b2_0.tar.bz2
+linux-aarch64/rmm-22.02.00-py37h7cce289_0.tar.bz2
+linux-aarch64/rmm-22.02.00-py38h9c9d46e_0.tar.bz2
+linux-aarch64/rmm-22.02.00-py39hebf1436_0.tar.bz2
