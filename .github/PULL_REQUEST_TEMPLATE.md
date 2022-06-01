@@ -23,7 +23,7 @@ Guidelines for marking packages as broken:
 What will happen when a package is marked broken?
 
 * Our bots will add the `broken` label to the package. The `main` label will remain on the package and this is normal.
-* Our bots will rebuild our repodata pacthes to remove this package from the repodata.
+* Our bots will rebuild our repodata patches to remove this package from the repodata.
 * In a few hours after the `anaconda.org` CDN picks up the new patches, you will no longer be able to install the package from the `main` channel.
 
 Checklist:
