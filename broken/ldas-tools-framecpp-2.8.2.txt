@@ -1,0 +1,10 @@
+linux-64/ldas-tools-framecpp-2.8.2-hdf7349a_0.tar.bz2
+linux-64/ldas-tools-framecpp-2.8.2-hf5a2e36_0.tar.bz2
+linux-aarch64/ldas-tools-framecpp-2.8.2-h0148cf3_0.tar.bz2
+linux-aarch64/ldas-tools-framecpp-2.8.2-he0383cc_0.tar.bz2
+linux-ppc64le/ldas-tools-framecpp-2.8.2-hf7f3998_0.tar.bz2
+linux-ppc64le/ldas-tools-framecpp-2.8.2-h2ba7fcd_0.tar.bz2
+osx-64/ldas-tools-framecpp-2.8.2-h4456899_0.tar.bz2
+osx-64/ldas-tools-framecpp-2.8.2-hc4ca5b1_0.tar.bz2
+osx-arm64/ldas-tools-framecpp-2.8.2-h5e00029_0.tar.bz2
+osx-arm64/ldas-tools-framecpp-2.8.2-h6120fb8_0.tar.bz2
