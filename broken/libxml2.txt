@@ -1,2 +1,0 @@
-win-64/libxml2-2.9.14-hf5bbc77_2.tar.bz2
-win-64/libxml2-2.9.14-hf5bbc77_1.tar.bz2
