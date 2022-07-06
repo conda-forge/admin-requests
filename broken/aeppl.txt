@@ -1,6 +1,0 @@
-win-64/aeppl-0.0.31-py310h57928b3_1.tar.bz2
-win-64/aeppl-base-0.0.31-py310h57928b3_1.tar.bz2
-osx-64/aeppl-0.0.31-py310h694c41f_1.tar.bz2
-osx-64/aeppl-base-0.0.31-py310h694c41f_1.tar.bz2
-linux-64/aeppl-0.0.31-py310ha770c72_1.tar.bz2
-linux-64/aeppl-base-0.0.31-py310ha770c72_1.tar.bz2
