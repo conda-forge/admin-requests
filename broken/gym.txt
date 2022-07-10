@@ -1,0 +1,15 @@
+linux-64/gym-0.24.0-py310hfdc917e_0.tar.bz2
+linux-64/gym-0.24.0-py37h25bab4e_0.tar.bz2
+linux-64/gym-0.24.0-py38h7f3c49e_0.tar.bz2
+linux-64/gym-0.24.0-py39hef51801_0.tar.bz2
+osx-64/gym-0.24.0-py310ha188af9_0.tar.bz2
+osx-64/gym-0.24.0-py37h0a7177a_0.tar.bz2
+osx-64/gym-0.24.0-py38h60dac5d_0.tar.bz2
+osx-64/gym-0.24.0-py39h71a6800_0.tar.bz2
+osx-arm64/gym-0.24.0-py310hbe9552e_0.tar.bz2
+osx-arm64/gym-0.24.0-py38h10201cd_0.tar.bz2
+osx-arm64/gym-0.24.0-py39h2804cbe_0.tar.bz2
+win-64/gym-0.24.0-py310hbbfc1a7_0.tar.bz2
+win-64/gym-0.24.0-py37h90c5f73_0.tar.bz2
+win-64/gym-0.24.0-py38h4317176_0.tar.bz2
+win-64/gym-0.24.0-py39h832f523_0.tar.bz2
