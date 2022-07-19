@@ -1,0 +1,2 @@
+osx-64/libwebp-base-1.2.3-hac89ed1_0.tar.bz2
+osx-arm64/libwebp-base-1.2.3-he4db4b2_0.tar.bz2
