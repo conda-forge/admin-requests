@@ -1,2 +1,0 @@
-noarch/scienceplots-1.0.9-pyhd8ed1ab_0.tar.bz2
-noarch/scienceplots-1.0.9-pyhd8ed1ab_1.tar.bz2
