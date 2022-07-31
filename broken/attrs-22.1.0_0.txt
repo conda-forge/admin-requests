@@ -1,0 +1,1 @@
+noarch/attrs-22.1.0-pyh71513ae_0.tar.bz2
