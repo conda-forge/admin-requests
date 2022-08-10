@@ -1,0 +1,1 @@
+ osx-arm64/pandoc-2.19-hce30654_0.tar.bz2
