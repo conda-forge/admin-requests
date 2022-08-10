@@ -1,8 +1,0 @@
-osx-64/cmor-3.6.1-py38hacdaa8e_7.tar.bz2
-osx-64/cmor-3.6.1-py37h8b72a84_7.tar.bz2
-osx-64/cmor-3.6.1-py37h934cce5_7.tar.bz2
-linux-64/cmor-3.6.1-py39h0688611_7.tar.bz2
-linux-64/cmor-3.6.1-py310h4b0e41b_7.tar.bz2
-linux-64/cmor-3.6.1-py37hf075024_7.tar.bz2
-linux-64/cmor-3.6.1-py37hfc9e78d_7.tar.bz2
-linux-64/cmor-3.6.1-py38h2971a8e_7.tar.bz2
