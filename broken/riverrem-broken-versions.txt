@@ -1,4 +1,0 @@
-noarch/riverrem-1.0.2-pyh191b570_1.tar.bz2
-noarch/riverrem-1.0.2-pyh191b570_0.tar.bz2
-noarch/riverrem-1.0.1-pyh191b570_0.tar.bz2
-noarch/riverrem-1.0.0-pyh191b570_0.tar.bz2
