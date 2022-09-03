@@ -1,6 +1,0 @@
-linux-64/xeus_octave-0.0.1-h2c45cf3_0.tar.bz2
-osx-64/xeus_octave-0.0.1-h124c09a_0.tar.bz2
-linux-64/xeus_octave-0.0.2-h2c45cf3_0.tar.bz2
-osx-64/xeus_octave-0.0.2-h124c09a_0.tar.bz2
-linux-64/xeus_octave-0.0.2-h85551f9_1.tar.bz2
-osx-64/xeus_octave-0.0.2-h03b6f31_1.tar.bz2
