@@ -1,2 +1,10 @@
+linux-64/libprotobuf-3.20.1-h6239696_2.tar.bz2
+linux-64/libprotobuf-3.21.5-h6239696_1.tar.bz2
+linux-aarch64/libprotobuf-3.20.1-h7866ba4_2.tar.bz2
+linux-aarch64/libprotobuf-3.21.5-h7866ba4_1.tar.bz2
+linux-ppc64le/libprotobuf-3.20.1-ha72a2fa_2.tar.bz2
+linux-ppc64le/libprotobuf-3.21.5-ha72a2fa_1.tar.bz2
 osx-64/libprotobuf-3.20.1-hbc0c0cd_2.tar.bz2
 osx-64/libprotobuf-3.21.5-hbc0c0cd_1.tar.bz2
+osx-arm64/libprotobuf-3.20.1-hb5ab8b9_2.tar.bz2
+osx-arm64/libprotobuf-3.21.5-hb5ab8b9_1.tar.bz2
