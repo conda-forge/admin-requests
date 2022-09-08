@@ -1,0 +1,10 @@
+noarch/chemics-22.8-pyhd8ed1ab_0.tar.bz2
+noarch/chemics-21.10-pyhd8ed1ab_0.tar.bz2
+noarch/chemics-21.7-pyhd8ed1ab_0.tar.bz2
+noarch/chemics-21.5-pyhd8ed1ab_0.tar.bz2
+noarch/chemics-21.4-pyhd8ed1ab_0.tar.bz2
+noarch/chemics-20.9-pyh9f0ad1d_0.tar.bz2
+noarch/chemics-20.8-pyh9f0ad1d_0.tar.bz2
+noarch/chemics-20.7-pyh9f0ad1d_0.tar.bz2
+noarch/chemics-20.5-pyh9f0ad1d_1.tar.bz2
+noarch/chemics-20.5-pyh9f0ad1d_0.tar.bz2
