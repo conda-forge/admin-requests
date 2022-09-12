@@ -1,1 +1,0 @@
-win-64/assimp-5.2.4-h4dcb625_1.tar.bz2
