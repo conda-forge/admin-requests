@@ -1,0 +1,1 @@
+noarch/clisops-0.9.2-pyh1a96a4e_0.tar.bz2
