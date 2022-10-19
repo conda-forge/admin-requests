@@ -1,5 +1,7 @@
 # admin requests
 
+[![repodata_patching](https://github.com/conda-forge/admin-requests/actions/workflows/repodata_patching.yml/badge.svg)](https://github.com/conda-forge/admin-requests/actions/workflows/repodata_patching.yml) [![run](https://github.com/conda-forge/admin-requests/actions/workflows/master.yml/badge.svg)](https://github.com/conda-forge/admin-requests/actions/workflows/master.yml)
+
 This repo is for making requests to `conda-forge/core` for various administrative
 tasks.
 
