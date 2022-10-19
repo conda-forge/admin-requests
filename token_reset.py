@@ -94,7 +94,7 @@ def reset_feedstock_token(name):
         subprocess.check_call(
             [
                 'conda', 'smithy', 'register-feedstock-token',
-                '--without-circle', '--without-drone', '--without-travis',
+                '--without-circle', '--without-drone',
                 '--feedstock_directory', feedstock_dir,
             ]
             + owner_info
