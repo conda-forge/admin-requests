@@ -137,7 +137,7 @@ def reset_feedstock_tokens_in_file(token_reset_file):
                 fp.write(pkg + "\n")
         subprocess.check_call(f"git add {token_reset_file}", shell=True)
         subprocess.check_call(
-            f"git commit -m 'Keeping {token_reset_file} "
+            f"git commit --allow-empty -m 'Keeping {token_reset_file} "
             "after failed token reset'",
             shell=True,
         )
