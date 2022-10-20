@@ -1,0 +1,2 @@
+win-64/openjdk-11.0.15-h57928b3_2.tar.bz2
+win-64/openjdk-17.0.3-h57928b3_2.tar.bz2
