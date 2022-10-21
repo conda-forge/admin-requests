@@ -119,6 +119,7 @@ def reset_feedstock_token(name, skips=None):
                 'conda', 'smithy', 'rotate-binstar-token',
                 '--without-appveyor', '--without-azure',
                 '--without-circle', '--without-drone',
+                '--without-github-actions',
             ]
             + [
                 s for s in skips
@@ -127,6 +128,7 @@ def reset_feedstock_token(name, skips=None):
                     "--without-drone",
                     "--without-appveyor",
                     "--without-azure",
+                    "--without-github-actions",
                 ]
             ]
             + [
