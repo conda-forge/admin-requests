@@ -10,7 +10,10 @@ SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
 
 def get_token_reset_files():
     return (
-        [f for f in glob.glob("token_reset/*") if f != "token_reset/example.txt"]
+        [
+            f for f in glob.glob("token_reset/*")
+            if f != "token_reset/example.txt"
+        ]
     )
 
 
@@ -34,7 +37,8 @@ def write_token(name, token):
 def delete_feedstock_token(org, feedstock_name):
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(
-            "git clone https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
+            "git clone "
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
             "feedstock-tokens.git",
             cwd=tmpdir,
             shell=True,
@@ -75,10 +79,13 @@ def delete_feedstock_token(org, feedstock_name):
         )
 
 
-def reset_feedstock_token(name):
+def reset_feedstock_token(name, skips=None):
+    skips = skips or []
+
     owner_info = ['--organization', 'conda-forge']
     token_repo = (
-        'https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/feedstock-tokens'
+        'https://x-access-token:${GITHUB_TOKEN}@github.com/'
+        'conda-forge/feedstock-tokens'
     )
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -95,6 +102,12 @@ def reset_feedstock_token(name):
             [
                 'conda', 'smithy', 'register-feedstock-token',
                 '--without-circle', '--without-drone',
+            ]
+            + [
+                s for s in skips
+                if s not in ["--without-circle", "--without-drone"]
+            ]
+            + [
                 '--feedstock_directory', feedstock_dir,
             ]
             + owner_info
@@ -106,6 +119,17 @@ def reset_feedstock_token(name):
                 'conda', 'smithy', 'rotate-binstar-token',
                 '--without-appveyor', '--without-azure',
                 '--without-circle', '--without-drone',
+            ]
+            + [
+                s for s in skips
+                if s not in [
+                    "--without-circle",
+                    "--without-drone",
+                    "--without-appveyor",
+                    "--without-azure",
+                ]
+            ]
+            + [
                 '--token_name', 'STAGING_BINSTAR_TOKEN'
             ],
             cwd=feedstock_dir)
@@ -113,14 +137,17 @@ def reset_feedstock_token(name):
 
 def reset_feedstock_tokens_in_file(token_reset_file):
     pkgs_to_do_again = []
+    skips = []
     with open(token_reset_file, "r") as fp:
         for line in fp.readlines():
             line = line.strip()
             if line.startswith("#") or len(line) == 0:
+                if line.startswith("#") and "--without-" in line:
+                    skips.append(line[1:].strip())
                 continue
 
             try:
-                reset_feedstock_token(line)
+                reset_feedstock_token(line, skips=skips)
             except Exception as e:
                 print(
                     "failed to reset token for '%s': %s" % (line, repr(e)),
@@ -131,7 +158,8 @@ def reset_feedstock_tokens_in_file(token_reset_file):
     if pkgs_to_do_again:
         with open(token_reset_file, "w") as fp:
             fp.write(
-                "# token reset failed for these packages - trying again later\n"
+                "# token reset failed for these packages - "
+                "trying again later\n"
             )
             for pkg in pkgs_to_do_again:
                 fp.write(pkg + "\n")
@@ -159,7 +187,9 @@ def check_for_feedstocks_in_file(token_reset_file):
             if line.startswith("#") or len(line) == 0:
                 continue
 
-            r = requests.get("https://github.com/conda-forge/%s-feedstock" % line)
+            r = requests.get(
+                "https://github.com/conda-forge/%s-feedstock" % line
+            )
             if r.status_code != 200:
                 missing_feedstocks.append(line)
     return missing_feedstocks
@@ -195,7 +225,9 @@ def main():
             )
 
     if missing_feedstocks:
-        raise RuntimeError("feedstocks %s could not be found!" % missing_feedstocks)
+        raise RuntimeError(
+            "feedstocks %s could not be found!" % missing_feedstocks
+        )
 
 
 if __name__ == "__main__":
