@@ -1,2 +1,4 @@
 # token reset failed for these packages - trying again later
+# --without-travis
+# --without-github-actions
 r-forge
