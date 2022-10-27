@@ -1,6 +1,0 @@
-win-64/spdlog-1.10.0-hfbadfc6_1.tar.bz2
-osx-64/spdlog-1.10.0-ha64ae7f_1.tar.bz2
-osx-arm64/spdlog-1.10.0-h6981a3a_1.tar.bz2
-linux-ppc64le/spdlog-1.10.0-h4eddd95_1.tar.bz2
-linux-64/spdlog-1.10.0-hf88bb37_1.tar.bz2
-linux-aarch64/spdlog-1.10.0-hb8f3011_1.tar.bz2
