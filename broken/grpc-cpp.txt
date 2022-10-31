@@ -1,0 +1,6 @@
+linux-64/grpc-cpp-1.49.1-ha770c72_0.tar.bz2
+linux-aarch64/grpc-cpp-1.49.1-h8af1aa0_0.tar.bz2
+linux-ppc64le/grpc-cpp-1.49.1-ha3edaa6_0.tar.bz2
+osx-64/grpc-cpp-1.49.1-h694c41f_0.tar.bz2
+osx-arm64/grpc-cpp-1.49.1-hce30654_0.tar.bz2
+win-64/grpc-cpp-1.49.1-h57928b3_0.tar.bz2
