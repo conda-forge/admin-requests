@@ -1,3 +1,0 @@
-linux-64/xeus-zmq-1.0.0-h70bab47_0.tar.bz2
-osx-64/xeus-zmq-1.0.0-ha27c2bb_0.tar.bz2
-win-64/xeus-zmq-1.0.0-h449d27f_0.tar.bz2
