@@ -1,5 +1,0 @@
-linux-64/gds-base-2.19.11-h36e703b_0.conda
-linux-aarch64/gds-base-2.19.11-haf03645_0.conda
-linux-ppc64le/gds-base-2.19.11-h597ff09_0.conda
-osx-64/gds-base-2.19.11-hd662cfc_0.conda
-osx-arm64/gds-base-2.19.11-h646526f_0.conda
