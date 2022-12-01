@@ -1,0 +1,2 @@
+linux-64/cutensornet-2.0.0-nompi_hc0cd7d2_100.conda
+linux-aarch64/cutensornet-2.0.0-nompi_h3977d7e_100.conda
