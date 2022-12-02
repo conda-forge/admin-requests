@@ -1,0 +1,9 @@
+osx-64/conda-22.11.0-py311h6eed73b_0.conda
+osx-arm64/conda-22.11.0-py311h267d04e_0.conda
+linux-64/conda-22.11.0-py311h38be061_0.conda
+linux-aarch64/conda-22.11.0-py311hec3470c_0.conda
+linux-ppc64le/conda-22.11.0-py311h1af927a_0.conda
+win-64/conda-22.11.0-py38haa244fe_0.conda
+win-64/conda-22.11.0-py39hcbf5309_0.conda
+win-64/conda-22.11.0-py310h5588dad_0.conda
+win-64/conda-22.11.0-py311h1ea47a8_0.conda
