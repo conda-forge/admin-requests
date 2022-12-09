@@ -1,6 +1,0 @@
-linux-64/xz-static-5.2.9-h166bdaf_0.conda
-linux-aarch64/xz-static-5.2.9-h4e544f5_0.conda
-linux-ppc64le/xz-static-5.2.9-hb283c62_0.conda
-osx-64/xz-static-5.2.9-hb7f2c08_0.conda
-osx-arm64/xz-static-5.2.9-h1a8c8d9_0.conda
-win-64/xz-static-5.2.9-h64bf75a_0.conda
