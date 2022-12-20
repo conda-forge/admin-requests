@@ -55,12 +55,12 @@ def feedstocks(directory="archive"):
 
 def main(owner="conda-forge", check_only=False):
     for feedstock in feedstocks("archive"):
-        print(f"Archiving {owner}/{feedstock}...")
-        archive_repo(owner, feedstock, archive=True, check_only=check_only)
+        print(f"Archiving {owner}/{feedstock}-feedstock...")
+        archive_repo(owner, f"{feedstock}-feedstock", archive=True, check_only=check_only)
         time.sleep(0.5)
     for feedstock in feedstocks("unarchive"):
-        print(f"Unarchiving {owner}/{feedstock}...")
-        archive_repo(owner, feedstock, archive=False, check_only=check_only)
+        print(f"Unarchiving {owner}/{feedstock}-feedstock...")
+        archive_repo(owner, f"{feedstock}-feedstock", archive=False, check_only=check_only)
         time.sleep(0.5)
 
 
