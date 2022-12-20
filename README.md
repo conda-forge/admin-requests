@@ -38,3 +38,16 @@ for which the label `broken` will be removed. See `not_broken/example.txt` for a
 If you want to reset your feedstock token to fix issues with uploads, place the name of your feedstock in
 a new `.txt` file in `token_reset/`. See `token_reset/example.txt` for an example. You should use the name
 without `-feedstock` (e.g., for `python-feedstock`, you put in just `python`).
+
+
+## Archive or unarchive a feedstock
+
+If you want to request a feedstock to be archived, place the name of your feedstock in a
+new `.txt` file in `archive/`. See `archive/example.txt` for an example. You 
+should use the name without the `-feedstock` suffix (e.g., for `python-feedstock`, you put in just `python`).
+
+Before a feedstock is archived, please leave an open issue with some details about
+why the feedstock was archived (e.g. it has been deprecated by a new feedstock),
+and link it in your PR description.
+
+Conversely, if you want to request a feedstock to be unarchived, follow the same steps but for the `unarchive/` directory.
