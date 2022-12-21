@@ -40,10 +40,10 @@ What will happen when a package is marked broken?
   * [ ] Pinged the team for the package for their input.
 
 * [ ] I want to archive a feedstock:
-  * [ ] The maintainers of that feedstock have agreed and consented in this PR.
-  * [ ] Make sure you have opened an issue explaining why the feedstock was archived.
+  * [ ] Pinged the team for that feedstock for their input.
+  * [ ] Make sure you have opened an issue on the feedstock explaining why it was archived.
   * [ ] Linked that issue in this PR description.
-  * [ ] Added links to any relevant issues/PRs in the PR description.
+  * [ ] Added links to any other relevant issues/PRs in the PR description.
 
 <!--
 For example if you are trying to mark a `foo` conda package as broken.
