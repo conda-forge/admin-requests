@@ -46,8 +46,8 @@ If you want to request a feedstock to be archived, place the name of your feedst
 new `.txt` file in `archive/`. See `archive/example.txt` for an example. You 
 should use the name without the `-feedstock` suffix (e.g., for `python-feedstock`, you put in just `python`).
 
-Before a feedstock is archived, please leave an open issue with some details about
-why the feedstock was archived (e.g. it has been deprecated by a new feedstock),
-and link it in your PR description.
+If you want to request a feedstock to be unarchived, follow the same steps but for the `unarchive/` directory.
 
-Conversely, if you want to request a feedstock to be unarchived, follow the same steps but for the `unarchive/` directory.
+For feedstocks that need to be archived, please leave an open issue with some details about
+why that decision was taken (e.g. it has been deprecated by a new feedstock),
+and link it in your PR description.
