@@ -31,7 +31,12 @@ jobs:
         broken_count="$(ls broken/*.txt | grep -v broken/example.txt | wc -l)"
         not_broken_count="$(ls not_broken/*.txt | grep -v not_broken/example.txt | wc -l)"
         token_reset_count="$(ls token_reset/*.txt | grep -v token_reset/example.txt | wc -l)"
-        if [[ "${broken_count}" == "0" && "${not_broken_count}" == "0" && "${token_reset_count}" == "0" ]]; then
+        archive_count="$(ls archive/*.txt | grep -v archive/example.txt | wc -l)"
+        unarchive_count="$(ls unarchive/*.txt | grep -v unarchive/example.txt | wc -l)"
+        if [[ "${broken_count}" == "0" && "${not_broken_count}" == "0" 
+              && "${token_reset_count}" == "0" 
+              && "${archive_count}" == "0" && "${unarchive_count}" == "0"
+        ]]; then
           echo "nothing to do, setting ci skip!"
           echo "CI_SKIP=true" >> $GITHUB_ENV
         fi
@@ -55,7 +60,7 @@ jobs:
 
     - name: mark packages as broken
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      shell: bash -l {0}
+      shell: bash -el {0}
       run: |
           conda activate cf
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
@@ -68,7 +73,7 @@ jobs:
 
     - name: reset feedstock tokens
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      shell: bash -l {0}
+      shell: bash -el {0}
       run: |
           conda activate cf
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
@@ -82,6 +87,18 @@ jobs:
         TRAVIS_TOKEN: ${{ secrets.ORGWIDE_TRAVIS_TOKEN }}
         AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
         DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
+
+    - name: (un)archive feedstocks
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+      shell: bash -el {0}
+      run: |
+          conda activate cf
+          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+          git config --global user.name "conda-forge-curator[bot]"
+          git config --global pull.rebase false
+          python archive_feedstock.py archive
+      env:
+        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
     - name: Push changes
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP

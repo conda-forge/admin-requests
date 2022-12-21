@@ -18,13 +18,19 @@ jobs:
         miniforge-variant: Mambaforge
 
     - name: Check packages exist on main (or label/broken)
-      shell: bash -l {0}
+      shell: bash -el {0}
       run: |
           conda activate cf
           python mark_broken.py check
 
     - name: Check feedstocks exist for token reset
-      shell: bash -l {0}
+      shell: bash -el {0}
       run: |
           conda activate cf
           python token_reset.py check
+
+    - name: Check feedstocks can be (un)archived
+      shell: bash -el {0}
+      run: |
+          conda activate cf
+          python archive_feedstock.py check
