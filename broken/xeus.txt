@@ -1,0 +1,6 @@
+linux-ppc64le/xeus-3.0.4-haf45824_0.conda
+win-64/xeus-3.0.4-h181d51b_0.conda
+osx-64/xeus-3.0.4-hb8565cd_0.conda
+osx-arm64/xeus-3.0.4-hffc8910_0.conda
+linux-aarch64/xeus-3.0.4-h5c61376_0.conda
+linux-64/xeus-3.0.4-hac2b420_0.conda
