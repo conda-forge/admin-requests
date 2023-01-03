@@ -53,7 +53,7 @@ jobs:
     - name: Generate token
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       id: generate_token
-      uses: tibdex/github-app-token@v1
+      uses: conda-forge/github-app-token@e3ab451d57e120b956292a1fa1d21fe4ba171c36
       with:
         app_id: ${{ secrets.CF_CURATOR_APP_ID }}
         private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
