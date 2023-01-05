@@ -1,3 +1,0 @@
-theano
-retworkx
-theano2
