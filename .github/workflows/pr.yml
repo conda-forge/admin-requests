@@ -3,6 +3,10 @@ on:
   pull_request:
     branches:
       - main
+
+env:
+  PYTHONUNBUFFERED: 1
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -31,6 +35,8 @@ jobs:
 
     - name: Check feedstocks can be (un)archived
       shell: bash -el {0}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
           conda activate cf
           python archive_feedstock.py check
