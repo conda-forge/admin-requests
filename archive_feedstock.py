@@ -20,6 +20,8 @@ def archive_repo(owner, repo, archive=True, check_only=False):
         "Accept": "application/vnd.github+json",
     }
 
+    # NOTE: This check is unauthenticated and might run into rate limiting issues
+    # with high volumes. If that happens, a token would be needed (see requests.patch() below).
     r = requests.get(
         f"https://api.github.com/repos/{owner}/{repo}",
         headers=headers,
@@ -54,14 +56,26 @@ def feedstocks(directory="archive"):
 
 
 def main(owner="conda-forge", check_only=False):
-    for feedstock in feedstocks("archive"):
-        print(f"Archiving {owner}/{feedstock}-feedstock...")
-        archive_repo(owner, f"{feedstock}-feedstock", archive=True, check_only=check_only)
-        time.sleep(0.5)
-    for feedstock in feedstocks("unarchive"):
-        print(f"Unarchiving {owner}/{feedstock}-feedstock...")
-        archive_repo(owner, f"{feedstock}-feedstock", archive=False, check_only=check_only)
-        time.sleep(0.5)
+    exceptions = []
+    for task in "archive", "unarchive":
+        seen = set()
+        for feedstock in feedstocks(task):
+            verb = "Archiving" if task == "archive" else "Unarchiving"
+            print(f"{verb} {owner}/{feedstock}-feedstock...", end=" ")
+            if feedstock in seen:
+                print("[SKIP]")
+                continue
+            seen.add(feedstock.lower())
+            try:
+                archive_repo(owner, f"{feedstock}-feedstock", archive=task == "archive", check_only=check_only)
+            except Exception as exc:
+                exceptions.append((feedstock, exc))
+                print("[ERROR]")
+            else:
+                print("[OK]")
+            time.sleep(0.5)
+    if exceptions:
+        raise Exception(*exceptions)
 
 
 if __name__ == "__main__":
