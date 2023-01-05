@@ -16,7 +16,6 @@ def raise_json_for_status(request):
 
 def archive_repo(owner, repo, archive=True, check_only=False):
     headers = {
-        "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
         "X-GitHub-Api-Version": "2022-11-28",
         "Accept": "application/vnd.github+json",
     }
@@ -34,6 +33,7 @@ def archive_repo(owner, repo, archive=True, check_only=False):
     elif check_only:
         return
 
+    headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
     r = requests.patch(
         f"https://api.github.com/repos/{owner}/{repo}",
         headers=headers,
