@@ -70,7 +70,7 @@ def main(owner="conda-forge", check_only=False):
                 archive_repo(owner, f"{feedstock}-feedstock", archive=task == "archive", check_only=check_only)
             except Exception as exc:
                 exceptions.append((feedstock, exc))
-                print("[ERROR]")
+                print("[!!]")
             else:
                 print("[OK]")
             time.sleep(0.5)
