@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -43,7 +44,7 @@ def archive_repo(owner, repo, archive=True, check_only=False):
     raise_json_for_status(r)
 
 
-def feedstocks(directory="archive"):
+def feedstocks(directory="archive", check_only=False):
     for path in Path(directory).glob("*.txt"):
         if path.name == "example.txt":
             continue
@@ -52,13 +53,24 @@ def feedstocks(directory="archive"):
                 line = line.strip()
                 if line and not line.startswith("#"):
                     yield line
+        if not check_only:
+            subprocess.check_call(f"git rm {file_name}", shell=True)
+            subprocess.check_call(
+                (
+                    "git commit -m "
+                    f"'Remove {file_name} after {directory[:-1]}ing repos'"
+                ),
+                shell=True
+            )
+            subprocess.check_call("git show", shell=True)
+
 
 
 def main(owner="conda-forge", check_only=False):
     exceptions = []
     for task in "archive", "unarchive":
         seen = set()
-        for feedstock in feedstocks(task):
+        for feedstock in feedstocks(task, check_only=check_only):
             verb = "Archiving" if task == "archive" else "Unarchiving"
             print(f"{verb} {owner}/{feedstock}-feedstock...", end=" ")
             if feedstock in seen:
