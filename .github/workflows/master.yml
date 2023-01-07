@@ -49,6 +49,7 @@ jobs:
         auto-activate-base: true
         miniforge-version: latest
         miniforge-variant: Mambaforge
+        use-mamba: true
 
     - name: Generate token
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
