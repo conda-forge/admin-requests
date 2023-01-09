@@ -102,10 +102,15 @@ def reset_feedstock_token(name, skips=None):
             [
                 'conda', 'smithy', 'register-feedstock-token',
                 '--without-circle', '--without-drone',
+                '--without-github-actions',
             ]
             + [
                 s for s in skips
-                if s not in ["--without-circle", "--without-drone"]
+                if s not in [
+                    "--without-circle",
+                    "--without-drone",
+                    '--without-github-actions'
+                ]
             ]
             + [
                 '--feedstock_directory', feedstock_dir,

@@ -1,6 +1,6 @@
 # admin requests
 
-[![repodata_patching](https://github.com/conda-forge/admin-requests/actions/workflows/repodata_patching.yml/badge.svg)](https://github.com/conda-forge/admin-requests/actions/workflows/repodata_patching.yml) [![run](https://github.com/conda-forge/admin-requests/actions/workflows/master.yml/badge.svg)](https://github.com/conda-forge/admin-requests/actions/workflows/master.yml)
+[![repodata_patching](https://github.com/conda-forge/admin-requests/actions/workflows/repodata_patching.yml/badge.svg)](https://github.com/conda-forge/admin-requests/actions/workflows/repodata_patching.yml) [![run](https://github.com/conda-forge/admin-requests/actions/workflows/master.yml/badge.svg)](https://github.com/conda-forge/admin-requests/actions/workflows/master.yml) [![create_feedstocks](https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml/badge.svg)](https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml)
 
 This repo is for making requests to `conda-forge/core` for various administrative
 tasks.
@@ -35,9 +35,11 @@ for which the label `broken` will be removed. See `not_broken/example.txt` for a
 
 ## Reset your Feedstock Token
 
-If you want to reset your feedstock token to fix issues with uploads, place the name of your feedstock in
-a new `.txt` file in `token_reset/`. See `token_reset/example.txt` for an example. You should use the name
-without `-feedstock` (e.g., for `python-feedstock`, you put in just `python`).
+If you want to reset your feedstock token to fix issues with uploads, place the name of your package in
+a new `.txt` file in `token_reset/`, with the name of the package as its contents. Use the name without `-feedstock` 
+(e.g., for `python-feedstock`, you should create `python.txt` with `python` as its contents).
+
+See `token_reset/example.txt` for an example.
 
 
 ## Archive or unarchive a feedstock
