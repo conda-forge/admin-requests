@@ -53,5 +53,5 @@ jobs:
         env:
           STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
           GH_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
-          TRAVIS_TOKEN: ${{ secrets.ORGWIDE_TRAVIS_TOKEN }}
+          TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
           AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
