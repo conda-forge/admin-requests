@@ -1,0 +1,8 @@
+inspectrum
+libcorrect
+liquid-dsp
+rtaudio
+soapysdr-module-audio
+soapysdr-module-netsdr
+soapysdr-module-redpitaya
+soapysdr-module-volk-converters
