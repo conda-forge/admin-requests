@@ -9,11 +9,15 @@ import github
 from conda_smithy.ci_register import travis_get_repo_info
 
 SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
-FEEDSTOCK_TOKENS_REPO = (
-    github
-    .Github(os.environ["GITHUB_TOKEN"])
-    .get_repo("conda-forge/feedstock-tokens")
-)
+
+if "GITHUB_TOKEN" in os.environ:
+    FEEDSTOCK_TOKENS_REPO = (
+        github
+        .Github(os.environ["GITHUB_TOKEN"])
+        .get_repo("conda-forge/feedstock-tokens")
+    )
+else:
+    FEEDSTOCK_TOKENS_REPO = None
 
 
 def feedstock_token_exists(feedstock_name):
@@ -29,6 +33,11 @@ def feedstock_token_exists(feedstock_name):
 
 
 def delete_feedstock_token(feedstock_name):
+    if FEEDSTOCK_TOKENS_REPO is None:
+        raise RuntimeError(
+            "Cannot delete feedstock token for %s since "
+            "we do not have a github token!" % feedstock_name
+        )
     token_file = "tokens/%s.json" % feedstock_name
     fn = FEEDSTOCK_TOKENS_REPO.get_contents(token_file)
     FEEDSTOCK_TOKENS_REPO.delete_file(
