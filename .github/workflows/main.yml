@@ -102,6 +102,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
+    - name: pull changes
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+      shell: bash -el {0}
+      run: |
+          git pull
+
     - name: Push changes
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       uses: ad-m/github-push-action@master
