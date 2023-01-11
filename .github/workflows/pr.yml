@@ -24,15 +24,15 @@ jobs:
     - name: Check packages exist on main (or label/broken)
       shell: bash -el {0}
       run: |
-          test -f broken/example.txt
-          test -f unbroken/example.txt
+          ls -1 broken/example.txt
+          ls -1 unbroken/example.txt
           conda activate cf
           python mark_broken.py check
 
     - name: Check feedstocks exist for token reset
       shell: bash -el {0}
       run: |
-          test -f token_reset/example.txt
+          ls -1 token_reset/example.txt
           conda activate cf
           python token_reset.py check
 
@@ -41,7 +41,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-          test -f archive/example.txt
-          test -f unarchive/example.txt
+          ls -1 archive/example.txt
+          ls -1 unarchive/example.txt
           conda activate cf
           python archive_feedstock.py check
