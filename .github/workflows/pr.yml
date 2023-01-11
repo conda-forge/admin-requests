@@ -25,7 +25,7 @@ jobs:
       shell: bash -el {0}
       run: |
           ls -1 broken/example.txt
-          ls -1 unbroken/example.txt
+          ls -1 not_broken/example.txt
           conda activate cf
           python mark_broken.py check
 
