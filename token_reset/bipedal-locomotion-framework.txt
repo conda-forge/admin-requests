@@ -1,1 +1,1 @@
-bipedal-locomotion-framework.txt
+bipedal-locomotion-framework
