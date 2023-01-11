@@ -63,8 +63,6 @@ jobs:
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -el {0}
       run: |
-          test -f broken/example.txt
-          test -f unbroken/example.txt
           conda activate cf
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
           git config --global user.name "conda-forge-curator[bot]"
@@ -78,7 +76,6 @@ jobs:
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -el {0}
       run: |
-          test -f token_reset/example.txt
           conda activate cf
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
           git config --global user.name "conda-forge-curator[bot]"
@@ -96,8 +93,6 @@ jobs:
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -el {0}
       run: |
-          test -f archive/example.txt
-          test -f unarchive/example.txt
           conda activate cf
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
           git config --global user.name "conda-forge-curator[bot]"
