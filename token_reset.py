@@ -4,8 +4,48 @@ import glob
 import requests
 import subprocess
 import tempfile
+import github
+
+from conda_smithy.ci_register import travis_get_repo_info
 
 SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
+
+if "GITHUB_TOKEN" in os.environ:
+    FEEDSTOCK_TOKENS_REPO = (
+        github
+        .Github(os.environ["GITHUB_TOKEN"])
+        .get_repo("conda-forge/feedstock-tokens")
+    )
+else:
+    FEEDSTOCK_TOKENS_REPO = None
+
+
+def feedstock_token_exists(feedstock_name):
+    r = requests.get(
+        "https://api.github.com/repos/conda-forge/"
+        "feedstock-tokens/contents/tokens/%s.json" % (feedstock_name),
+        headers={"Authorization": "token %s" % os.environ["GITHUB_TOKEN"]},
+    )
+    if r.status_code != 200:
+        return False
+    else:
+        return True
+
+
+def delete_feedstock_token(feedstock_name):
+    if FEEDSTOCK_TOKENS_REPO is None:
+        raise RuntimeError(
+            "Cannot delete feedstock token for %s since "
+            "we do not have a github token!" % feedstock_name
+        )
+    token_file = "tokens/%s.json" % feedstock_name
+    fn = FEEDSTOCK_TOKENS_REPO.get_contents(token_file)
+    FEEDSTOCK_TOKENS_REPO.delete_file(
+        token_file,
+        "[ci skip] [skip ci] [cf admin skip] ***NO_CI*** removing "
+        "token for %s" % feedstock_name,
+        fn.sha,
+    )
 
 
 def get_token_reset_files():
@@ -17,70 +57,19 @@ def get_token_reset_files():
     )
 
 
-def feedstock_token_exists(organization, name):
-    r = requests.get(
-        "https://api.github.com/repos/%s/"
-        "feedstock-tokens/contents/tokens/%s.json" % (organization, name),
-        headers={"Authorization": "token %s" % os.environ["GITHUB_TOKEN"]},
-    )
-    if r.status_code != 200:
-        return False
-    else:
-        return True
-
-
 def write_token(name, token):
     with open(os.path.join(SMITHY_CONF, name + '.token'), 'w') as fh:
         fh.write(token)
 
 
-def delete_feedstock_token(org, feedstock_name):
-    with tempfile.TemporaryDirectory() as tmpdir:
-        subprocess.check_call(
-            "git clone "
-            "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
-            "feedstock-tokens.git",
-            cwd=tmpdir,
-            shell=True,
-        )
-
-        subprocess.check_call(
-            "git remote set-url --push origin "
-            "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
-            "feedstock-tokens.git",
-            cwd=os.path.join(tmpdir, "feedstock-tokens"),
-            shell=True,
-        )
-
-        subprocess.check_call(
-            "git rm tokens/%s.json" % feedstock_name,
-            cwd=os.path.join(tmpdir, "feedstock-tokens"),
-            shell=True,
-        )
-
-        subprocess.check_call(
-            "git commit --allow-empty -am "
-            "'[ci skip] [skip ci] [cf admin skip] ***NO_CI*** removing "
-            "token for %s'" % feedstock_name,
-            cwd=os.path.join(tmpdir, "feedstock-tokens"),
-            shell=True,
-        )
-
-        subprocess.check_call(
-            "git pull",
-            cwd=os.path.join(tmpdir, "feedstock-tokens"),
-            shell=True,
-        )
-
-        subprocess.check_call(
-            "git push",
-            cwd=os.path.join(tmpdir, "feedstock-tokens"),
-            shell=True,
-        )
-
-
 def reset_feedstock_token(name, skips=None):
     skips = skips or []
+
+    # test to make sure travis ci api is working
+    # if not skip migration
+    repo_info = travis_get_repo_info("conda-forge", name + "-feedstock")
+    if not repo_info:
+        raise RuntimeError("Travis-CI API token is not working!")
 
     owner_info = ['--organization', 'conda-forge']
     token_repo = (
@@ -92,8 +81,8 @@ def reset_feedstock_token(name, skips=None):
         feedstock_dir = os.path.join(tmpdir, name + "-feedstock")
         os.makedirs(feedstock_dir)
 
-        if feedstock_token_exists("conda-forge", name + "-feedstock"):
-            delete_feedstock_token("conda-forge", name + "-feedstock")
+        if feedstock_token_exists(name + "-feedstock"):
+            delete_feedstock_token(name + "-feedstock")
 
         subprocess.check_call(
             ['conda', 'smithy', 'generate-feedstock-token',
