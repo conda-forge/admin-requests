@@ -10,5 +10,6 @@ micropipenv
 mpxj
 nuitka
 openmdao
+openpmd-api
 otter-grader
 pangeo-dask
