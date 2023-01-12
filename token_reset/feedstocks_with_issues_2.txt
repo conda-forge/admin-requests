@@ -1,0 +1,14 @@
+atlite
+dpath
+easybuild-easyconfigs
+gdsfactory
+geemap
+gladier-tools
+hdbpp-es
+libxml2
+micropipenv
+mpxj
+nuitka
+openmdao
+otter-grader
+pangeo-dask
