@@ -1,2 +1,0 @@
-mayavi
-grpc-google-iam-v1
