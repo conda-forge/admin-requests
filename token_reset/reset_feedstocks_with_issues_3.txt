@@ -1,4 +1,0 @@
-gnuradio
-image-meta-tag
-mkdocs-material
-mypy
