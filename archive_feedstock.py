@@ -120,7 +120,7 @@ def check_for_feedstocks_in_file(token_reset_file):
 
 
 def main(*, check_only):
-    missing_feedstocks = set()
+    missing_feedstocks = []
     for task in "archive", "unarchive":
         task_files = get_task_files(task)
         for task_file in task_files:
@@ -134,7 +134,7 @@ def main(*, check_only):
 
     if missing_feedstocks:
         raise RuntimeError(
-            "feedstocks %s could not be found!" % missing_feedstocks
+            "feedstocks %s could not be found!" % list(set(missing_feedstocks))
         )
 
 
