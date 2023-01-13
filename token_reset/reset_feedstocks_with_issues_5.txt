@@ -1,3 +1,0 @@
-jupyverse
-pastas
-pcl
