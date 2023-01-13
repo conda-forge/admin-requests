@@ -7,12 +7,10 @@ import subprocess
 
 def get_task_files(task):
     exf = os.path.join(task, "example.txt")
-    return (
-        [
-            f for f in glob.glob(os.path.join(task, "*"))
-            if f != exf
-        ]
-    )
+    return [
+        f for f in glob.glob(os.path.join(task, "*"))
+        if f != exf
+    ]
 
 
 def raise_json_for_status(request):
@@ -55,7 +53,7 @@ def process_repo(repo, task):
     r = requests.patch(
         f"https://api.github.com/repos/{owner}/{repo}",
         headers=headers,
-        json={"archived": True if task == "archive" else False}
+        json={"archived": task == "archive"}
     )
     raise_json_for_status(r)
 
@@ -65,7 +63,7 @@ def process_repo(repo, task):
 def process_feedstocks_in_file(task_file, task):
     pkgs_to_do_again = []
     with open(task_file, "r") as fp:
-        for line in fp.readlines():
+        for line in fp:
             line = line.strip()
             if line.startswith("#") or len(line) == 0:
                 continue
