@@ -69,7 +69,7 @@ def process_feedstocks_in_file(task_file, task):
                 continue
 
             try:
-                process_repo(line, task)
+                process_repo(line + "-feedstock", task)
             except Exception as e:
                 print(
                     "failed to %s '%s': %s" % (task, line, repr(e)),
