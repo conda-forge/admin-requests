@@ -1,2 +1,1 @@
-noarch/awswrangler-2.12.0-pyhd8ed1ab_0.tar.bz2
 noarch/awswrangler-2.20.0-pyhd8ed1ab_0.conda
