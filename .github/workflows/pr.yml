@@ -3,6 +3,10 @@ on:
   pull_request:
     branches:
       - main
+
+env:
+  PYTHONUNBUFFERED: 1
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -18,13 +22,26 @@ jobs:
         miniforge-variant: Mambaforge
 
     - name: Check packages exist on main (or label/broken)
-      shell: bash -l {0}
+      shell: bash -el {0}
       run: |
+          ls -1 broken/example.txt
+          ls -1 not_broken/example.txt
           conda activate cf
           python mark_broken.py check
 
     - name: Check feedstocks exist for token reset
-      shell: bash -l {0}
+      shell: bash -el {0}
       run: |
+          ls -1 token_reset/example.txt
           conda activate cf
           python token_reset.py check
+
+    - name: Check feedstocks can be (un)archived
+      shell: bash -el {0}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          ls -1 archive/example.txt
+          ls -1 unarchive/example.txt
+          conda activate cf
+          python archive_feedstock.py check
