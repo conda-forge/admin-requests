@@ -1,0 +1,6 @@
+linux-64/libxml2-2.10.3-hca2bb57_2.conda
+linux-aarch64/libxml2-2.10.3-habe54e3_2.conda
+linux-ppc64le/libxml2-2.10.3-h546540f_2.conda
+osx-64/libxml2-2.10.3-hb9e07b5_2.conda
+osx-arm64/libxml2-2.10.3-h87b0503_2.conda
+win-64/libxml2-2.10.3-hc3477c8_2.conda
