@@ -1,1 +1,1 @@
-pyrsm
+cf-autotick-bot-test-package
