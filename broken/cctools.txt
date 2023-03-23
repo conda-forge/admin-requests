@@ -1,2 +1,0 @@
-osx-64/cctools-973.0.1-hd9ad811_12.conda
-osx-arm64/cctools-973.0.1-hd1ac623_12.conda
