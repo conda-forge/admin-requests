@@ -1,0 +1,2 @@
+osx-64/cctools_osx-64-973.0.1-h48a5a9d_12.conda
+osx-arm64/cctools_osx-64-973.0.1-h1497617_12.conda
