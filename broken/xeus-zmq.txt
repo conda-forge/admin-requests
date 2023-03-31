@@ -1,0 +1,7 @@
+linux-64/xeus-zmq-1.0.2-h0541b36_0.conda
+linux-aarch64/xeus-zmq-1.0.2-hb74a78a_0.conda
+linux-ppc64le/xeus-zmq-1.0.2-h1711066_0.conda
+osx-64/xeus-zmq-1.0.2-ha27c2bb_0.conda
+osx-arm64/xeus-zmq-1.0.2-h54398fd_0.conda
+win-64/xeus-zmq-1.0.2-h449d27f_0.conda
+
