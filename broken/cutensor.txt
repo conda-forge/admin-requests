@@ -1,4 +1,0 @@
-win-64/cutensor-1.7.0.1-h63175ca_1.conda
-linux-ppc64le/cutensor-1.7.0.1-h883269e_1.conda
-linux-64/cutensor-1.7.0.1-hcb278e6_1.conda
-linux-aarch64/cutensor-1.7.0.1-ha21bd82_1.conda
