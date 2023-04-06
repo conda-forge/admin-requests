@@ -1,0 +1,9 @@
+osx-arm64/pennylane-lightning-core-0.29.0-py310he38b2b1_2.conda
+osx-arm64/pennylane-lightning-core-0.29.0-py39h7dbb43e_2.conda
+osx-arm64/pennylane-lightning-core-0.29.0-py38hd0a34ed_2.conda
+osx-arm64/pennylane-core-0.29.0-py38h10201cd_2.conda
+osx-arm64/pennylane-core-0.29.0-py39h2804cbe_2.conda
+osx-arm64/pennylane-core-0.29.0-py310hbe9552e_2.conda
+osx-arm64/pennylane-0.29.0-py38h150bfb4_2.conda
+osx-arm64/pennylane-0.29.0-py39hdf13c20_2.conda
+osx-arm64/pennylane-0.29.0-py310hb6292c7_2.conda
