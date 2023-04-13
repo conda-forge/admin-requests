@@ -1,0 +1,4 @@
+noarch/sardana-3.4.0-pyhd8ed1ab_0.conda
+noarch/sardana-config-3.4.0-pyhd8ed1ab_0.conda
+noarch/sardana-server-3.4.0-pyhd8ed1ab_0.conda
+noarch/sardana-client-3.4.0-pyhd8ed1ab_0.conda
