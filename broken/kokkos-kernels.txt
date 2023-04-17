@@ -1,0 +1,2 @@
+linux-64/kokkos-kernels-3.7.01-hf52228f_0.conda
+osx-64/kokkos-kernels-3.7.01-h5aaa8d0_0.conda
