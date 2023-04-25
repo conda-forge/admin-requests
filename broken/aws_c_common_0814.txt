@@ -1,0 +1,6 @@
+linux-64/aws-c-common-08.14-h0b41bf4_0.conda
+linux-aarch64/aws-c-common-08.14-hb4cce97_0.conda
+linux-ppc64le/aws-c-common-08.14-h4194056_0.conda
+win-64/aws-c-common-08.14-hcfcfb64_0.conda
+osx-arm64/aws-c-common-08.14-h1a8c8d9_0.conda
+osx-64/aws-c-common-08.14-hb7f2c08_0.conda
