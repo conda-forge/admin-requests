@@ -1,4 +1,0 @@
-noarch/r-cli-3.0.0-r40hc72bb7e_0.tar.bz2
-noarch/r-cli-3.0.0-r41hc72bb7e_0.tar.bz2
-noarch/r-cli-3.0.1-r40hc72bb7e_0.tar.bz2
-noarch/r-cli-3.0.1-r41hc72bb7e_0.tar.bz2
