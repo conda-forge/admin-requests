@@ -1,0 +1,11 @@
+win-64/cf-autotick-bot-test-package-0.4-py38_0.tar.bz2
+linux-64/diffpy.pdfgui-1.4.2-py310ha770c72_4.conda
+linux-64/diffpy.pdfgui-1.4.2-py310ha770c72_1.conda
+linux-64/diffpy.pdfgui-1.4.2-py310ha770c72_0.conda
+linux-64/diffpy.pdfgui-1.4.0.post1-py310ha770c72_4.conda
+linux-64/diffpy.pdfgui-1.4.0.post1-py310ha770c72_3.conda
+linux-64/diffpy.pdfgui-1.4.0.post1-py310ha770c72_2.conda
+noarch/diffpy.pdfgui-1.4.0.post1-pyhd8ed1ab_1.conda
+win-64/diffpy.pdfgui-1.4.0.post1-py310h5588dad_0.conda
+osx-64/diffpy.pdfgui-1.4.0.post1-py310h2ec42d9_0.conda
+linux-64/diffpy.pdfgui-1.4.0.post1-py310hff52083_0.conda
