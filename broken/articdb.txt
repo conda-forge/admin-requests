@@ -1,6 +1,0 @@
-osx-64/articdb-1.2.1-py38h88005ed_0.conda
-osx-64/articdb-1.2.1-py39h3afda88_0.conda
-osx-64/articdb-1.2.1-py310hfca8cbb_0.conda
-linux-64/articdb-1.2.1-py38h4ec609a_0.conda
-linux-64/articdb-1.2.1-py39hd7cd6d2_0.conda
-linux-64/articdb-1.2.1-py310hb8f0bbb_0.conda
