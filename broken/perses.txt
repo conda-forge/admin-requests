@@ -1,0 +1,2 @@
+noarch/perses-0.10.1.dev0-pyha21a80b_0.conda
+noarch/perses-0.10.1.dev0-pyha21a80b_1.conda
