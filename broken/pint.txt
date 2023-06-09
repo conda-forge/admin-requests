@@ -1,1 +1,0 @@
-noarch/pint-0.22-pyhd8ed1ab_0.conda
