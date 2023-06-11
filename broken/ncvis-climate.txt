@@ -1,0 +1,9 @@
+osx-64/ncvis-climate-2022.09.01-he77dcf4_1.conda
+linux-64/ncvis-climate-2022.09.01-h006bdd1_1.conda
+osx-64/ncvis-climate-2022.09.01-h0126ed0_0.conda
+linux-64/ncvis-climate-2022.09.01-h32fd8a7_0.conda
+osx-64/ncvis-climate-2022.08.28-h0126ed0_2.conda
+linux-64/ncvis-climate-2022.08.28-h32fd8a7_2.conda
+osx-64/ncvis-climate-2022.08.28-h736f83b_1.conda
+linux-64/ncvis-climate-2022.08.28-h48104de_1.conda
+linux-64/ncvis-climate-2022.08.28-h48104de_0.conda
