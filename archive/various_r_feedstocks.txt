@@ -1,0 +1,6 @@
+r-heavy
+r-rxode
+r-genius
+r-lasso2
+r-ffbase
+r-chebpol
