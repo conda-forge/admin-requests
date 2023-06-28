@@ -1,0 +1,8 @@
+linux-64/kokkos-3.7.02-h1e7fabd_0.conda
+linux-64/kokkos-3.7.02-h22b3db6_1.conda
+linux-64/kokkos-3.7.02-h66b1f04_0.conda
+linux-64/kokkos-3.7.02-h69fb06d_1.conda
+linux-aarch64/kokkos-3.7.02-h5405a99_0.conda
+linux-aarch64/kokkos-3.7.02-h69b1e34_1.conda
+linux-ppc64le/kokkos-3.7.02-hc023538_1.conda
+linux-ppc64le/kokkos-3.7.02-hd810a49_0.conda
