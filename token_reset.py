@@ -149,7 +149,7 @@ def reset_feedstock_tokens_in_file(token_reset_file):
                     "failed to reset token for '%s': %s" % (line, repr(e)),
                     flush=True,
                 )
-                pkgs_to_do_again.append(line)
+                pkgs_to_do_again.append((line, set(skips)))
 
     if pkgs_to_do_again:
         with open(token_reset_file, "w") as fp:
@@ -157,7 +157,9 @@ def reset_feedstock_tokens_in_file(token_reset_file):
                 "# token reset failed for these packages - "
                 "trying again later\n"
             )
-            for pkg in pkgs_to_do_again:
+            for pkg, skips in pkgs_to_do_again:
+                for skip in skips:
+                    fp.write("# " + skip + "\n")
                 fp.write(pkg + "\n")
         subprocess.check_call(f"git add {token_reset_file}", shell=True)
         subprocess.check_call(
