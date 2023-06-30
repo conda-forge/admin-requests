@@ -65,11 +65,12 @@ def write_token(name, token):
 def reset_feedstock_token(name, skips=None):
     skips = skips or []
 
-    # test to make sure travis ci api is working
-    # if not skip migration
-    repo_info = travis_get_repo_info("conda-forge", name + "-feedstock")
-    if not repo_info:
-        raise RuntimeError("Travis-CI API token is not working!")
+    if "--without-travis" not in skips:
+        # test to make sure travis ci api is working
+        # if not skip migration
+        repo_info = travis_get_repo_info("conda-forge", name + "-feedstock")
+        if not repo_info:
+            raise RuntimeError("Travis-CI API token is not working!")
 
     owner_info = ['--organization', 'conda-forge']
     token_repo = (
