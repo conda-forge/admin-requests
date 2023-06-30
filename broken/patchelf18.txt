@@ -1,3 +1,0 @@
-linux-64/patchelf-0.18.0-h59595ed_0.conda
-linux-aarch64/patchelf-0.18.0-h787c7f5_0.conda
-linux-ppc64le/patchelf-0.18.0-h46f38da_0.conda
