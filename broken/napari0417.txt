@@ -1,2 +1,0 @@
-noarch/napari-0.4.17-pyh04ae095_0_pyside2.conda
-noarch/napari-0.4.17-pyh2f63a43_0_pyqt.conda
