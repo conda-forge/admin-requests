@@ -1,0 +1,1 @@
+noarch/pyiron_atomistics-0.3.0.dev0-pyhd8ed1ab_0.conda
