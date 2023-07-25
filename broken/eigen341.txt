@@ -1,7 +1,0 @@
-linux-aarch64/eigen-3.4.1-h2a328a1_0.conda
-win-64/eigen-3.4.1-h91493d7_0.conda
-osx-64/eigen-3.4.1-h1c7c39f_0.conda
-osx-arm64/eigen-3.4.1-h1995070_0.conda
-linux-ppc64le/eigen-3.4.1-h9bb5675_0.conda
-linux-64/eigen-3.4.1-h00ab1b0_0.conda
-
