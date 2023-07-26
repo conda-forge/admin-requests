@@ -11,9 +11,25 @@ def check():
     pass
 
 
+def _process_request_with_conda_smithy():
+    pass
+
+
+def _update_access_control_yml():
+    pass
+
+
+def _remove_input_files():
+    pass
+
+
+
 def main():
     "Process requests"
-    pass
+    check()  # doesn't hurt
+    _process_request_with_conda_smithy()
+    _update_access_control_yml()
+    _remove_input_files()
 
 
 if __name__ == "__main__":
