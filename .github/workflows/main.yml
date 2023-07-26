@@ -101,6 +101,12 @@ jobs:
           python archive_feedstock.py archive
       env:
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+    
+    - name: grant access to resources
+      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+      shell: bash -el {0}
+      run: |
+        echo "TODO: grant access to resources"
 
     - name: pull changes
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP

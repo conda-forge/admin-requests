@@ -45,3 +45,11 @@ jobs:
           ls -1 unarchive/example.txt
           conda activate cf
           python archive_feedstock.py check
+
+    - name: Check resources exist and can be granted access
+      shell: bash -el {0}
+      run: |
+          ls -1 grant_access/example.txt
+          ls -1 revoke_access/example.txt
+          conda activate cf
+          python access_control.py check
