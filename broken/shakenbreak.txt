@@ -1,5 +1,5 @@
-noarch/shakenbreak-23.6.23-pyhd8ed1ab_0.tar.bz2
-noarch/shakenbreak-23.4.27-pyhd8ed1ab_2.tar.bz2
-noarch/shakenbreak-23.4.27-pyhd8ed1ab_0.tar.bz2
-noarch/shakenbreak-23.1.7-pyhd8ed1ab_0.tar.bz2
-noarch/shakenbreak-22.12.2-pyhd8ed1ab_0.tar.bz2
+noarch/shakenbreak-23.6.23-pyhd8ed1ab_0.conda
+noarch/shakenbreak-23.4.27-pyhd8ed1ab_2.conda
+noarch/shakenbreak-23.4.27-pyhd8ed1ab_0.conda
+noarch/shakenbreak-23.1.7-pyhd8ed1ab_0.conda
+noarch/shakenbreak-22.12.2-pyhd8ed1ab_0.conda
