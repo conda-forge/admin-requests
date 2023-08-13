@@ -43,6 +43,12 @@ def check_packages():
                 # ignore blank lines or Python-style comments
                 if pkg.startswith('#') or len(pkg) == 0:
                     continue
+
+                # check to ensure the artifact exists
+                r = requests.head(f"https://conda.anaconda.org/conda-forge/{pkg}")
+                r.raise_for_status()
+
+                # check it is on the right channel
                 plat, name, ver, build = split_pkg(pkg)
                 subprocess.check_call(
                     f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
