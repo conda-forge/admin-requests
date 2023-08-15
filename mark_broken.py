@@ -21,13 +21,13 @@ def split_pkg(pkg):
 
 def get_broken_files():
     return (
-        [f for f in glob("broken/*") if f != "broken/example.txt"]
-        + [f for f in glob("pkgs/*") if f != "pkgs/example.txt"]
+        [f for f in glob("broken/*.txt") if f != "broken/example.txt"]
+        + [f for f in glob("pkgs/*.txt") if f != "pkgs/example.txt"]
     )
 
 
 def get_not_broken_files():
-    return [f for f in glob("not_broken/*") if f != "not_broken/example.txt"]
+    return [f for f in glob("not_broken/*.txt") if f != "not_broken/example.txt"]
 
 
 def check_packages():

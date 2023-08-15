@@ -51,7 +51,7 @@ def delete_feedstock_token(feedstock_name):
 def get_token_reset_files():
     return (
         [
-            f for f in glob.glob("token_reset/*")
+            f for f in glob.glob("token_reset/*.txt")
             if f != "token_reset/example.txt"
         ]
     )
