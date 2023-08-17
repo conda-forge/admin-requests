@@ -21,13 +21,13 @@ def split_pkg(pkg):
 
 def get_broken_files():
     return (
-        [f for f in glob("broken/*") if f != "broken/example.txt"]
-        + [f for f in glob("pkgs/*") if f != "pkgs/example.txt"]
+        [f for f in glob("broken/*.txt") if f != "broken/example.txt"]
+        + [f for f in glob("pkgs/*.txt") if f != "pkgs/example.txt"]
     )
 
 
 def get_not_broken_files():
-    return [f for f in glob("not_broken/*") if f != "not_broken/example.txt"]
+    return [f for f in glob("not_broken/*.txt") if f != "not_broken/example.txt"]
 
 
 def check_packages():
@@ -43,6 +43,12 @@ def check_packages():
                 # ignore blank lines or Python-style comments
                 if pkg.startswith('#') or len(pkg) == 0:
                     continue
+
+                # check to ensure the artifact exists
+                r = requests.head(f"https://conda.anaconda.org/conda-forge/{pkg}")
+                r.raise_for_status()
+
+                # check it is on the right channel
                 plat, name, ver, build = split_pkg(pkg)
                 subprocess.check_call(
                     f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "

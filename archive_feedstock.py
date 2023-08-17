@@ -8,7 +8,7 @@ import subprocess
 def get_task_files(task):
     exf = os.path.join(task, "example.txt")
     return [
-        f for f in glob.glob(os.path.join(task, "*"))
+        f for f in glob.glob(os.path.join(task, "*.txt"))
         if f != exf
     ]
 
