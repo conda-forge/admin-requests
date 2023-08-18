@@ -8,3 +8,4 @@ dependencies:
   - requests
   - conda-smithy
   - pygithub
+  - conda-smithy
