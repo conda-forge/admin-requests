@@ -1,0 +1,12 @@
+linux-64/libsolv-0.7.24-hfc55251_2.conda
+linux-aarch64/libsolv-0.7.24-hd84c7bf_2.conda
+linux-ppc64le/libsolv-0.7.24-hff1ad0c_2.conda
+osx-64/libsolv-0.7.24-h7d26f99_2.conda
+osx-arm64/libsolv-0.7.24-ha614eb4_2.conda
+win-64/libsolv-0.7.24-h12be248_2.conda
+linux-64/libsolv-static-0.7.24-hfc55251_2.conda
+linux-aarch64/libsolv-static-0.7.24-hd84c7bf_2.conda
+linux-ppc64le/libsolv-static-0.7.24-hff1ad0c_2.conda
+osx-64/libsolv-static-0.7.24-h7d26f99_2.conda
+osx-arm64/libsolv-static-0.7.24-ha614eb4_2.conda
+win-64/libsolv-static-0.7.24-h12be248_2.conda
