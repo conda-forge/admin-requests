@@ -43,15 +43,16 @@ def _process_access_control_requests(path, process_feedstock_func):
         if filename in CIRUN_FILENAME_RESOURCE_MAPPING:
             resource = CIRUN_FILENAME_RESOURCE_MAPPING.get(filename)
             for feedstock in feedstocks:
+                print(f"Processing feedstock for access control: {feedstock}")
                 process_feedstock_func(feedstock, resource)
 
 
 def process_access_control_requests():
     """Process access control requests"""
-    check()
+    print("Processing access control request")
     _process_access_control_requests("grant_access", cirun_utils.add_repo_to_cirun_resource)
     _process_access_control_requests("revoke_access", cirun_utils.remove_repo_from_cirun_resource)
-    _remove_input_files()
+
 
 def check():
     """Check requests are valid (resources exist, feedstocks exist)"""
@@ -76,6 +77,7 @@ def _commit_after_files_removal(push=True):
 
 
 def _remove_input_files(dir, file_to_keep):
+    print("Removing input files")
     directory = Path(dir)
     files_to_keep = [Path(file_to_keep)]
     if not directory.is_dir():
@@ -83,6 +85,7 @@ def _remove_input_files(dir, file_to_keep):
 
     for file in directory.iterdir():
         if file.is_file() and file not in files_to_keep:
+            print(f"Removing input file: {file}")
             file.unlink()
     _commit_after_files_removal(push=False)
 
