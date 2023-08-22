@@ -8,6 +8,7 @@ dependencies:
   - requests
   - conda-smithy
   - pygithub
+  - cirun
 #  - conda-smithy
 # TEMP Remove pip install after testing
   - pip:
