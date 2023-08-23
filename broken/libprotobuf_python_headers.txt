@@ -1,6 +1,0 @@
-linux-ppc64le/libprotobuf-python-headers-4.23.4-ha3edaa6_3.conda
-linux-aarch64/libprotobuf-python-headers-4.23.4-h8af1aa0_3.conda
-osx-arm64/libprotobuf-python-headers-4.23.4-hce30654_3.conda
-linux-64/libprotobuf-python-headers-4.23.4-ha770c72_3.conda
-osx-64/libprotobuf-python-headers-4.23.4-h694c41f_3.conda
-win-64/libprotobuf-python-headers-4.23.4-h57928b3_3.conda
