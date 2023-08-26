@@ -3,16 +3,19 @@ This script will process the `grant_access/` and `revoke_access/` requests.
 
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
-import os
 import subprocess
 import sys
 from pathlib import Path
 
-from conda_smithy import cirun_utils
-
 
 CIRUN_FILENAME_RESOURCE_MAPPING = {
-    "cirun-gpu-runner": "cirun-gpu-runner"
+    "cirun-gpu-runner": {
+        "resource": "cirun-gpu-runner",
+    },
+    "cirun-gpu-runner-pr": {
+        "resource": "cirun-gpu-runner",
+        "policy_args": "pull_request"
+    }
 }
 
 
@@ -36,22 +39,61 @@ def _get_filename_feedstock_mapping(path):
     return file_name_feedstock_mapping
 
 
-def _process_access_control_requests(path, process_feedstock_func):
+def _process_access_control_requests(path, remove=True):
     print(f"Processing access control requests for {path}")
     grant_access_request = _get_filename_feedstock_mapping(path)
     for filename, feedstocks in grant_access_request.items():
         if filename in CIRUN_FILENAME_RESOURCE_MAPPING:
-            resource = CIRUN_FILENAME_RESOURCE_MAPPING.get(filename)
+            resource_mapping = CIRUN_FILENAME_RESOURCE_MAPPING.get(filename)
+            resource = resource_mapping.get("resource")
+            policy_args = resource_mapping.get("policy_args")
             for feedstock in feedstocks:
                 print(f"Processing feedstock for access control: {feedstock}")
-                process_feedstock_func(feedstock, resource)
+                _process_request_for_feedstock(
+                    feedstock, resource, remove=remove, policy_args=policy_args
+                )
 
 
 def process_access_control_requests():
     """Process access control requests"""
     print("Processing access control request")
-    _process_access_control_requests("grant_access", cirun_utils.add_repo_to_cirun_resource)
-    _process_access_control_requests("revoke_access", cirun_utils.remove_repo_from_cirun_resource)
+    _process_access_control_requests("grant_access", remove=False)
+    _process_access_control_requests("revoke_access")
+
+
+def _process_request_for_feedstock(feedstock, resource, remove, policy_args):
+    feedstock_clone_path = f"/tmp/{feedstock}"
+    path = Path(feedstock_clone_path)
+    if not path.exists():
+         subprocess.run(
+            f"git clone --depth 1 https://github.com/conda-forge/{feedstock} {feedstock_clone_path}",
+            shell=True,
+        )
+
+    register_ci_cmd = (
+        "conda-smithy register-ci"
+        " --without-azure"
+        " --without-travis"
+        " --without-circle"
+        " --without-appveyor"
+        " --without-drone"
+        " --without-webservice"
+        " --without-anaconda-token"
+        f" --feedstock_directory {feedstock_clone_path}"
+        f" --cirun-resources {resource}"
+    )
+
+    if policy_args:
+        policy_args_param = [f"--cirun-policy-args {arg}" for arg in policy_args]
+        policy_args_param_str = ' '.join(policy_args_param)
+        register_ci_cmd += policy_args_param_str
+    if remove:
+        register_ci_cmd += " --remove"
+
+    print(f"RegisterCI command: {register_ci_cmd}")
+    subprocess.check_call(register_ci_cmd,
+        shell=True,
+    )
 
 
 def check():
