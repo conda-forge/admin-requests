@@ -3,10 +3,13 @@ This script will process the `grant_access/` and `revoke_access/` requests.
 
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
+import os
 import subprocess
 import sys
 from pathlib import Path
 
+
+GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
 CIRUN_FILENAME_RESOURCE_MAPPING = {
     "cirun-gpu-runner": {
@@ -14,7 +17,7 @@ CIRUN_FILENAME_RESOURCE_MAPPING = {
     },
     "cirun-gpu-runner-pr": {
         "resource": "cirun-gpu-runner",
-        "policy_args": "pull_request"
+        "policy_args": ["pull_request"]
     }
 }
 
@@ -66,32 +69,34 @@ def _process_request_for_feedstock(feedstock, resource, remove, policy_args):
     path = Path(feedstock_clone_path)
     if not path.exists():
          subprocess.run(
-            f"git clone --depth 1 https://github.com/conda-forge/{feedstock} {feedstock_clone_path}",
+            f"git clone --depth 1 https://github.com/{GH_ORG}/{feedstock} {feedstock_clone_path}",
             shell=True,
         )
 
-    register_ci_cmd = (
-        "conda-smithy register-ci"
-        " --without-azure"
-        " --without-travis"
-        " --without-circle"
-        " --without-appveyor"
-        " --without-drone"
-        " --without-webservice"
-        " --without-anaconda-token"
-        f" --feedstock_directory {feedstock_clone_path}"
-        f" --cirun-resources {resource}"
-    )
+
+    register_ci_cmd = [
+        "conda-smithy register-ci",
+        f"--organization {GH_ORG}",
+        "--without-azure",
+        "--without-travis",
+        "--without-circle",
+        "--without-appveyor",
+        "--without-drone",
+        "--without-webservice",
+        "--without-anaconda-token",
+        f"--feedstock_directory {feedstock_clone_path}",
+        f"--cirun-resources {resource}",
+    ]
 
     if policy_args:
         policy_args_param = [f"--cirun-policy-args {arg}" for arg in policy_args]
-        policy_args_param_str = ' '.join(policy_args_param)
-        register_ci_cmd += policy_args_param_str
+        register_ci_cmd.extend(policy_args_param)
     if remove:
-        register_ci_cmd += " --remove"
+        register_ci_cmd.append("--remove")
 
-    print(f"RegisterCI command: {register_ci_cmd}")
-    subprocess.check_call(register_ci_cmd,
+    register_ci_cmd_str = " ".join(register_ci_cmd)
+    print(f"RegisterCI command: {register_ci_cmd_str}")
+    subprocess.check_call(register_ci_cmd_str,
         shell=True,
     )
 
