@@ -7,7 +7,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-
+from ruamel.yaml import YAML
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
@@ -20,6 +20,9 @@ CIRUN_FILENAME_RESOURCE_MAPPING = {
         "policy_args": ["pull_request"]
     }
 }
+
+
+ACCESS_YAML_FILENAME = ".access_control.yml"
 
 
 def _get_access_control_files(path):
@@ -55,6 +58,8 @@ def _process_access_control_requests(path, remove=True):
                 _process_request_for_feedstock(
                     feedstock, resource, remove=remove, policy_args=policy_args
                 )
+                action = "remove" if remove else "add"
+                update_access_yaml(resource, feedstock, action=action)
 
 
 def process_access_control_requests():
@@ -137,6 +142,50 @@ def _remove_input_files(dir, file_to_keep):
             print(f"Removing input file: {file}")
             file.unlink()
     _commit_after_files_removal(push=False)
+
+
+def update_access_yaml(resource, feedstock_name, action, filename=ACCESS_YAML_FILENAME):
+    """
+    Manage feedstock in .access_control.yml.
+
+    Parameters:
+    - resource: the access control resource (e.g., "travis", "cirun-gpu-small").
+    - feedstock_name: the name of the feedstock.
+    - action: either "add" or "remove".
+    - filename: the name of the YAML file.
+    """
+    print(f"Updating {filename}")
+    yaml = YAML()
+    yaml.indent(mapping=2, sequence=4, offset=2)  # Indent settings for 2-space mapping
+
+    with open(filename, 'r') as f:
+        content = yaml.load(f)
+
+    # If resource doesn't exist, create it
+    if resource not in content['access_control']:
+        content['access_control'][resource] = []
+
+    if action == "add":
+        # Check if feedstock already exists
+        if any(entry["feedstock"] == feedstock_name for entry in content['access_control'][resource]):
+            print(f"Feedstock {feedstock_name} already exists under {resource}. Skipping addition.")
+            return
+
+        entry = {"feedstock": feedstock_name}
+        content['access_control'][resource].append(entry)
+
+    elif action == "remove":
+        if not content['access_control'][resource]:
+            print(f"No feedstock found under resource {resource}.")
+            return
+        content['access_control'][resource] = [entry for entry in content['access_control'][resource] if entry["feedstock"] != feedstock_name]
+
+    else:
+        raise ValueError(f"Invalid action {action}. Choose 'add' or 'remove'.")
+
+    with open(filename, 'w') as f:
+        yaml.dump(content, f)
+
 
 
 def main():
