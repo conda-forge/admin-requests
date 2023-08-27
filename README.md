@@ -57,11 +57,12 @@ and link it in your PR description.
 ## Request / revoke access to CI resources
 
 Certain CI resources are opt-in only. If you want to request access to these resources, please
-submit a PR adding your feedstock name to an appropriately-named file in `grant_access/`. Conversely, to revoke access to a certain resource, use the `revoke_access/` directory.
+submit a PR adding your feedstock name to an appropriately-named file in `grant_access/`. Conversely, to revoke
+access to a certain resource, use the `revoke_access/` directory.
 
 Available opt-in resources:
 
-<!-- This is just an example for now -->
-
 - Travis CI: `travis.txt`
-- GPU CI: `gpu.txt`
+- GPU CI:
+  - `cirun-gpu-runner.txt`: access to GPU runner on main branch only.
+  - `cirun-gpu-runner-pr.txt`: access to GPU runner on pull requests as well.
