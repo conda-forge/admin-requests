@@ -7,6 +7,8 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+
+import requests
 from ruamel.yaml import YAML
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
@@ -108,10 +110,27 @@ def _process_request_for_feedstock(feedstock, resource, remove, policy_args):
     )
 
 
+def check_if_repo_exists(repo):
+    owner_repo = f"{GH_ORG}/{repo}"
+    print(f"Checking if {owner_repo} exists")
+    response = requests.get(f"https://api.github.com/repos/{owner_repo}")
+    if response.status_code != 200:
+        raise ValueError(f"Repository: {owner_repo} not found!")
+
+def _check_for_path(path):
+    mapping = _get_filename_feedstock_mapping(path)
+    for filename, feedstocks in mapping.items():
+        print(f"Checking if {filename} is in {CIRUN_FILENAME_RESOURCE_MAPPING.keys()}")
+        assert filename in CIRUN_FILENAME_RESOURCE_MAPPING
+        for feedstock in feedstocks:
+            check_if_repo_exists(feedstock)
+    if not mapping:
+        print(f"Nothing to check for: {path}")
+
 def check():
     """Check requests are valid (resources exist, feedstocks exist)"""
-    pass
-
+    _check_for_path("grant_access")
+    _check_for_path("revoke_access")
 
 def _commit_after_files_removal(push=True):
     subprocess.check_call(
