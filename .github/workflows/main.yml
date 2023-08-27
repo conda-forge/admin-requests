@@ -54,57 +54,57 @@ jobs:
         miniforge-version: latest
         miniforge-variant: Mambaforge
         use-mamba: true
-
-    - name: Generate token
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      id: generate_token
-      uses: conda-forge/github-app-token@e3ab451d57e120b956292a1fa1d21fe4ba171c36
-      with:
-        app_id: ${{ secrets.CF_CURATOR_APP_ID }}
-        private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
-
-    - name: mark packages as broken
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      shell: bash -el {0}
-      run: |
-          conda activate cf
-          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
-          git config --global user.name "conda-forge-curator[bot]"
-          git config --global pull.rebase false
-          python mark_broken.py mark
-      env:
-        BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
-        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-
-    - name: reset feedstock tokens
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      shell: bash -el {0}
-      run: |
-          conda activate cf
-          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
-          git config --global user.name "conda-forge-curator[bot]"
-          git config --global pull.rebase false
-          python token_reset.py reset
-      env:
-        STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
-        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-        TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
-        AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
-        DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
-
-    - name: (un)archive feedstocks
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      shell: bash -el {0}
-      run: |
-          conda activate cf
-          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
-          git config --global user.name "conda-forge-curator[bot]"
-          git config --global pull.rebase false
-          python archive_feedstock.py archive
-      env:
-        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-    
+#
+#    - name: Generate token
+#      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+#      id: generate_token
+#      uses: conda-forge/github-app-token@e3ab451d57e120b956292a1fa1d21fe4ba171c36
+#      with:
+#        app_id: ${{ secrets.CF_CURATOR_APP_ID }}
+#        private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+#
+#    - name: mark packages as broken
+#      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+#      shell: bash -el {0}
+#      run: |
+#          conda activate cf
+#          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+#          git config --global user.name "conda-forge-curator[bot]"
+#          git config --global pull.rebase false
+#          python mark_broken.py mark
+#      env:
+#        BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
+#        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+#
+#    - name: reset feedstock tokens
+#      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+#      shell: bash -el {0}
+#      run: |
+#          conda activate cf
+#          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+#          git config --global user.name "conda-forge-curator[bot]"
+#          git config --global pull.rebase false
+#          python token_reset.py reset
+#      env:
+#        STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
+#        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+#        CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
+#        TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
+#        AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
+#        DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
+#
+#    - name: (un)archive feedstocks
+#      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+#      shell: bash -el {0}
+#      run: |
+#          conda activate cf
+#          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+#          git config --global user.name "conda-forge-curator[bot]"
+#          git config --global pull.rebase false
+#          python archive_feedstock.py archive
+#      env:
+#        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+#
     - name: Grant/Revoke access to resources
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -el {0}
