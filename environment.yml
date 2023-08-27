@@ -8,8 +8,9 @@ dependencies:
   - requests
   - conda-smithy
   - pygithub
-  - cirun
+#  - cirun
 #  - conda-smithy
 # TEMP Remove pip install after testing
   - pip:
     - git+https://github.com/jaimergp/conda-smithy.git@gha-self-hosted-cirun
+    - git+https://github.com/aktechlabs/cirun-py.git@main

@@ -109,11 +109,14 @@ jobs:
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -el {0}
       run: |
+        git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+        git config --global user.name "conda-forge-curator[bot]"
         python access_control.py
       env:
         CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
         GH_ORG: ${{ secrets.GH_ORG }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
 
     - name: pull changes
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP

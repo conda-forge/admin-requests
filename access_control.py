@@ -67,12 +67,14 @@ def process_access_control_requests():
 def _process_request_for_feedstock(feedstock, resource, remove, policy_args):
     feedstock_clone_path = f"/tmp/{feedstock}"
     path = Path(feedstock_clone_path)
+    assert GH_ORG
     if not path.exists():
-         subprocess.run(
-            f"git clone --depth 1 https://github.com/{GH_ORG}/{feedstock} {feedstock_clone_path}",
+        clone_cmd = f"git clone --depth 1 https://github.com/{GH_ORG}/{feedstock}.git {feedstock_clone_path}"
+        print(f"Cloning: {clone_cmd}")
+        subprocess.run(
+            clone_cmd,
             shell=True,
         )
-
 
     register_ci_cmd = [
         "conda-smithy register-ci",
