@@ -56,12 +56,13 @@ def _process_access_control_requests(path, remove=True):
             resource = resource_mapping.get("resource")
             policy_args = resource_mapping.get("policy_args")
             for feedstock in feedstocks:
-                print(f"Processing feedstock for access control: {feedstock}")
+                feedstock_repo = f"{feedstock}-feedstock"
+                print(f"Processing feedstock for access control: {feedstock_repo}")
                 _process_request_for_feedstock(
-                    feedstock, resource, remove=remove, policy_args=policy_args
+                    feedstock_repo, resource, remove=remove, policy_args=policy_args
                 )
                 action = "remove" if remove else "add"
-                update_access_yaml(resource, feedstock, action=action)
+                update_access_yaml(resource, feedstock_repo, action=action)
 
 
 def process_access_control_requests():
@@ -110,7 +111,8 @@ def _process_request_for_feedstock(feedstock, resource, remove, policy_args):
     )
 
 
-def check_if_repo_exists(repo):
+def check_if_repo_exists(feedstock_name):
+    repo = f"{feedstock_name}-feedstock"
     owner_repo = f"{GH_ORG}/{repo}"
     print(f"Checking if {owner_repo} exists")
     response = requests.get(f"https://api.github.com/repos/{owner_repo}")
@@ -197,7 +199,10 @@ def update_access_yaml(resource, feedstock_name, action, filename=ACCESS_YAML_FI
         if not content['access_control'][resource]:
             print(f"No feedstock found under resource {resource}.")
             return
-        content['access_control'][resource] = [entry for entry in content['access_control'][resource] if entry["feedstock"] != feedstock_name]
+        content['access_control'][resource] = [
+            entry for entry in content['access_control'][resource]
+            if entry["feedstock"] != feedstock_name
+        ]
 
     else:
         raise ValueError(f"Invalid action {action}. Choose 'add' or 'remove'.")
