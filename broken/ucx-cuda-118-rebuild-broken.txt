@@ -1,0 +1,3 @@
+linux-64/ucx-1.14.1-h64cca9d_3.conda
+linux-aarch64/ucx-1.14.1-h1c93fb9_3.conda
+linux-ppc64le/ucx-1.14.1-h1c035aa_3.conda
