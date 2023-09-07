@@ -14,6 +14,14 @@ from ruamel.yaml import YAML
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
+# This is a mapping for the filename in {grant,revoke}_access/<name>.txt
+# to the cirun resource configuration
+# The schema for resource configuration is:
+# {
+#    "resource": "<cirun-resource-name>"
+#    "policy_args": "List[<policy-args>]"
+#}
+# policy_args can only contain "pull_request at the moment"
 CIRUN_FILENAME_RESOURCE_MAPPING = {
     "cirun-gpu-runner": {
         "resource": "cirun-gpu-runner",
