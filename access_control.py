@@ -11,7 +11,7 @@ from pathlib import Path
 
 import requests
 from ruamel.yaml import YAML
-from typing import List, Dict
+from typing import List, Dict, Tuple
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
@@ -49,12 +49,17 @@ def _get_filename_feedstock_mapping(path: str) -> Dict[str, str]:
     access_files = _get_access_control_files(path)
     file_name_feedstock_mapping = {}
     for file_path in access_files:
-        with open(file_path, "r") as f:
-            feedstocks = f.readlines()
-            feedstocks = [feedstock.strip() for feedstock in feedstocks]
-            file_name = file_path.parts[-1].strip(".txt")
-            file_name_feedstock_mapping[file_name] = feedstocks
+        file_name, feedstocks = parse_an_input_file(file_path)
+        file_name_feedstock_mapping[file_name] = feedstocks
     return file_name_feedstock_mapping
+
+
+def parse_an_input_file(file_path: str) -> Tuple[str, List[str]]:
+    with open(file_path, "r") as f:
+        feedstocks = f.readlines()
+        feedstocks = [feedstock.strip() for feedstock in feedstocks]
+        file_name = file_path.parts[-1].strip(".txt")
+        return file_name, feedstocks
 
 
 def _process_access_control_requests(path: str, remove: bool = True) -> None:
