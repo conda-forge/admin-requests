@@ -156,7 +156,7 @@ def _commit_after_files_removal(push: bool = True) -> None:
     )
 
     subprocess.check_call(
-            "git commit --allow-empty -am 'Remove access control files'",
+            "git commit -am 'Remove access control files'",
             shell=True,
         )
     if push:
