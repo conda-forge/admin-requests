@@ -227,7 +227,7 @@ def check() -> None:
     _check_for_path("revoke_access")
 
 
-def _commit_after_files_removal(push: bool = False) -> None:
+def _commit_changes(push: bool = True) -> None:
     """
     Commit the changes to the repository after removing files.
 
@@ -270,7 +270,6 @@ def _remove_input_files(dir: str, file_to_keep: str) -> None:
         if file.is_file() and file not in files_to_keep:
             print(f"Removing input file: {file}")
             file.unlink()
-    _commit_after_files_removal(push=False)
 
 
 def update_access_yaml(
@@ -343,6 +342,7 @@ def main() -> None:
     process_access_control_requests()
     _remove_input_files("grant_access/", file_to_keep="grant_access/example.txt")
     _remove_input_files("revoke_access/", file_to_keep="revoke_access/example.txt")
+    _commit_changes()
 
 
 if __name__ == "__main__":
