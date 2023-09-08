@@ -225,20 +225,26 @@ def check() -> None:
     _check_for_path("revoke_access")
 
 
-def _commit_after_files_removal(push: bool = True) -> None:
+def _commit_after_files_removal(push: bool = False) -> None:
     """
     Commit the changes to the repository after removing files.
 
     Parameters:
     push (bool, optional): Whether to push the changes to the repository. Defaults to True.
     """
-    print("Committing the changes")
     subprocess.run(["git", "add", "grant_access", "revoke_access"], check=True)
-    subprocess.run(
-        ["git", "commit", "-m", "Processed access control requests"], check=True
-    )
-    if push:
-        subprocess.run(["git", "push"], check=True)
+    print("Committing the changes")
+    result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+    if result.stdout:
+        commit_message = "Processed access control requests"
+        subprocess.run(
+            ["git", "commit", "-m", commit_message], check=True
+        )
+        if push:
+            print("Pushing changes")
+            subprocess.run(["git", "push"], check=True)
+    else:
+        print("Nothing to commit")
 
 
 def _remove_input_files(dir: str, file_to_keep: str) -> None:
