@@ -232,7 +232,7 @@ def _commit_after_files_removal(push: bool = False) -> None:
     Parameters:
     push (bool, optional): Whether to push the changes to the repository. Defaults to True.
     """
-    subprocess.run(["git", "add", "grant_access", "revoke_access"], check=True)
+    subprocess.run(["git", "add", "grant_access", "revoke_access", ACCESS_YAML_FILENAME], check=True)
     print("Committing the changes")
     result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
     if result.stdout:
