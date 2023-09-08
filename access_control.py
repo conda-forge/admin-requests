@@ -290,8 +290,7 @@ def update_access_yaml(
 
     elif action == "remove":
         if not content["access_control"][resource]:
-            print(f"No feedstock found under resource {resource}.")
-            return
+            raise ValueError(f"No feedstock found under resource {resource}.")
         content["access_control"][resource] = [
             entry
             for entry in content["access_control"][resource]
