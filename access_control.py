@@ -40,6 +40,8 @@ CIRUN_FILENAME_RESOURCE_MAPPING = {
 ACCESS_YAML_FILENAME = ".access_control.yml"
 
 
+# Keeping this as an object, so that there is scope for
+# adding attributes to it, let say maybe policy
 class AccessControlItem(BaseModel):
     feedstock: str
 
