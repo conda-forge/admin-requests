@@ -87,21 +87,22 @@ def parse_an_input_file(file_path: Path) -> Tuple[str, List[str]]:
         return file_name, feedstocks
 
 
-def _process_access_control_requests(path: str, remove: bool = True) -> None:
+def _process_access_control_requests(path: str, remove: bool = False) -> None:
     """
     Process the access control requests by processing each feedstock found in
     the access control files.
 
     Parameters:
     path (str): The path to the directory containing the access control files.
-    remove (bool, optional): Whether to remove the access control. Defaults to True.
+    remove (bool, optional): Whether to remove (revoke) access to resource.
+    Defaults to False.
     """
     print(f"Processing access control requests for {path}")
     grant_access_request = _get_filename_feedstock_mapping(path)
     for filename, feedstocks in grant_access_request.items():
         if filename in CIRUN_FILENAME_RESOURCE_MAPPING:
             resource_mapping = CIRUN_FILENAME_RESOURCE_MAPPING.get(filename)
-            resource = resource_mapping.get("resource")
+            resource = resource_mapping["resource"]
             policy_args = resource_mapping.get("policy_args")
             for feedstock in feedstocks:
                 feedstock_repo = f"{feedstock}-feedstock"
@@ -119,7 +120,7 @@ def process_access_control_requests() -> None:
     """
     print("Processing access control request")
     _process_access_control_requests("grant_access", remove=False)
-    _process_access_control_requests("revoke_access")
+    _process_access_control_requests("revoke_access", remove=True)
 
 
 def _process_request_for_feedstock(
@@ -134,35 +135,35 @@ def _process_request_for_feedstock(
     remove (bool): Whether to remove the access control.
     policy_args (List[str]): A list of policy arguments.
     """
-    feedstock_clone_path = tempfile.mkdtemp()
-    assert GH_ORG
-    clone_cmd = f"git clone --depth 1 https://github.com/{GH_ORG}/{feedstock}.git {feedstock_clone_path}"
-    print(f"Cloning: {clone_cmd}")
-    subprocess.run(clone_cmd, shell=True)
+    with tempfile.TemporaryDirectory() as feedstock_clone_path:
+        assert GH_ORG
+        clone_cmd = f"git clone --depth 1 https://github.com/{GH_ORG}/{feedstock}.git {feedstock_clone_path}"
+        print(f"Cloning: {clone_cmd}")
+        subprocess.run(clone_cmd, shell=True)
 
-    register_ci_cmd = [
-        "conda-smithy register-ci",
-        f"--organization {GH_ORG}",
-        "--without-azure",
-        "--without-travis",
-        "--without-circle",
-        "--without-appveyor",
-        "--without-drone",
-        "--without-webservice",
-        "--without-anaconda-token",
-        f"--feedstock_directory {feedstock_clone_path}",
-        f"--cirun-resources {resource}",
-    ]
+        register_ci_cmd = [
+            "conda-smithy register-ci",
+            f"--organization {GH_ORG}",
+            "--without-azure",
+            "--without-travis",
+            "--without-circle",
+            "--without-appveyor",
+            "--without-drone",
+            "--without-webservice",
+            "--without-anaconda-token",
+            f"--feedstock_directory {feedstock_clone_path}",
+            f"--cirun-resources {resource}",
+        ]
 
-    if policy_args:
-        policy_args_param = [f"--cirun-policy-args {arg}" for arg in policy_args]
-        register_ci_cmd.extend(policy_args_param)
-    if remove:
-        register_ci_cmd.append("--remove")
+        if policy_args:
+            policy_args_param = [f"--cirun-policy-args {arg}" for arg in policy_args]
+            register_ci_cmd.extend(policy_args_param)
+        if remove:
+            register_ci_cmd.append("--remove")
 
-    register_ci_cmd_str = " ".join(register_ci_cmd)
-    print(f"RegisterCI command: {register_ci_cmd_str}")
-    subprocess.check_call(register_ci_cmd_str, shell=True)
+        register_ci_cmd_str = " ".join(register_ci_cmd)
+        print(f"RegisterCI command: {register_ci_cmd_str}")
+        subprocess.check_call(register_ci_cmd_str, shell=True)
 
 
 def check_if_repo_exists(feedstock_name: str) -> None:
