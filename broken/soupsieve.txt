@@ -1,1 +1,0 @@
-noarch/soupsieve-2.5-pyhd8ed1ab_0.conda
