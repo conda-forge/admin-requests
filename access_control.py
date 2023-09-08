@@ -32,7 +32,7 @@ CIRUN_FILENAME_RESOURCE_MAPPING = {
         "resource": "cirun-gpu-runner",
     },
     "cirun-gpu-runner-pr": {
-        "resource": "cirun-gpu-runner",
+        "resource": "cirun-gpu-runner-pr",
         "policy_args": ["pull_request"],
     },
 }
