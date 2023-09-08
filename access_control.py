@@ -51,6 +51,7 @@ class AccessControl(RootModel):
 
 
 class AccessControlConfig(BaseModel):
+    """Schema for .access_control file"""
     version: int
     access_control: AccessControl
 
@@ -234,14 +235,17 @@ def _commit_changes(push: bool = True) -> None:
     Parameters:
     push (bool, optional): Whether to push the changes to the repository. Defaults to True.
     """
-    subprocess.run(["git", "add", "grant_access", "revoke_access", ACCESS_YAML_FILENAME], check=True)
+    subprocess.run(
+        ["git", "add", "grant_access", "revoke_access", ACCESS_YAML_FILENAME],
+        check=True,
+    )
     print("Committing the changes")
-    result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+    result = subprocess.run(
+        ["git", "status", "--porcelain"], capture_output=True, text=True
+    )
     if result.stdout:
         commit_message = "Processed access control requests"
-        subprocess.run(
-            ["git", "commit", "-m", commit_message], check=True
-        )
+        subprocess.run(["git", "commit", "-m", commit_message], check=True)
         if push:
             print("Pushing changes")
             subprocess.run(["git", "push"], check=True)
