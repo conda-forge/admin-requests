@@ -11,7 +11,11 @@ from pathlib import Path
 
 import requests
 from ruamel.yaml import YAML
-from typing import List, Dict, Tuple, Optional
+from typing import List, Dict, Tuple, Optional, Union, Any
+
+
+from pydantic import BaseModel, Field, RootModel
+
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
@@ -34,6 +38,19 @@ CIRUN_FILENAME_RESOURCE_MAPPING = {
 }
 
 ACCESS_YAML_FILENAME = ".access_control.yml"
+
+
+class AccessControlItem(BaseModel):
+    feedstock: str
+
+
+class AccessControl(RootModel):
+    root: Dict[str, Union[List[AccessControlItem], None]]
+
+
+class AccessControlConfig(BaseModel):
+    version: int
+    access_control: AccessControl
 
 
 def _get_input_access_control_files(path: str) -> List[Path]:
@@ -300,6 +317,8 @@ def update_access_yaml(
     else:
         raise ValueError(f"Invalid action {action}. Choose 'add' or 'remove'.")
 
+    # Validate access control config
+    AccessControlConfig.model_validate(content)
     with open(filename, "w") as f:
         yaml.dump(content, f)
 

@@ -6,5 +6,4 @@ access_control:
     - feedstock: example
   cirun-gpu-small:
     - feedstock: example
-      policy: example
   cirun-gpu-medium: null
