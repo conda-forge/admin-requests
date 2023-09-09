@@ -1,0 +1,12 @@
+win-64/configspace-0.7.2-py39hbaa61f9_0.conda
+win-64/configspace-0.7.2-py311h59ca53f_0.conda
+osx-64/configspace-0.7.2-py38hd2faf92_0.conda
+win-64/configspace-0.7.2-py38h634f036_0.conda
+win-64/configspace-0.7.2-py310h9b08ddd_0.conda
+osx-64/configspace-0.7.2-py39h57e1da4_0.conda
+osx-64/configspace-0.7.2-py311h4a70a88_0.conda
+osx-64/configspace-0.7.2-py310hc1335a1_0.conda
+linux-64/configspace-0.7.2-py39h0f8d45d_0.conda
+linux-64/configspace-0.7.2-py311h1f0f07a_0.conda
+linux-64/configspace-0.7.2-py310h278f3c1_0.conda
+linux-64/configspace-0.7.2-py38h31356c5_0.conda
