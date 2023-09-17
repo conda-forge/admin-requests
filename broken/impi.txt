@@ -1,4 +1,0 @@
-win-64/impi_rt-2023.2.1-h57928b3_40.conda
-linux-64/impi_rt-2023.2.1-ha770c72_34.conda
-win-64/impi-devel-2023.2.1-h57928b3_40.conda
-linux-64/impi-devel-2023.2.1-ha770c72_34.conda
