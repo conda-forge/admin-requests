@@ -1,1 +1,1 @@
-pygeos-feedstock
+pygeos
