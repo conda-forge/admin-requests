@@ -8,32 +8,33 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from typing import List, Dict, Tuple, Optional, Union
 
 import requests
+from pydantic import BaseModel, RootModel
 from ruamel.yaml import YAML
-from typing import List, Dict, Tuple, Optional, Union, Any
-
-
-from pydantic import BaseModel, Field, RootModel
-
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
 # This is a mapping for the filename in {grant,revoke}_access/<name>.txt
-# to the cirun resource configuration
-# The schema for resource configuration is:
-# {
-#    "resource": "<cirun-resource-name>"
-#    "policy_args": "List[<policy-args>]"
-# }
-# policy_args can only contain "pull_request at the moment"
-CIRUN_FILENAME_RESOURCE_MAPPING = {
+# to the opt-in resource configuration
+# Some resources can have extra arguments (e.g. cirun):
+#   The schema for cirun resource configuration is:
+#   {
+#      "resource": "<cirun-resource-name>"
+#      "policy_args": "List[<policy-args>]"
+#   }
+#   policy_args can only contain "pull_request at the moment"
+FILENAME_RESOURCE_MAPPING = {
     "cirun-gpu-runner": {
         "resource": "cirun-gpu-runner",
     },
     "cirun-gpu-runner-pr": {
         "resource": "cirun-gpu-runner-pr",
         "policy_args": ["pull_request"],
+    },
+    "travis": {
+        "resource": "travis",
     },
 }
 
@@ -52,6 +53,7 @@ class AccessControl(RootModel):
 
 class AccessControlConfig(BaseModel):
     """Schema for .access_control file"""
+
     version: int
     access_control: AccessControl
 
@@ -120,15 +122,17 @@ def _process_access_control_requests(path: str, remove: bool = False) -> None:
     print(f"Processing access control requests for {path}")
     grant_access_request = _get_filename_feedstock_mapping(path)
     for filename, feedstocks in grant_access_request.items():
-        if filename in CIRUN_FILENAME_RESOURCE_MAPPING:
-            resource_mapping = CIRUN_FILENAME_RESOURCE_MAPPING.get(filename)
-            resource = resource_mapping["resource"]
-            policy_args = resource_mapping.get("policy_args")
+        resource_mapping = FILENAME_RESOURCE_MAPPING.get(filename)
+        if resource_mapping is not None:
+            resource = resource_mapping.pop("resource", filename)
             for feedstock in feedstocks:
                 feedstock_repo = f"{feedstock}-feedstock"
                 print(f"Processing feedstock for access control: {feedstock_repo}")
                 _process_request_for_feedstock(
-                    feedstock_repo, resource, remove=remove, policy_args=policy_args
+                    feedstock_repo,
+                    resource,
+                    remove=remove,
+                    **resource_mapping,
                 )
                 action = "remove" if remove else "add"
                 update_access_yaml(resource, feedstock_repo, action=action)
@@ -144,7 +148,10 @@ def process_access_control_requests() -> None:
 
 
 def _process_request_for_feedstock(
-    feedstock: str, resource: str, remove: bool, policy_args: Optional[List[str]] = None
+    feedstock: str,
+    resource: str,
+    remove: bool,
+    cirun_policy_args: Optional[List[str]] = None,
 ) -> None:
     """
     Process the access control request for a single feedstock.
@@ -153,37 +160,55 @@ def _process_request_for_feedstock(
     feedstock (str): The name of the feedstock.
     resource (str): The name of the resource for access control.
     remove (bool): Whether to remove the access control.
-    policy_args (List[str]): A list of policy arguments.
+    cirun_policy_args (List[str]): A list of policy arguments for cirun resources.
     """
     with tempfile.TemporaryDirectory() as feedstock_clone_path:
         assert GH_ORG
-        clone_cmd = f"git clone --depth 1 https://github.com/{GH_ORG}/{feedstock}.git {feedstock_clone_path}"
-        print(f"Cloning: {clone_cmd}")
-        subprocess.run(clone_cmd, shell=True)
+        clone_cmd = [
+            "git",
+            "clone",
+            "--depth",
+            "1",
+            f"https://github.com/{GH_ORG}/{feedstock}.git",
+            feedstock_clone_path,
+        ]
+        print("Cloning:", *clone_cmd)
+        subprocess.check_call(clone_cmd)
 
         register_ci_cmd = [
-            "conda-smithy register-ci",
-            f"--organization {GH_ORG}",
+            "conda-smithy",
+            "register-ci",
+            "--organization",
+            GH_ORG,
+            "--feedstock_directory",
+            feedstock_clone_path,
             "--without-azure",
-            "--without-travis",
             "--without-circle",
             "--without-appveyor",
             "--without-drone",
             "--without-webservice",
             "--without-anaconda-token",
-            f"--feedstock_directory {feedstock_clone_path}",
-            f"--cirun-resources {resource}",
         ]
+        if resource == "travis":
+            register_ci_cmd.append("--without-cirun")
+        elif resource.startswith("cirun-"):
+            register_ci_cmd.extend(
+                [
+                    "--without-travis",
+                    f"--cirun-resources {resource}",
+                ]
+            )
+            if cirun_policy_args:
+                policy_args_param = [
+                    f"--cirun-policy-args {arg}" for arg in cirun_policy_args
+                ]
+                register_ci_cmd.extend(policy_args_param)
 
-        if policy_args:
-            policy_args_param = [f"--cirun-policy-args {arg}" for arg in policy_args]
-            register_ci_cmd.extend(policy_args_param)
         if remove:
             register_ci_cmd.append("--remove")
 
-        register_ci_cmd_str = " ".join(register_ci_cmd)
-        print(f"RegisterCI command: {register_ci_cmd_str}")
-        subprocess.check_call(register_ci_cmd_str, shell=True)
+        print("Register-CI command:", *register_ci_cmd)
+        subprocess.check_call(register_ci_cmd)
 
 
 def check_if_repo_exists(feedstock_name: str) -> None:
@@ -213,8 +238,8 @@ def _check_for_path(path: str) -> None:
     """
     mapping = _get_filename_feedstock_mapping(path)
     for filename, feedstocks in mapping.items():
-        print(f"Checking if {filename} is in {CIRUN_FILENAME_RESOURCE_MAPPING.keys()}")
-        assert filename in CIRUN_FILENAME_RESOURCE_MAPPING
+        print(f"Checking if {filename} is in {FILENAME_RESOURCE_MAPPING.keys()}")
+        assert filename in FILENAME_RESOURCE_MAPPING
         for feedstock in feedstocks:
             check_if_repo_exists(feedstock)
     if not mapping:
