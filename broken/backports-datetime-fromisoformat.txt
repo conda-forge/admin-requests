@@ -1,2 +1,0 @@
-noarch/backports-datetime-fromisoformat-2.0.0-pyh71feb2d_0.conda
-noarch/backports-datetime-fromisoformat-2.0.0-pyh0c530f3_1.conda
