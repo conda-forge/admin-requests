@@ -1,0 +1,2 @@
+vscode-icons
+vscode-python
