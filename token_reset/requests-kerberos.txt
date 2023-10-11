@@ -1,2 +1,0 @@
-# --without-travis
-requests-kerberos
