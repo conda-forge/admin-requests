@@ -8,7 +8,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from typing import List, Dict, Tuple, Optional, Union
+from typing import List, Dict, Optional, Union
 
 import requests
 from pydantic import BaseModel, RootModel
@@ -16,7 +16,7 @@ from ruamel.yaml import YAML
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
-# This is a mapping for the filename in {grant,revoke}_access/<name>.txt
+# This is a mapping for the filename in {grant,revoke}_access/<name>/*.txt
 # to the opt-in resource configuration
 # Some resources can have extra arguments (e.g. cirun):
 #   The schema for cirun resource configuration is:
@@ -25,12 +25,12 @@ GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 #      "policy_args": "List[<policy-args>]"
 #   }
 #   policy_args can only contain "pull_request at the moment"
-FILENAME_RESOURCE_MAPPING = {
-    "cirun-gpu-runner": {
-        "resource": "cirun-gpu-runner",
+PATH_TO_RESOURCE_MAPPING = {
+    "gpu-runner": {
+        "resource": "cirun-openstack-gpu-large",
     },
-    "cirun-gpu-runner-pr": {
-        "resource": "cirun-gpu-runner-pr",
+    "gpu-runner-pr": {
+        "resource": "cirun-openstack-gpu-large",
         "policy_args": ["pull_request"],
     },
     "travis": {
@@ -52,7 +52,7 @@ class AccessControl(RootModel):
 
 
 class AccessControlConfig(BaseModel):
-    """Schema for .access_control file"""
+    """Schema for .access_control.yml file"""
 
     version: int
     access_control: AccessControl
@@ -68,31 +68,32 @@ def _get_input_access_control_files(path: str) -> List[Path]:
     Returns:
     List[Path]: A list of paths to the access control files in the specified directory.
     """
-    access_path = Path(path)
-    all_files = list(access_path.glob("*"))
+    assert path in ("grant_access", "revoke_access"), f"Invalid path: {path}"
+    all_files = Path(path).glob("**/*.txt")
     return [f for f in all_files if f.parts[-1] != "example.txt"]
 
 
-def _get_filename_feedstock_mapping(path: str) -> Dict[str, List[str]]:
+def _get_resource_to_feedstock_mapping(path: str) -> Dict[str, List[str]]:
     """
-    Get a mapping from filename to a list of feedstocks in that file from
+    Get a mapping from resource to a list of feedstocks in that file from
     the input access control files.
 
     Parameters:
     path (str): The path to the directory containing the access control files.
 
     Returns:
-    Dict[str, List[str]]: A dictionary mapping from filename to a list of feedstocks.
+    Dict[str, List[str]]: A dictionary mapping from resource to a list of feedstocks.
     """
     access_files = _get_input_access_control_files(path)
-    file_name_feedstock_mapping = {}
+    resource_to_feedstocks = {}
     for file_path in access_files:
-        file_name, feedstocks = parse_an_input_file(file_path)
-        file_name_feedstock_mapping[file_name] = feedstocks
-    return file_name_feedstock_mapping
+        feedstocks = parse_txt_contents(file_path)
+        resource = file_path.parts[-2]
+        resource_to_feedstocks[resource] = feedstocks
+    return resource_to_feedstocks
 
 
-def parse_an_input_file(file_path: Path) -> Tuple[str, List[str]]:
+def parse_txt_contents(file_path: Path) -> List[str]:
     """
     Parse an input access control file and get the filename and the list of feedstocks.
 
@@ -102,11 +103,14 @@ def parse_an_input_file(file_path: Path) -> Tuple[str, List[str]]:
     Returns:
     Tuple[str, List[str]]: A tuple containing the filename and the list of feedstocks.
     """
-    with open(file_path, "r") as f:
-        feedstocks = f.readlines()
-        feedstocks = [feedstock.strip() for feedstock in feedstocks]
-        file_name = file_path.parts[-1].strip(".txt")
-        return file_name, feedstocks
+    feedstocks = []
+    with open(file_path) as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("#") or not line:
+                continue
+            feedstocks.append(line)
+    return feedstocks
 
 
 def _process_access_control_requests(path: str, remove: bool = False) -> None:
@@ -120,22 +124,26 @@ def _process_access_control_requests(path: str, remove: bool = False) -> None:
     Defaults to False.
     """
     print(f"Processing access control requests for {path}")
-    grant_access_request = _get_filename_feedstock_mapping(path)
-    for filename, feedstocks in grant_access_request.items():
-        resource_mapping = FILENAME_RESOURCE_MAPPING.get(filename)
-        if resource_mapping is not None:
-            resource = resource_mapping.pop("resource", filename)
-            for feedstock in feedstocks:
-                feedstock_repo = f"{feedstock}-feedstock"
-                print(f"Processing feedstock for access control: {feedstock_repo}")
-                _process_request_for_feedstock(
-                    feedstock_repo,
-                    resource,
-                    remove=remove,
-                    **resource_mapping,
-                )
-                action = "remove" if remove else "add"
-                update_access_yaml(resource, feedstock_repo, action=action)
+    for resource, feedstocks in _get_resource_to_feedstock_mapping(path).items():
+        resource_mapping = PATH_TO_RESOURCE_MAPPING.get(resource)
+        if resource_mapping is None:
+            raise ValueError(
+                f"! Unknown resource: '{resource}'. "
+                "TXT files must be placed under {grant,revoke}_access/<resource>/, "
+                f"where '<resource>' is one of: {', '.join(PATH_TO_RESOURCE_MAPPING)}"
+            )
+        resource = resource_mapping["resource"]
+        for feedstock in feedstocks:
+            feedstock_repo = f"{feedstock}-feedstock"
+            print(f"Processing feedstock for access control: {feedstock_repo}")
+            _process_request_for_feedstock(
+                feedstock_repo,
+                resource,
+                remove=remove,
+                **resource_mapping,
+            )
+            action = "remove" if remove else "add"
+            update_access_yaml(resource, feedstock_repo, action=action)
 
 
 def process_access_control_requests() -> None:
@@ -236,14 +244,14 @@ def _check_for_path(path: str) -> None:
     Parameters:
     path (str): The path to the directory containing the access control files.
     """
-    mapping = _get_filename_feedstock_mapping(path)
-    for filename, feedstocks in mapping.items():
-        print(f"Checking if {filename} is in {FILENAME_RESOURCE_MAPPING.keys()}")
-        assert filename in FILENAME_RESOURCE_MAPPING
+    resource_to_feedstocks = _get_resource_to_feedstock_mapping(path)
+    for resource, feedstocks in resource_to_feedstocks.items():
+        print(f"Checking if {resource} is in {PATH_TO_RESOURCE_MAPPING.keys()}")
+        assert resource in PATH_TO_RESOURCE_MAPPING
         for feedstock in feedstocks:
             check_if_repo_exists(feedstock)
-    if not mapping:
-        print(f"Nothing to check for: {path}")
+    if not resource_to_feedstocks:
+        print(f"! Nothing to check for: {path}")
 
 
 def check() -> None:
@@ -320,7 +328,7 @@ def update_access_yaml(
     yaml = YAML()
     yaml.indent(mapping=2, sequence=4, offset=2)  # Indent settings for 2-space mapping
 
-    with open(filename, "r") as f:
+    with open(filename) as f:
         content = yaml.load(f)
 
     # If resource doesn't exist, create it
@@ -334,13 +342,13 @@ def update_access_yaml(
             for entry in content["access_control"][resource]
         ):
             print(
-                f"Feedstock {feedstock_name} already exists under {resource}. Skipping addition."
+                f"Feedstock {feedstock_name} already exists under {resource}.",
+                "Skipping addition.",
             )
             return
 
         entry = {"feedstock": feedstock_name}
         content["access_control"][resource].append(entry)
-
     elif action == "remove":
         if not content["access_control"][resource]:
             raise ValueError(f"No feedstock found under resource {resource}.")
@@ -349,7 +357,6 @@ def update_access_yaml(
             for entry in content["access_control"][resource]
             if entry["feedstock"] != feedstock_name
         ]
-
     else:
         raise ValueError(f"Invalid action {action}. Choose 'add' or 'remove'.")
 
@@ -371,7 +378,7 @@ def main() -> None:
     process_access_control_requests()
     _remove_input_files("grant_access/", file_to_keep="grant_access/example.txt")
     _remove_input_files("revoke_access/", file_to_keep="revoke_access/example.txt")
-    _commit_changes()
+    _commit_changes(push=False)
 
 
 if __name__ == "__main__":
