@@ -1,0 +1,1 @@
+noarch/chemprop-1.6.0-pyhd8ed1ab_0.conda
