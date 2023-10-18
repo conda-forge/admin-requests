@@ -8,7 +8,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from typing import List, Dict, Optional, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 import requests
 from pydantic import BaseModel, RootModel
@@ -88,8 +88,7 @@ def _get_resource_to_feedstock_mapping(path: str) -> Dict[str, List[str]]:
     resource_to_feedstocks = {}
     for file_path in access_files:
         feedstocks = parse_txt_contents(file_path)
-        resource = file_path.parts[-2]
-        resource_to_feedstocks[resource] = feedstocks
+        resource_to_feedstocks[file_path] = feedstocks
     return resource_to_feedstocks
 
 
@@ -113,7 +112,9 @@ def parse_txt_contents(file_path: Path) -> List[str]:
     return feedstocks
 
 
-def _process_access_control_requests(path: str, remove: bool = False) -> None:
+def _process_access_control_requests(
+    path: str, remove: bool = False
+) -> Tuple[List[str], List[str]]:
     """
     Process the access control requests by processing each feedstock found in
     the access control files.
@@ -124,14 +125,19 @@ def _process_access_control_requests(path: str, remove: bool = False) -> None:
     Defaults to False.
     """
     print(f"Processing access control requests for {path}")
-    for resource, feedstocks in _get_resource_to_feedstock_mapping(path).items():
+    successful, failed = [], []
+    for file_path, feedstocks in _get_resource_to_feedstock_mapping(path).items():
+        resource = Path(file_path).parts[-2]
         resource_mapping = PATH_TO_RESOURCE_MAPPING.get(resource)
         if resource_mapping is None:
-            raise ValueError(
-                f"! Unknown resource: '{resource}'. "
+            print(
+                f"!!! Unknown resource: '{resource}'. "
                 "TXT files must be placed under {grant,revoke}_access/<resource>/, "
-                f"where '<resource>' is one of: {', '.join(PATH_TO_RESOURCE_MAPPING)}"
+                f"where '<resource>' is one of: {', '.join(PATH_TO_RESOURCE_MAPPING)}",
+                file=sys.stderr,
             )
+            failed.append(file_path)
+            continue
         resource = resource_mapping["resource"]
         for feedstock in feedstocks:
             feedstock_repo = f"{feedstock}-feedstock"
@@ -144,15 +150,18 @@ def _process_access_control_requests(path: str, remove: bool = False) -> None:
             )
             action = "remove" if remove else "add"
             update_access_yaml(resource, feedstock_repo, action=action)
+        successful.append(file_path)
+    return successful, failed
 
 
-def process_access_control_requests() -> None:
+def process_access_control_requests() -> Tuple[List[str], List[str], List[str]]:
     """Process access control requests from both 'grant_access' and
     'revoke_access' directories.
     """
     print("Processing access control request")
-    _process_access_control_requests("grant_access", remove=False)
-    _process_access_control_requests("revoke_access", remove=True)
+    granted, failed = _process_access_control_requests("grant_access", remove=False)
+    revoked, failed_2 = _process_access_control_requests("revoke_access", remove=True)
+    return granted, revoked, failed + failed_2
 
 
 def _process_request_for_feedstock(
@@ -286,29 +295,6 @@ def _commit_changes(push: bool = True) -> None:
         print("Nothing to commit")
 
 
-def _remove_input_files(dir: str, file_to_keep: str) -> None:
-    """
-    Remove input files from a directory, excluding a specific file.
-
-    Parameters:
-    dir (str): The directory from which to remove the files.
-    file_to_keep (str): The filename of the file to keep in the directory.
-
-    Raises:
-    ValueError: If the specified path is not a directory.
-    """
-    print("Removing input files")
-    directory = Path(dir)
-    files_to_keep = [Path(file_to_keep)]
-    if not directory.is_dir():
-        raise ValueError("The specified path is not a directory.")
-
-    for file in directory.iterdir():
-        if file.is_file() and file not in files_to_keep:
-            print(f"Removing input file: {file}")
-            file.unlink()
-
-
 def update_access_yaml(
     resource: str,
     feedstock_name: str,
@@ -366,7 +352,7 @@ def update_access_yaml(
         yaml.dump(content, f)
 
 
-def main() -> None:
+def main() -> List[str]:
     """
     The main function to process the access control requests. It performs the following steps:
     1. Check if the requests are valid.
@@ -375,10 +361,13 @@ def main() -> None:
     4. Commit the changes to the repository.
     """
     check()
-    process_access_control_requests()
-    _remove_input_files("grant_access/", file_to_keep="grant_access/example.txt")
-    _remove_input_files("revoke_access/", file_to_keep="revoke_access/example.txt")
+    granted, revoked, failed = process_access_control_requests()
+    for path in (*granted, *revoked):
+        print(f"Removing {path}")
+        Path(path).unlink()
     _commit_changes(push=False)
+    print("! Failed to process:\n", *failed, sep="\n")
+    return failed
 
 
 if __name__ == "__main__":
