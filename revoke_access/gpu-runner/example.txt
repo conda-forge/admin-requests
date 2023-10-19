@@ -1,3 +1,2 @@
-# filename must match the target resource
 # file contents: feedstock name(s), sans -feedstock, one per line
 foo
