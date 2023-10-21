@@ -1,0 +1,6 @@
+linux-ppc64le/libutf8proc-2.9.0-ha17a0cc_0.conda
+win-64/libutf8proc-2.9.0-hcfcfb64_0.conda
+osx-arm64/libutf8proc-2.9.0-h93a5062_0.conda
+osx-64/libutf8proc-2.9.0-h10d778d_0.conda
+linux-64/libutf8proc-2.9.0-hd590300_0.conda
+linux-aarch64/libutf8proc-2.9.0-h31becfc_0.conda
