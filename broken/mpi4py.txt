@@ -1,0 +1,12 @@
+linux-64/mpi4py-3.1.5-py310h45b48a2_0.conda
+linux-64/mpi4py-3.1.5-py311he9ffdee_0.conda
+linux-64/mpi4py-3.1.5-py312hac3760b_0.conda
+linux-64/mpi4py-3.1.5-py38h2675600_0.conda
+linux-64/mpi4py-3.1.5-py39h03e9507_0.conda
+linux-64/mpi4py-3.1.5-py39h635da37_0.conda
+win-64/mpi4py-3.1.5-py310headf037_0.conda
+win-64/mpi4py-3.1.5-py311h752e774_0.conda
+win-64/mpi4py-3.1.5-py312h5f1d38d_0.conda
+win-64/mpi4py-3.1.5-py38h6d6d2c7_0.conda
+win-64/mpi4py-3.1.5-py39hc2a0298_0.conda
+win-64/mpi4py-3.1.5-py39hd8a89ea_0.conda
