@@ -62,7 +62,7 @@ access to a certain resource, use the `revoke_access/` directory.
 
 Available opt-in resources:
 
-- Travis CI: `travis.txt`
+- Travis CI: `travis/foo.txt`
 - GPU CI:
-  - `cirun-gpu-runner.txt`: access to GPU runner on main branch only.
-  - `cirun-gpu-runner-pr.txt`: access to GPU runner on pull requests as well.
+  - `gpu-runner/foo.txt`: access to GPU runner on main branch only.
+  - `gpu-runner-pr/foo.txt`: access to GPU runner on pull requests as well.
