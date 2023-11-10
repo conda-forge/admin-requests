@@ -214,14 +214,12 @@ def _process_request_for_feedstock(
             register_ci_cmd.extend(
                 [
                     "--with-cirun",
-                    f"--cirun-resources {resource}",
+                    "--cirun-resources", resource,
                 ]
             )
             if cirun_policy_args:
-                policy_args_param = [
-                    f"--cirun-policy-args {arg}" for arg in cirun_policy_args
-                ]
-                register_ci_cmd.extend(policy_args_param)
+                for arg in cirun_policy_args:
+                    register_ci_cmd.extend(("--cirun-policy-args", arg))
 
             if remove:
                 register_ci_cmd.append("--remove")
