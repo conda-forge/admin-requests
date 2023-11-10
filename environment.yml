@@ -11,5 +11,7 @@ dependencies:
   - pydantic
   - cirun
   - conda-smithy
+  - pip
   - pip:
       - git+https://github.com/isuruf/conda-smithy.git@without-all
+      - pygithub>=2

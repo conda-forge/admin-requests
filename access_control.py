@@ -403,8 +403,11 @@ def main() -> List[str]:
         print(f"Removing {path}")
         Path(path).unlink()
     _commit_changes(push=False)
-    print("! Failed to process:\n", *failed, sep="\n")
-    return failed
+    if failed:
+        print("! Failed to process:\n", *failed, sep="\n")
+        return 1
+    else:
+        return 0
 
 
 if __name__ == "__main__":
