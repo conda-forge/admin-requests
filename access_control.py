@@ -244,7 +244,7 @@ def _process_request_for_feedstock(
                     'conda', 'smithy', 'generate-feedstock-token',
                     '--unique-token-per-provider',
                     '--feedstock_directory', feedstock_dir,
-                    *owner_info
+                    *owner_info,
                 ]
             )
 
@@ -255,7 +255,8 @@ def _process_request_for_feedstock(
                     '--unique-token-per-provider',
                     '--feedstock_directory', feedstock_dir,
                     '--without-all', with_cmd,
-                    *owner_info
+                    *owner_info,
+                    '--token_repo', token_repo,
                 ]
             )
 
@@ -266,8 +267,8 @@ def _process_request_for_feedstock(
                     '--unique-token-per-provider',
                     '--feedstock_directory', feedstock_dir,
                     '--without-all', with_cmd,
-                    *owner_info
-                    '--token_name', 'STAGING_BINSTAR_TOKEN'
+                    *owner_info,
+                    '--token_name', 'STAGING_BINSTAR_TOKEN',
                 ]
             )
 
