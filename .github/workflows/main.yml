@@ -117,6 +117,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
         GH_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
         CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
+        STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
 
     - name: pull changes
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP

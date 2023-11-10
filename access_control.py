@@ -259,6 +259,18 @@ def _process_request_for_feedstock(
                 ]
             )
 
+            print("Add STAGING_BINSTAR_TOKEN to GHA or travis")
+            subprocess.check_call(
+                [
+                    'conda', 'smithy', 'rotate-binstar-token',
+                    '--unique-token-per-provider',
+                    '--feedstock_directory', feedstock_dir,
+                    '--without-all', with_cmd,
+                    *owner_info
+                    '--token_name', 'STAGING_BINSTAR_TOKEN'
+                ]
+            )
+
 
 def check_if_repo_exists(feedstock_name: str) -> None:
     """
