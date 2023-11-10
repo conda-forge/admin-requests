@@ -183,7 +183,8 @@ def _process_request_for_feedstock(
     remove (bool): Whether to remove the access control.
     cirun_policy_args (List[str]): A list of policy arguments for cirun resources.
     """
-    with tempfile.TemporaryDirectory() as feedstock_dir:
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        feedstock_dir = os.path.join(tmp_dir, feedstock)
         assert GH_ORG
         clone_cmd = [
             "git",
@@ -253,7 +254,7 @@ def _process_request_for_feedstock(
                     'conda', 'smithy', 'register-feedstock-token',
                     '--unique-token-per-provider',
                     '--feedstock_directory', feedstock_dir,
-                    with_cmd,
+                    '--without-all', with_cmd,
                     *owner_info
                 ]
             )
