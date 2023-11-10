@@ -179,7 +179,7 @@ def _process_request_for_feedstock(
     remove (bool): Whether to remove the access control.
     cirun_policy_args (List[str]): A list of policy arguments for cirun resources.
     """
-    with tempfile.TemporaryDirectory() as feedstock_clone_path:
+    with tempfile.TemporaryDirectory() as feedstock_dir:
         assert GH_ORG
         clone_cmd = [
             "git",
@@ -187,31 +187,33 @@ def _process_request_for_feedstock(
             "--depth",
             "1",
             f"https://github.com/{GH_ORG}/{feedstock}.git",
-            feedstock_clone_path,
+            feedstock_dir,
         ]
         print("Cloning:", *clone_cmd)
         subprocess.check_call(clone_cmd)
 
+        owner_info = ["--organization", GH_ORG]
+        token_repo = (
+            'https://x-access-token:${GITHUB_TOKEN}@github.com/'
+            f'{GH_ORG}/feedstock-tokens'
+        )
+
         register_ci_cmd = [
             "conda-smithy",
             "register-ci",
-            "--organization",
-            GH_ORG,
-            "--feedstock_directory",
-            feedstock_clone_path,
-            "--without-azure",
-            "--without-circle",
-            "--without-appveyor",
-            "--without-drone",
-            "--without-webservice",
+            "--feedstock_dir",
+            feedstock_dir,
+            "--without-all",
             "--without-anaconda-token",
+            *owner_info,
         ]
         if resource == "travis":
-            register_ci_cmd.append("--without-cirun")
+            register_ci_cmd.append("--with-travis")
+
         elif resource.startswith("cirun-"):
             register_ci_cmd.extend(
                 [
-                    "--without-travis",
+                    "--with-cirun",
                     f"--cirun-resources {resource}",
                 ]
             )
@@ -221,11 +223,33 @@ def _process_request_for_feedstock(
                 ]
                 register_ci_cmd.extend(policy_args_param)
 
-        if remove:
-            register_ci_cmd.append("--remove")
+            if remove:
+                register_ci_cmd.append("--remove")
 
         print("Register-CI command:", *register_ci_cmd)
         subprocess.check_call(register_ci_cmd)
+
+        if not remove:
+            if resource == "travis":
+                with_cmd = "--with-travis"
+            elif resource.startswith("cirun-"):
+                with_cmd = "--with-github-actions"
+
+            print("Generating a new feedstock token")
+            subprocess.check_call(
+            ['conda', 'smithy', 'generate-feedstock-token',
+             '--feedstock_directory', feedstock_dir] + owner_info)
+
+            print("Rotate feedstock token")
+            subprocess.check_call(
+                [
+                    'conda', 'smithy', 'rotate-feedstock-token',
+                    '--without-all', with_cmd,
+                    *owner_info,
+                    '--feedstock_dir', feedstock_dir,
+                    '--token_repo', token_repo,
+                ]
+            )
 
 
 def check_if_repo_exists(feedstock_name: str) -> None:
@@ -248,7 +272,8 @@ def check_if_repo_exists(feedstock_name: str) -> None:
 
 def _check_for_path(path: str) -> None:
     """
-    Check if the path contains valid access control requests by checking the filename and feedstock existence.
+    Check if the path contains valid access control requests by checking the
+    filename and feedstock existence.
 
     Parameters:
     path (str): The path to the directory containing the access control files.
@@ -264,7 +289,8 @@ def _check_for_path(path: str) -> None:
 
 
 def check() -> None:
-    """Check if the access control requests in both 'grant_access' and 'revoke_access' directories are valid."""
+    """Check if the access control requests in both 'grant_access'
+    and 'revoke_access' directories are valid."""
     print("Checking access control request")
     _check_for_path("grant_access")
     _check_for_path("revoke_access")
