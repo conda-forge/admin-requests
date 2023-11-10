@@ -138,7 +138,7 @@ def _process_access_control_requests(
             )
             failed.append(file_path)
             continue
-        resource = resource_mapping["resource"]
+        resource = resource_mapping.pop("resource")
         for feedstock in feedstocks:
             feedstock_repo = f"{feedstock}-feedstock"
             print(f"Processing feedstock for access control: {feedstock_repo}")
