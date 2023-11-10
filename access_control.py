@@ -14,6 +14,8 @@ import requests
 from pydantic import BaseModel, RootModel
 from ruamel.yaml import YAML
 
+from admin_requests_utils import write_secrets_to_files
+
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
 # This is a mapping for the filename in {grant,revoke}_access/<name>/*.txt
@@ -39,6 +41,8 @@ PATH_TO_RESOURCE_MAPPING = {
 }
 
 ACCESS_YAML_FILENAME = ".access_control.yml"
+
+SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
 
 
 # Keeping this as an object, so that there is scope for
@@ -235,17 +239,22 @@ def _process_request_for_feedstock(
 
             print("Generating a new feedstock token")
             subprocess.check_call(
-            ['conda', 'smithy', 'generate-feedstock-token',
-             '--feedstock_directory', feedstock_dir] + owner_info)
+                [
+                    'conda', 'smithy', 'generate-feedstock-token',
+                    '--unique-token-per-provider',
+                    '--feedstock_directory', feedstock_dir,
+                    *owner_info
+                ]
+            )
 
-            print("Rotate feedstock token")
+            print("Register new feedstock token with provider and feedstock-tokens repo.")
             subprocess.check_call(
                 [
-                    'conda', 'smithy', 'rotate-feedstock-token',
-                    '--without-all', with_cmd,
-                    *owner_info,
-                    '--feedstock_dir', feedstock_dir,
-                    '--token_repo', token_repo,
+                    'conda', 'smithy', 'register-feedstock-token',
+                    '--unique-token-per-provider',
+                    '--feedstock_directory', feedstock_dir,
+                    with_cmd,
+                    *owner_info
                 ]
             )
 
@@ -386,6 +395,8 @@ def main() -> List[str]:
     4. Commit the changes to the repository.
     """
     check()
+    write_secrets_to_files()
+
     granted, revoked, failed = process_access_control_requests()
     for path in (*granted, *revoked):
         print(f"Removing {path}")
