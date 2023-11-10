@@ -279,7 +279,8 @@ def _check_for_path(path: str) -> None:
     path (str): The path to the directory containing the access control files.
     """
     resource_to_feedstocks = _get_resource_to_feedstock_mapping(path)
-    for resource, feedstocks in resource_to_feedstocks.items():
+    for file_path, feedstocks in resource_to_feedstocks.items():
+        resource = Path(file_path).parts[-2]
         print(f"Checking if {resource} is in {PATH_TO_RESOURCE_MAPPING.keys()}")
         assert resource in PATH_TO_RESOURCE_MAPPING
         for feedstock in feedstocks:
