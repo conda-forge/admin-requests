@@ -31,7 +31,7 @@ PATH_TO_RESOURCE_MAPPING = {
     },
     "gpu-runner-pr": {
         "resource": "cirun-openstack-gpu-large",
-        "policy_args": ["pull_request"],
+        "cirun_policy_args": ["pull_request"],
     },
     "travis": {
         "resource": "travis",
