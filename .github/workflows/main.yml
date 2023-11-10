@@ -114,8 +114,8 @@ jobs:
         python access_control.py
       env:
         CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
-        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+        GITHUB_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
         CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
 
     - name: pull changes
