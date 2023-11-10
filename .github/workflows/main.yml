@@ -114,7 +114,6 @@ jobs:
         python access_control.py
       env:
         CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
-        GH_ORG: ${{ secrets.GH_ORG }}
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
 
