@@ -8,3 +8,6 @@ dependencies:
   - requests
   - conda-smithy
   - pygithub
+  - pydantic
+  - cirun
+  - conda-smithy >=3.29.0

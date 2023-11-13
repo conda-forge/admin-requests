@@ -7,8 +7,7 @@ import tempfile
 import github
 
 from conda_smithy.ci_register import travis_get_repo_info
-
-SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
+from admin_requests_utils import write_secrets_to_files
 
 if "GITHUB_TOKEN" in os.environ:
     FEEDSTOCK_TOKENS_REPO = (
@@ -55,11 +54,6 @@ def get_token_reset_files():
             if f != "token_reset/example.txt"
         ]
     )
-
-
-def write_token(name, token):
-    with open(os.path.join(SMITHY_CONF, name + '.token'), 'w') as fh:
-        fh.write(token)
 
 
 def reset_feedstock_token(name, skips=None):
@@ -198,19 +192,7 @@ def main():
     mode = sys.argv[1]
 
     if mode == "reset":
-        if not os.path.exists(SMITHY_CONF):
-            os.makedirs(SMITHY_CONF, exist_ok=True)
-
-        for token_fname, token_name in [
-            ("circle", "CIRCLE_TOKEN"),
-            ("azure", "AZURE_TOKEN"),
-            ("drone", "DRONE_TOKEN"),
-            ("travis", "TRAVIS_TOKEN"),
-            ("github", "GITHUB_TOKEN"),
-            ("anaconda", "STAGING_BINSTAR_TOKEN"),
-        ]:
-            if token_name in os.environ:
-                write_token(token_fname, os.environ[token_name])
+        write_secrets_to_files()
 
     token_reset_files = get_token_reset_files()
     missing_feedstocks = []

@@ -53,3 +53,16 @@ If you want to request a feedstock to be unarchived, follow the same steps but f
 For feedstocks that need to be archived, please leave an open issue with some details about
 why that decision was taken (e.g. it has been deprecated by a new feedstock),
 and link it in your PR description.
+
+## Request / revoke access to CI resources
+
+Certain CI resources are opt-in only. If you want to request access to these resources, please
+submit a PR adding your feedstock name to an appropriately-named file in `grant_access/`. Conversely, to revoke
+access to a certain resource, use the `revoke_access/` directory.
+
+Available opt-in resources:
+
+- Travis CI: `travis/foo.txt`
+- GPU CI:
+  - `gpu-runner/foo.txt`: access to GPU runner on main branch only.
+  - `gpu-runner-pr/foo.txt`: access to GPU runner on pull requests as well.

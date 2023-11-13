@@ -1,0 +1,8 @@
+# This file is exclusively handled by the existing automation or the core team.
+# Please DO NOT submit modifications to this document.
+version: 1
+access_control:
+  travis:
+    - feedstock: example
+  cirun-gpu-small:
+    - feedstock: example
