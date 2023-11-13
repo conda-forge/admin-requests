@@ -10,8 +10,4 @@ dependencies:
   - pygithub
   - pydantic
   - cirun
-  - conda-smithy
-  - pip
-  - pip:
-      - git+https://github.com/isuruf/conda-smithy.git@without-all
-      - pygithub>=2
+  - conda-smithy >=3.29.0
