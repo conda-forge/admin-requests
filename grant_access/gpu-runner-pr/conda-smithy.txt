@@ -1,2 +1,2 @@
 # file contents: feedstock name(s), sans -feedstock, one per line
-conda-smithy
+conda-forge-ci-setup
