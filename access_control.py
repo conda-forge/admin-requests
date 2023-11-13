@@ -264,7 +264,6 @@ def _process_request_for_feedstock(
             subprocess.check_call(
                 [
                     'conda', 'smithy', 'rotate-binstar-token',
-                    '--unique-token-per-provider',
                     '--feedstock_directory', feedstock_dir,
                     '--without-all', with_cmd,
                     *owner_info,
