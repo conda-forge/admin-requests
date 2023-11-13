@@ -1,0 +1,3 @@
+cf-autotick-bot-test-package
+conda-smithy
+conda-forge-ci-setup
