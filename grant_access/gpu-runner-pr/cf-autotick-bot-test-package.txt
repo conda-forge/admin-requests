@@ -1,0 +1,2 @@
+# file contents: feedstock name(s), sans -feedstock, one per line
+cf-autotick-bot-test-package
