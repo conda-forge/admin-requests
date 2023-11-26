@@ -268,6 +268,8 @@ def send_pr_cirun(
         Note that only builds triggered by maintainers in the
         who have accepted the terms of service and privacy policy will run
         on Github actions via Cirun.
+        - [ ] Maintainers have accepted the terms of service and privacy policy
+          at https://github.com/Quansight/open-gpu-server
         """
         ),
     )
