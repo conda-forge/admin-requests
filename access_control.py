@@ -224,7 +224,7 @@ def send_pr_cirun(
             f"{user.login}/{feedstock}.git"],
         ["git", "commit", "-m", f"Enable {resource} using Cirun",
             "--author", f"{user.name} <{user.email}>"],
-        ["git", "push", user.login, f"HEAD:cirun-{base_branch}"],
+        ["git", "push", user.login, f"HEAD:{base_branch}"],
     ]
     for git_cmd in git_cmds:
         print("Running:", *git_cmd)
