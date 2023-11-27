@@ -1,8 +1,7 @@
 """
 This script will process the `grant_access/` and `revoke_access/` requests.
 
-Main logic lives in conda-smithy. This is just a wrapper for
-admin-requests infra.
+Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
 import os
 import subprocess
@@ -49,7 +48,7 @@ PATH_TO_RESOURCE_MAPPING = {
 
 ACCESS_YAML_FILENAME = ".access_control.yml"
 
-SMITHY_CONF = os.path.expanduser("~/.conda-smithy")
+SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
 
 
 # Keeping this as an object, so that there is scope for
@@ -77,8 +76,7 @@ def _get_input_access_control_files(path: str) -> List[Path]:
     path (str): The path to the directory containing the access control files.
 
     Returns:
-    List[Path]: A list of paths to the access control files in the specified
-                directory.
+    List[Path]: A list of paths to the access control files in the specified directory.
     """
     assert path in ("grant_access", "revoke_access"), f"Invalid path: {path}"
     all_files = Path(path).glob("**/*.txt")
@@ -94,8 +92,7 @@ def _get_resource_to_feedstock_mapping(path: str) -> Dict[str, List[str]]:
     path (str): The path to the directory containing the access control files.
 
     Returns:
-    Dict[str, List[str]]: A dictionary mapping from resource to a list
-                          of feedstocks.
+    Dict[str, List[str]]: A dictionary mapping from resource to a list of feedstocks.
     """
     access_files = _get_input_access_control_files(path)
     resource_to_feedstocks = {}
@@ -107,15 +104,13 @@ def _get_resource_to_feedstock_mapping(path: str) -> Dict[str, List[str]]:
 
 def parse_txt_contents(file_path: Path) -> List[str]:
     """
-    Parse an input access control file and get the filename and the list
-    of feedstocks.
+    Parse an input access control file and get the filename and the list of feedstocks.
 
     Parameters:
     file_path (Path): The path to the input access control file.
 
     Returns:
-    Tuple[str, List[str]]: A tuple containing the filename and the
-                           list of feedstocks.
+    Tuple[str, List[str]]: A tuple containing the filename and the list of feedstocks.
     """
     feedstocks = []
     with open(file_path) as f:
@@ -141,18 +136,14 @@ def _process_access_control_requests(
     """
     print(f"Processing access control requests for {path}")
     successful, failed = [], []
-    for file_path, feedstocks in _get_resource_to_feedstock_mapping(
-        path
-    ).items():
+    for file_path, feedstocks in _get_resource_to_feedstock_mapping(path).items():
         resource = Path(file_path).parts[-2]
         resource_mapping = PATH_TO_RESOURCE_MAPPING.get(resource)
         if resource_mapping is None:
             print(
                 f"!!! Unknown resource: '{resource}'. "
-                "TXT files must be placed under "
-                "{grant,revoke}_access/<resource>/, "
-                "where '<resource>' is one of:"
-                f"{', '.join(PATH_TO_RESOURCE_MAPPING)}",
+                "TXT files must be placed under {grant,revoke}_access/<resource>/, "
+                f"where '<resource>' is one of: {', '.join(PATH_TO_RESOURCE_MAPPING)}",
                 file=sys.stderr,
             )
             failed.append(file_path)
@@ -173,19 +164,13 @@ def _process_access_control_requests(
     return successful, failed
 
 
-def process_access_control_requests() -> (
-    Tuple[List[str], List[str], List[str]]
-):
+def process_access_control_requests() -> Tuple[List[str], List[str], List[str]]:
     """Process access control requests from both 'grant_access' and
     'revoke_access' directories.
     """
     print("Processing access control request")
-    granted, failed = _process_access_control_requests(
-        "grant_access", remove=False
-    )
-    revoked, failed_2 = _process_access_control_requests(
-        "revoke_access", remove=True
-    )
+    granted, failed = _process_access_control_requests("grant_access", remove=False)
+    revoked, failed_2 = _process_access_control_requests("revoke_access", remove=True)
     return granted, revoked, failed + failed_2
 
 
@@ -193,7 +178,7 @@ def send_pr_cirun(
     feedstock: str,
     feedstock_dir: str,
     resource: str,
-    cirun_policy_args: Optional[List[str]] = None,
+    cirun_policy_args: Optional[List[str]] = None
 ) -> None:
     """
     Send PR to feedstock to enable Github Actions with Cirun
@@ -202,19 +187,18 @@ def send_pr_cirun(
     feedstock (str): The name of the feedstock.
     feedstock_dir (str): Path to a git checkout of the feedstock.
     resource (str): The name of the resource for access control.
-    cirun_policy_args (List[str]): A list of policy arguments for cirun
-                                   resources.
+    cirun_policy_args (List[str]): A list of policy arguments for cirun resources.
     """
 
     with update_conda_forge_config(
-        os.path.join(feedstock_dir, "recipe", "conda_build_config.yaml")
-    ) as cbc, update_conda_forge_config(
-        os.path.join(feedstock_dir, "conda-forge.yml")
-    ) as cfg:
-        if any(
-            label.startwith("cirun-")
-            for label in cbc.get("github_actions_labels", [])
-        ):
+            os.path.join(
+                feedstock_dir,
+                "recipe",
+                "conda_build_config.yaml")) as cbc, \
+            update_conda_forge_config(
+                os.path.join(feedstock_dir, "conda-forge.yml")) as cfg:
+        if any(label.startwith("cirun-") for label in cbc.get(
+                "github_actions_labels", [])):
             return
         cfg["github_actions"] = {"self_hosted: true"}
         if "pull_request" in cirun_policy_args:
@@ -236,22 +220,10 @@ def send_pr_cirun(
 
     git_cmds = [
         ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
-        [
-            "git",
-            "remote",
-            "add",
-            user.login,
-            "https://x-access-token:${GITHUB_TOKEN}@github.com/"
-            f"{user.login}/{feedstock}.git",
-        ],
-        [
-            "git",
-            "commit",
-            "-m",
-            f"Enable {resource} using Cirun",
-            "--author",
-            f"{user.name} <{user.email}>",
-        ],
+        ["git", "remote", "add", user.login, "https://x-access-token:${GITHUB_TOKEN}@github.com/"
+            f"{user.login}/{feedstock}.git"],
+        ["git", "commit", "-m", f"Enable {resource} using Cirun",
+            "--author", f"{user.name} <{user.email}>"],
         ["git", "push", user.login, f"HEAD:cirun-{base_branch}"],
     ]
     for git_cmd in git_cmds:
@@ -263,8 +235,7 @@ def send_pr_cirun(
         base="main",
         head=f"{user}:{base_branch}",
         title=f"Update feedstock to use {resource} with Cirun",
-        body=textwrap.dedent(
-            """
+        body=textwrap.dedent("""
         Note that only builds triggered by maintainers in the
         who have accepted the terms of service and privacy policy will run
         on Github actions via Cirun.
@@ -288,8 +259,7 @@ def _process_request_for_feedstock(
     feedstock (str): The name of the feedstock.
     resource (str): The name of the resource for access control.
     remove (bool): Whether to remove the access control.
-    cirun_policy_args (List[str]): A list of policy arguments for cirun
-                                   resources.
+    cirun_policy_args (List[str]): A list of policy arguments for cirun resources.
     """
     with tempfile.TemporaryDirectory() as tmp_dir:
         feedstock_dir = os.path.join(tmp_dir, feedstock)
@@ -307,8 +277,8 @@ def _process_request_for_feedstock(
 
         owner_info = ["--organization", GH_ORG]
         token_repo = (
-            "https://x-access-token:${GITHUB_TOKEN}@github.com/"
-            f"{GH_ORG}/feedstock-tokens"
+            'https://x-access-token:${GITHUB_TOKEN}@github.com/'
+            f'{GH_ORG}/feedstock-tokens'
         )
 
         register_ci_cmd = [
@@ -327,8 +297,7 @@ def _process_request_for_feedstock(
             register_ci_cmd.extend(
                 [
                     "--with-cirun",
-                    "--cirun-resources",
-                    resource,
+                    "--cirun-resources", resource,
                 ]
             )
             if cirun_policy_args:
@@ -350,57 +319,39 @@ def _process_request_for_feedstock(
             print("Generating a new feedstock token")
             subprocess.check_call(
                 [
-                    "conda",
-                    "smithy",
-                    "generate-feedstock-token",
-                    "--unique-token-per-provider",
-                    "--feedstock_directory",
-                    feedstock_dir,
+                    'conda', 'smithy', 'generate-feedstock-token',
+                    '--unique-token-per-provider',
+                    '--feedstock_directory', feedstock_dir,
                     *owner_info,
                 ]
             )
 
-            print(
-                "Register new feedstock token with provider and "
-                "feedstock-tokens repo."
-            )
+            print("Register new feedstock token with provider and feedstock-tokens repo.")
             subprocess.check_call(
                 [
-                    "conda",
-                    "smithy",
-                    "register-feedstock-token",
-                    "--unique-token-per-provider",
-                    "--feedstock_directory",
-                    feedstock_dir,
-                    "--without-all",
-                    with_cmd,
+                    'conda', 'smithy', 'register-feedstock-token',
+                    '--unique-token-per-provider',
+                    '--feedstock_directory', feedstock_dir,
+                    '--without-all', with_cmd,
                     *owner_info,
-                    "--token_repo",
-                    token_repo,
+                    '--token_repo', token_repo,
                 ]
             )
 
             print("Add STAGING_BINSTAR_TOKEN to GHA or travis")
             subprocess.check_call(
                 [
-                    "conda",
-                    "smithy",
-                    "rotate-binstar-token",
-                    "--feedstock_directory",
-                    feedstock_dir,
-                    "--without-all",
-                    with_cmd,
+                    'conda', 'smithy', 'rotate-binstar-token',
+                    '--feedstock_directory', feedstock_dir,
+                    '--without-all', with_cmd,
                     *owner_info,
-                    "--token_name",
-                    "STAGING_BINSTAR_TOKEN",
+                    '--token_name', 'STAGING_BINSTAR_TOKEN',
                 ]
             )
 
             if resource.startswith("cirun-"):
                 print("Sending PR to feedstock")
-                send_pr_cirun(
-                    feedstock, feedstock_dir, resource, cirun_policy_args
-                )
+                send_pr_cirun(feedstock, feedstock_dir, resource, cirun_policy_args)
 
 
 def check_if_repo_exists(feedstock_name: str) -> None:
@@ -432,9 +383,7 @@ def _check_for_path(path: str) -> None:
     resource_to_feedstocks = _get_resource_to_feedstock_mapping(path)
     for file_path, feedstocks in resource_to_feedstocks.items():
         resource = Path(file_path).parts[-2]
-        print(
-            f"Checking if {resource} is in {PATH_TO_RESOURCE_MAPPING.keys()}"
-        )
+        print(f"Checking if {resource} is in {PATH_TO_RESOURCE_MAPPING.keys()}")
         assert resource in PATH_TO_RESOURCE_MAPPING
         for feedstock in feedstocks:
             check_if_repo_exists(feedstock)
@@ -455,8 +404,7 @@ def _commit_changes(push: bool = True) -> None:
     Commit the changes to the repository after removing files.
 
     Parameters:
-    push (bool, optional): Whether to push the changes to the repository.
-                           Defaults to True.
+    push (bool, optional): Whether to push the changes to the repository. Defaults to True.
     """
     subprocess.run(
         ["git", "add", "grant_access", "revoke_access", ACCESS_YAML_FILENAME],
@@ -486,17 +434,14 @@ def update_access_yaml(
     Manage feedstock in .access_control.yml.
 
     Parameters:
-    - resource: the access control resource
-                (e.g., "travis", "cirun-gpu-small").
+    - resource: the access control resource (e.g., "travis", "cirun-gpu-small").
     - feedstock_name: the name of the feedstock.
     - action: either "add" or "remove".
     - filename: the name of the YAML file.
     """
     print(f"Updating {filename}")
     yaml = YAML()
-    yaml.indent(
-        mapping=2, sequence=4, offset=2
-    )  # Indent settings for 2-space mapping
+    yaml.indent(mapping=2, sequence=4, offset=2)  # Indent settings for 2-space mapping
 
     with open(filename) as f:
         content = yaml.load(f)
@@ -538,13 +483,10 @@ def update_access_yaml(
 
 def main() -> List[str]:
     """
-    The main function to process the access control requests.
-    It performs the following steps:
-
+    The main function to process the access control requests. It performs the following steps:
     1. Check if the requests are valid.
     2. Process the access control requests.
-    3. Remove the processed files from the 'grant_access' and 'revoke_access'
-       directories.
+    3. Remove the processed files from the 'grant_access' and 'revoke_access' directories.
     4. Commit the changes to the repository.
     """
     check()
