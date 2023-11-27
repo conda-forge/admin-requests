@@ -1,0 +1,1 @@
+noarch/sigpy-0.1.25-pyha21a80b_1.conda
