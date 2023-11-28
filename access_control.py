@@ -236,7 +236,7 @@ def send_pr_cirun(
         head=f"{user}:{base_branch}",
         title=f"Update feedstock to use {resource} with Cirun",
         body=textwrap.dedent("""
-        Note that only builds triggered by maintainers in the
+        Note that only builds triggered by maintainers of the feedstock (and core)
         who have accepted the terms of service and privacy policy will run
         on Github actions via Cirun.
         - [ ] Maintainers have accepted the terms of service and privacy policy
