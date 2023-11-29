@@ -228,6 +228,7 @@ def send_pr_cirun(
         f"git remote add {user.login} https://x-access-token:${{GITHUB_TOKEN}}@github.com/"
             f"{user.login}/{feedstock}.git",
         f"git commit -m 'Enable {resource} using Cirun' --author '{user.name} <{user.email}>'",
+        "conda-smithy rerender -c auto"
         f"git push {user.login} HEAD:{base_branch}",
     ]
     for git_cmd in git_cmds:
@@ -246,7 +247,8 @@ def send_pr_cirun(
         - [ ] Maintainers have accepted the terms of service and privacy policy
           at https://github.com/Quansight/open-gpu-server
 
-        @conda-forge-admin, rerender.
+        Also, note that rerendering with Github actions as CI provider must be done
+        locally going forwards.
         """
         ),
     )
