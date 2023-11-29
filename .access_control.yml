@@ -11,3 +11,4 @@ access_control:
     - feedstock: conda-smithy-feedstock
     - feedstock: conda-forge-ci-setup-feedstock
     - feedstock: pytorch-cpu-feedstock
+    - feedstock: libmagma-feedstock
