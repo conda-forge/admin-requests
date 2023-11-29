@@ -245,6 +245,8 @@ def send_pr_cirun(
         on Github actions via Cirun.
         - [ ] Maintainers have accepted the terms of service and privacy policy
           at https://github.com/Quansight/open-gpu-server
+
+        @conda-forge-admin, rerender.
         """
         ),
     )
