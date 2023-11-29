@@ -1,16 +1,6 @@
 import os
-import sys
-import glob
 import requests
 import subprocess
-
-
-def get_task_files(task):
-    exf = os.path.join(task, "example.txt")
-    return [
-        f for f in glob.glob(os.path.join(task, "*.txt"))
-        if f != exf
-    ]
 
 
 def raise_json_for_status(request):
@@ -60,84 +50,38 @@ def process_repo(repo, task):
     print("feedstock %s was %s" % (repo, target_status), flush=True)
 
 
-def process_feedstocks_in_file(task_file, task):
-    pkgs_to_do_again = []
-    with open(task_file, "r") as fp:
-        for line in fp:
-            line = line.strip()
-            if line.startswith("#") or len(line) == 0:
-                continue
+def run(request):
+    feedstocks = request["feedstocks"]
+    task = request["action"]
 
-            try:
-                process_repo(line + "-feedstock", task)
-            except Exception as e:
-                print(
-                    "failed to %s '%s': %s" % (task, line, repr(e)),
-                    flush=True,
-                )
-                pkgs_to_do_again.append(line)
+    pkgs_to_do_again = []
+    for feedstock in feedstocks:
+        try:
+            process_repo("{feedstock}-feedstock", task)
+        except Exception as e:
+            print(
+                "failed to %s '%s': %s" % (task, feedstock, repr(e)),
+                flush=True,
+            )
+            pkgs_to_do_again.append(feedstock)
 
     if pkgs_to_do_again:
-        with open(task_file, "w") as fp:
-            fp.write(
-                "# %s failed for these feedstocks - "
-                "trying again later\n" % task
-            )
-            for pkg in pkgs_to_do_again:
-                fp.write(pkg + "\n")
-        subprocess.check_call(f"git add {task_file}", shell=True)
-        subprocess.check_call(
-            f"git commit --allow-empty -m 'Keeping {task_file} "
-            f"after failed {task}'",
-            shell=True,
-        )
-    else:
-        subprocess.check_call(f"git rm {task_file}", shell=True)
-        subprocess.check_call(
-            f"git commit -m 'Remove {task_file} after {task}'",
-            shell=True,
-        )
+        request["feedstocks"] = pkgs_to_do_again
 
     subprocess.check_call("git show", shell=True)
 
 
-def check_for_feedstocks_in_file(token_reset_file):
+def check(request):
+    assert "feedstocks" in request
+
     missing_feedstocks = []
-    with open(token_reset_file, "r") as fp:
-        for line in fp.readlines():
-            line = line.strip()
-            if line.startswith("#") or len(line) == 0:
-                continue
 
-            r = requests.get(
-                "https://github.com/conda-forge/%s-feedstock" % line
-            )
-            if r.status_code != 200:
-                missing_feedstocks.append(line)
-    return missing_feedstocks
-
-
-def main(*, check_only):
-    missing_feedstocks = []
-    for task in "archive", "unarchive":
-        task_files = get_task_files(task)
-        for task_file in task_files:
-            print("working on file %s" % task_file, flush=True)
-            if check_only:
-                missing_feedstocks.extend(
-                    check_for_feedstocks_in_file(task_file)
-                )
-            else:
-                process_feedstocks_in_file(task_file, task)
+    for feedstock in request["feedstocks"]:
+        r = requests.get(f"https://github.com/conda-forge/{feedstock}-feedstock")
+        if r.status_code != 200:
+            missing_feedstocks.append(feedstock)
 
     if missing_feedstocks:
         raise RuntimeError(
             "feedstocks %s could not be found!" % list(set(missing_feedstocks))
         )
-
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.exit("Usage: python archive_feedstock.py [check | archive]")
-    check_only = sys.argv[1] == "check"
-    main(check_only=check_only)

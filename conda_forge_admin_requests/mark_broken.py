@@ -1,9 +1,8 @@
-import sys
-from glob import glob
 import subprocess
 import os
 import tempfile
 import requests
+import copy
 
 
 def split_pkg(pkg):
@@ -19,130 +18,72 @@ def split_pkg(pkg):
     return plat, name, ver, build
 
 
-def get_broken_files():
-    return (
-        [f for f in glob("broken/*.txt") if f != "broken/example.txt"]
-        + [f for f in glob("pkgs/*.txt") if f != "pkgs/example.txt"]
+def check_request(request):
+    action = request["action"]
+    assert action in ("broken", "not_broken")
+
+    if action == "broken":
+        channel = "conda-forge"
+    else:
+        channel = "conda-forge/label/broken"
+
+    assert "packages" in request
+    pkgs = request["packages"]
+
+    for pkg in pkgs:
+        # check to ensure the artifact exists
+        r = requests.head(f"https://conda.anaconda.org/conda-forge/{pkg}")
+        r.raise_for_status()
+
+        # check it is on the right channel
+        plat, name, ver, build = split_pkg(pkg)
+        subprocess.check_call(
+            f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
+            f"-c {channel} --override-channels",
+            shell=True,
+        )
+
+
+def mark_broken_pkg(pkg, action):
+    plat, name, ver, build = split_pkg(pkg)
+
+    if action == "broken":
+        func = requests.post
+    else:
+        func = requests.delete
+
+    r = func(
+        "https://api.anaconda.org/channels/conda-forge/broken",
+        headers={'Authorization': 'token {}'.format(os.environ["BINSTAR_TOKEN"])},
+        json={
+            "basename": pkg,
+            "package": name,
+            "version": ver,
+        }
     )
+    if r.status_code != 201:
+        print(f"        could not mark {action}", flush=True)
+        return False
+    else:
+        print(f"        marked {action}", flush=True)
+        return True
 
 
-def get_not_broken_files():
-    return [f for f in glob("not_broken/*.txt") if f != "not_broken/example.txt"]
-
-
-def check_packages():
-    for channel, filenames in (
-        ("conda-forge", get_broken_files()),
-        ("conda-forge/label/broken", get_not_broken_files()),
-    ):
-        for file_name in filenames:
-            with open(file_name, "r") as f:
-                pkgs = f.readlines()
-                pkgs = [pkg.strip() for pkg in pkgs]
-            for pkg in pkgs:
-                # ignore blank lines or Python-style comments
-                if pkg.startswith('#') or len(pkg) == 0:
-                    continue
-
-                # check to ensure the artifact exists
-                r = requests.head(f"https://conda.anaconda.org/conda-forge/{pkg}")
-                r.raise_for_status()
-
-                # check it is on the right channel
-                plat, name, ver, build = split_pkg(pkg)
-                subprocess.check_call(
-                    f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
-                    f"-c {channel} --override-channels",
-                    shell=True,
-                )
-
-
-def mark_broken_file(file_name):
-    did_one = False
-
-    with open(file_name, "r") as f:
-        pkgs = f.readlines()
-        pkgs = [pkg.strip() for pkg in pkgs]
-    for pkg in pkgs:
-        # ignore blank lines or Python-style comments
-        if pkg.startswith('#') or len(pkg) == 0:
-            continue
-        print("    package: %s" % pkg, flush=True)
-        plat, name, ver, build = split_pkg(pkg)
-        r = requests.post(
-            "https://api.anaconda.org/channels/conda-forge/broken",
-            headers={'Authorization': 'token {}'.format(os.environ["BINSTAR_TOKEN"])},
-            json={
-                "basename": pkg,
-                "package": name,
-                "version": ver,
-            }
-        )
-        if r.status_code != 201:
-            print("        could not mark broken", flush=True)
-            return did_one
-        else:
-            print("        marked broken", flush=True)
-            did_one = True
-    subprocess.check_call(f"git rm {file_name}", shell=True)
-    subprocess.check_call(
-        f"git commit -m 'Remove {file_name} after marking broken'", shell=True)
-    subprocess.check_call("git show", shell=True)
-
-    return did_one
-
-
-def mark_not_broken_file(file_name):
-    did_one = False
-
-    with open(file_name, "r") as f:
-        pkgs = f.readlines()
-        pkgs = [pkg.strip() for pkg in pkgs]
-    for pkg in pkgs:
-        # ignore blank lines or Python-style comments
-        if pkg.startswith('#') or len(pkg) == 0:
-            continue
-        print("    package: %s" % pkg, flush=True)
-        plat, name, ver, build = split_pkg(pkg)
-        r = requests.delete(
-            "https://api.anaconda.org/channels/conda-forge/broken",
-            headers={'Authorization': 'token {}'.format(os.environ["BINSTAR_TOKEN"])},
-            json={
-                "basename": pkg,
-                "package": name,
-                "version": ver,
-            }
-        )
-        if r.status_code != 201:
-            print("        could not mark not broken", flush=True)
-            return did_one
-        else:
-            print("        marked not broken", flush=True)
-            did_one = True
-    subprocess.check_call(f"git rm {file_name}", shell=True)
-    subprocess.check_call(
-        f"git commit -m 'Remove {file_name} after marking not broken'", shell=True)
-    subprocess.check_call("git show", shell=True)
-
-    return did_one
-
-
-def mark_broken():
+def run(request):
     if "BINSTAR_TOKEN" not in os.environ:
         return
 
-    did_any = False
-    br_files = get_broken_files()
-    print("found files: %s" % br_files, flush=True)
-    for file_name in br_files:
-        print("working on file %s" % file_name, flush=True)
-        did_any = did_any or mark_broken_file(file_name)
+    packages = request["packages"]
 
-    nbr_files = get_not_broken_files()
-    print("found files: %s" % nbr_files, flush=True)
-    for file_name in nbr_files:
-        print("working on file %s" % file_name, flush=True)
-        did_any = did_any or mark_not_broken_file(file_name)
+    pkgs_to_try_again = []
+    did_any = False
+    for package in packages:
+        print(f"working on package {package}", flush=True)
+        success = mark_broken_pkg(package)
+        if success:
+            did_any = True
+        else:
+            pkgs_to_try_again.append(package)
 
     if did_any:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -161,11 +102,11 @@ def mark_broken():
                 shell=True,
             )
 
-            all_files = br_files + nbr_files
-            fstr = " ".join(f for f in all_files)
+            success_pkgs = set(packages) - set(pkgs_to_try_again)
+            fstr = " ".join(f for f in success_pkgs)
             subprocess.check_call(
                 "git commit --allow-empty -am 'resync repo data "
-                "for broken/notbroken packages in files %s'" % fstr,
+                "for broken/notbroken packages %s'" % fstr,
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
                 shell=True,
             )
@@ -176,13 +117,9 @@ def mark_broken():
                 shell=True,
             )
 
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        raise RuntimeError("Need 1 and only 1 argument")
-    if sys.argv[1] == 'check':
-        check_packages()
-    elif sys.argv[1] == 'mark':
-        mark_broken()
+    if pkgs_to_try_again:
+        request = copy.deepcopy(request)
+        request["packages"] = pkgs_to_try_again
+        return request
     else:
-        raise RuntimeError(f"Unrecognized argument {sys.argv[1]}")
+        return None
