@@ -248,7 +248,7 @@ def send_pr_cirun(
           at https://github.com/Quansight/open-gpu-server
 
         Also, note that rerendering with Github actions as CI provider must be done
-        locally going forwards.
+        locally in the future for this feedstock.
         """
         ),
     )
