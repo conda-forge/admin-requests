@@ -211,8 +211,6 @@ def send_pr_cirun(
         if "provider" not in cfg:
             cfg["provider"] = {}
         cfg["provider"]["linux_64"] = "github_actions"
-        if "upload_on_branch" not in cfg:
-            cfg["upload_on_branch"] = ["main"]
         cbc["github_actions_labels"] = [resource]
 
     gh = Github(gh_token())
