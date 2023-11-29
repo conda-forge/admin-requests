@@ -7,14 +7,20 @@ import os
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Union
+import textwrap
 
 import requests
 from pydantic import BaseModel, RootModel
 from ruamel.yaml import YAML
 
 from admin_requests_utils import write_secrets_to_files
+
+from conda_smithy.utils import update_conda_forge_config
+from conda_smithy.github import Github, gh_token
+
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
@@ -168,6 +174,78 @@ def process_access_control_requests() -> Tuple[List[str], List[str], List[str]]:
     return granted, revoked, failed + failed_2
 
 
+def send_pr_cirun(
+    feedstock: str,
+    feedstock_dir: str,
+    resource: str,
+    cirun_policy_args: Optional[List[str]] = None
+) -> None:
+    """
+    Send PR to feedstock to enable Github Actions with Cirun
+
+    Parameters:
+    feedstock (str): The name of the feedstock.
+    feedstock_dir (str): Path to a git checkout of the feedstock.
+    resource (str): The name of the resource for access control.
+    cirun_policy_args (List[str]): A list of policy arguments for cirun resources.
+    """
+
+    with update_conda_forge_config(
+            os.path.join(
+                feedstock_dir,
+                "recipe",
+                "conda_build_config.yaml")) as cbc, \
+            update_conda_forge_config(
+                os.path.join(feedstock_dir, "conda-forge.yml")) as cfg:
+        if any(label.startwith("cirun-") for label in cbc.get(
+                "github_actions_labels", [])):
+            return
+        cfg["github_actions"] = {"self_hosted: true"}
+        if "pull_request" in cirun_policy_args:
+            cfg["github_actions"]["triggers"] = ["push", "pull_request"]
+        if "provider" not in cfg:
+            cfg["provider"] = {}
+        cfg["provider"]["linux_64"] = "github_actions"
+        if "upload_on_branch" not in cfg:
+            cfg["upload_on_branch"] = ["main"]
+        cbc["github_actions_labels"] = [resource]
+
+    gh = Github(gh_token())
+    user = gh.get_user()
+
+    repo = gh.get_repo(f"{GH_ORG}/{feedstock}-feedstock")
+    repo.create_fork()
+
+    base_branch = f"cirun-{int(time.time())}"
+
+    git_cmds = [
+        ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
+        ["git", "remote", "add", user.login, "https://x-access-token:${GITHUB_TOKEN}@github.com/"
+            f"{user.login}/{feedstock}.git"],
+        ["git", "commit", "-m", f"Enable {resource} using Cirun",
+            "--author", f"{user.name} <{user.email}>"],
+        ["git", "push", user.login, f"HEAD:{base_branch}"],
+    ]
+    for git_cmd in git_cmds:
+        print("Running:", *git_cmd)
+        subprocess.check_call(git_cmd)
+
+    print("Creating PR:")
+    repo.create_pull(
+        base="main",
+        head=f"{user}:{base_branch}",
+        title=f"Update feedstock to use {resource} with Cirun",
+        body=textwrap.dedent("""
+        Note that only builds triggered by maintainers of the feedstock (and core)
+        who have accepted the terms of service and privacy policy will run
+        on Github actions via Cirun.
+        - [ ] Maintainers have accepted the terms of service and privacy policy
+          at https://github.com/Quansight/open-gpu-server
+        """
+        ),
+    )
+
+
 def _process_request_for_feedstock(
     feedstock: str,
     resource: str,
@@ -270,6 +348,10 @@ def _process_request_for_feedstock(
                     '--token_name', 'STAGING_BINSTAR_TOKEN',
                 ]
             )
+
+            if resource.startswith("cirun-"):
+                print("Sending PR to feedstock")
+                send_pr_cirun(feedstock, feedstock_dir, resource, cirun_policy_args)
 
 
 def check_if_repo_exists(feedstock_name: str) -> None:
