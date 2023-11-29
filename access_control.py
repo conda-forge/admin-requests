@@ -218,7 +218,7 @@ def send_pr_cirun(
     gh = Github(gh_token())
     user = gh.get_user()
 
-    repo = gh.get_repo(f"{GH_ORG}/{feedstock}-feedstock")
+    repo = gh.get_repo(f"{GH_ORG}/{feedstock}")
     repo.create_fork()
 
     base_branch = f"cirun-{int(time.time())}"
