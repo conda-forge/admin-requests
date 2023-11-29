@@ -36,10 +36,14 @@ GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 PATH_TO_RESOURCE_MAPPING = {
     "gpu-runner": {
         "resource": "cirun-openstack-gpu-large",
+        "cirun_roles": ["admin", "maintain"],
+        "cirun_users_from_json": ["https://raw.githubusercontent.com/Quansight/open-gpu-server/main/access/conda-forge-users.json"]
     },
     "gpu-runner-pr": {
         "resource": "cirun-openstack-gpu-large",
         "cirun_policy_args": ["pull_request"],
+        "cirun_roles": ["admin", "maintain"],
+        "cirun_users_from_json": ["https://raw.githubusercontent.com/Quansight/open-gpu-server/main/access/conda-forge-users.json"]
     },
     "travis": {
         "resource": "travis",
@@ -178,7 +182,8 @@ def send_pr_cirun(
     feedstock: str,
     feedstock_dir: str,
     resource: str,
-    cirun_policy_args: Optional[List[str]] = None
+    cirun_policy_args: Optional[List[str]] = None,
+    **kwargs
 ) -> None:
     """
     Send PR to feedstock to enable Github Actions with Cirun
@@ -250,7 +255,7 @@ def _process_request_for_feedstock(
     feedstock: str,
     resource: str,
     remove: bool,
-    cirun_policy_args: Optional[List[str]] = None,
+    **kwargs,
 ) -> None:
     """
     Process the access control request for a single feedstock.
@@ -259,7 +264,6 @@ def _process_request_for_feedstock(
     feedstock (str): The name of the feedstock.
     resource (str): The name of the resource for access control.
     remove (bool): Whether to remove the access control.
-    cirun_policy_args (List[str]): A list of policy arguments for cirun resources.
     """
     with tempfile.TemporaryDirectory() as tmp_dir:
         feedstock_dir = os.path.join(tmp_dir, feedstock)
@@ -300,9 +304,10 @@ def _process_request_for_feedstock(
                     "--cirun-resources", resource,
                 ]
             )
-            if cirun_policy_args:
-                for arg in cirun_policy_args:
-                    register_ci_cmd.extend(("--cirun-policy-args", arg))
+            for key, value in kwargs.items():
+                if key.startswith("cirun"):
+                    for arg in value:
+                        register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
 
             if remove:
                 register_ci_cmd.append("--remove")
@@ -351,7 +356,7 @@ def _process_request_for_feedstock(
 
             if resource.startswith("cirun-"):
                 print("Sending PR to feedstock")
-                send_pr_cirun(feedstock, feedstock_dir, resource, cirun_policy_args)
+                send_pr_cirun(feedstock, feedstock_dir, resource, **kwargs)
 
 
 def check_if_repo_exists(feedstock_name: str) -> None:
