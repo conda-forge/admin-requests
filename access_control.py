@@ -206,7 +206,7 @@ def send_pr_cirun(
                 "github_actions_labels", [])):
             return
         cfg["github_actions"] = {"self_hosted: true"}
-        if "pull_request" in cirun_policy_args:
+        if cirun_policy_args and "pull_request" in cirun_policy_args:
             cfg["github_actions"]["triggers"] = ["push", "pull_request"]
         if "provider" not in cfg:
             cfg["provider"] = {}
