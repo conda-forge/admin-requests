@@ -6,8 +6,7 @@ import subprocess
 import tempfile
 import github
 
-from conda_smithy.ci_register import travis_get_repo_info
-from admin_requests_utils import write_secrets_to_files
+from .admin_requests_utils import write_secrets_to_files
 
 if "GITHUB_TOKEN" in os.environ:
     FEEDSTOCK_TOKENS_REPO = (
@@ -57,6 +56,7 @@ def get_token_reset_files():
 
 
 def reset_feedstock_token(name, skips=None):
+    from conda_smithy.ci_register import travis_get_repo_info
     skips = skips or []
 
     if "--without-travis" not in skips:
@@ -172,44 +172,18 @@ def reset_feedstock_tokens_in_file(token_reset_file):
     subprocess.check_call("git show", shell=True)
 
 
-def check_for_feedstocks_in_file(token_reset_file):
-    missing_feedstocks = []
-    with open(token_reset_file, "r") as fp:
-        for line in fp.readlines():
-            line = line.strip()
-            if line.startswith("#") or len(line) == 0:
-                continue
+def check(request):
+    assert "feedstocks" in request
+    feedstocks = request["feedstocks"]
 
-            r = requests.get(
-                "https://github.com/conda-forge/%s-feedstock" % line
-            )
-            if r.status_code != 200:
-                missing_feedstocks.append(line)
-    return missing_feedstocks
-
-
-def main():
-    mode = sys.argv[1]
-
-    if mode == "reset":
-        write_secrets_to_files()
-
-    token_reset_files = get_token_reset_files()
-    missing_feedstocks = []
-    for token_reset_file in token_reset_files:
-        print("working on file %s" % token_reset_file, flush=True)
-        if mode == "reset":
-            reset_feedstock_tokens_in_file(token_reset_file)
-        else:
-            missing_feedstocks.extend(
-                check_for_feedstocks_in_file(token_reset_file)
-            )
+    for feedstock in feedstocks:
+        r = requests.get(
+            "https://github.com/conda-forge/%s-feedstock" % feedstock
+        )
+        if r.status_code != 200:
+            missing_feedstocks.append(feedstock)
 
     if missing_feedstocks:
         raise RuntimeError(
             "feedstocks %s could not be found!" % missing_feedstocks
         )
-
-
-if __name__ == "__main__":
-    main()

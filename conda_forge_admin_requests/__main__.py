@@ -3,12 +3,30 @@ import glob
 import yaml
 import sys
 
-import .archive_feedstock as archive
-import .mark_broken as broken
+from . import archive_feedstock as archive, mark_broken, token_reset
 
 
 def get_task_files():
     return list(glob.glob(os.path.join("examples", "*.yml")))
+
+
+def check():
+    filenames = get_task_files()
+    
+    for filename in filenames:
+        with open(filename) as f:
+            request = yaml.safe_load(f) 
+
+        assert "action" in request
+
+        action = request["action"]
+
+        if action in ("archive", "unarchive"):
+            archive.check(request)
+        elif action in ("broken", "not_broken"):
+            mark_broken.check(request)
+        elif action in ("token_reset"):
+            token_reset.check(request)
 
 
 def run():
@@ -25,7 +43,7 @@ def run():
         if action in ("archive", "unarchive"):
             try_again = archive.run(request)
         elif action in ("broken", "not_broken"):
-            try_again = broken.run(request)
+            try_again = mark_broken.run(request)
 
         if try_again:
             with open(filename, "w") as fp:

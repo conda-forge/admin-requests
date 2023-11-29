@@ -18,7 +18,7 @@ def split_pkg(pkg):
     return plat, name, ver, build
 
 
-def check_request(request):
+def check(request):
     action = request["action"]
     assert action in ("broken", "not_broken")
 
