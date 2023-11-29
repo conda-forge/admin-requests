@@ -205,7 +205,7 @@ def send_pr_cirun(
         if any(label.startwith("cirun-") for label in cbc.get(
                 "github_actions_labels", [])):
             return
-        cfg["github_actions"] = {"self_hosted: true"}
+        cfg["github_actions"] = {"self_hosted": True}
         if cirun_policy_args and "pull_request" in cirun_policy_args:
             cfg["github_actions"]["triggers"] = ["push", "pull_request"]
         if "provider" not in cfg:
@@ -224,21 +224,20 @@ def send_pr_cirun(
     base_branch = f"cirun-{int(time.time())}"
 
     git_cmds = [
-        ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
-        ["git", "remote", "add", user.login, "https://x-access-token:${GITHUB_TOKEN}@github.com/"
-            f"{user.login}/{feedstock}.git"],
-        ["git", "commit", "-m", f"Enable {resource} using Cirun",
-            "--author", f"{user.name} <{user.email}>"],
-        ["git", "push", user.login, f"HEAD:{base_branch}"],
+        "git add recipe/conda_build_config.yaml conda-forge.yml",
+        f"git remote add {user.login} https://x-access-token:${{GITHUB_TOKEN}}@github.com/"
+            f"{user.login}/{feedstock}.git",
+        f"git commit -m 'Enable {resource} using Cirun' --author '{user.name} <{user.email}>'",
+        f"git push {user.login} HEAD:{base_branch}",
     ]
     for git_cmd in git_cmds:
-        print("Running:", *git_cmd)
-        subprocess.check_call(git_cmd)
+        print("Running:", git_cmd, " in ", feedstock_dir)
+        subprocess.check_call(git_cmd, shell=True, cwd=feedstock_dir)
 
     print("Creating PR:")
     repo.create_pull(
         base="main",
-        head=f"{user}:{base_branch}",
+        head=f"{user.login}:{base_branch}",
         title=f"Update feedstock to use {resource} with Cirun",
         body=textwrap.dedent("""
         Note that only builds triggered by maintainers of the feedstock (and core)
