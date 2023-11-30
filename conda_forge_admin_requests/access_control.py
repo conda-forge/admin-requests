@@ -10,6 +10,7 @@ import time
 from typing import Dict, List, Any
 import textwrap
 import copy
+from unittest import mock
 
 import requests
 
@@ -117,7 +118,10 @@ def _process_request_for_feedstock(
     revoke (bool): Whether to remove the access control.
     pull_request (bool): Whether to allow PRs for resource.
     """
-    with tempfile.TemporaryDirectory() as tmp_dir:
+
+    # We need a token with admin permissions for Cirun
+    with tempfile.TemporaryDirectory() as tmp_dir, \
+            mock.patch.dict('os.environ', {'GITHUB_TOKEN': os.environ['GITHUB_ADMIN_TOKEN']}):
         feedstock_dir = os.path.join(tmp_dir, feedstock)
         assert GH_ORG
         clone_cmd = [
