@@ -53,13 +53,13 @@ jobs:
         app_id: ${{ secrets.CF_CURATOR_APP_ID }}
         private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
 
-    - name: Grant/Revoke access to resources
+    - name: Process requests based on YAML files
       if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
       shell: bash -el {0}
       run: |
         git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
         git config --global user.name "conda-forge-curator[bot]"
-        python access_control.py
+        python -m conda_forge_admin_requests run
       env:
         BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
