@@ -46,20 +46,11 @@ def delete_feedstock_token(feedstock_name):
     )
 
 
-def get_token_reset_files():
-    return (
-        [
-            f for f in glob.glob("token_reset/*.txt")
-            if f != "token_reset/example.txt"
-        ]
-    )
-
-
 def reset_feedstock_token(name, skips=None):
     from conda_smithy.ci_register import travis_get_repo_info
     skips = skips or []
 
-    if "--without-travis" not in skips:
+    if "travis" not in skips:
         # test to make sure travis ci api is working
         # if not skip migration
         repo_info = travis_get_repo_info("conda-forge", name + "-feedstock")
@@ -89,11 +80,11 @@ def reset_feedstock_token(name, skips=None):
                 '--without-github-actions',
             ]
             + [
-                s for s in skips
+                f"--without-{s.replace('_', '-')}" for s in skips
                 if s not in [
-                    "--without-circle",
-                    "--without-drone",
-                    '--without-github-actions'
+                    "circle",
+                    "drone",
+                    "github_actions",
                 ]
             ]
             + [
@@ -111,13 +102,13 @@ def reset_feedstock_token(name, skips=None):
                 '--without-github-actions',
             ]
             + [
-                s for s in skips
+                f"--without-{s.replace('_', '-')}" for s in skips
                 if s not in [
-                    "--without-circle",
-                    "--without-drone",
-                    "--without-appveyor",
-                    "--without-azure",
-                    "--without-github-actions",
+                    "circle",
+                    "drone",
+                    "appveyor",
+                    "azure",
+                    "github_actions",
                 ]
             ]
             + [
@@ -126,64 +117,45 @@ def reset_feedstock_token(name, skips=None):
             cwd=feedstock_dir)
 
 
-def reset_feedstock_tokens_in_file(token_reset_file):
-    pkgs_to_do_again = []
-    skips = []
-    with open(token_reset_file, "r") as fp:
-        for line in fp.readlines():
-            line = line.strip()
-            if line.startswith("#") or len(line) == 0:
-                if line.startswith("#") and "--without-" in line:
-                    skips.append(line[1:].strip())
-                continue
+def run(request):
+    assert "packages" in request
+    packages = request["packages"]
 
-            try:
-                reset_feedstock_token(line, skips=skips)
-            except Exception as e:
-                print(
-                    "failed to reset token for '%s': %s" % (line, repr(e)),
-                    flush=True,
-                )
-                pkgs_to_do_again.append((line, set(skips)))
+    skips = request.get("skip_providers", [])
+
+    pkgs_to_do_again = []
+
+    for pkg in pkgs:
+        try:
+            reset_feedstock_token(pkg, skips=skips)
+        except Exception as e:
+            print(
+                "failed to reset token for '%s': %s" % (pkg, repr(e)),
+                flush=True,
+            )
+            pkgs_to_do_again.append(pkg)
 
     if pkgs_to_do_again:
-        with open(token_reset_file, "w") as fp:
-            fp.write(
-                "# token reset failed for these packages - "
-                "trying again later\n"
-            )
-            for pkg, skips in pkgs_to_do_again:
-                for skip in skips:
-                    fp.write("# " + skip + "\n")
-                fp.write(pkg + "\n")
-        subprocess.check_call(f"git add {token_reset_file}", shell=True)
-        subprocess.check_call(
-            f"git commit --allow-empty -m 'Keeping {token_reset_file} "
-            "after failed token reset'",
-            shell=True,
-        )
+        request = copy.deepcopy(request)
+        request["packages"] = pkgs_to_do_again
+        return request
     else:
-        subprocess.check_call(f"git rm {token_reset_file}", shell=True)
-        subprocess.check_call(
-            f"git commit -m 'Remove {token_reset_file} after token reset'",
-            shell=True,
-        )
-
-    subprocess.check_call("git show", shell=True)
+        return None
 
 
 def check(request):
     assert "feedstocks" in request
     feedstocks = request["feedstocks"]
+    missing_feedstocks = []
 
     for feedstock in feedstocks:
         r = requests.get(
-            "https://github.com/conda-forge/%s-feedstock" % feedstock
+            f"https://github.com/conda-forge/{feedstock}-feedstock"
         )
         if r.status_code != 200:
             missing_feedstocks.append(feedstock)
 
     if missing_feedstocks:
         raise RuntimeError(
-            "feedstocks %s could not be found!" % missing_feedstocks
+            f"feedstocks {missing_feedstocks} could not be found!"
         )
