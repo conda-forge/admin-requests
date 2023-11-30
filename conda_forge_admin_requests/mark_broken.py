@@ -71,15 +71,16 @@ def mark_broken_pkg(pkg, action):
 
 def run(request):
     if "BINSTAR_TOKEN" not in os.environ:
-        return
+        return copy.deepcopy(request)
 
     packages = request["packages"]
+    action = request["action"]
 
     pkgs_to_try_again = []
     did_any = False
     for package in packages:
         print(f"working on package {package}", flush=True)
-        success = mark_broken_pkg(package)
+        success = mark_broken_pkg(package, action)
         if success:
             did_any = True
         else:
