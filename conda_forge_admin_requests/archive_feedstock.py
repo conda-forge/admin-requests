@@ -57,7 +57,7 @@ def run(request):
     pkgs_to_do_again = []
     for feedstock in feedstocks:
         try:
-            process_repo("{feedstock}-feedstock", task)
+            process_repo(f"{feedstock}-feedstock", task)
         except Exception as e:
             print(
                 "failed to %s '%s': %s" % (task, feedstock, repr(e)),
