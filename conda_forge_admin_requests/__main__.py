@@ -8,7 +8,7 @@ from . import archive_feedstock as archive, mark_broken, token_reset, access_con
 
 
 def get_task_files():
-    return list(glob.glob(os.path.join("examples", "*.yml")))
+    return list(glob.glob(os.path.join("requests", "*.yml")))
 
 
 def check():
@@ -18,7 +18,7 @@ def check():
         with open(filename) as f:
             request = yaml.safe_load(f)
 
-        assert "action" in request
+        assert "action" in request, f"Invalid request: {request}"
 
         action = request["action"]
 
@@ -30,6 +30,8 @@ def check():
             token_reset.check(request)
         elif action in ("travis", "cirun"):
             access_control.check(request)
+        else:
+            assert False, f"Unknown action: {action}"
 
 
 def run():
@@ -39,7 +41,7 @@ def run():
         with open(filename) as f:
             request = yaml.safe_load(f)
 
-        assert "action" in request
+        assert "action" in request, f"Invalid request: {request}"
 
         action = request["action"]
 
@@ -51,6 +53,8 @@ def run():
             token_reset.run(request)
         elif action in ("travis", "cirun"):
             access_control.run(request)
+        else:
+            assert False, f"Unknown action: {action}"
 
         if try_again:
             with open(filename, "w") as fp:

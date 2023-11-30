@@ -268,4 +268,4 @@ def run(request: Dict[str, Any]) -> None:
     for feedstock in feedstocks:
         request_copy = copy.deepcopy(request)
         del request_copy["feedstocks"]
-        _process_request_for_feedstock(feedstock, **request_copy)
+        _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
