@@ -50,9 +50,9 @@ def run():
         elif action in ("broken", "not_broken"):
             try_again = mark_broken.run(request)
         elif action == "token_reset":
-            token_reset.run(request)
+            try_again = token_reset.run(request)
         elif action in ("travis", "cirun"):
-            access_control.run(request)
+            try_again = access_control.run(request)
         else:
             assert False, f"Unknown action: {action}"
 
