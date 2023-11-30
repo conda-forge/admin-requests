@@ -10,7 +10,7 @@ tasks.
 
 If you want to mark a package as broken on `conda-forge`, send a Pull Request
 adding a new `.yml` file in `requests` folder with a list of the full names of the packages
-for which the `broken` label will be added. See `examples/broken.yml` for an example.
+for which the `broken` label will be added. See `examples/example-broken.yml` for an example.
 
 Guidelines for marking packages as broken:
 
@@ -30,14 +30,14 @@ Guidelines for marking packages as broken:
 
 If you want to remove the broken label from packages on `conda-forge`, send a Pull Request
 adding a new `.yml` file in `requests` folder with a list of the full names of the packages
-for which the label `broken` will be removed. See `examples/not_broken.yml` for an example.
+for which the label `broken` will be removed. See `examples/example-not-broken.yml` for an example.
 
 
 ## Reset your Feedstock Token
 
 If you want to reset your feedstock token to fix issues with uploads, send a Pull Request
 adding a new `.yml` file in `requests` folder with a list of the feedstock names
-without `-feedstock`. See `examples/token_reset.yml` for an example.
+without `-feedstock`. See `examples/example-token-reset.yml` for an example.
 (e.g., for `python-feedstock`, the feedstocks list must contain `python`).
 
 
@@ -45,9 +45,9 @@ without `-feedstock`. See `examples/token_reset.yml` for an example.
 
 If you want to request a feedstock to be archived, send a Pull Request
 adding a new `.yml` file in `requests` folder with a list of the feedstock names
-without `-feedstock`. See `examples/archive.yml` for an example.
+without `-feedstock`. See `examples/example-archive.yml` for an example.
 (e.g., for `python-feedstock`, the feedstocks list must contain `python`).
-For unarchiving, see `examples/unarchive.yml` for an example.
+For unarchiving, see `examples/example-unarchive.yml` for an example.
 
 For feedstocks that need to be archived, please leave an open issue with some details about
 why that decision was taken (e.g. it has been deprecated by a new feedstock),
@@ -61,5 +61,5 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 
 Available opt-in resources:
 
-- Travis CI: See `examples/travis.yml`
-- GPU CI: See `examples/gpu-runner.yml`
+- Travis CI: See `examples/example-travis.yml`
+- GPU CI: See `examples/example-gpu-runner.yml`
