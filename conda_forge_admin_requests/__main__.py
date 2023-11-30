@@ -2,8 +2,9 @@ import os
 import glob
 import yaml
 import sys
+import subprocess
 
-from . import archive_feedstock as archive, mark_broken, token_reset
+from . import archive_feedstock as archive, mark_broken, token_reset, access_control
 
 
 def get_task_files():
@@ -12,10 +13,10 @@ def get_task_files():
 
 def check():
     filenames = get_task_files()
-    
+
     for filename in filenames:
         with open(filename) as f:
-            request = yaml.safe_load(f) 
+            request = yaml.safe_load(f)
 
         assert "action" in request
 
@@ -25,16 +26,18 @@ def check():
             archive.check(request)
         elif action in ("broken", "not_broken"):
             mark_broken.check(request)
-        elif action in ("token_reset"):
+        elif action == "token_reset":
             token_reset.check(request)
+        elif action in ("travis", "cirun"):
+            access_control.check(request)
 
 
 def run():
     filenames = get_task_files()
-    
+
     for filename in filenames:
         with open(filename) as f:
-            request = yaml.safe_load(f) 
+            request = yaml.safe_load(f)
 
         assert "action" in request
 
@@ -44,10 +47,14 @@ def run():
             try_again = archive.run(request)
         elif action in ("broken", "not_broken"):
             try_again = mark_broken.run(request)
+        elif action == "token_reset":
+            token_reset.run(request)
+        elif action in ("travis", "cirun"):
+            access_control.run(request)
 
         if try_again:
             with open(filename, "w") as fp:
-                yaml.dump(request, try_again)
+                yaml.dump(try_again, fp)
             subprocess.check_call(f"git add {filename}", shell=True)
             subprocess.check_call(
                 f"git commit --allow-empty -m 'Keeping {filename} "

@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 import github
 
-from .admin_requests_utils import write_secrets_to_files
+from .utils import write_secrets_to_files
 
 if "GITHUB_TOKEN" in os.environ:
     FEEDSTOCK_TOKENS_REPO = (

@@ -9,8 +9,8 @@ tasks.
 ## Mark packages as broken on conda-forge
 
 If you want to mark a package as broken on `conda-forge`, send a Pull Request
-adding a new `.txt` file in `broken/` with a list of the full names of the packages
-to which the `broken` label will be added. See `broken/example.txt` for an example.
+adding a new `.yml` file in `requests` folder with a list of the full names of the packages
+for which the `broken` label will be added. See `examples/broken.yml` for an example.
 
 Guidelines for marking packages as broken:
 
@@ -29,40 +29,37 @@ Guidelines for marking packages as broken:
 ## Mark packages as not broken on conda-forge
 
 If you want to remove the broken label from packages on `conda-forge`, send a Pull Request
-adding a new `.txt` file in `not_broken/` with a list of the full names of the packages
-for which the label `broken` will be removed. See `not_broken/example.txt` for an example.
+adding a new `.yml` file in `requests` folder with a list of the full names of the packages
+for which the label `broken` will be removed. See `examples/not_broken.yml` for an example.
 
 
 ## Reset your Feedstock Token
 
-If you want to reset your feedstock token to fix issues with uploads, place the name of your package in
-a new `.txt` file in `token_reset/`, with the name of the package as its contents. Use the name without `-feedstock` 
-(e.g., for `python-feedstock`, you should create `python.txt` with `python` as its contents).
-
-See `token_reset/example.txt` for an example.
+If you want to reset your feedstock token to fix issues with uploads, send a Pull Request
+adding a new `.yml` file in `requests` folder with a list of the feedstock names
+without `-feedstock`. See `examples/token_reset.yml` for an example.
+(e.g., for `python-feedstock`, the feedstocks list must contain `python`).
 
 
 ## Archive or unarchive a feedstock
 
-If you want to request a feedstock to be archived, place the name of your feedstock in a
-new `.txt` file in `archive/`. See `archive/example.txt` for an example. You 
-should use the name without the `-feedstock` suffix (e.g., for `python-feedstock`, you put in just `python`).
-
-If you want to request a feedstock to be unarchived, follow the same steps but for the `unarchive/` directory.
+If you want to request a feedstock to be archived, send a Pull Request
+adding a new `.yml` file in `requests` folder with a list of the feedstock names
+without `-feedstock`. See `examples/archive.yml` for an example.
+(e.g., for `python-feedstock`, the feedstocks list must contain `python`).
+For unarchiving, see `examples/unarchive.yml` for an example.
 
 For feedstocks that need to be archived, please leave an open issue with some details about
 why that decision was taken (e.g. it has been deprecated by a new feedstock),
 and link it in your PR description.
 
+
 ## Request / revoke access to CI resources
 
 Certain CI resources are opt-in only. If you want to request access to these resources, please
-submit a PR adding your feedstock name to an appropriately-named file in `grant_access/`. Conversely, to revoke
-access to a certain resource, use the `revoke_access/` directory.
+submit a PR adding your feedstock name to a new `.yml` file in `requests` folder.
 
 Available opt-in resources:
 
-- Travis CI: `travis/foo.txt`
-- GPU CI:
-  - `gpu-runner/foo.txt`: access to GPU runner on main branch only.
-  - `gpu-runner-pr/foo.txt`: access to GPU runner on pull requests as well.
+- Travis CI: See `examples/travis.yml`
+- GPU CI: See `examples/gpu-runner.yml`
