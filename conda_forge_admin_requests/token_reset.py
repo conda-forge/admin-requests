@@ -8,14 +8,8 @@ import github
 
 from .utils import write_secrets_to_files
 
-if "GITHUB_TOKEN" in os.environ:
-    FEEDSTOCK_TOKENS_REPO = (
-        github
-        .Github(os.environ["GITHUB_TOKEN"])
-        .get_repo("conda-forge/feedstock-tokens")
-    )
-else:
-    FEEDSTOCK_TOKENS_REPO = None
+
+FEEDSTOCK_TOKENS_REPO = None
 
 
 def feedstock_token_exists(feedstock_name):
@@ -30,15 +24,28 @@ def feedstock_token_exists(feedstock_name):
         return True
 
 
-def delete_feedstock_token(feedstock_name):
-    if FEEDSTOCK_TOKENS_REPO is None:
-        raise RuntimeError(
-            "Cannot delete feedstock token for %s since "
-            "we do not have a github token!" % feedstock_name
+def get_feedstock_token_repo():
+    global FEEDSTOCK_TOKENS_REPO
+    if FEEDSTOCK_TOKENS_REPO is None and "GITHUB_TOKEN" in os.environ:
+        FEEDSTOCK_TOKENS_REPO = (
+            github
+            .Github(os.environ["GITHUB_TOKEN"])
+            .get_repo("conda-forge/feedstock-tokens")
         )
+        return FEEDSTOCK_TOKENS_REPO
+    else:
+        raise RuntimeError(
+            "Cannot delete feedstock token since "
+            "we do not have a github token!"
+        )
+
+
+def delete_feedstock_token(feedstock_name):
+    feedstock_tokens_repo = get_feedstock_token_repo()
+
     token_file = "tokens/%s.json" % feedstock_name
-    fn = FEEDSTOCK_TOKENS_REPO.get_contents(token_file)
-    FEEDSTOCK_TOKENS_REPO.delete_file(
+    fn = feedstock_tokens_repo.get_contents(token_file)
+    feedstock_tokens_repo.delete_file(
         token_file,
         "[ci skip] [skip ci] [cf admin skip] ***NO_CI*** removing "
         "token for %s" % feedstock_name,
