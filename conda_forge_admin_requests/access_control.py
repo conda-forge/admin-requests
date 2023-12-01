@@ -62,7 +62,7 @@ def send_pr_cirun(
         cfg["provider"]["linux_64"] = "github_actions"
         cbc["github_actions_labels"] = resources
 
-    gh = Github(gh_token())
+    gh = Github(os.environ['GITHUB_TOKEN'])
     user = gh.get_user()
 
     repo = gh.get_repo(f"{GH_ORG}/{feedstock}")
