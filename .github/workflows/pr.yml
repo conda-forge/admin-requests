@@ -21,35 +21,10 @@ jobs:
         miniforge-version: latest
         miniforge-variant: Mambaforge
 
-    - name: Check packages exist on main (or label/broken)
-      shell: bash -el {0}
-      run: |
-          ls -1 broken/example.txt
-          ls -1 not_broken/example.txt
-          conda activate cf
-          python mark_broken.py check
-
-    - name: Check feedstocks exist for token reset
-      shell: bash -el {0}
-      run: |
-          ls -1 token_reset/example.txt
-          conda activate cf
-          python token_reset.py check
-
-    - name: Check feedstocks can be (un)archived
+    - name: Check request YAML files
       shell: bash -el {0}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-          ls -1 archive/example.txt
-          ls -1 unarchive/example.txt
           conda activate cf
-          python archive_feedstock.py check
-
-    - name: Check resources exist and can be granted access
-      shell: bash -el {0}
-      run: |
-          ls -1 grant_access/*/example.txt
-          ls -1 revoke_access/*/example.txt
-          conda activate cf
-          python access_control.py check
+          python -m conda_forge_admin_requests check

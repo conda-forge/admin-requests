@@ -1,0 +1,3 @@
+action: travis
+feedstocks:
+- conda-smithy
