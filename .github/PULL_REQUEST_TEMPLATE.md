@@ -33,9 +33,6 @@ What will happen when a package is marked broken?
 ## Checklist:
 
 * [ ] I want to mark a package as broken (or not broken):
-  * [ ] Make sure your package is in the right spot (`broken/*` for adding the
-    `broken` label, `not_broken/*` for removing the `broken` label, or `token_reset/*`
-    for token resets)
   * [ ] Added a description of the problem with the package in the PR description.
   * [ ] Pinged the team for the package for their input.
 
