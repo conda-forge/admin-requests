@@ -7,6 +7,7 @@ on these requests within 24 hours.
 Please use the text below to add context about this PR, especially if:
 - You want to mark packages as broken
 - You want to archive a feedstock
+- You want to request access to opt-in CI resources
 
 Cheers and thank you for contributing to conda-forge!
 -->
@@ -41,6 +42,10 @@ What will happen when a package is marked broken?
   * [ ] Make sure you have opened an issue on the feedstock explaining why it was archived.
   * [ ] Linked that issue in this PR description.
   * [ ] Added links to any other relevant issues/PRs in the PR description.
+
+* [ ] I want to request (or revoke) access to an opt-in CI resource:
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Added a small description explaining why access is needed
 
 <!--
 For example if you are trying to mark a `foo` conda package as broken.
