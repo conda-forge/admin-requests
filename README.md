@@ -62,4 +62,4 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 Available opt-in resources:
 
 - Travis CI: See `examples/example-travis.yml`
-- GPU CI: See `examples/example-gpu-runner.yml`
+- [`open-gpu-server`](https://github.com/Quansight/open-gpu-server) (includes GPU CI and long-running builds): See `examples/example-open-gpu-server.yml`. 
