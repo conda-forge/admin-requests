@@ -1,0 +1,4 @@
+action: broken
+packages:
+- noarch/joseki-2.2.0-pyhd8ed1ab_0.conda
+- noarch/joseki-2.3.0-pyhd8ed1ab_0.conda
