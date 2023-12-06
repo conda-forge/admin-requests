@@ -1,0 +1,20 @@
+action: broken
+packages:
+  - linux-64/libpq-16.1-hfc447b1_1.conda
+  - linux-64/libpq-16.1-hfc447b1_2.conda
+  - linux-64/libpq-16.1-hedfdc17_4.conda
+  - linux-aarch64/libpq-16.1-h04b8c23_1.conda
+  - linux-aarch64/libpq-16.1-h04b8c23_2.conda
+  - linux-aarch64/libpq-16.1-h8d0093b_4.conda
+  - linux-ppc64le/libpq-16.1-h9d99649_1.conda
+  - linux-ppc64le/libpq-16.1-h9d99649_2.conda
+  - linux-ppc64le/libpq-16.1-h29a043a_4.conda
+  - osx-64/libpq-16.1-h6dd4ff7_1.conda
+  - osx-64/libpq-16.1-h6dd4ff7_2.conda
+  - osx-64/libpq-16.1-h74b662b_4.conda
+  - osx-arm64/libpq-16.1-hd435d45_1.conda
+  - osx-arm64/libpq-16.1-hd435d45_2.conda
+  - osx-arm64/libpq-16.1-h9aca644_4.conda
+  - win-64/libpq-16.1-h43585b0_1.conda
+  - win-64/libpq-16.1-h43585b0_2.conda
+  - win-64/libpq-16.1-h1beaf6b_4.conda
