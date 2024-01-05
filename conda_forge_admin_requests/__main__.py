@@ -4,7 +4,7 @@ import yaml
 import sys
 import subprocess
 
-from . import archive_feedstock as archive, mark_broken, token_reset, access_control
+from . import archive_feedstock as archive, mark_broken, token_reset, access_control, core
 
 
 def get_task_files():
@@ -28,6 +28,8 @@ def check():
             mark_broken.check(request)
         elif action == "token_reset":
             token_reset.check(request)
+        elif action == "core":
+            core.check(request)
         elif action in ("travis", "cirun"):
             access_control.check(request)
         else:
@@ -51,6 +53,8 @@ def run():
             try_again = mark_broken.run(request)
         elif action == "token_reset":
             try_again = token_reset.run(request)
+        elif action == "core":
+            try_again = core.run(request)
         elif action in ("travis", "cirun"):
             try_again = access_control.run(request)
         else:
