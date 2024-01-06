@@ -4,6 +4,18 @@ import tempfile
 import requests
 import copy
 from conda_smithy.github import Github
+import csv
+
+
+def _get_core(url):
+    res = requests.get(url)
+    data = csv.reader(res.content.decode("utf-8").splitlines(), delimiter=',')
+    return set([row[0] for row in list(data)[1:]])
+
+
+def get_core():
+    URL_BASE = "https://raw.githubusercontent.com/conda-forge/conda-forge.github.io/main/src/"
+    return _get_core(f"{URL_BASE}/core.csv") | _get_core(f"{URL_BASE}/emeritus.csv")
 
 
 def check(request):
@@ -14,12 +26,17 @@ def check(request):
     gh_handle = request["github"]
     # TODO: check that the PR was submitted by the user
 
+    pr_author = os.environ["GITHUB_PR_AUTHOR"]
+    assert pr_author == gh_handle
+
+    core = get_core()
+    assert pr_author in core
+
 
 def run(request):
     action = request.pop("action")
     assert action == "core"
     assert "github" in request
-    check(request)
 
     gh_handle = request.pop("github")
     gh = Github(os.environ['GITHUB_TOKEN'])
