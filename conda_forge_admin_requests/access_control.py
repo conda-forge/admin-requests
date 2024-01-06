@@ -23,7 +23,7 @@ from conda_smithy.github import Github, gh_token
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
 DEFAULT_CIRUN_OPENSTACK_VALUES = {
-    "cirun_roles": ["admin", "maintain"],
+    "cirun_roles": ["admin", "maintain", "write"],
     "cirun_users_from_json": ["https://raw.githubusercontent.com/Quansight/open-gpu-server/main/access/conda-forge-users.json"]
 }
 
