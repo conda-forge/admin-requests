@@ -3,6 +3,7 @@ import glob
 import yaml
 import sys
 import subprocess
+from conda_forge_admin_requests import get_actions, register_actions
 
 def _get_task_files():
     return list(glob.glob(os.path.join("requests", "*.yml")))
@@ -64,7 +65,6 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.exit("Usage: python -m conda_forge_admin_requests [check | run]")
 
-    from conda_forge_admin_requests import register_actions
     register_actions()
     check_only = sys.argv[1] == "check"
 
