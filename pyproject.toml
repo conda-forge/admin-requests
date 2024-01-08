@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["conda_forge_admin_requests"]
+
+[project]
+name = "conda_forge_admin_requests"
+version = "2024.01.08"
