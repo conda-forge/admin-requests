@@ -4,15 +4,12 @@ import yaml
 import sys
 import subprocess
 
-from . import archive_feedstock as archive, mark_broken, token_reset, access_control
-
-
-def get_task_files():
+def _get_task_files():
     return list(glob.glob(os.path.join("requests", "*.yml")))
 
 
 def check():
-    filenames = get_task_files()
+    filenames = _get_task_files()
 
     for filename in filenames:
         with open(filename) as f:
@@ -21,21 +18,16 @@ def check():
         assert "action" in request, f"Invalid request: {request}"
 
         action = request["action"]
+        actions = get_actions()
 
-        if action in ("archive", "unarchive"):
-            archive.check(request)
-        elif action in ("broken", "not_broken"):
-            mark_broken.check(request)
-        elif action == "token_reset":
-            token_reset.check(request)
-        elif action in ("travis", "cirun"):
-            access_control.check(request)
-        else:
+        if action not in actions:
             assert False, f"Unknown action: {action}"
+
+        getattr(actions[action], "check")(request)
 
 
 def run():
-    filenames = get_task_files()
+    filenames = _get_task_files()
 
     for filename in filenames:
         with open(filename) as f:
@@ -44,17 +36,12 @@ def run():
         assert "action" in request, f"Invalid request: {request}"
 
         action = request["action"]
+        actions = get_actions()
 
-        if action in ("archive", "unarchive"):
-            try_again = archive.run(request)
-        elif action in ("broken", "not_broken"):
-            try_again = mark_broken.run(request)
-        elif action == "token_reset":
-            try_again = token_reset.run(request)
-        elif action in ("travis", "cirun"):
-            try_again = access_control.run(request)
-        else:
+        if action not in actions:
             assert False, f"Unknown action: {action}"
+
+        try_again = getattr(actions[action], "run")(request)
 
         if try_again:
             with open(filename, "w") as fp:
@@ -76,6 +63,9 @@ def run():
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.exit("Usage: python -m conda_forge_admin_requests [check | run]")
+
+    from conda_forge_admin_requests import register_actions
+    register_actions()
     check_only = sys.argv[1] == "check"
 
     if check_only:
