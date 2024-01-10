@@ -1,0 +1,12 @@
+action: broken
+packages:
+- linux-64/deltalake-0.15.0-py38hfe96bc9_0.conda
+- linux-64/deltalake-0.15.0-py310h8fc3409_0.conda
+- linux-64/deltalake-0.15.0-py39hccdef0e_0.conda
+- linux-64/deltalake-0.15.0-py311hf42d015_0.conda
+- linux-64/deltalake-0.15.0-py312hd892df0_0.conda
+- linux-64/deltalake-0.15.1-py310h8fc3409_0.conda
+- linux-64/deltalake-0.15.1-py39hccdef0e_0.conda
+- linux-64/deltalake-0.15.1-py38hfe96bc9_0.conda
+- linux-64/deltalake-0.15.1-py312hd892df0_0.conda
+- linux-64/deltalake-0.15.1-py311hf42d015_0.conda
