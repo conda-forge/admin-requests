@@ -1,0 +1,34 @@
+action: broken
+packages:
+ - linux-64/tensorflow-2.15.0-cuda120py39hb94c71b_1.conda
+ - linux-64/tensorflow-2.15.0-cuda120py311h5cbd639_1.conda
+ - linux-64/tensorflow-2.15.0-cuda120py310h9360858_1.conda
+ - linux-64/tensorflow-2.15.0-cuda118py39h5387621_1.conda
+ - linux-64/tensorflow-2.15.0-cuda118py311hfabe020_1.conda
+ - linux-64/tensorflow-2.15.0-cuda118py310h943c599_1.conda
+ - linux-64/tensorflow-2.15.0-cuda120py39hb94c71b_0.conda
+ - linux-64/tensorflow-2.15.0-cuda120py311h5cbd639_0.conda
+ - linux-64/tensorflow-2.15.0-cuda120py310h9360858_0.conda
+ - linux-64/tensorflow-2.15.0-cuda118py39h5387621_0.conda
+ - linux-64/tensorflow-2.15.0-cuda118py311hfabe020_0.conda
+ - linux-64/tensorflow-2.15.0-cuda118py310h943c599_0.conda
+ - linux-64/tensorflow-base-2.15.0-cuda120py39hf42b710_1.conda
+ - linux-64/tensorflow-base-2.15.0-cuda120py311h43b5e44_1.conda
+ - linux-64/tensorflow-base-2.15.0-cuda120py310heceb7ac_1.conda
+ - linux-64/tensorflow-base-2.15.0-cuda118py39h7110e48_1.conda
+ - linux-64/tensorflow-base-2.15.0-cuda118py311hd261b49_1.conda
+ - linux-64/tensorflow-base-2.15.0-cuda118py310h2943ed3_1.conda
+ - linux-64/tensorflow-base-2.15.0-cuda120py39h5d882d4_0.conda
+ - linux-64/tensorflow-base-2.15.0-cuda120py311h2841c35_0.conda
+ - linux-64/tensorflow-base-2.15.0-cuda120py310ha157117_0.conda
+ - linux-64/tensorflow-base-2.15.0-cuda118py39hbe86951_0.conda
+ - linux-64/tensorflow-base-2.15.0-cuda118py311h0476658_0.conda
+ - linux-64/tensorflow-base-2.15.0-cuda118py310h2e5981e_0.conda
+ - linux-64/libtensorflow-2.15.0-cuda120h316e68c_1.conda
+ - linux-64/libtensorflow-2.15.0-cuda118h4e6ae10_1.conda
+ - linux-64/libtensorflow-2.15.0-cuda120hacc8576_0.conda
+ - linux-64/libtensorflow-2.15.0-cuda118h5586705_0.conda
+ - linux-64/libtensorflow_cc-2.15.0-cuda120h11be487_1.conda
+ - linux-64/libtensorflow_cc-2.15.0-cuda118h9b6bac4_1.conda
+ - linux-64/libtensorflow_cc-2.15.0-cuda120ha17f35c_0.conda
+ - linux-64/libtensorflow_cc-2.15.0-cuda118h87dfefd_0.conda
