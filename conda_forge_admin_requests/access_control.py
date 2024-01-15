@@ -159,12 +159,14 @@ def _process_request_for_feedstock(
 
             for resource in resources:
                 register_ci_cmd.extend(["--cirun-resources", resource])
-                if resource.startswith("cirun-openstack"):
-                    for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
-                        for arg in value:
-                            register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
-                else:
-                    assert False, "Unknown resource"
+                assert resource.startswith("cirun-openstack"), f"Unknown resource {resource}"
+
+            if all(resource.startswith("cirun-openstack") for resource in resources):
+                for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
+                    for arg in value:
+                        register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
+            else:
+                assert False, f"Unknown resources {resources}"
 
             if pull_request:
                 register_ci_cmd.extend(("--cirun-policy-args", "pull_request"))
