@@ -108,6 +108,7 @@ def _process_request_for_feedstock(
     resources: List[str] = None,
     revoke: bool = False,
     pull_request: bool = False,
+    send_pr: bool = True,
 ) -> None:
     """
     Process the access control request for a single feedstock.
@@ -213,7 +214,7 @@ def _process_request_for_feedstock(
                 ]
             )
 
-            if action == "cirun":
+            if action == "cirun" and send_pr:
                 print("Sending PR to feedstock")
                 send_pr_cirun(feedstock, feedstock_dir, resources, pull_request)
 

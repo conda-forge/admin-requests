@@ -11,3 +11,5 @@ resources:
 pull_request: false  
 # revoke access to the gpu runner
 revoke: false
+# Send an automatic PR to the feedstock to enable cirun defaults
+send_pr: true
