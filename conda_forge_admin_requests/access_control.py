@@ -205,16 +205,17 @@ def _process_request_for_feedstock(
                 ]
             )
 
-            print("Add STAGING_BINSTAR_TOKEN to GHA or travis")
-            subprocess.check_call(
-                [
-                    'conda', 'smithy', 'rotate-binstar-token',
-                    '--feedstock_directory', feedstock_dir,
-                    '--without-all', with_cmd,
-                    *owner_info,
-                    '--token_name', 'STAGING_BINSTAR_TOKEN',
-                ]
-            )
+            if action == "travis":
+                print("Add STAGING_BINSTAR_TOKEN to travis")
+                subprocess.check_call(
+                    [
+                        'conda', 'smithy', 'rotate-binstar-token',
+                        '--feedstock_directory', feedstock_dir,
+                        '--without-all', with_cmd,
+                        *owner_info,
+                        '--token_name', 'STAGING_BINSTAR_TOKEN',
+                    ]
+                )
 
             if action == "cirun" and send_pr:
                 print("Sending PR to feedstock")
