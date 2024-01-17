@@ -54,7 +54,7 @@ def mark_broken_pkg(pkg, action):
 
     r = func(
         "https://api.anaconda.org/channels/conda-forge/broken",
-        headers={'Authorization': 'token {}'.format(os.environ["BINSTAR_TOKEN"])},
+        headers={'Authorization': 'token {}'.format(os.environ["PROD_BINSTAR_TOKEN"])},
         json={
             "basename": pkg,
             "package": name,
@@ -70,7 +70,7 @@ def mark_broken_pkg(pkg, action):
 
 
 def run(request):
-    if "BINSTAR_TOKEN" not in os.environ:
+    if "PROD_BINSTAR_TOKEN" not in os.environ:
         return copy.deepcopy(request)
 
     packages = request["packages"]
