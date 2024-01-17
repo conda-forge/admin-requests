@@ -61,7 +61,7 @@ jobs:
         git config --global user.name "conda-forge-curator[bot]"
         python -m conda_forge_admin_requests run
       env:
-        BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
+        PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
         TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
