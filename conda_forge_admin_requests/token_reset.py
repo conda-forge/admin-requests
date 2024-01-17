@@ -123,26 +123,26 @@ def reset_feedstock_token(name, skips=None):
 
 
 def run(request):
-    assert "packages" in request
-    packages = request["packages"]
+    assert "feedstocks" in request
+    feedstocks = request["feedstocks"]
 
     skips = request.get("skip_providers", [])
 
-    pkgs_to_do_again = []
+    feedstocks_to_do_again = []
 
-    for pkg in pkgs:
+    for feedstock in feedstocks:
         try:
-            reset_feedstock_token(pkg, skips=skips)
+            reset_feedstock_token(feedstock, skips=skips)
         except Exception as e:
             print(
-                "failed to reset token for '%s': %s" % (pkg, repr(e)),
+                "failed to reset token for '%s': %s" % (feedstock, repr(e)),
                 flush=True,
             )
-            pkgs_to_do_again.append(pkg)
+            feedstocks_to_do_again.append(pkg)
 
-    if pkgs_to_do_again:
+    if feedstocks_to_do_again:
         request = copy.deepcopy(request)
-        request["packages"] = pkgs_to_do_again
+        request["feedstocks"] = feedstocks_to_do_again
         return request
     else:
         return None
