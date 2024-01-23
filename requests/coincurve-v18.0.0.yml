@@ -1,0 +1,20 @@
+action: broken
+packages:
+  - win-64/coincurve-18.0.0-py39ha55989b_0.conda
+  - win-64/coincurve-18.0.0-py38h91455d4_0.conda
+  - win-64/coincurve-18.0.0-py312he70551f_0.conda
+  - win-64/coincurve-18.0.0-py311ha68e1ae_0.conda
+  - win-64/coincurve-18.0.0-py39h7a188e9_0.conda
+  - win-64/coincurve-18.0.0-py310h8d17308_0.conda
+  - osx-64/coincurve-18.0.0-py39he962182_0.conda
+  - osx-64/coincurve-18.0.0-py312h41838bb_0.conda
+  - osx-64/coincurve-18.0.0-py310hb372a2b_0.conda
+  - osx-64/coincurve-18.0.0-py39ha09f3b3_0.conda
+  - osx-64/coincurve-18.0.0-py38hae2e43d_0.conda
+  - osx-64/coincurve-18.0.0-py311he705e18_0.conda
+  - linux-64/coincurve-18.0.0-py311h459d7ec_0.conda
+  - linux-64/coincurve-18.0.0-py38h01eb140_0.conda
+  - linux-64/coincurve-18.0.0-py39hf860d4a_0.conda
+  - linux-64/coincurve-18.0.0-py312h98912ed_0.conda
+  - linux-64/coincurve-18.0.0-py39hd1e30aa_0.conda
+  - linux-64/coincurve-18.0.0-py310h2372a71_0.conda
