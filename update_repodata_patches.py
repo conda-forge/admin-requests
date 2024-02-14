@@ -49,6 +49,19 @@ Hi! Our weekly job found a non-zero repodata patch diff:
 
 
 def update_repodata_patches(dry_run):
+
+    skipme = [
+        "================================================================================",
+        "linux-armv7l",
+        "linux-ppc64le",
+        "linux-aarch64",
+        "noarch",
+        "win-32",
+        "osx-arm64",
+        "osx-64",
+        "linux-64",
+        "win-64",
+    ]
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(
             "git clone https://github.com/conda-forge/"
@@ -78,7 +91,10 @@ def update_repodata_patches(dry_run):
         empty = True
         for line in d.splitlines():
             line = line.strip()
-            if len(line) > 0 and not line.startswith("Downloading"):
+            if len(line) > 0 and not (
+                line.startswith("Downloading")
+                or line in skipme
+            ):
                 empty = False
 
         print("diff:\n" + d, flush=True)
