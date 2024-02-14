@@ -1,0 +1,3 @@
+action: not_broken
+packages:
+- osx-64/arpack-3.6.1-blas_openblash1f444ea_0.tar.bz2
