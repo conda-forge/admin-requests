@@ -138,7 +138,7 @@ def run(request):
                 "failed to reset token for '%s': %s" % (feedstock, repr(e)),
                 flush=True,
             )
-            feedstocks_to_do_again.append(pkg)
+            feedstocks_to_do_again.append(feedstock)
 
     if feedstocks_to_do_again:
         request = copy.deepcopy(request)
