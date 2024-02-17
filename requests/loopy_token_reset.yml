@@ -1,0 +1,4 @@
+action: token_reset
+feedstocks:
+- loopy
+skip_providers: [azure]
