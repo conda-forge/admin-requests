@@ -36,7 +36,7 @@ packages:
   - osx-64/pytorch-2.1.0-cpu_mkl_py38h6971032_103.conda
   - osx-64/pytorch-2.1.0-cpu_mkl_py311hdb2f8b7_103.conda
   - osx-64/pytorch-2.1.0-cpu_mkl_py310h1822dd0_103.conda
-  - osx-64/pytorch-2.1.0-cpu_generic_py310h39decb3_3.conda	
+  - osx-64/pytorch-2.1.0-cpu_generic_py310h39decb3_3.conda
   - osx-64/pytorch-2.1.0-cpu_generic_py38h735d384_3.conda
   - osx-64/pytorch-2.1.0-cpu_mkl_py312h40cb7ac_103.conda
   - osx-64/pytorch-2.1.0-cpu_mkl_py39h6491c0d_103.conda
