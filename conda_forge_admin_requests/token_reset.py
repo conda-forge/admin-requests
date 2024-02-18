@@ -124,7 +124,9 @@ def reset_feedstock_token(name, skips=None):
 
 
 def run(request):
-    assert "feedstocks" in request
+    check(request)
+    write_secrets_to_files()
+
     feedstocks = request["feedstocks"]
 
     skips = request.get("skip_providers", [])
