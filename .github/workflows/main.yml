@@ -20,7 +20,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
       continue-on-error: true
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       # outcome is evaluated before continue-on-error above
       if: steps.conversion_lock.outcome == 'success'
 
@@ -29,7 +29,9 @@ jobs:
       run: |
         set -x
         # avoid wasting CI time if there is nothing to do
-        count="$(ls requests/*.yml | wc -l)"
+        count_yml=$(ls requests/*.yml | wc -l)
+        count_yaml=$(ls requests/*.yaml | wc -l)
+        count=$(($count_yml + $count_yaml))
         if [[ "${count}" == "0" ]]; then
           echo "nothing to do, setting ci skip!"
           echo "CI_SKIP=true" >> $GITHUB_ENV
