@@ -1,3 +1,7 @@
 action: not_broken
 packages:
 - osx-64/arpack-3.6.1-blas_openblash1f444ea_0.tar.bz2
+- osx-64/lammps-2018.03.16-.tar.bz2
+- osx-64/sundials-3.1.0-blas_openblash0edd121_202.tar.bz2
+- osx-64/vlfeat-0.9.20-h470a237_2.tar.bz2
+- osx-64/xtensor-python-0.19.1-h3e44d54_0.tar.bz2
