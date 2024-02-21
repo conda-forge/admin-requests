@@ -1,0 +1,4 @@
+action: broken
+packages:
+- noarch/r-parallelly-1.37.0-r42hc72bb7e_0.conda
+- noarch/r-parallelly-1.37.0-r43hc72bb7e_0.conda
