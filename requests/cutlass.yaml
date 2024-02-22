@@ -2,8 +2,7 @@ action: cirun
 feedstocks:
   - cutlass
 resources:
-  - cirun-openstack-gpu-large
-  - cirun-openstack-cpu-large
+  - cirun-openstack-cpu-4xlarge
 pull_request: true
 revoke: false
 send_pr: true
