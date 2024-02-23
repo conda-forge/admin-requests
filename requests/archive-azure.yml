@@ -1,0 +1,4 @@
+action: archive
+feedstocks:
+  - azure
+  - azure-mgmt
