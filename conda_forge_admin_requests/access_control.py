@@ -77,7 +77,7 @@ def send_pr_cirun(
         f"git remote add {user.login} https://x-access-token:${{GITHUB_TOKEN}}@github.com/"
         f"{user.login}/{feedstock}.git",
         f"git commit -m 'Enable {resource_str} using Cirun' --author '{user.name} <{user.email}>'",
-        "conda-smithy rerender -c auto",
+        "conda-smithy rerender -c auto --no-check-uptodate",
         f"git push {user.login} HEAD:{base_branch}",
     ]
     for git_cmd in git_cmds:
