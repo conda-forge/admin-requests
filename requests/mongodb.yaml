@@ -1,8 +1,0 @@
-action: cirun
-feedstocks:
-  - mongodb
-resources:
-  - cirun-openstack-cpu-large
-pull_request: true
-revoke: false
-send_pr: true
