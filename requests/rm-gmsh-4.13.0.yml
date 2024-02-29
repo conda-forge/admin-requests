@@ -1,0 +1,17 @@
+action: broken
+packages:
+- noarch/python-gmsh-4.13.0-h57928b3_0.conda
+- noarch/python-gmsh-4.13.0-h694c41f_0.conda
+- noarch/python-gmsh-4.13.0-ha770c72_0.conda
+- osx-64/gmsh-4.13.0-h48a2193_0.conda
+- osx-arm64/gmsh-4.13.0-h8a9da21_0.conda
+- win-64/gmsh-4.13.0-hf228048_0.conda
+- win-64/gmsh-4.13.0-hcc95203_0.conda
+- osx-64/gmsh-4.13.0-h546c69e_0.conda
+- osx-arm64/gmsh-4.13.0-hd427cfb_0.conda
+- linux-ppc64le/gmsh-4.13.0-h01679bf_0.conda
+- linux-64/gmsh-4.13.0-h17d5aaa_0.conda
+- linux-aarch64/gmsh-4.13.0-ha60554b_0.conda
+- linux-64/gmsh-4.13.0-h6b98cf8_0.conda
+- linux-ppc64le/gmsh-4.13.0-had2a3fc_0.conda
+- linux-aarch64/gmsh-4.13.0-h925e419_0.conda
