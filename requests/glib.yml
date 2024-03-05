@@ -1,0 +1,20 @@
+action: broken
+packages:
+  - osx-64/glib-2.78.4-h92b6c6a_1.conda
+  - win-64/glib-2.78.4-h4dfd0cc_1.conda
+  - osx-arm64/glib-2.78.4-h091b4b1_1.conda
+  - linux-64/glib-2.78.4-h2797004_1.conda
+  - linux-aarch64/glib-2.78.4-h194ca79_1.conda
+  - linux-ppc64le/glib-2.78.4-hd4bbf49_1.conda
+  - osx-64/glib-tools-2.78.4-h92b6c6a_1.conda
+  - win-64/glib-tools-2.78.4-h4dfd0cc_1.conda
+  - osx-arm64/glib-tools-2.78.4-h091b4b1_1.conda
+  - linux-64/glib-tools-2.78.4-h2797004_1.conda
+  - linux-aarch64/glib-tools-2.78.4-h194ca79_1.conda
+  - linux-ppc64le/glib-tools-2.78.4-hd4bbf49_1.conda
+  - osx-64/libglib-2.78.4-h89b4d22_1.conda
+  - win-64/libglib-2.78.4-h55e6270_1.conda
+  - osx-arm64/libglib-2.78.4-hbf44286_1.conda
+  - linux-64/libglib-2.78.4-h4648e47_1.conda
+  - linux-aarch64/libglib-2.78.4-h2afc65d_1.conda
+  - linux-ppc64le/libglib-2.78.4-h6f8e791_1.conda
