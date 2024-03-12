@@ -1,0 +1,8 @@
+action: broken
+packages:
+- linux-64/rdma-core-50.0-hd3aeb46_0.conda
+- linux-aarch64/rdma-core-50.0-h0425590_0.conda
+- linux-ppc64le/rdma-core-50.0-h8800142_0.conda
+- linux-64/rdma-core-49.1-hd3aeb46_0.conda
+- linux-aarch64/rdma-core-49.1-h0425590_0.conda
+- linux-ppc64le/rdma-core-49.1-h8800142_0.conda
