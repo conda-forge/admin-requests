@@ -1,47 +1,92 @@
 action: broken
 packages:
+  - linux-64/mumps-mpi-5.2.1-h04144ec_13.conda
+  - linux-64/mumps-mpi-5.2.1-h22282ff_12.conda
+  - linux-64/mumps-mpi-5.2.1-h5b51c9e_14.conda
+  - linux-64/mumps-mpi-5.2.1-h61157de_14.conda
+  - linux-64/mumps-mpi-5.2.1-h811da75_12.conda
+  - linux-64/mumps-mpi-5.2.1-h9d66016_13.conda
   - linux-64/mumps-mpi-5.6.2-h5b51c9e_0.conda
   - linux-64/mumps-mpi-5.6.2-h5b51c9e_1.conda
   - linux-64/mumps-mpi-5.6.2-h5b51c9e_2.conda
   - linux-64/mumps-mpi-5.6.2-h61157de_0.conda
   - linux-64/mumps-mpi-5.6.2-h61157de_1.conda
   - linux-64/mumps-mpi-5.6.2-h61157de_2.conda
+  - linux-64/mumps-seq-5.2.1-h5c37537_14.conda
+  - linux-64/mumps-seq-5.2.1-h74384fa_13.conda
+  - linux-64/mumps-seq-5.2.1-h8b41acc_12.conda
   - linux-64/mumps-seq-5.6.2-h5c37537_0.conda
   - linux-64/mumps-seq-5.6.2-h5c37537_1.conda
   - linux-64/mumps-seq-5.6.2-h5c37537_2.conda
+  - osx-64/mumps-mpi-5.2.1-h01fa10c_14.conda
+  - osx-64/mumps-mpi-5.2.1-h4f2f45c_13.conda
+  - osx-64/mumps-mpi-5.2.1-h705f37d_14.conda
+  - osx-64/mumps-mpi-5.2.1-h7b0863c_12.conda
+  - osx-64/mumps-mpi-5.2.1-ha8fb634_12.conda
+  - osx-64/mumps-mpi-5.2.1-hca4edcd_13.conda
   - osx-64/mumps-mpi-5.6.2-h01fa10c_0.conda
   - osx-64/mumps-mpi-5.6.2-h01fa10c_1.conda
   - osx-64/mumps-mpi-5.6.2-h01fa10c_2.conda
   - osx-64/mumps-mpi-5.6.2-h705f37d_0.conda
   - osx-64/mumps-mpi-5.6.2-h705f37d_1.conda
   - osx-64/mumps-mpi-5.6.2-h705f37d_2.conda
+  - osx-64/mumps-seq-5.2.1-h1c098af_13.conda
+  - osx-64/mumps-seq-5.2.1-h1d79eb7_12.conda
+  - osx-64/mumps-seq-5.2.1-hcc91272_14.conda
   - osx-64/mumps-seq-5.6.2-hcc91272_0.conda
   - osx-64/mumps-seq-5.6.2-hcc91272_1.conda
   - osx-64/mumps-seq-5.6.2-hcc91272_2.conda
+  - osx-arm64/mumps-mpi-5.2.1-h00b355f_13.conda
+  - osx-arm64/mumps-mpi-5.2.1-h2806e7f_12.conda
+  - osx-arm64/mumps-mpi-5.2.1-h2f18163_14.conda
+  - osx-arm64/mumps-mpi-5.2.1-h4777832_12.conda
+  - osx-arm64/mumps-mpi-5.2.1-hb11fb38_13.conda
+  - osx-arm64/mumps-mpi-5.2.1-hfea86b6_14.conda
   - osx-arm64/mumps-mpi-5.6.2-h2f18163_0.conda
   - osx-arm64/mumps-mpi-5.6.2-h2f18163_1.conda
   - osx-arm64/mumps-mpi-5.6.2-h2f18163_2.conda
   - osx-arm64/mumps-mpi-5.6.2-hfea86b6_0.conda
   - osx-arm64/mumps-mpi-5.6.2-hfea86b6_1.conda
   - osx-arm64/mumps-mpi-5.6.2-hfea86b6_2.conda
+  - osx-arm64/mumps-seq-5.2.1-h105e241_12.conda
+  - osx-arm64/mumps-seq-5.2.1-h91c970a_13.conda
+  - osx-arm64/mumps-seq-5.2.1-hfe4d18a_14.conda
   - osx-arm64/mumps-seq-5.6.2-hfe4d18a_0.conda
   - osx-arm64/mumps-seq-5.6.2-hfe4d18a_1.conda
   - osx-arm64/mumps-seq-5.6.2-hfe4d18a_2.conda
+  - linux-aarch64/mumps-mpi-5.2.1-h184a48b_13.conda
+  - linux-aarch64/mumps-mpi-5.2.1-h5ed9cf8_14.conda
+  - linux-aarch64/mumps-mpi-5.2.1-h6afe871_12.conda
+  - linux-aarch64/mumps-mpi-5.2.1-h930cc1e_13.conda
+  - linux-aarch64/mumps-mpi-5.2.1-hc141efb_12.conda
+  - linux-aarch64/mumps-mpi-5.2.1-hfd937cd_14.conda
   - linux-aarch64/mumps-mpi-5.6.2-h5ed9cf8_0.conda
   - linux-aarch64/mumps-mpi-5.6.2-h5ed9cf8_1.conda
   - linux-aarch64/mumps-mpi-5.6.2-h5ed9cf8_2.conda
   - linux-aarch64/mumps-mpi-5.6.2-hfd937cd_0.conda
   - linux-aarch64/mumps-mpi-5.6.2-hfd937cd_1.conda
   - linux-aarch64/mumps-mpi-5.6.2-hfd937cd_2.conda
+  - linux-aarch64/mumps-seq-5.2.1-h0be58a3_13.conda
+  - linux-aarch64/mumps-seq-5.2.1-h2584d7f_14.conda
+  - linux-aarch64/mumps-seq-5.2.1-hc82dd98_12.conda
   - linux-aarch64/mumps-seq-5.6.2-h2584d7f_0.conda
   - linux-aarch64/mumps-seq-5.6.2-h2584d7f_1.conda
   - linux-aarch64/mumps-seq-5.6.2-h2584d7f_2.conda
+  - linux-ppc64le/mumps-mpi-5.2.1-h0069dc4_12.conda
+  - linux-ppc64le/mumps-mpi-5.2.1-h5a37ee8_14.conda
+  - linux-ppc64le/mumps-mpi-5.2.1-h605d7f8_13.conda
+  - linux-ppc64le/mumps-mpi-5.2.1-hd80152f_14.conda
+  - linux-ppc64le/mumps-mpi-5.2.1-he7a85fd_12.conda
+  - linux-ppc64le/mumps-mpi-5.2.1-he85d5d1_13.conda
   - linux-ppc64le/mumps-mpi-5.6.2-h5a37ee8_0.conda
   - linux-ppc64le/mumps-mpi-5.6.2-h5a37ee8_1.conda
   - linux-ppc64le/mumps-mpi-5.6.2-h5a37ee8_2.conda
   - linux-ppc64le/mumps-mpi-5.6.2-hd80152f_0.conda
   - linux-ppc64le/mumps-mpi-5.6.2-hd80152f_1.conda
   - linux-ppc64le/mumps-mpi-5.6.2-hd80152f_2.conda
+  - linux-ppc64le/mumps-seq-5.2.1-h12bf7f1_13.conda
+  - linux-ppc64le/mumps-seq-5.2.1-h46c459d_12.conda
+  - linux-ppc64le/mumps-seq-5.2.1-h8fbf938_14.conda
   - linux-ppc64le/mumps-seq-5.6.2-h8fbf938_0.conda
   - linux-ppc64le/mumps-seq-5.6.2-h8fbf938_1.conda
   - linux-ppc64le/mumps-seq-5.6.2-h8fbf938_2.conda
