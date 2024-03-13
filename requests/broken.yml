@@ -1,5 +1,0 @@
-action: broken
-packages:
-- win-64/libsecp256k1-1-0.2.0-hcfcfb64_0.conda
-- osx-64/libsecp256k1-1-0.2.0-h10d778d_0.conda
-- linux-64/libsecp256k1-1-0.2.0-hd590300_0.conda
