@@ -1,3 +1,0 @@
-action: not_broken
-packages:
-  - win-64/openssl-3.2.1-hcfcfb64_0.conda
