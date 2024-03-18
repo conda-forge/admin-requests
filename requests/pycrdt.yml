@@ -1,0 +1,25 @@
+action: broken
+packages:
+- win-64/pycrdt-0.8.13-py39hf21820d_0.conda
+- win-64/pycrdt-0.8.13-py312hfccd98a_0.conda
+- win-64/pycrdt-0.8.13-py311hc37eb10_0.conda
+- win-64/pycrdt-0.8.13-py310h87d50f1_0.conda
+- win-64/pycrdt-0.8.13-py39h3fc3a88_0.conda
+- win-64/pycrdt-0.8.13-py38h4900a04_0.conda
+- osx-64/pycrdt-0.8.13-py312h1b0e595_0.conda
+- osx-64/pycrdt-0.8.13-py39he31d04d_0.conda
+- osx-64/pycrdt-0.8.13-py311hd64b9fd_0.conda
+- osx-64/pycrdt-0.8.13-py310h54baaa9_0.conda
+- osx-arm64/pycrdt-0.8.13-py312h5280bc4_0.conda
+- osx-arm64/pycrdt-0.8.13-py311h94f323b_0.conda
+- osx-64/pycrdt-0.8.13-py39hcf47035_0.conda
+- osx-arm64/pycrdt-0.8.13-py39h8fec3ad_0.conda
+- osx-arm64/pycrdt-0.8.13-py310hd442715_0.conda
+- osx-arm64/pycrdt-0.8.13-py38h51b07bf_0.conda
+- osx-64/pycrdt-0.8.13-py38h3614dca_0.conda
+- linux-64/pycrdt-0.8.13-py310hcb5633a_0.conda
+- linux-64/pycrdt-0.8.13-py312h4b3b743_0.conda
+- linux-64/pycrdt-0.8.13-py39he9b4010_0.conda
+- linux-64/pycrdt-0.8.13-py38h0cc4f7c_0.conda
+- linux-64/pycrdt-0.8.13-py311h46250e7_0.conda
+- linux-64/pycrdt-0.8.13-py39h9fdd4d6_0.conda
