@@ -1,0 +1,5 @@
+action: token_reset
+feedstocks:
+  - batchspawner
+# can be a list with azure, travis, circle, drone, appveyor, github_actions
+skip_providers: []
