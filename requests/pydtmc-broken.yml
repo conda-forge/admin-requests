@@ -1,5 +1,0 @@
-action: broken
-packages:
-- noarch/pydtmc-8.2.0-pyhd8ed1ab_0.conda
-- noarch/pydtmc-8.1.0-pyhd8ed1ab_0.conda
-- noarch/pydtmc-6.7.0-pyhd8ed1ab_0.tar.bz2
