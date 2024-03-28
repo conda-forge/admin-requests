@@ -34,10 +34,11 @@ jobs:
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success'
         id: generate_token
-        uses: conda-forge/github-app-token@e3ab451d57e120b956292a1fa1d21fe4ba171c36
+        uses: actions/create-github-app-token@v1
         with:
-          app_id: ${{ secrets.CF_CURATOR_APP_ID }}
-          private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
 
       - name: patch repodata
         if: steps.conversion_lock.outcome == 'success'
