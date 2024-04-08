@@ -1,0 +1,9 @@
+action: broken
+packages:
+- win-64/snappy-1.2.0-hfb803bf_0.conda
+- osx-arm64/snappy-1.2.0-hd04f947_0.conda
+- osx-64/snappy-1.2.0-h6dc393e_0.conda
+- linux-aarch64/snappy-1.2.0-h8d0c38d_0.conda
+- linux-ppc64le/snappy-1.2.0-h26b3661_0.conda
+- linux-64/snappy-1.2.0-hdb0a2a9_0.conda
+
