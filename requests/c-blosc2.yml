@@ -1,0 +1,22 @@
+action: broken
+packages:
+  - linux-64/c-blosc2-2.14.0-hb4ffafa_0.conda
+  - linux-64/c-blosc2-2.14.1-hb4ffafa_0.conda
+  - linux-64/c-blosc2-2.14.3-hb4ffafa_0.conda
+  - linux-64/c-blosc2-2.14.4-hb4ffafa_0.conda
+  - osx-64/c-blosc2-2.14.0-h0ae8482_0.conda
+  - osx-64/c-blosc2-2.14.1-h0ae8482_0.conda
+  - osx-64/c-blosc2-2.14.3-h0ae8482_0.conda
+  - osx-64/c-blosc2-2.14.4-h0ae8482_0.conda
+  - osx-arm64/c-blosc2-2.14.0-ha57e6be_0.conda
+  - osx-arm64/c-blosc2-2.14.1-ha57e6be_0.conda
+  - osx-arm64/c-blosc2-2.14.3-ha57e6be_0.conda
+  - osx-arm64/c-blosc2-2.14.4-ha57e6be_0.conda
+  - linux-aarch64/c-blosc2-2.14.0-h1a8d543_0.conda
+  - linux-aarch64/c-blosc2-2.14.1-h1a8d543_0.conda
+  - linux-aarch64/c-blosc2-2.14.3-h1a8d543_0.conda
+  - linux-aarch64/c-blosc2-2.14.4-h1a8d543_0.conda
+  - linux-ppc64le/c-blosc2-2.14.0-ha09d7d1_0.conda
+  - linux-ppc64le/c-blosc2-2.14.1-ha09d7d1_0.conda
+  - linux-ppc64le/c-blosc2-2.14.3-ha09d7d1_0.conda
+  - linux-ppc64le/c-blosc2-2.14.4-ha09d7d1_0.conda
