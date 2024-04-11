@@ -1,8 +1,8 @@
 action: cirun
-feedstocks:  
+feedstocks:
   # list of feedstock names (sans `-feedstock` suffix)
   - pytorch-cpu
-resources:  
+resources:
   # list of resource names you are applying to
   # see https://github.com/conda-forge/.cirun for available options
   - cirun-openstack-gpu-large
