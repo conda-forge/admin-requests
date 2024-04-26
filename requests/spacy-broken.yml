@@ -1,0 +1,3 @@
+action: broken
+packages:
+- linux-aarch64/spacy-3.7.3-py39hc2250db_0.conda
