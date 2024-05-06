@@ -2,7 +2,7 @@ name: repodata_patching
 
 on:
   schedule:
-    - cron:  '0 0 * * 0'
+    - cron: '0 0 * * 0'
   workflow_dispatch: null
 
 jobs:
@@ -11,18 +11,18 @@ jobs:
     steps:
       - name: Prevent multiple jobs running in parallel
         id: conversion_lock
-        uses: beckermr/turnstyle-python@v1
+        uses: beckermr/turnstyle-python@e997c7ea75032a98f3b515ef8ee0ca89cf172713 # v1
         with:
           abort-after-seconds: 3
           poll-interval-seconds: 2
           github-token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
         # outcome is evaluated before continue-on-error above
         if: steps.conversion_lock.outcome == 'success'
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@9f54435e0e72c53962ee863144e47a4b094bfd35 # v2
         if: steps.conversion_lock.outcome == 'success'
         with:
           activate-environment: cf
@@ -34,7 +34,7 @@ jobs:
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success'
         id: generate_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@a0de6af83968303c8c955486bf9739a57d23c7f1 # v1
         with:
           app-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
@@ -44,10 +44,10 @@ jobs:
         if: steps.conversion_lock.outcome == 'success'
         shell: bash -l {0}
         run: |
-            conda activate cf
-            git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
-            git config --global user.name "conda-forge-curator[bot]"
-            git config --global pull.rebase false
-            python update_repodata_patches.py
+          conda activate cf
+          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+          git config --global user.name "conda-forge-curator[bot]"
+          git config --global pull.rebase false
+          python update_repodata_patches.py
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}

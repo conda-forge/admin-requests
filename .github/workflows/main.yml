@@ -11,78 +11,78 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-    - name: Prevent multiple jobs running in parallel
-      id: conversion_lock
-      uses: beckermr/turnstyle-python@v1
-      with:
-        abort-after-seconds: 3
-        poll-interval-seconds: 2
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-      continue-on-error: true
+      - name: Prevent multiple jobs running in parallel
+        id: conversion_lock
+        uses: beckermr/turnstyle-python@e997c7ea75032a98f3b515ef8ee0ca89cf172713 # v1
+        with:
+          abort-after-seconds: 3
+          poll-interval-seconds: 2
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
 
-    - uses: actions/checkout@v4
-      # outcome is evaluated before continue-on-error above
-      if: steps.conversion_lock.outcome == 'success'
+      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+        # outcome is evaluated before continue-on-error above
+        if: steps.conversion_lock.outcome == 'success'
 
-    - name: fast finish
-      if: ${{ steps.conversion_lock.outcome == 'success' }}
-      run: |
-        set -x
-        # avoid wasting CI time if there is nothing to do
-        count_yml=$(ls requests/*.yml | wc -l)
-        count_yaml=$(ls requests/*.yaml | wc -l)
-        count=$(($count_yml + $count_yaml))
-        if [[ "${count}" == "0" ]]; then
-          echo "nothing to do, setting ci skip!"
-          echo "CI_SKIP=true" >> $GITHUB_ENV
-        fi
+      - name: fast finish
+        if: ${{ steps.conversion_lock.outcome == 'success' }}
+        run: |
+          set -x
+          # avoid wasting CI time if there is nothing to do
+          count_yml=$(ls requests/*.yml | wc -l)
+          count_yaml=$(ls requests/*.yaml | wc -l)
+          count=$(($count_yml + $count_yaml))
+          if [[ "${count}" == "0" ]]; then
+            echo "nothing to do, setting ci skip!"
+            echo "CI_SKIP=true" >> $GITHUB_ENV
+          fi
 
-    - uses: conda-incubator/setup-miniconda@v2
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      with:
-        activate-environment: cf
-        environment-file: environment.yml
-        auto-activate-base: true
-        miniforge-version: latest
-        miniforge-variant: Mambaforge
-        use-mamba: true
+      - uses: conda-incubator/setup-miniconda@9f54435e0e72c53962ee863144e47a4b094bfd35 # v2
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        with:
+          activate-environment: cf
+          environment-file: environment.yml
+          auto-activate-base: true
+          miniforge-version: latest
+          miniforge-variant: Mambaforge
+          use-mamba: true
 
-    - name: Generate token
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      id: generate_token
-      uses: actions/create-github-app-token@v1
-      with:
-        app-id: ${{ secrets.CF_CURATOR_APP_ID }}
-        private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
-        owner: ${{ github.repository_owner }}
+      - name: Generate token
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        id: generate_token
+        uses: actions/create-github-app-token@a0de6af83968303c8c955486bf9739a57d23c7f1 # v1
+        with:
+          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
 
-    - name: Process requests based on YAML files
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      shell: bash -el {0}
-      run: |
-        git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
-        git config --global user.name "conda-forge-curator[bot]"
-        python -m conda_forge_admin_requests run
-      env:
-        PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
-        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-        TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
-        AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
-        DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
-        CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
-        GITHUB_ADMIN_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
-        CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
-        STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
+      - name: Process requests based on YAML files
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        shell: bash -el {0}
+        run: |
+          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+          git config --global user.name "conda-forge-curator[bot]"
+          python -m conda_forge_admin_requests run
+        env:
+          PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
+          TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
+          AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
+          DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
+          CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
+          GITHUB_ADMIN_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
+          STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
 
-    - name: pull changes
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      shell: bash -el {0}
-      run: |
+      - name: pull changes
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        shell: bash -el {0}
+        run: |
           git pull
 
-    - name: Push changes
-      if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push changes
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        uses: ad-m/github-push-action@9870d48124da805820c70ebc6ba563c715551019 # master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
