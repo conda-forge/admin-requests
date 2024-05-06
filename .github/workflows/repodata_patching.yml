@@ -22,7 +22,7 @@ jobs:
         # outcome is evaluated before continue-on-error above
         if: steps.conversion_lock.outcome == 'success'
 
-      - uses: conda-incubator/setup-miniconda@9f54435e0e72c53962ee863144e47a4b094bfd35 # v2
+      - uses: conda-incubator/setup-miniconda@a4260408e20b96e80095f42ff7f1a15b27dd94ca # v2
         if: steps.conversion_lock.outcome == 'success'
         with:
           activate-environment: cf
