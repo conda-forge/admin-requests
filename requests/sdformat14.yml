@@ -1,0 +1,8 @@
+action: broken
+packages:
+- win-64/libsdformat14-14.2.0-h76d8a3d_0.conda
+- osx-64/libsdformat14-14.2.0-h8ab32a3_0.conda 
+- osx-arm64/libsdformat14-14.2.0-hb3cbf59_0.conda
+- linux-64/libsdformat14-14.2.0-h2d4a2c5_0.conda
+- linux-aarch64/libsdformat14-14.2.0-h9e21ef9_0.conda
+- linux-ppc64le/libsdformat14-14.2.0-ha7f1b23_0.conda
