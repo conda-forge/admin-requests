@@ -80,3 +80,13 @@ packages:
 - linux-ppc64le/libarrow-flight-sql-16.1.0-hb85c41f_0_cpu.conda
 - linux-aarch64/libarrow-flight-sql-16.1.0-h87937b0_0_cuda.conda
 - linux-64/libarrow-flight-sql-16.1.0-h9241762_0_cpu.conda
+- win-64/libparquet-16.1.0-h178134c_0_cuda.conda
+- win-64/libparquet-16.1.0-h178134c_0_cpu.conda
+- osx-arm64/libparquet-16.1.0-hcf52c46_0_cpu.conda
+- osx-64/libparquet-16.1.0-h904a336_0_cpu.conda
+- linux-ppc64le/libparquet-16.1.0-ha886097_0_cuda.conda
+- linux-64/libparquet-16.1.0-h9348d0c_0_cuda.conda
+- linux-aarch64/libparquet-16.1.0-h6fe2c6f_0_cpu.conda
+- linux-ppc64le/libparquet-16.1.0-hb329ed8_0_cpu.conda
+- linux-aarch64/libparquet-16.1.0-he4b6202_0_cuda.conda
+- linux-64/libparquet-16.1.0-h6a7eafb_0_cpu.conda
