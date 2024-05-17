@@ -1,0 +1,12 @@
+action: cirun
+feedstocks:
+  - pytorch-cpu
+resources:
+  - cirun-openstack-gpu-4xlarge
+  - cirun-openstack-gpu-2xlarge
+  - cirun-openstack-gpu-xlarge
+  - cirun-openstack-gpu-large
+  - cirun-openstack-cpu-large
+pull_request: true
+revoke: false
+send_pr: false
