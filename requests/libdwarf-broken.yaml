@@ -1,0 +1,8 @@
+action: broken
+packages:
+- linux-64/libdwarf-0.9.2-h06268da_1.conda
+- linux-64/libdwarf-dev-0.9.2-h06268da_1.conda
+- linux-64/dwarfdump-0.9.2-h06268da_1.conda
+- osx-64/libdwarf-0.9.2-h162ae7b_1.conda
+- osx-64/libdwarf-dev-0.9.2-h162ae7b_1.conda
+- osx-64/dwarfdump-0.9.2-h162ae7b_1.conda
