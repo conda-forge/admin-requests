@@ -1,7 +1,0 @@
-action: broken
-packages:
-  - win-64/howardhinnant_date-3.0.1-h7f575de_4.conda
-  - osx-64/howardhinnant_date-3.0.1-h95de08a_4.conda
-  - osx-arm64/howardhinnant_date-3.0.1-h35e464e_4.conda
-  - linux-64/howardhinnant_date-3.0.1-h297d8ca_4.conda
-  - linux-aarch64/howardhinnant_date-3.0.1-h70be974_4.conda
