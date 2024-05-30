@@ -1,0 +1,54 @@
+action: broken
+packages:
+# 5.0.0 build 0
+- linux-64/openmpi-5.0.0-external_0.conda
+- linux-aarch64/openmpi-5.0.0-external_0.conda
+- linux-ppc64le/openmpi-5.0.0-external_0.conda
+# 5.0.0 build 1
+- linux-64/openmpi-5.0.0-external_1.conda
+- linux-aarch64/openmpi-5.0.0-external_1.conda
+- linux-ppc64le/openmpi-5.0.0-external_1.conda
+# 5.0.0 build 2
+- linux-64/openmpi-5.0.0-external_2.conda
+- linux-aarch64/openmpi-5.0.0-external_2.conda
+- linux-ppc64le/openmpi-5.0.0-external_2.conda
+# 5.0.1 build 0
+- linux-64/openmpi-5.0.1-external_0.conda
+- linux-aarch64/openmpi-5.0.1-external_0.conda
+- linux-ppc64le/openmpi-5.0.1-external_0.conda
+# 5.0.1 build 1
+- linux-64/openmpi-5.0.1-external_1.conda
+- linux-aarch64/openmpi-5.0.1-external_1.conda
+- linux-ppc64le/openmpi-5.0.1-external_1.conda
+# 5.0.1 build 2
+- linux-64/openmpi-5.0.1-external_2.conda
+- linux-aarch64/openmpi-5.0.1-external_2.conda
+- linux-ppc64le/openmpi-5.0.1-external_2.conda
+# 5.0.1 build 3
+- linux-64/openmpi-5.0.1-external_3.conda
+- linux-aarch64/openmpi-5.0.1-external_3.conda
+- linux-ppc64le/openmpi-5.0.1-external_3.conda
+# 5.0.2 build 0
+- linux-64/openmpi-5.0.2-external_0.conda
+- linux-aarch64/openmpi-5.0.2-external_0.conda
+- linux-ppc64le/openmpi-5.0.2-external_0.conda
+# 5.0.2 build 1
+- linux-64/openmpi-5.0.2-external_1.conda
+- linux-aarch64/openmpi-5.0.2-external_1.conda
+- linux-ppc64le/openmpi-5.0.2-external_1.conda
+# 5.0.2 build 2
+- linux-64/openmpi-5.0.2-external_2.conda
+- linux-aarch64/openmpi-5.0.2-external_2.conda
+- linux-ppc64le/openmpi-5.0.2-external_2.conda
+# 5.0.3 build 0
+- linux-64/openmpi-5.0.3-external_0.conda
+- linux-aarch64/openmpi-5.0.3-external_0.conda
+- linux-ppc64le/openmpi-5.0.3-external_0.conda
+# 5.0.3 build 1
+- linux-64/openmpi-5.0.3-external_1.conda
+- linux-aarch64/openmpi-5.0.3-external_1.conda
+- linux-ppc64le/openmpi-5.0.3-external_1.conda
+# 5.0.3 build 2
+- linux-64/openmpi-5.0.3-external_2.conda
+- linux-aarch64/openmpi-5.0.3-external_2.conda
+- linux-ppc64le/openmpi-5.0.3-external_2.conda
