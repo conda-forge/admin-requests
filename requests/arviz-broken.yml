@@ -1,9 +1,5 @@
 action: broken
 packages:
-# Has scipy>=1.8.0, but should be scipy>=1.9.0
-# Fixed in <https://github.com/conda-forge/arviz-feedstock/pull/48>
-# Ref: <https://github.com/conda-forge/arviz-feedstock/pull/48#issuecomment-2147008593>
-- noarch/arviz-0.17.1-pyhd8ed1ab_0.conda
 # Has matplotlib-base>=3.2, but should be matplotlib-base>=3.5
 # Fixed in <https://github.com/conda-forge/arviz-feedstock/pull/44>
 - noarch/arviz-0.16.1-pyhd8ed1ab_0.conda
