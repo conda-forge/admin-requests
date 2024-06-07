@@ -1,0 +1,8 @@
+action: cirun
+feedstocks:
+  - xformers
+resources:
+  - cirun-openstack-gpu-xlarge
+pull_request: true  
+revoke: false
+send_pr: true
