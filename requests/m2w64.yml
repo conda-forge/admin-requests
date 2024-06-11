@@ -1,0 +1,4 @@
+action: archive
+feedstocks:
+  - m2w64-gcc
+  - m2w64-gcc-libs
