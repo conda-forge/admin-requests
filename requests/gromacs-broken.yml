@@ -1,0 +1,12 @@
+action: broken
+packages:
+- osx-arm64/gromacs-2023.3-nompi_hf1d43a3_104.conda
+- osx-arm64/gromacs-2023.3-nompi_hff3e5fb_103.conda
+- osx-arm64/gromacs-2023.4-nompi_hf1d43a3_102.conda
+- osx-arm64/gromacs-2023.4-nompi_hf1d43a3_101.conda
+- osx-arm64/gromacs-2023.4-nompi_hf1d43a3_100.conda
+- osx-arm64/gromacs-2023.3-nompi_dblprec_h79f6b9e_4.conda
+- osx-arm64/gromacs-2023.3-nompi_dblprec_h6bd2642_3.conda
+- osx-arm64/gromacs-2023.4-nompi_dblprec_h79f6b9e_2.conda
+- osx-arm64/gromacs-2023.4-nompi_dblprec_h79f6b9e_1.conda
+- osx-arm64/gromacs-2023.4-nompi_dblprec_h79f6b9e_0.conda
