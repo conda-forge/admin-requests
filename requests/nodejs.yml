@@ -1,0 +1,8 @@
+action: cirun
+feedstocks:
+  - nodejs
+resources:
+  - cirun-openstack-cpu-xlarge
+pull_request: true  
+revoke: false
+send_pr: true
