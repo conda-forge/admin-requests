@@ -1,0 +1,1 @@
+noarch/nteract-scrapbook-0.5.0-pyh44b312d_1.tar.bz2
