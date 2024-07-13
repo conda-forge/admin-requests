@@ -1,0 +1,4 @@
+action: broken
+packages:
+- noarch/riskfolio-lib-4.1.0-pyh10c408e_1.conda
+- noarch/riskfolio-lib-4.1.0-pyhff85662_0.conda
