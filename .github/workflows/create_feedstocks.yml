@@ -2,7 +2,7 @@ name: create_feedstocks
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: '*/10 * * * *'
   workflow_dispatch: null
 
 jobs:
