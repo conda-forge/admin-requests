@@ -42,7 +42,9 @@ jobs:
         if: ${{ steps.conversion_lock.outcome == 'success' }}
         run: |
           # Avoid wasting CI time if there are no recipes ready for conversion
-          if [ "$(ls recipes/*/meta.yaml | grep -v recipes/example/meta.yaml --count)" -eq 0 ]; then
+          # Checks for both `meta.yaml` and `recipe.yaml` files in the recipes directory
+          # Excludes the example recipe(s)
+          if [ "$(ls recipes/*/meta.yaml recipes/*/recipe.yaml 2>/dev/null | grep -vE 'recipes/example/meta.yaml|recipes/example/recipe.yaml' --count)" -eq 0 ]; then
             echo "No new recipes found, exiting..."
             exit 0
           fi
