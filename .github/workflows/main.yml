@@ -37,20 +37,18 @@ jobs:
             echo "CI_SKIP=true" >> $GITHUB_ENV
           fi
 
-      - uses: conda-incubator/setup-miniconda@a4260408e20b96e80095f42ff7f1a15b27dd94ca # v2
+      - uses: conda-incubator/setup-miniconda@a4260408e20b96e80095f42ff7f1a15b27dd94ca # v3.0.4
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         with:
           activate-environment: cf
           environment-file: environment.yml
           auto-activate-base: true
           miniforge-version: latest
-          miniforge-variant: Mambaforge
-          use-mamba: true
 
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         id: generate_token
-        uses: actions/create-github-app-token@ad38cffc07bac6e3857755914c4c88bfd2db4da4 # v1
+        uses: actions/create-github-app-token@ad38cffc07bac6e3857755914c4c88bfd2db4da4 # v1.10.2
         with:
           app-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
