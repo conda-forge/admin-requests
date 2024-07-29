@@ -1,6 +1,0 @@
-action: broken
-packages:
-- linux-aarch64/mathdx-24.04.0-h8af1aa0_0.conda
-- linux-64/mathdx-24.04.0-ha770c72_0.conda
-- linux-aarch64/nvmath-python-dx-0.1.0-py312h8025657_201.conda
-- linux-64/nvmath-python-dx-0.1.0-py312h7900ff3_201.conda
