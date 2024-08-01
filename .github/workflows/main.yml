@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Prevent multiple jobs running in parallel
         id: conversion_lock
-        uses: beckermr/turnstyle-python@d50fd7e1de14639af00d8dc8e0f60176a99153d9 # v2
+        uses: beckermr/turnstyle-python@8f1ceb87dabbbbebe42257b85c368f6110bb9170 # v2
         with:
           abort-after-seconds: 3
           poll-interval-seconds: 2
@@ -48,7 +48,7 @@ jobs:
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         id: generate_token
-        uses: actions/create-github-app-token@ad38cffc07bac6e3857755914c4c88bfd2db4da4 # v1.10.2
+        uses: actions/create-github-app-token@31c86eb3b33c9b601a1f60f98dcbfd1d70f379b4 # v1.10.3
         with:
           app-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
@@ -81,6 +81,6 @@ jobs:
 
       - name: Push changes
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-        uses: ad-m/github-push-action@f17d07cb45271aeff552bb2913a939bad92d6a6f # master
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
