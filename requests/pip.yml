@@ -1,0 +1,3 @@
+action: not_broken
+packages:
+  - noarch/pip-24.1.2-pyhd8ed1ab_0.conda
