@@ -1,8 +1,0 @@
-action: broken
-packages:
- - noarch/build-0.7.0-pyhd8ed1ab_0.tar.bz2
- - noarch/build-0.6.0-pyhd8ed1ab_0.tar.bz2
- - noarch/build-0.5.1-pyhd8ed1ab_0.tar.bz2
- - noarch/build-0.5.0-pyhd8ed1ab_0.tar.bz2
- - noarch/build-0.4.0-pyhd8ed1ab_0.tar.bz2
- - noarch/build-0.3.1.post1-pyhd8ed1ab_0.tar.bz2
