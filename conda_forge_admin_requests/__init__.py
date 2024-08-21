@@ -1,6 +1,6 @@
 import importlib
 import pkgutil
-from . import archive_feedstock, mark_broken, token_reset, access_control
+from . import archive_feedstock, mark_broken, token_reset, access_control, cfep3_copy
 
 actions = {}
 
@@ -21,6 +21,7 @@ def register_actions():
     register_action("token_reset", token_reset)
     register_action("travis", access_control)
     register_action("cirun", access_control)
+    register_action("cfep3_copy", cfep3_copy)
     for pkg in pkgutil.iter_modules():
         if pkg.name.startswith("conda_forge_admin_requests_"):
             spec = importlib.util.find_spec(pkg.name)

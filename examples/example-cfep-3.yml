@@ -1,0 +1,5 @@
+action: cfep3_copy
+anaconda_org_packages: # list of owner[@label=main]/pkg-name/version/subdir/filename.extension
+ - jaimergp/conda-standalone/24.7.1/osx-arm64/conda-standalone-24.7.1-hce30654_0.conda
+from_anaconda_org_label: main # optional, default=main
+to_anaconda_org_label: main  # optional, default=main
