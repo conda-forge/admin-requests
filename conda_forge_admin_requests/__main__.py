@@ -50,17 +50,20 @@ def run():
         if try_again:
             with open(filename, "w") as fp:
                 yaml.dump(try_again, fp)
-            subprocess.check_call(f"git add {filename}", shell=True)
+            subprocess.check_call(["git", "add", str(filename)])
             subprocess.check_call(
-                f"git commit --allow-empty -m 'Keeping {filename} "
-                f"after failed {action}'",
-                shell=True,
+                [
+                    "git",
+                    "commit",
+                    "--allow-empty",
+                    "-m",
+                    f"Keeping {filename} after failed {action}",
+                ]
             )
         else:
-            subprocess.check_call(f"git rm {filename}", shell=True)
+            subprocess.check_call(["git", "rm", str(filename)])
             subprocess.check_call(
-                f"git commit -m 'Remove {filename} after {action}'",
-                shell=True,
+                ["git", "commit", "-m", f"Remove {filename} after {action}"]
             )
 
 

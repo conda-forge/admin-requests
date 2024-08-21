@@ -37,10 +37,11 @@ def check(request):
 
         # check it is on the right channel
         plat, name, ver, build = split_pkg(pkg)
+        env = os.environ.copy()
+        env["CONDA_SUBDIR"] = plat
         subprocess.check_call(
-            f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
-            f"-c {channel} --override-channels",
-            shell=True,
+            ["conda", "search", f"{name}={ver}={build}", "-c", channel, "--override-channels"],
+            env=env,
         )
 
 
@@ -89,33 +90,46 @@ def run(request):
     if did_any:
         with tempfile.TemporaryDirectory() as tmpdir:
             subprocess.check_call(
-                "git clone https://github.com/conda-forge/"
-                "conda-forge-repodata-patches-feedstock.git",
+                [
+                    "git",
+                    "clone", 
+                    "https://github.com/conda-forge/conda-forge-repodata-patches-feedstock.git",
+                ],
                 cwd=tmpdir,
-                shell=True,
             )
 
-            subprocess.check_call(
-                "git remote set-url --push origin "
+            origin_url = (
                 "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
-                "conda-forge-repodata-patches-feedstock.git",
+                "conda-forge-repodata-patches-feedstock.git"
+            )
+            subprocess.check_call(
+                [
+                    "git",
+                    "remote",
+                    "set-url",
+                    "--push",
+                    "origin",
+                    origin_url,
+                ],
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-                shell=True,
             )
 
             success_pkgs = set(packages) - set(pkgs_to_try_again)
             fstr = " ".join(f for f in success_pkgs)
             subprocess.check_call(
-                "git commit --allow-empty -am 'resync repo data "
-                "for broken/notbroken packages %s'" % fstr,
+                [
+                    "git",
+                    "commit",
+                    "--allow-empty",
+                    "-am",
+                    f"resync repo data for broken/not-broken packages {fstr}",
+                ],
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-                shell=True,
             )
 
             subprocess.check_call(
-                "git push",
+                ["git", "push"],
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-                shell=True,
             )
 
     if pkgs_to_try_again:
