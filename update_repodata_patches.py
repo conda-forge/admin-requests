@@ -70,7 +70,7 @@ def update_repodata_patches(dry_run):
         )
 
         origin_url = (
-            "https://x-access-token:${GITHUB_TOKEN}@github.com/"
+            f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/"
             "conda-forge/conda-forge-repodata-patches-feedstock.git"
         )
         subprocess.check_call(

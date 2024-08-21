@@ -67,8 +67,8 @@ def reset_feedstock_token(name, skips=None):
 
     owner_info = ['--organization', 'conda-forge']
     token_repo = (
-        'https://x-access-token:${GITHUB_TOKEN}@github.com/'
-        'conda-forge/feedstock-tokens'
+        f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/"
+        "conda-forge/feedstock-tokens"
     )
 
     with tempfile.TemporaryDirectory() as tmpdir:

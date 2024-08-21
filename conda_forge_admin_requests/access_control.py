@@ -74,7 +74,9 @@ def send_pr_cirun(
 
     git_cmds = [
         ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
-        ["git", "remote", "add", user.login, f"https://x-access-token:${{GITHUB_TOKEN}}@github.com/{user.login}/{feedstock}.git"],
+        ["git", "remote", "add", user.login, 
+         f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/{user.login}/{feedstock}.git"
+        ],
         ["git", "commit", "-m", f"Enable {resource_str} using Cirun", "--author", f"{user.name} <{user.email}>"],
         ["conda-smithy", "rerender", "-c", "auto", "--no-check-uptodate"],
         ["git", "push", user.login, f"HEAD:{base_branch}"],
@@ -137,7 +139,7 @@ def _process_request_for_feedstock(
 
         owner_info = ["--organization", GH_ORG]
         token_repo = (
-            'https://x-access-token:${GITHUB_TOKEN}@github.com/'
+            f'https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/'
             f'{GH_ORG}/feedstock-tokens'
         )
 
