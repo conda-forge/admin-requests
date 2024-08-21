@@ -47,6 +47,12 @@ What will happen when a package is marked broken?
   * [ ] Pinged the relevant feedstock team(s)
   * [ ] Added a small description explaining why access is needed
 
+* [ ] I want to copy an artifact following [CFEP-3](https://github.com/conda-forge/cfep/blob/main/cfep-03.md):
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Added a reference to the original PR
+  * [ ] Posted a link to the conda artifacts
+  * [ ] Posted a link to the build logs
+
 <!--
 For example if you are trying to mark a `foo` conda package as broken.
 
