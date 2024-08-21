@@ -63,3 +63,12 @@ Available opt-in resources:
 
 - Travis CI: See `examples/example-travis.yml`
 - [`open-gpu-server`](https://github.com/Quansight/open-gpu-server) (includes GPU CI and long-running builds): See `examples/example-open-gpu-server.yml`. 
+
+## Request a CFEP-3 copy to conda-forge
+
+CFEP-3 specifies the process to add foreign builds to conda-forge. [Read the CFEP](https://github.com/conda-forge/cfep/blob/main/cfep-03.md) for more details.
+This workflow allows users to request a copy once the manual review has been passed.
+
+To do so, please create a new `.yml` file in the `requests` folder. Check `examples/example-cfep-3.yml` for the required metadata.
+
+For provenance and transparency, the PR description must include a link to the original PR and the logs, along with the artifact(s) to be reviewed.
