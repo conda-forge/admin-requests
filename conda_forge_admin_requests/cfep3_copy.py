@@ -3,6 +3,7 @@ Copy approved artifacts from an external channel to production conda-forge.
 """
 
 import copy
+import hmac
 import os
 import subprocess
 from typing import Dict, Any
@@ -35,7 +36,7 @@ def check_one(package: str, sha256: str):
     )
     r.raise_for_status()
     api_sha256 = r.json()["sha256"]
-    if sha256 != api_sha256:
+    if not hmac.compare_digest(sha256, api_sha256):
         raise ValueError(
             f"User-provided SHA256 {sha256} does not match expected value {api_sha256}"
         )
