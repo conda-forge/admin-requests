@@ -1,9 +1,8 @@
 action: token_reset
 feedstocks:
 - conda-forge-pinning
-# can be a list with azure, travis, circle, drone, appveyor, github_actions
 skip_providers:
- - circle
- - travis
- - drone
- - appveyor
+- circle
+- travis
+- drone
+- appveyor
