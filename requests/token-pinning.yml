@@ -5,4 +5,3 @@ skip_providers:
 - circle
 - travis
 - drone
-- appveyor
