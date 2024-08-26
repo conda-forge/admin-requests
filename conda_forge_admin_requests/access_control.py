@@ -139,8 +139,8 @@ def _process_request_for_feedstock(
 
         owner_info = ["--organization", GH_ORG]
         token_repo = (
-            f'https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/'
-            f'{GH_ORG}/feedstock-tokens'
+            f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/"
+            f"{GH_ORG}/feedstock-tokens"
         )
 
         register_ci_cmd = [
