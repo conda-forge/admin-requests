@@ -1,7 +1,0 @@
-action: token_reset
-feedstocks:
-- conda-forge-pinning
-skip_providers:
-- circle
-- travis
-- drone
