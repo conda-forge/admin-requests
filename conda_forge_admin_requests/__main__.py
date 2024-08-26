@@ -50,7 +50,7 @@ def run():
         if try_again:
             with open(filename, "w") as fp:
                 yaml.dump(try_again, fp)
-            subprocess.check_call(["git", "add", str(filename)])
+            subprocess.check_call(["git", "add", filename])
             subprocess.check_call(
                 [
                     "git",
@@ -61,7 +61,7 @@ def run():
                 ]
             )
         else:
-            subprocess.check_call(["git", "rm", str(filename)])
+            subprocess.check_call(["git", "rm", filename])
             subprocess.check_call(
                 ["git", "commit", "-m", f"Remove {filename} after {action}"]
             )
