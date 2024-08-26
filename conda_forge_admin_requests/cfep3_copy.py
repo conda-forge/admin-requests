@@ -18,17 +18,19 @@ def check_one(package: str, sha256: str):
         raise ValueError(
             f"Key '{sha256}' must be SHA256 for the artifact (64 hexadecimal characters)"
         )
-    
+
     channel_and_maybe_label, subdir, artifact = package.rsplit("/", 2)
     channel, _ = split_label_from_channel(channel_and_maybe_label)
     pkg_name, version, _, _ = parse_filename(artifact)
 
     # Check existence
-    url = f"https://conda-web.anaconda.org/{channel_and_maybe_label}/{subdir}/{artifact}"
+    url = (
+        f"https://conda-web.anaconda.org/{channel_and_maybe_label}/{subdir}/{artifact}"
+    )
     r = requests.head(url)
     if not r.ok:
         raise ValueError(f"Package '{package}' at {channel} does not seem to exist")
-    
+
     # Check SHA256
     r = requests.get(
         f"https://api.anaconda.org/dist/{channel}/{pkg_name}/{version}/{subdir}/{artifact}",
@@ -48,13 +50,13 @@ def check(request: Dict[str, Any]) -> None:
         raise ValueError(
             "Must define 'anaconda_org_packages' as a list of dicts with keys "
             "{'package': channel/subdir/artifact, 'sha256': SHA256}"
-    )
+        )
     for item in packages:
         if not item.get("package") or not item.get("sha256"):
             raise ValueError(
                 "Each 'anaconda_org_packages' entry must be a dict with keys "
                 "{'package': channel/subdir/artifact, 'sha256': SHA256}"
-            ) 
+            )
         check_one(item["package"], item["sha256"])
 
 
@@ -82,7 +84,7 @@ def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
             "conda-forge",
             *from_label,
             *to_label,
-            spec
+            spec,
         ]
         print("Copying", item["package"], "...")
         p = subprocess.run(cmd)
@@ -92,11 +94,9 @@ def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
             print("... failed!")
             packages_to_try_again.append(item)
 
-    
     if packages_to_try_again:
         request = copy.deepcopy(request)
         request["anaconda_org_packages"] = packages_to_try_again
         return request
     else:
         return None
-    
