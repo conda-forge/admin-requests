@@ -1,0 +1,6 @@
+action: broken
+packages:
+- win-64/vs2022_win-64-19.41.34120-h72b6792_20.conda
+- win-arm64/vs2022_win-64-19.41.34120-h2222f22_20.conda
+- win-64/vs2022_win-arm64-19.41.34120-hc5d368c_20.conda
+- win-arm64/vs2022_win-arm64-19.41.34120-h067b14d_20.conda
