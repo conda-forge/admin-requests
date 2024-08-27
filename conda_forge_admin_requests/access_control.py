@@ -73,16 +73,17 @@ def send_pr_cirun(
     resource_str = ", ".join(resources)
 
     git_cmds = [
-        "git add recipe/conda_build_config.yaml conda-forge.yml",
-        f"git remote add {user.login} https://x-access-token:${{GITHUB_TOKEN}}@github.com/"
-        f"{user.login}/{feedstock}.git",
-        f"git commit -m 'Enable {resource_str} using Cirun' --author '{user.name} <{user.email}>'",
-        "conda-smithy rerender -c auto --no-check-uptodate",
-        f"git push {user.login} HEAD:{base_branch}",
+        ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
+        ["git", "remote", "add", user.login, 
+         f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/{user.login}/{feedstock}.git"
+        ],
+        ["git", "commit", "-m", f"Enable {resource_str} using Cirun", "--author", f"{user.name} <{user.email}>"],
+        ["conda-smithy", "rerender", "-c", "auto", "--no-check-uptodate"],
+        ["git", "push", user.login, f"HEAD:{base_branch}"],
     ]
     for git_cmd in git_cmds:
-        print("Running:", git_cmd, " in ", feedstock_dir)
-        subprocess.check_call(git_cmd, shell=True, cwd=feedstock_dir)
+        print("Running:", git_cmd, "in", feedstock_dir)
+        subprocess.check_call(git_cmd, cwd=feedstock_dir)
 
     print("Creating PR:")
     repo.create_pull(
@@ -138,8 +139,8 @@ def _process_request_for_feedstock(
 
         owner_info = ["--organization", GH_ORG]
         token_repo = (
-            'https://x-access-token:${GITHUB_TOKEN}@github.com/'
-            f'{GH_ORG}/feedstock-tokens'
+            f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/"
+            f"{GH_ORG}/feedstock-tokens"
         )
 
         register_ci_cmd = [
