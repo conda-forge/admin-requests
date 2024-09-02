@@ -1,1 +1,0 @@
-noarch/py-build-cmake-0.2.0.dev20240805-pyhd8ed1ab_0.conda
