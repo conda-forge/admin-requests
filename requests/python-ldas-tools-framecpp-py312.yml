@@ -1,0 +1,27 @@
+action: broken
+packages:
+- linux-64/python-ldas-tools-framecpp-2.6.14-py312hed4d635_3.conda
+- linux-64/python-ldas-tools-framecpp-2.6.14-py312h7a8762f_4.conda
+- linux-64/python-ldas-tools-framecpp-3.0.0-py312h62adb05_3.conda
+- linux-64/python-ldas-tools-framecpp-3.0.0-py312hed4d635_4.conda
+- linux-64/python-ldas-tools-framecpp-3.0.0-py312h7a8762f_5.conda
+- linux-aarch64/python-ldas-tools-framecpp-2.6.14-py312h6c0b701_3.conda
+- linux-aarch64/python-ldas-tools-framecpp-2.6.14-py312hcfad857_4.conda
+- linux-aarch64/python-ldas-tools-framecpp-3.0.0-py312h12236f0_3.conda
+- linux-aarch64/python-ldas-tools-framecpp-3.0.0-py312h6c0b701_4.conda
+- linux-aarch64/python-ldas-tools-framecpp-3.0.0-py312hcfad857_5.conda
+- linux-ppc64le/python-ldas-tools-framecpp-2.6.14-py312h1ccac97_3.conda
+- linux-ppc64le/python-ldas-tools-framecpp-2.6.14-py312h0b4c940_4.conda
+- linux-ppc64le/python-ldas-tools-framecpp-3.0.0-py312h9aa6ecb_3.conda
+- linux-ppc64le/python-ldas-tools-framecpp-3.0.0-py312h1ccac97_4.conda
+- linux-ppc64le/python-ldas-tools-framecpp-3.0.0-py312h0b4c940_5.conda
+- osx-64/python-ldas-tools-framecpp-2.6.14-py312hbb6178c_3.conda
+- osx-64/python-ldas-tools-framecpp-2.6.14-py312h261d0b0_4.conda
+- osx-64/python-ldas-tools-framecpp-3.0.0-py312hbc44fbd_3.conda
+- osx-64/python-ldas-tools-framecpp-3.0.0-py312hbb6178c_4.conda
+- osx-64/python-ldas-tools-framecpp-3.0.0-py312h261d0b0_5.conda
+- osx-arm64/python-ldas-tools-framecpp-2.6.14-py312h56715f7_3.conda
+- osx-arm64/python-ldas-tools-framecpp-2.6.14-py312h24b2348_4.conda
+- osx-arm64/python-ldas-tools-framecpp-3.0.0-py312hc5e9ecd_3.conda
+- osx-arm64/python-ldas-tools-framecpp-3.0.0-py312h56715f7_4.conda
+- osx-arm64/python-ldas-tools-framecpp-3.0.0-py312h24b2348_5.conda
