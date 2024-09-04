@@ -1,0 +1,3 @@
+action: broken
+packages:
+- noarch/rubin-scheduler-1.2.2-pyhd8ed1ab_0.conda
