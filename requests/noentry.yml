@@ -1,4 +1,0 @@
-action: broken
-packages:
-  - noarch/conda-forge-feedstock-ops-0.3.0-pyhd8ed1ab_0.conda
-  - noarch/conda-forge-tick-2024.9.25-pyhd8ed1ab_0.conda
