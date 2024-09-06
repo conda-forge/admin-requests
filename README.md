@@ -62,7 +62,7 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 Available opt-in resources:
 
 - Travis CI: See `examples/example-travis.yml`
-- [`open-gpu-server`](https://github.com/Quansight/open-gpu-server) (includes GPU CI and long-running builds): See `examples/example-open-gpu-server.yml`. 
+- [`open-gpu-server`](https://github.com/Quansight/open-gpu-server) (includes GPU CI and long-running builds): See `examples/example-open-gpu-server.yml`.
 
 ## Request a CFEP-3 copy to conda-forge
 
@@ -72,3 +72,9 @@ This workflow allows users to request a copy once the manual review has been pas
 To do so, please create a new `.yml` file in the `requests` folder. Check `examples/example-cfep-3.yml` for the required metadata.
 
 For provenance and transparency, the PR description must include a link to the original PR and the logs, along with the artifact(s) to be reviewed.
+
+## Add a package output to a feedstock
+
+By default, `conda-forge` feedstocks cannot push packages to our channel that another feedstock makes. If you need to move a package
+build from one feedstock to another, you should request the output be added to the new feedstock via this repository. An example request
+is located in [examples/example-add-output.yml](examples/example-add-feedstock-output.yml). Make a PR putting your `.yml` request file in the `requests` directory and the <code>@</code>`conda-forge/core` team will review it.
