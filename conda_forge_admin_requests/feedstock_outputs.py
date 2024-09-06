@@ -46,14 +46,15 @@ def check(request):
     assert action in ("add_feedstock_output",)
 
     assert "feedstock_to_output_mapping" in request
-    for feedstock, _ in request["feedstock_to_output_mapping"].items():
-        if feedstock.endswith("-feedstock"):
-            feedstock = feedstock[:-10]
+    for req in request["feedstock_to_output_mapping"].items():
+        for feedstock, _ in req.items():
+            if feedstock.endswith("-feedstock"):
+                feedstock = feedstock[:-10]
 
-        r = requests.head(
-            f"https://github.com/conda-forge/{feedstock}-feedstock"
-        )
-        r.raise_for_status()
+            r = requests.head(
+                f"https://github.com/conda-forge/{feedstock}-feedstock"
+            )
+            r.raise_for_status()
 
 
 def run(request):
