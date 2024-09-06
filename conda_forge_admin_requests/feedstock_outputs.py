@@ -22,7 +22,7 @@ def _add_feedstock_output(
         data = {"feedstocks": [feedstock]}
         repo.create_file(
             _get_sharded_path(pkg_name),
-            f"add output {pkg_name} for conda-forge/{feedstock}-feedstock",
+            f"[cf admin skip] ***NO_CI*** add output {pkg_name} for conda-forge/{feedstock}-feedstock",
             json.dumps(data),
         )
         print(f"    output {pkg_name} added for feedstock conda-forge/{feedstock}-feedstock", flush=True)
@@ -32,7 +32,7 @@ def _add_feedstock_output(
             data["feedstocks"].append(feedstock)
             repo.update_file(
                 contents.path,
-                f"add output {pkg_name} for conda-forge/{feedstock}-feedstock",
+                f"[cf admin skip] ***NO_CI*** add output {pkg_name} for conda-forge/{feedstock}-feedstock",
                 json.dumps(data),
                 contents.sha,
             )
