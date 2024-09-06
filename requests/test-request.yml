@@ -1,0 +1,4 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  cf-autotick-bot-test-package-feedstock: blahblahblah5
+  cf-autotick-bot-test-package: blahblahblah6
