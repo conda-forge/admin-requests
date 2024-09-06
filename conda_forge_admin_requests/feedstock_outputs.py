@@ -46,7 +46,7 @@ def check(request):
     assert action in ("add_feedstock_output",)
 
     assert "feedstock_to_output_mapping" in request
-    for req in request["feedstock_to_output_mapping"].items():
+    for req in request["feedstock_to_output_mapping"]:
         for feedstock, _ in req.items():
             if feedstock.endswith("-feedstock"):
                 feedstock = feedstock[:-10]
