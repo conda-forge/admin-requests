@@ -1,0 +1,7 @@
+action: broken
+packages:
+- noarch/expertai-extract-0.1.2-pyhd8ed1ab_0.tar.bz2
+- noarch/expertai-nlapi-2.5.0-pyhd8ed1ab_0.conda
+- noarch/expertai-nlapi-2.4.1-pyhd8ed1ab_0.tar.bz2
+- noarch/expertai-nlapi-2.4.0-pyhd8ed1ab_0.tar.bz2
+- noarch/expertai-nlapi-2.3.1-pyhd8ed1ab_0.tar.bz2
