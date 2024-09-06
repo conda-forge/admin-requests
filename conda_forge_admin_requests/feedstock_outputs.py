@@ -43,9 +43,9 @@ def _add_feedstock_output(
 
 def check(request):
     action = request["action"]
-    assert action in ("add_feedstock_output",)
+    assert action == "add_feedstock_output"
 
-    assert "feedstock_to_output_mapping" in request
+    assert request.get("feedstock_to_output_mapping") 
     for req in request["feedstock_to_output_mapping"]:
         for feedstock, _ in req.items():
             if feedstock.endswith("-feedstock"):
@@ -59,9 +59,9 @@ def check(request):
 
 def run(request):
     action = request["action"]
-    assert action in ("add_feedstock_output",)
+    assert action == "add_feedstock_output"
 
-    assert "feedstock_to_output_mapping" in request
+    assert request.get("feedstock_to_output_mapping")
     items_to_keep = []
     for req in request["feedstock_to_output_mapping"]:
         for feedstock, pkg_name in req.items():

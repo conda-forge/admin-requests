@@ -77,4 +77,4 @@ For provenance and transparency, the PR description must include a link to the o
 
 By default, `conda-forge` feedstocks cannot push packages to our channel that another feedstock makes. If you need to move a package
 build from one feedstock to another, you should request the output be added to the new feedstock via this repository. An example request
-is located in [examples/example-add-output.yml](examples/example-add-feedstock-output.yml). Make a PR putting your `.yml` request file in the `requests` directory and the `conda-forge/core` team will review it.
+is located in [examples/example-add-feedstock-output.yml](examples/example-add-feedstock-output.yml). Make a PR putting your `.yml` request file in the `requests` directory and the `conda-forge/core` team will review it.
