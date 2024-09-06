@@ -27,29 +27,3 @@ jobs:
         run: |
           conda activate cf
           python -m conda_forge_admin_requests check
-
-      - name: Generate token
-        id: generate_token
-        uses: actions/create-github-app-token@31c86eb3b33c9b601a1f60f98dcbfd1d70f379b4 # v1.10.3
-        with:
-          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
-          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-
-      - name: Process requests based on YAML files
-        shell: bash -el {0}
-        run: |
-          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
-          git config --global user.name "conda-forge-curator[bot]"
-          python -m conda_forge_admin_requests run
-        env:
-          PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-          CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-          TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
-          AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
-          DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
-          CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
-          GITHUB_ADMIN_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
-          CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
-          STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
