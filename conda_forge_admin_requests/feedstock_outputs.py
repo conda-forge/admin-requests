@@ -61,12 +61,19 @@ def run(request):
     assert action in ("add_feedstock_output",)
 
     assert "feedstock_to_output_mapping" in request
-    for feedstock, pkg_name in request["feedstock_to_output_mapping"].items():
-        try:
-            if feedstock.endswith("-feedstock"):
-                feedstock = feedstock[:-10]
-            _add_feedstock_output(feedstock, pkg_name)
-            return None
-        except Exception as e:
-            print(f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}", flush=True)
-            return request
+    items_to_keep = []
+    for req in request["feedstock_to_output_mapping"]:
+        for feedstock, pkg_name in req.items():
+            try:
+                if feedstock.endswith("-feedstock"):
+                    feedstock = feedstock[:-10]
+                _add_feedstock_output(feedstock, pkg_name)
+            except Exception as e:
+                print(f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}", flush=True)
+                items_to_keep.append({feedstock: pkg_name})
+
+    if items_to_keep:
+        request["feedstock_to_output_mapping"] = items_to_keep
+        return request
+    else:
+        return None
