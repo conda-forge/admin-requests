@@ -1,0 +1,12 @@
+# This file contains a mapping of feedstocks to glob patterns. If any new
+# output for the feedstock matches the glob pattern, the admin webservices
+# bot will automatically add the output for the feedstock. This feature is
+# useful for feedstocks like `llvmdev` whose output names change in defined
+# ways over time (e.g., `libllvm18`, `libllvm19`, etc.). The glob patterns
+# are interpreted by Python's `fnmatch` module.
+llvmdev:
+  - libllvm*
+  - llvm-tools-*
+  - libllvm-c*
+atkmm:
+  - atkmm-*
