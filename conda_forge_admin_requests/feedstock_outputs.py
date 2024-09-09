@@ -1,7 +1,9 @@
+import io
 import json
 import os
 import requests
 
+import ruamel.yaml
 from conda_forge_metadata.feedstock_outputs import sharded_path as _get_sharded_path
 import github
 
@@ -41,11 +43,37 @@ def _add_feedstock_output(
             print(f"    output {pkg_name} already exists for feedstock conda-forge/{feedstock}-feedstock", flush=True)
 
 
+def _add_feedstock_output_glob(
+    feedstock,
+    glob_str,
+):
+    gh_token = os.environ['GITHUB_TOKEN']
+    gh = github.Github(auth=github.Auth.Token(gh_token))
+    repo = gh.get_repo("conda-forge/feedstock-outputs")
+    contents = repo.get_contents("feedstock_outputs_autoreg_allowlist.yml")
+
+    yaml = ruamel.yaml.YAML(typ="safe")
+    data = yaml.load(contents.decoded_content.decode("utf-8"))
+    current_globs = data.get(feedstock, [])
+    if glob_str not in current_globs:
+        current_globs.append(glob_str)
+    data[feedstock] = current_globs
+    fp = io.StringIO()
+    yaml.dump(data, fp)
+    repo.update_file(
+        contents.path,
+        f"[cf admin skip] ***NO_CI*** add glob {glob_str} for conda-forge/{feedstock}-feedstock",
+        fp.getvalue(),
+        contents.sha,
+    )
+    print(f"    glob {glob_str} added for feedstock conda-forge/{feedstock}-feedstock", flush=True)
+
+
 def check(request):
     action = request["action"]
     assert action == "add_feedstock_output"
 
-    assert request.get("feedstock_to_output_mapping") 
+    assert request.get("feedstock_to_output_mapping")
     for req in request["feedstock_to_output_mapping"]:
         for feedstock, _ in req.items():
             if feedstock.endswith("-feedstock"):
@@ -68,7 +96,10 @@ def run(request):
             try:
                 if feedstock.endswith("-feedstock"):
                     feedstock = feedstock[:-10]
-                _add_feedstock_output(feedstock, pkg_name)
+                if any(_c in pkg_name for _c in ["*", "?", "[", "]", "!"]):
+                    _add_feedstock_output_glob(feedstock, pkg_name)
+                else:
+                    _add_feedstock_output(feedstock, pkg_name)
             except Exception as e:
                 print(f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}", flush=True)
                 items_to_keep.append({feedstock: pkg_name})
