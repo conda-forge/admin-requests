@@ -6,9 +6,19 @@
 # are interpreted by Python's `fnmatch` module.
 atkmm:
   - atkmm-*
+clangdev:
+  - clang-*
+  - clang-format-*
+  - libclang*
+  - libclang-cpp*
+llvm-spirv:
+  - libllvmspirv*
+  - llvm-spirv-*
 llvmdev:
   - libllvm*
   - libllvm-c*
   - llvm-tools-*
+mlir:
+  - libmlir*
 staged-recipes:
   - "blah-*"  # this entry allows us to do testing of the webservices do not remove
