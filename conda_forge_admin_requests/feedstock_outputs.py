@@ -52,7 +52,7 @@ def _add_feedstock_output_glob(
     repo = gh.get_repo("conda-forge/feedstock-outputs")
     contents = repo.get_contents("feedstock_outputs_autoreg_allowlist.yml")
 
-    yaml = ruamel.yaml.YAML(typ="safe")
+    yaml = ruamel.yaml.YAML(typ="rt")  # use round-trip to preserve comments
     data = yaml.load(contents.decoded_content.decode("utf-8"))
     current_globs = data.get(feedstock, [])
     if glob_str not in current_globs:
