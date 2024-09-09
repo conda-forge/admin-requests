@@ -4,11 +4,21 @@
 # useful for feedstocks like `llvmdev` whose output names change in defined
 # ways over time (e.g., `libllvm18`, `libllvm19`, etc.). The glob patterns
 # are interpreted by Python's `fnmatch` module.
-staged-recipes:
-  - "blah-*"  # this entry allows us to do testing of the webservices do not remove
-llvmdev:
-  - libllvm*
-  - llvm-tools-*
-  - libllvm-c*
 atkmm:
   - atkmm-*
+clangdev:
+  - clang-*
+  - clang-format-*
+  - libclang*
+  - libclang-cpp*
+llvm-spirv:
+  - libllvmspirv*
+  - llvm-spirv-*
+llvmdev:
+  - libllvm*
+  - libllvm-c*
+  - llvm-tools-*
+mlir:
+  - libmlir*
+staged-recipes:
+  - "blah-*"  # this entry allows us to do testing of the webservices do not remove
