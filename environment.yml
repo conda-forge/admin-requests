@@ -11,5 +11,5 @@ dependencies:
   - pydantic
   - cirun
   - conda-smithy >=3.30.1
-  - conda-forge-metadata >=0.9.0
+  - conda-forge-metadata >=0.9.1
   - ruamel.yaml
