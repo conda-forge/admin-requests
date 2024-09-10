@@ -1,0 +1,6 @@
+action: broken
+packages:
+  - linux-64/libobjcryst-2024.2.1-h2b4839b_0.conda
+  - osx-64/libobjcryst-2024.2.1-hfa82e24_0.conda
+  - osx-arm64/libobjcryst-2024.2.1-hb2e4e21_0.conda
+  - win-64/libobjcryst-2024.2.1-h26c23d0_0.conda
