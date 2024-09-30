@@ -1,8 +1,0 @@
-action: broken
-packages:
-- noarch/mpi-1.0-msmpi.conda
-- noarch/mpi-1.0-mvapich.conda
-- noarch/mpi-1.0-openmpi.conda
-- noarch/mpi-1.0-impi.conda
-- noarch/mpi-1.0-mpi_serial.conda
-- noarch/mpi-1.0-mpich.conda
