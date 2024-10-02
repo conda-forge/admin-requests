@@ -96,9 +96,6 @@ def send_pr_cirun(
         on Github actions via Cirun.
         - [ ] Maintainers have accepted the terms of service and privacy policy
           at https://github.com/Quansight/open-gpu-server
-
-        Also, note that rerendering with Github actions as CI provider must be done
-        locally in the future for this feedstock.
         """),
     )
 
