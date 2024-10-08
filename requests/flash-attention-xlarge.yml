@@ -1,5 +1,0 @@
-action: cirun
-feedstocks:
-  - flash-attn
-resources:
-  - cirun-openstack-cpu-xlarge
