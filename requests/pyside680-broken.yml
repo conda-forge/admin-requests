@@ -1,0 +1,27 @@
+action: broken
+packages:
+ - linux-64/pyside6-6.8.0-py310hfd10a26_0.conda
+ - linux-64/pyside6-6.8.0-py311h9053184_0.conda
+ - linux-64/pyside6-6.8.0-py312h91f0f75_0.conda
+ - linux-64/pyside6-6.8.0-py313h5f61773_0.conda
+ - linux-64/pyside6-6.8.0-py39h0383914_0.conda
+ - linux-aarch64/pyside6-6.8.0-py310hee8ad4f_0.conda
+ - linux-aarch64/pyside6-6.8.0-py311habb2604_0.conda
+ - linux-aarch64/pyside6-6.8.0-py312hdd999d0_0.conda
+ - linux-aarch64/pyside6-6.8.0-py313h57f4686_0.conda
+ - linux-aarch64/pyside6-6.8.0-py39h51c6ee1_0.conda
+ - osx-64/pyside6-6.8.0-py310h8d59534_0.conda
+ - osx-64/pyside6-6.8.0-py311h1de37e4_0.conda
+ - osx-64/pyside6-6.8.0-py312hcc6ae5d_0.conda
+ - osx-64/pyside6-6.8.0-py313h6f3d45c_0.conda
+ - osx-64/pyside6-6.8.0-py39h90672db_0.conda
+ - osx-arm64/pyside6-6.8.0-py310ha3ae998_0.conda
+ - osx-arm64/pyside6-6.8.0-py311h2ef2a8a_0.conda
+ - osx-arm64/pyside6-6.8.0-py312h357ae5d_0.conda
+ - osx-arm64/pyside6-6.8.0-py313h3fa6827_0.conda
+ - osx-arm64/pyside6-6.8.0-py39h68acce0_0.conda
+ - win-64/pyside6-6.8.0-py310h60c6385_0.conda
+ - win-64/pyside6-6.8.0-py311h4238720_0.conda
+ - win-64/pyside6-6.8.0-py312h2ee7485_0.conda
+ - win-64/pyside6-6.8.0-py313h3e3797f_0.conda
+ - win-64/pyside6-6.8.0-py39h0285922_0.conda
