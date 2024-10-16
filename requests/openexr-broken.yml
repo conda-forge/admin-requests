@@ -1,9 +1,0 @@
-action: broken
-packages:
-- linux-64/openexr-3.3.1-h6ed009d_0.conda
-- linux-aarch64/openexr-3.3.1-h2673917_0.conda
-- linux-ppc64le/openexr-3.3.1-hc0139b5_0.conda
-- osx-64/openexr-3.3.1-h0631237_0.conda
-- osx-arm64/openexr-3.3.1-h0aba339_0.conda
-- win-64/openexr-3.3.1-h81979ff_0.conda
-
