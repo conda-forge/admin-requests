@@ -1,3 +1,3 @@
 action: broken
 packages:
-- altair-aitools-devkit/1.0rc1/download/noarch/altair-aitools-devkit-1.0rc1-pyh9fe0891_0.conda
+  - noarch/altair-aitools-devkit-1.0rc1-pyh9fe0891_0.conda
