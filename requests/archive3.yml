@@ -1,5 +1,5 @@
 action: archive
 feedstocks:
   - ytop
-  - ann-visualizer
+  - ann_visualizer
   - jupyterlab-plotly-extension
