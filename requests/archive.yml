@@ -1,6 +1,0 @@
-action: archive
-feedstocks:
-  - r-modes
-  - r-pathological
-  - r-xroi
-  - r-xtractomatic
