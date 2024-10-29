@@ -83,4 +83,4 @@ jobs:
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token:  ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
