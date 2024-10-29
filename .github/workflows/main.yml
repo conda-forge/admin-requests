@@ -23,6 +23,8 @@ jobs:
       - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
         # outcome is evaluated before continue-on-error above
         if: steps.conversion_lock.outcome == 'success'
+        with:
+          token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
 
       - name: fast finish
         if: ${{ steps.conversion_lock.outcome == 'success' }}
@@ -73,14 +75,9 @@ jobs:
           CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
           STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
 
-      - name: pull changes
+      - name: pull and push changes
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         shell: bash -el {0}
         run: |
           git pull
-
-      - name: Push changes
-        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
-        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # master
-        with:
-          github_token:  ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          git push
