@@ -1,0 +1,4 @@
+action: archive
+feedstocks:
+  - shinycustomloader
+  - m2w64-muparser
