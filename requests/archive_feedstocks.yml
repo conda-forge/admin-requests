@@ -1,0 +1,8 @@
+action: archive
+feedstocks:
+  - r-best
+  - r-cairodevice
+  - r-freetypeharfbuzz
+  - r-gwidgetsrgtk2
+  - r-rgtk2
+  - r-sen2r
