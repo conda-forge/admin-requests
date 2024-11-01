@@ -1,4 +1,0 @@
-action: archive
-feedstocks:
-  - hipscat
-  - hipscat-import
