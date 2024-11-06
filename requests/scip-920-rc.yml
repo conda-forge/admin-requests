@@ -1,3 +1,6 @@
 action: broken
 packages:
 - linux-64/scip-9.2.0-h445098e_0.conda
+- linux-64/soplex-7.1.2-habd59de_0.conda
+- linux-64/papilo-2.4.0-he395102_0.conda
+- linux-64/gcg-3.7.0-hf8b0789_0.conda
