@@ -13,6 +13,15 @@ def _get_task_files():
 
 
 def check():
+    # error if people put thinks in old places
+    old_files = glob.glob("broken/*")
+    if old_files:
+        assert False, (
+            f"Found old files ({old_files}) in wrong location. "
+            "Please put YAML=formatted requests in the `requests` directory."
+        )
+
+
     filenames = _get_task_files()
 
     for filename in filenames:
