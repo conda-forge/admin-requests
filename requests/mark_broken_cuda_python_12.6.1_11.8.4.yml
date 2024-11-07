@@ -1,0 +1,39 @@
+action: broken
+packages:
+# Remove `cuda-python` version `12.6.1` packages
+- linux-64/cuda-python-12.6.1-py310h521d3fa_0.conda
+- linux-64/cuda-python-12.6.1-py311h817de4b_0.conda
+- linux-64/cuda-python-12.6.1-py312he9d8a76_0.conda
+- linux-64/cuda-python-12.6.1-py313ha2c4718_0.conda
+- linux-64/cuda-python-12.6.1-py39h65f4db9_0.conda
+- linux-aarch64/cuda-python-12.6.1-py310hfaf7bc8_0.conda
+- linux-aarch64/cuda-python-12.6.1-py311h5330dbf_0.conda
+- linux-aarch64/cuda-python-12.6.1-py312hc74e36e_0.conda
+- linux-aarch64/cuda-python-12.6.1-py313h8fd389d_0.conda
+- linux-aarch64/cuda-python-12.6.1-py39h23eefdf_0.conda
+- win-64/cuda-python-12.6.1-py310h426f73b_0.conda
+- win-64/cuda-python-12.6.1-py311hac8033d_0.conda
+- win-64/cuda-python-12.6.1-py312hde4e169_0.conda
+- win-64/cuda-python-12.6.1-py313h356f281_0.conda
+- win-64/cuda-python-12.6.1-py39hf7aa161_0.conda
+# Remove `cuda-python` version `11.8.4` packages
+- linux-64/cuda-python-11.8.4-py310hda4ad70_0.conda
+- linux-64/cuda-python-11.8.4-py311h2c6edaf_0.conda
+- linux-64/cuda-python-11.8.4-py312h32b3722_0.conda
+- linux-64/cuda-python-11.8.4-py313hb190672_0.conda
+- linux-64/cuda-python-11.8.4-py39h6461835_0.conda
+- linux-aarch64/cuda-python-11.8.4-py310h1e6a3dc_0.conda
+- linux-aarch64/cuda-python-11.8.4-py311h28adfca_0.conda
+- linux-aarch64/cuda-python-11.8.4-py312h3cedb5a_0.conda
+- linux-aarch64/cuda-python-11.8.4-py313h8cf1621_0.conda
+- linux-aarch64/cuda-python-11.8.4-py39hb6fa685_0.conda
+- linux-ppc64le/cuda-python-11.8.4-py310h5fd0fb4_0.conda
+- linux-ppc64le/cuda-python-11.8.4-py311he5a7f8f_0.conda
+- linux-ppc64le/cuda-python-11.8.4-py312hfa47c09_0.conda
+- linux-ppc64le/cuda-python-11.8.4-py313hd2e6efa_0.conda
+- linux-ppc64le/cuda-python-11.8.4-py39h4d26765_0.conda
+- win-64/cuda-python-11.8.4-py310h56156f1_0.conda
+- win-64/cuda-python-11.8.4-py311h527572f_0.conda
+- win-64/cuda-python-11.8.4-py312ha640f86_0.conda
+- win-64/cuda-python-11.8.4-py313hdbe39b5_0.conda
+- win-64/cuda-python-11.8.4-py39had9b54b_0.conda
