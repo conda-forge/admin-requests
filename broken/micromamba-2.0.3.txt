@@ -1,0 +1,6 @@
+linux-ppc64le/micromamba-2.0.3-0.tar.bz2
+linux-aarch64/micromamba-2.0.3-0.tar.bz2
+win-64/micromamba-2.0.3-0.tar.bz2
+linux-64/micromamba-2.0.3-0.tar.bz2
+osx-64/micromamba-2.0.3-0.tar.bz2
+osx-arm64/micromamba-2.0.3-0.tar.bz2
