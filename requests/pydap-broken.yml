@@ -1,4 +1,0 @@
-action: broken
-packages:
-  - noarch/pydap-3.5.1-py310hff2d567_1.conda
-  - noarch/pydap-server-3.5.1-py310hff2d567_1.conda
