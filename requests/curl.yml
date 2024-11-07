@@ -1,0 +1,14 @@
+action: broken
+packages:
+- osx-64/curl-8.11.0-hd8fc636_0.conda
+- osx-arm64/curl-8.11.0-he83c8a2_0.conda
+- win-64/curl-8.11.0-h1ee3ff0_0.conda
+- linux-ppc64le/curl-8.11.0-h9c4a7dd_0.conda
+- linux-aarch64/curl-8.11.0-h3ec0cbf_0.conda
+- linux-64/curl-8.11.0-hbbe4b11_0.conda
+- osx-64/libcurl-8.11.0-hd8fc636_0.conda
+- osx-arm64/libcurl-8.11.0-he83c8a2_0.conda
+- win-64/libcurl-8.11.0-h1ee3ff0_0.conda
+- linux-ppc64le/libcurl-8.11.0-h9c4a7dd_0.conda
+- linux-aarch64/libcurl-8.11.0-h3ec0cbf_0.conda
+- linux-64/libcurl-8.11.0-hbbe4b11_0.conda
