@@ -1,0 +1,6 @@
+action: token_reset
+feedstocks:
+- cf-autotick-bot-test-package
+# experimental options
+unique_token_per_provider: true
+existing_tokens_time_to_expiration: 600
