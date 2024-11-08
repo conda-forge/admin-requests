@@ -160,9 +160,9 @@ def run(request):
     feedstocks = request["feedstocks"]
 
     skips = request.get("skip_providers", [])
-    unique_token_per_provider = request.get("unique_token_per_provider", False)
+    unique_token_per_provider = request.get("unique_token_per_provider", True)
     existing_tokens_time_to_expiration = request.get(
-        "existing_tokens_time_to_expiration", None
+        "existing_tokens_time_to_expiration", 6.5 * 60 * 60  # 6.5 hours
     )
 
     feedstocks_to_do_again = []
