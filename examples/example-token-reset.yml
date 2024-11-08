@@ -3,6 +3,5 @@ feedstocks:
 - conda-smithy
 # can be a list with azure, travis, circle, drone, appveyor, github_actions
 skip_providers: []
-# experimental options
-unique_token_per_provider: false
-existing_tokens_time_to_expiration: null  # set to an int in seconds to use
+# we can expire tokens earlier if desired - default is null which is immediately
+# existing_tokens_time_to_expiration: null  # set to an int in seconds to use
