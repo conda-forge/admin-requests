@@ -1,0 +1,6 @@
+action: cfep3_copy
+anaconda_org_packages:
+  # list of {package: channel[/label/<label>]/subdir/filename.extension, sha256: SHA256}
+  - package: jaimergp/label/conda-standalone-24.9.2/osx-arm64/conda-standalone-24.9.2-hce30654_0.conda
+    sha256: 35d5cf62eb2d3478272fb6875d4c898eb486176d2f218eac5ba56c8f64b00887
+to_anaconda_org_label: main  # optional, default=main
