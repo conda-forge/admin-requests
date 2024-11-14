@@ -1,5 +1,3 @@
 action: broken
 packages:
 - linux-64/openmpi-5.0.5-hd45feaf_104.conda
-- linux-aarch64/openmpi-5.0.5-hf2a86e7_104.conda
-- linux-ppc64le/openmpi-5.0.5-h6faa2b5_104.conda
