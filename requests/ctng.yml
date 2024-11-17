@@ -1,0 +1,9 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - ctng-compiler-activation:
+      clang_impl_linux-64
+      clang_impl_linux-aarch64
+      clang_impl_linux-ppc64le
+      clangxx_impl_linux-64
+      clangxx_impl_linux-aarch64
+      clangxx_impl_linux-ppc64le
