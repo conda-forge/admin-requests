@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - libgcrypt: libgcrypt-lib
+  - libgcrypt: libgcrypt-devel
+  - libgcrypt: libgcrypt-tools
