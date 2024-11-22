@@ -1,3 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  - scikit_sundae: "scikit-sundae*"
