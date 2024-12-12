@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # prepare to split libfabric outputs
+  - libfabric: libfabric1
+  - libfabric: libfabric-devel
+  - libfabric: libfabric-bin
