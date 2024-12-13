@@ -1,6 +1,4 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
-- freetype:
-  - freetype
-  - libfreetype*
-  - _libfreetype_api
+  - freetype: "libfreetype*"
+  - freetype: "_libfreetype_api"
