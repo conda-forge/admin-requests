@@ -1,0 +1,14 @@
+action: broken
+packages:
+- linux-aarch64/zellij-0.41.2-ha3529ed_1.conda
+- osx-arm64/zellij-0.41.2-h8dba533_1.conda
+- osx-64/zellij-0.41.2-hd2571bf_1.conda
+- linux-64/zellij-0.41.2-h6c30b3d_1.conda
+- linux-aarch64/zellij-0.41.2-ha3529ed_0.conda
+- osx-arm64/zellij-0.41.2-h3b05019_0.conda
+- osx-64/zellij-0.41.2-h371c88c_0.conda
+- linux-64/zellij-0.41.2-h8fae777_0.conda
+- linux-aarch64/zellij-0.41.1-ha3529ed_0.conda
+- osx-arm64/zellij-0.41.1-h3b05019_0.conda
+- osx-64/zellij-0.41.1-h371c88c_0.conda
+- linux-64/zellij-0.41.1-h8fae777_0.conda
