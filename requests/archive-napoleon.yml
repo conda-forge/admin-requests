@@ -1,2 +1,3 @@
-action: 'archive'
-feedstocks: ['sphinxcontrib-napoleon']
+action: archive
+feedstocks:
+    - sphinxcontrib-napoleon
