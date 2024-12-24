@@ -1,0 +1,5 @@
+action: archive
+feedstocks:
+  - r-rxode2et
+  - r-rxode2parse
+  - r-rxode2random
