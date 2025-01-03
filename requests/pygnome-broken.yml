@@ -1,6 +1,0 @@
-action: broken
-packages:
-- win-64/pygnome-1.1.14-py312hc6c7e08_1.conda
-- win-64/pygnome-1.1.14-py310h12034eb_1.conda
-- win-64/pygnome-1.1.14-py39ha3851f1_1.conda
-- win-64/pygnome-1.1.14-py311hd39ab0c_1.conda
