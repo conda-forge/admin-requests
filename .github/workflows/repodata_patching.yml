@@ -2,7 +2,7 @@ name: repodata_patching
 
 on:
   schedule:
-    - cron:  '0 0 * * 0'
+    - cron: '0 0 * * 0'
   workflow_dispatch: null
 
 jobs:
@@ -11,42 +11,42 @@ jobs:
     steps:
       - name: Prevent multiple jobs running in parallel
         id: conversion_lock
-        uses: beckermr/turnstyle-python@v1
+        uses: beckermr/turnstyle-python@8f1ceb87dabbbbebe42257b85c368f6110bb9170 # v2
         with:
           abort-after-seconds: 3
           poll-interval-seconds: 2
           github-token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         # outcome is evaluated before continue-on-error above
         if: steps.conversion_lock.outcome == 'success'
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@d2e6a045a86077fb6cad6f5adf368e9076ddaa8d # v3.1.0
         if: steps.conversion_lock.outcome == 'success'
         with:
           activate-environment: cf
           environment-file: environment.yml
           auto-activate-base: true
           miniforge-version: latest
-          miniforge-variant: Mambaforge
 
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success'
         id: generate_token
-        uses: conda-forge/github-app-token@e3ab451d57e120b956292a1fa1d21fe4ba171c36
+        uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 # v1
         with:
-          app_id: ${{ secrets.CF_CURATOR_APP_ID }}
-          private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
 
       - name: patch repodata
         if: steps.conversion_lock.outcome == 'success'
         shell: bash -l {0}
         run: |
-            conda activate cf
-            git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
-            git config --global user.name "conda-forge-curator[bot]"
-            git config --global pull.rebase false
-            python update_repodata_patches.py
+          conda activate cf
+          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+          git config --global user.name "conda-forge-curator[bot]"
+          git config --global pull.rebase false
+          python update_repodata_patches.py
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}

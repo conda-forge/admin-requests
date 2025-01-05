@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # this entry adds a package name
+  - clang-compiler-activation: clang_impl_osx-64
+  # this entry adds an allowed glob pattern
+  - llvmdev: "libllvm*"

@@ -11,32 +11,19 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: cf
-        environment-file: environment.yml
-        auto-activate-base: true
-        miniforge-version: latest
-        miniforge-variant: Mambaforge
+      - uses: conda-incubator/setup-miniconda@d2e6a045a86077fb6cad6f5adf368e9076ddaa8d # v3.1.0
+        with:
+          activate-environment: cf
+          environment-file: environment.yml
+          auto-activate-base: true
+          miniforge-version: latest
 
-    - name: Check packages exist on main (or label/broken)
-      shell: bash -el {0}
-      run: |
+      - name: Check request YAML files
+        shell: bash -el {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           conda activate cf
-          python mark_broken.py check
-
-    - name: Check feedstocks exist for token reset
-      shell: bash -el {0}
-      run: |
-          conda activate cf
-          python token_reset.py check
-
-    - name: Check feedstocks can be (un)archived
-      shell: bash -el {0}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-          conda activate cf
-          python archive_feedstock.py check
+          python -m conda_forge_admin_requests check

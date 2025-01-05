@@ -4,7 +4,12 @@ channels:
   - nodefaults
 dependencies:
   - anaconda-client
-  - python=3.8
+  - python=3.10
   - requests
   - conda-smithy
   - pygithub
+  - pydantic
+  - cirun
+  - conda-smithy >=3.30.1
+  - conda-forge-metadata >=0.9.1
+  - ruamel.yaml

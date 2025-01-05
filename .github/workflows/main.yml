@@ -1,0 +1,83 @@
+name: run
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0,15,30,45 * * * *"
+  workflow_dispatch: null
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prevent multiple jobs running in parallel
+        id: conversion_lock
+        uses: beckermr/turnstyle-python@8f1ceb87dabbbbebe42257b85c368f6110bb9170 # v2
+        with:
+          abort-after-seconds: 3
+          poll-interval-seconds: 2
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        # outcome is evaluated before continue-on-error above
+        if: steps.conversion_lock.outcome == 'success'
+        with:
+          token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+
+      - name: fast finish
+        if: ${{ steps.conversion_lock.outcome == 'success' }}
+        run: |
+          set -x
+          # avoid wasting CI time if there is nothing to do
+          count_yml=$(ls requests/*.yml | wc -l)
+          count_yaml=$(ls requests/*.yaml | wc -l)
+          count=$(($count_yml + $count_yaml))
+          if [[ "${count}" == "0" ]]; then
+            echo "nothing to do, setting ci skip!"
+            echo "CI_SKIP=true" >> $GITHUB_ENV
+          fi
+
+      - uses: conda-incubator/setup-miniconda@d2e6a045a86077fb6cad6f5adf368e9076ddaa8d # v3.1.0
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        with:
+          activate-environment: cf
+          environment-file: environment.yml
+          auto-activate-base: true
+          miniforge-version: latest
+
+      - name: Generate token
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        id: generate_token
+        uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 # v1.11.1
+        with:
+          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Process requests based on YAML files
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        shell: bash -el {0}
+        run: |
+          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+          git config --global user.name "conda-forge-curator[bot]"
+          python -m conda_forge_admin_requests run
+        env:
+          PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
+          TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
+          AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
+          DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
+          CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
+          GITHUB_ADMIN_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
+          STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
+
+      - name: pull and push changes
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        shell: bash -el {0}
+        run: |
+          git pull
+          git push
