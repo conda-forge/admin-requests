@@ -1,3 +1,0 @@
-action: archive
-feedstocks:
-  - jupyter_http_over_ws
