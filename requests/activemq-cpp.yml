@@ -1,0 +1,6 @@
+action: broken
+packages:
+- osx-64/activemq-cpp-3.9.5-hf70b16c_2.conda
+- linux-64/activemq-cpp-3.9.5-h266115a_2.conda
+- osx-64/activemq-cpp-3.9.5-h0e25c27_1.conda
+- linux-64/activemq-cpp-3.9.5-hf1915f5_1.conda
