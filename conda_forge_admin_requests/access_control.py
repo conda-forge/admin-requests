@@ -51,7 +51,7 @@ def send_pr_cirun(
                 "conda_build_config.yaml")) as cbc, \
             update_conda_forge_config(
                 os.path.join(feedstock_dir, "conda-forge.yml")) as cfg:
-        if any(label.startwith("cirun-") for label in cbc.get(
+        if any(label.startswith("cirun-") for label in cbc.get(
                 "github_actions_labels", [])):
             return
         cfg["github_actions"] = {"self_hosted": True}
