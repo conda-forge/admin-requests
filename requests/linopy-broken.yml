@@ -1,0 +1,4 @@
+action: broken
+packages:
+- noarch/linopy-0.4.2-pyhff2d567_0.conda
+- noarch/linopy-0.4.3-pyhd8ed1ab_0.conda
