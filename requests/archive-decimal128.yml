@@ -1,3 +1,0 @@
-action: archive
-feedstocks:
-  - decimal128  # package removed from pypi and gh
