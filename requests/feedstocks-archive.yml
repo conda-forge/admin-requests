@@ -1,9 +1,0 @@
-action: archive
-feedstocks:
-  - linecache2  # archived upstream
-  - dask-searchcv  # archived upstream 
-  - hive-thrift-py  # latest release and commit from 2012
-  - speaklater  # latest release and commit from 2012
-  - nbexamples  # lastesr release and commit is from 2016
-  - django-daterange-filter  # last commit was from 2017
-  - backports.tempfile  # last commit from 2017
