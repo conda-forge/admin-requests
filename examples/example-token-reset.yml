@@ -1,7 +1,8 @@
 action: token_reset
 feedstocks:
-- conda-smithy
+- !!!PUT THE NAME OF YOUR FEEDSTOCK HERE!!!
+# do not use this unless you have special requirements for your feedstock
 # can be a list with azure, travis, circle, drone, appveyor, github_actions
-skip_providers: []
+# skip_providers: []
 # we can expire tokens earlier if desired - default is null which is immediately
 # existing_tokens_time_to_expiration: null  # set to an int in seconds to use
