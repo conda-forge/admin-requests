@@ -1,0 +1,14 @@
+action: broken
+packages:
+- win-64/graspologic-native-1.2.2-py310hc226416_0.conda
+- win-64/graspologic-native-1.2.2-py39h92a245a_0.conda
+- win-64/graspologic-native-1.2.2-py312h2615798_0.conda
+- win-64/graspologic-native-1.2.2-py311h533ab2d_0.conda
+- osx-64/graspologic-native-1.2.2-py39h98fa8a5_0.conda
+- osx-64/graspologic-native-1.2.2-py310h6a64aeb_0.conda
+- osx-64/graspologic-native-1.2.2-py311h051b0df_0.conda
+- osx-64/graspologic-native-1.2.2-py312h13ab401_0.conda
+- linux-64/graspologic-native-1.2.2-py312h12e396e_0.conda
+- linux-64/graspologic-native-1.2.2-py310h505e2c1_0.conda
+- linux-64/graspologic-native-1.2.2-py311h9e33e62_0.conda
+- linux-64/graspologic-native-1.2.2-py39he612d8f_0.conda
