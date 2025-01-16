@@ -1,0 +1,12 @@
+action: archive
+feedstocks:
+  - coreapi-cli  # archived upstream
+  - thredds_crawler  # archived upstream
+  - jupyter-flex  # archived upstream
+  - illusionist  # archived upstream
+  - pygdp  # upstream repository was removed
+  - conda-execute  # last commit and tag 6 years ago
+  - demoshell  # last commit and tag 7 years ago
+  - nodebook  # last commit and tag 7 years ago
+  - Flask-Excel  # last commit and tag 8 years ago
+  - robobrowser  # last commit and tag 10 years ago
