@@ -1,5 +1,0 @@
-action: archive
-feedstocks:
-  - bio-embeddings-bepler
-  - lock
-  - hpbandster
