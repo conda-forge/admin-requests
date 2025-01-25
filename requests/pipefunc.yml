@@ -1,0 +1,12 @@
+action: broken
+packages:
+- noarch/pipefunc-0.50.2-py310hecae5ae_0.conda
+- noarch/pipefunc-0.50.2-py310hecae5ae_1.conda
+- noarch/pipefunc-extras-0.51.0-hd8ed1ab_0.conda
+- noarch/pipefunc-extras-0.50.3-hd8ed1ab_0.conda
+- noarch/pipefunc-extras-0.50.1-hd8ed1ab_1.conda
+- noarch/pipefunc-extras-0.50.0-hd8ed1ab_2.conda
+- noarch/pipefunc-extras-0.50.2-hd8ed1ab_1.conda
+- noarch/pipefunc-extras-0.50.2-hd8ed1ab_0.conda
+- noarch/pipefunc-extras-0.50.1-hd8ed1ab_0.conda
+- noarch/pipefunc-extras-0.50.0-hd8ed1ab_1.conda
