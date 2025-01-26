@@ -17,7 +17,7 @@ def _add_feedstock_output(
     repo = gh.get_repo("conda-forge/feedstock-outputs")
     try:
         contents = repo.get_contents(_get_sharded_path(pkg_name))
-    except github.UnknownObjectException:
+    except (github.UnknownObjectException, github.GithubException):
         contents = None
 
     if contents is None:
