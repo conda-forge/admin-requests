@@ -1,0 +1,36 @@
+action: broken
+packages:
+ - linux-64/pydantic-1.10.4-py311h2582759_0.conda
+ - linux-64/pydantic-1.10.4-py310h1fa729e_0.conda
+ - linux-64/pydantic-1.10.4-py38h1de0b5d_0.conda
+ - linux-64/pydantic-1.10.4-py38h5c95235_0.conda
+ - linux-64/pydantic-1.10.4-py39h3d6e266_0.conda
+ - linux-64/pydantic-1.10.4-py39h72bdee0_0.conda
+ - linux-aarch64/pydantic-1.10.4-py311h1d6c08a_0.conda
+ - linux-aarch64/pydantic-1.10.4-py310hb89b984_0.conda
+ - linux-aarch64/pydantic-1.10.4-py38h49a33cb_0.conda
+ - linux-aarch64/pydantic-1.10.4-py38hda48048_0.conda
+ - linux-aarch64/pydantic-1.10.4-py39h24fc6b6_0.conda
+ - linux-aarch64/pydantic-1.10.4-py39h39acebd_0.conda
+ - linux-ppc64le/pydantic-1.10.4-py311h57b9580_0.conda
+ - linux-ppc64le/pydantic-1.10.4-py310h82c586f_0.conda
+ - linux-ppc64le/pydantic-1.10.4-py38h0c7bae7_0.conda
+ - linux-ppc64le/pydantic-1.10.4-py38hd7c3010_0.conda
+ - linux-ppc64le/pydantic-1.10.4-py39h38a9e30_0.conda
+ - linux-ppc64le/pydantic-1.10.4-py39h6b8ccca_0.conda
+ - osx-64/pydantic-1.10.4-py311h5547dcb_0.conda
+ - osx-64/pydantic-1.10.4-py310h90acd4f_0.conda
+ - osx-64/pydantic-1.10.4-py38ha54da72_0.conda
+ - osx-64/pydantic-1.10.4-py38hef030d1_0.conda
+ - osx-64/pydantic-1.10.4-py39h4a5f16e_0.conda
+ - osx-64/pydantic-1.10.4-py39ha30fb19_0.conda
+ - osx-arm64/pydantic-1.10.4-py311he2be06e_0.conda
+ - osx-arm64/pydantic-1.10.4-py310h8e9501a_0.conda
+ - osx-arm64/pydantic-1.10.4-py38hb991d35_0.conda
+ - osx-arm64/pydantic-1.10.4-py39h02fc5c5_0.conda
+ - win-64/pydantic-1.10.4-py311ha68e1ae_0.conda
+ - win-64/pydantic-1.10.4-py310h8d17308_0.conda
+ - win-64/pydantic-1.10.4-py38h91455d4_0.conda
+ - win-64/pydantic-1.10.4-py38hdd617f6_0.conda
+ - win-64/pydantic-1.10.4-py39h7a188e9_0.conda
+ - win-64/pydantic-1.10.4-py39ha55989b_0.conda
