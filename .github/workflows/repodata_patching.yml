@@ -22,7 +22,7 @@ jobs:
         # outcome is evaluated before continue-on-error above
         if: steps.conversion_lock.outcome == 'success'
 
-      - uses: conda-incubator/setup-miniconda@d2e6a045a86077fb6cad6f5adf368e9076ddaa8d # v3.1.0
+      - uses: conda-incubator/setup-miniconda@505e6394dae86d6a5c7fbb6e3fb8938e3e863830 # v3.1.1
         if: steps.conversion_lock.outcome == 'success'
         with:
           activate-environment: cf
@@ -33,7 +33,7 @@ jobs:
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success'
         id: generate_token
-        uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 # v1
+        uses: actions/create-github-app-token@136412a57a7081aa63c935a2cc2918f76c34f514 # v1
         with:
           app-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
