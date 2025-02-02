@@ -1,0 +1,10 @@
+action: broken
+packages:
+- linux-ppc64le/petsc-3.22.3-cuda11_complex_h8664137_101.conda
+- linux-ppc64le/petsc-3.22.3-cuda11_complex_hb46f4f1_101.conda
+- linux-ppc64le/petsc-3.22.3-cuda12_complex_h6cbf526_101.conda
+- linux-ppc64le/petsc-3.22.3-cuda12_complex_hd360954_101.conda
+- linux-aarch64/petsc-3.22.3-cuda11_complex_h909f8b8_101.conda
+- linux-aarch64/petsc-3.22.3-cuda11_complex_haf44ef8_101.conda
+- linux-aarch64/petsc-3.22.3-cuda12_complex_h68c2ff0_101.conda
+- linux-aarch64/petsc-3.22.3-cuda12_complex_h839bf0e_101.conda
