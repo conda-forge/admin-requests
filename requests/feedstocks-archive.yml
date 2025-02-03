@@ -1,6 +1,0 @@
-action: archive
-feedstocks:
-  - jupyterlab-python-file
-  - jupyterlab-system-monitor
-  - jupyterlab-classic
-  - nbresuse
