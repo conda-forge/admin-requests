@@ -1,0 +1,12 @@
+action: broken
+packages:
+- osx-arm64/mfront-5.0.0-py312h9cc9300_1.conda
+- osx-arm64/mfront-5.0.0-py39h05834ba_1.conda
+- osx-arm64/mfront-5.0.0-py310h0553a72_1.conda
+- osx-64/mfront-5.0.0-py312h2d6150d_1.conda
+- osx-64/mfront-5.0.0-py310hdf4a9f1_1.conda
+- osx-64/mfront-5.0.0-py313h78ee22f_1.conda
+- osx-64/mfront-5.0.0-py311hcaa055b_1.conda
+- osx-arm64/mfront-5.0.0-py311hed1d19e_1.conda
+- osx-arm64/mfront-5.0.0-py313h3e02fec_1.conda
+- osx-64/mfront-5.0.0-py39hfb4e318_1.conda
