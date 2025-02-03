@@ -1,15 +1,5 @@
 action: broken
 packages:
-- linux-64/mfront-5.0.0-py313h12ca5f6_1.conda
-- linux-64/mfront-5.0.0-py312h8803d7a_1.conda
-- linux-64/mfront-5.0.0-py311h66abb74_1.conda
-- linux-64/mfront-5.0.0-py39h7819b62_1.conda
-- linux-64/mfront-5.0.0-py310h7f134e1_1.conda
-- win-64/mfront-5.0.0-py310h7335e18_1.conda
-- win-64/mfront-5.0.0-py312hacbb31a_1.conda
-- win-64/mfront-5.0.0-py313hf0f619c_1.conda
-- win-64/mfront-5.0.0-py39h156d6ae_1.conda
-- win-64/mfront-5.0.0-py311h80a5a3d_1.conda
 - osx-arm64/mfront-5.0.0-py312h9cc9300_1.conda
 - osx-arm64/mfront-5.0.0-py39h05834ba_1.conda
 - osx-arm64/mfront-5.0.0-py310h0553a72_1.conda
