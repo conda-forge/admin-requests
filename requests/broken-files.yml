@@ -1,6 +1,0 @@
-action: broken
-packages:
-- noarch/diffpy.pdffit2-1.4.0-pyh1f5dd6c_4.conda
-- noarch/diffpy.pdffit2-1.4.0-pyh1f5dd6c_3.conda
-- noarch/diffpy.pdffit2-1.4.0-pyh1f5dd6c_2.conda
-- noarch/diffpy.pdffit2-1.4.0-pyh1f5dd6c_1.conda
