@@ -1,0 +1,8 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - collier:
+    - "collier"
+    - "collier-static"
+  - ninja-hep-ph:
+    - "ninja-hep-ph"
+    - "ninja-hep-ph-static"
