@@ -1,8 +1,0 @@
-action: broken
-packages:
-  - linux-64/libsqlite-3.49.0-hee588c1_0.conda
-  - linux-aarch64/libsqlite-3.49.0-h5eb1b54_0.conda
-  - linux-ppc64le/libsqlite-3.49.0-haeeb200_0.conda
-  - osx-64/libsqlite-3.49.0-hdb6dae5_0.conda
-  - osx-arm64/libsqlite-3.49.0-h3f77e49_0.conda
-  - win-64/libsqlite-3.49.0-h67fdade_0.conda
