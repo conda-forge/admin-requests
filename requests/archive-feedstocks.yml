@@ -3,7 +3,7 @@ feedstocks:
   - viridis  # 5 years without a release/commit
   - django-celery  # 6 years without a release/commit, py2 only
   - pandas_ml  # 6 years without a release/commit, py2 only
-  - pandas_mlmulti-mechanize  # 6 years without a release/commit, py2 only
+  - multi-mechanize  # 6 years without a release/commit, py2 only
   - warctools  # 6 years without a release/commit
   - corral-pipeline  # 7 years without a release/commit
   - modflow2netcdf  # 9 years without a release/commit
