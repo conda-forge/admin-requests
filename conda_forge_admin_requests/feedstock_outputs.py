@@ -84,7 +84,12 @@ def check(request):
 
     assert request.get("feedstock_to_output_mapping")
     for req in request["feedstock_to_output_mapping"]:
-        for feedstock, _ in req.items():
+        for feedstock, pkg_name in req.items():
+            if not isinstance(pkg_name, str):
+                raise ValueError(
+                    f"Value for '{feedstock}' entry must be a str (output name, or a glob), "
+                    f"but you provided {pkg_name:!r}."
+                )
             if feedstock.endswith("-feedstock"):
                 feedstock = feedstock[:-10]
 
