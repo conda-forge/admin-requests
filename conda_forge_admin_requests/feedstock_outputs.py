@@ -88,7 +88,7 @@ def check(request):
             if not isinstance(pkg_name, str):
                 raise ValueError(
                     f"Value for '{feedstock}' entry must be a str (output name, or a glob), "
-                    f"but you provided {pkg_name:!r}".
+                    f"but you provided {pkg_name:!r}."
                 )
             if feedstock.endswith("-feedstock"):
                 feedstock = feedstock[:-10]
