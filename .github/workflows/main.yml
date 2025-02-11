@@ -62,6 +62,7 @@ jobs:
         run: |
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
           git config --global user.name "conda-forge-curator[bot]"
+          git config --global pull.rebase false
           python -m conda_forge_admin_requests run
         env:
           PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
