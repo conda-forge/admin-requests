@@ -30,6 +30,7 @@ jobs:
         run: |
           git config --global user.email "chrisburr73+conda-forge-admin@gmail.com"
           git config --global user.name "conda-forge-admin"
+          git config --global pull.rebase false
           git add *
           git commit -am "make sure we have no windows line endings" || exit 0
           for i in `seq 1 5`; do
