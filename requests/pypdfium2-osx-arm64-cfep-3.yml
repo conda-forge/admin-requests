@@ -1,0 +1,13 @@
+action: cfep3_copy
+anaconda_org_packages:
+  - package: hadim/label/cfep03/osx-arm64/osx-arm64/pypdfium2-4.30.1-py310h838852f_0.conda
+    sha256: a7954c6e2bd21f66320d03b2c2c392f48c5000ab0424b3e6673e5794c16ad8bc
+  - package: hadim/label/cfep03/osx-arm64/osx-arm64/pypdfium2-4.30.1-py311h9ab0ca4_0.conda
+    sha256: e4d08e7797b77f643bda0b91a5ef73922989b88cf6f5abf9e7ae17f66d793979
+  - package: hadim/label/cfep03/osx-arm64/osx-arm64/pypdfium2-4.30.1-py312h8623a0a_0.conda
+    sha256: ec46452bc6a9caf4ed98a0ffe03acfd3e02da4637112cc91e20abcdf1d9e50e0
+  - package: hadim/label/cfep03/osx-arm64/osx-arm64/pypdfium2-4.30.1-py313haaf154c_0.conda
+    sha256: e73b2b82d4e8c10b1401a01a7bd69799491e498c9221cffd7b06e760c93b6d15
+  - package: hadim/label/cfep03/osx-arm64/osx-arm64/pypdfium2-4.30.1-py39hd4f5814_0.conda
+    sha256: 15e1e2284b141cd84556736172c2338299e3338bc7f47b05d71e0ecb5cbb48f8
+to_anaconda_org_label: main
