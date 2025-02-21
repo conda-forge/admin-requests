@@ -1,0 +1,5 @@
+# To support https://github.com/conda-forge/pytorch_geometric-feedstock/pull/51
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - pytorch_geometric: pytorch_geometric-modelhub
+  - pytorch_geometric: pytorch_geometric-graphgym
