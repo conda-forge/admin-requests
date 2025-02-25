@@ -1,0 +1,19 @@
+action: broken
+packages:
+- osx-64/arcticdb-5.2.4-py310hf33e8d9_0.conda
+- osx-64/arcticdb-5.2.4-py313h25a3f20_0.conda
+- osx-64/arcticdb-5.2.4-py311hfec9d3e_0.conda
+- osx-64/arcticdb-5.2.4-py39h9b391c5_0.conda
+- osx-64/arcticdb-5.2.4-py312hf63039b_0.conda
+- osx-arm64/arcticdb-5.2.4-py313hc5987f7_0.conda
+- osx-arm64/arcticdb-5.2.4-py310h28500a4_0.conda
+- osx-arm64/arcticdb-5.2.4-py312hd1a1e9c_0.conda
+- osx-arm64/arcticdb-5.2.4-py311hcf547d3_0.conda
+- osx-arm64/arcticdb-5.2.4-py39hceace81_0.conda
+- linux-64/arcticdb-5.2.4-py310h90376c6_0.conda
+- linux-64/arcticdb-5.2.4-py311h146e1b1_0.conda
+- linux-64/arcticdb-5.2.4-py39h913bc87_0.conda
+- linux-64/arcticdb-5.2.4-py313h355b3ab_0.conda
+- linux-64/arcticdb-5.2.4-py39h90e1ace_0.conda
+- linux-64/arcticdb-5.2.4-py312hcc24de8_0.conda
+- linux-64/arcticdb-5.2.4-py39h6fdf625_0.conda
