@@ -1,0 +1,4 @@
+action: broken
+packages:
+- osx-arm64/rattler-build-0.37.0-h834e583_0.conda
+- osx-64/rattler-build-0.37.0-h628a13d_0.conda
