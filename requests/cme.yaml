@@ -1,14 +1,14 @@
 action: broken
 packages:
   - osx-64/conda-managed-env-1.0.0-py39h6e9494a_0.conda
-	- osx-64/conda-managed-env-1.0.0-py311h6eed73b_0.conda
-	- osx-64/conda-managed-env-1.0.0-py310h2ec42d9_0.conda
-	- win-64/conda-managed-env-1.0.0-py311h1ea47a8_0.conda
-	- win-64/conda-managed-env-1.0.0-py310h5588dad_0.conda
-	- win-64/conda-managed-env-1.0.0-py312h2e8e312_0.conda
-	- win-64/conda-managed-env-1.0.0-py39hcbf5309_0.conda
-	- osx-64/conda-managed-env-1.0.0-py312hb401068_0.conda
-	- linux-64/conda-managed-env-1.0.0-py311h38be061_0.conda
-	- linux-64/conda-managed-env-1.0.0-py39hf3d152e_0.conda
-	- linux-64/conda-managed-env-1.0.0-py310hff52083_0.conda
-	- linux-64/conda-managed-env-1.0.0-py312h7900ff3_0.conda
+  - osx-64/conda-managed-env-1.0.0-py311h6eed73b_0.conda
+  - osx-64/conda-managed-env-1.0.0-py310h2ec42d9_0.conda
+  - win-64/conda-managed-env-1.0.0-py311h1ea47a8_0.conda
+  - win-64/conda-managed-env-1.0.0-py310h5588dad_0.conda
+  - win-64/conda-managed-env-1.0.0-py312h2e8e312_0.conda
+  - win-64/conda-managed-env-1.0.0-py39hcbf5309_0.conda
+  - osx-64/conda-managed-env-1.0.0-py312hb401068_0.conda
+  - linux-64/conda-managed-env-1.0.0-py311h38be061_0.conda
+  - linux-64/conda-managed-env-1.0.0-py39hf3d152e_0.conda
+  - linux-64/conda-managed-env-1.0.0-py310hff52083_0.conda
+  - linux-64/conda-managed-env-1.0.0-py312h7900ff3_0.conda
