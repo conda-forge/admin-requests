@@ -1,4 +1,0 @@
-action: broken
-packages:
-  - noarch/ipython-9.0.0-pyhca29cf9_0.conda
-  - noarch/ipython-9.0.0-pyhfb0248b_0.conda
