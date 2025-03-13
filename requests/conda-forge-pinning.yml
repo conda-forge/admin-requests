@@ -1,3 +1,0 @@
-action: token_reset
-feedstocks:
-- conda-forge-pinning
