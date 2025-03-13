@@ -1,0 +1,6 @@
+action: broken
+packages:
+  - osx-arm64/r-geometry-0.5.1-r43h31118f2_0.conda
+  - osx-arm64/r-geometry-0.5.1-r44h31118f2_0.conda
+  - osx-arm64/r-geometry-0.5.2-r43h31118f2_0.conda
+  - osx-arm64/r-geometry-0.5.2-r44h31118f2_0.conda
