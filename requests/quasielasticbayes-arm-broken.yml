@@ -1,0 +1,6 @@
+action: broken
+packages:
+- osx-arm64/quasielasticbayes-0.2.0-py310h6de6cd7_1.conda
+- osx-arm64/quasielasticbayes-0.2.0-py310h56e79ef_2.conda
+- osx-arm64/quasielasticbayes-0.2.2-py310h1a2b921_0.conda
+- osx-arm64/quasielasticbayes-0.2.2-py310h1a2b921_1.conda
