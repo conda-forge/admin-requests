@@ -1,6 +1,0 @@
-action: archive
-feedstocks:
-  - metanetx-post
-  - metanetx-sdk
-  - metanetx-assets
-  - versioneer-518
