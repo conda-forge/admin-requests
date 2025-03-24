@@ -1,8 +1,0 @@
-action: broken
-packages:
-- osx-64/pcl-1.15.0-h0c9537a_1.conda
-- osx-arm64/pcl-1.15.0-h467ecd0_1.conda
-- linux-ppc64le/pcl-1.15.0-h422e3f3_1.conda
-- linux-64/pcl-1.15.0-hfe7170b_1.conda
-- linux-aarch64/pcl-1.15.0-hf335d11_1.conda
-- win-64/pcl-1.15.0-h4137319_1.conda
