@@ -1,4 +1,5 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
-  - cudnn: "cudnn*"
-  - cudnn: "libcudnn*"
+  - cudnn: "cudnn"
+  - cudnn: "cudnn-*"
+  - cudnn: "libcudnn-*"
