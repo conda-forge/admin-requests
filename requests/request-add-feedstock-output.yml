@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - intel-compiler-repack: ifx_impl_win-64
+  - intel-compiler-repack: ifx_win-64
+  - intel-compiler-repack: ifx_impl_linux-64
+  - intel-compiler-repack: ifx_linux-64
