@@ -1,0 +1,21 @@
+action: broken
+packages:
+- win-64\vc14_runtime-14.29.30139-ha5d40c7_25.conda
+- win-64\vs2019_win-64-19.29.30139-h7dcff83_25.conda
+- win-64\vc-14.2-h7e409fd_25.conda
+- win-64\vs2015_runtime-14.29.30139-h9cd8c15_25.conda
+- win-64\vs_win-64-2019.11-h7dcff83_25.conda
+- win-64\vc14_runtime-14.42.34433-h6356254_25.conda
+- win-64\vs2022_win-64-19.42.34433-hd920555_25.conda
+- win-64\vc-14.3-h2b53caa_25.conda
+- win-64\vs2015_runtime-14.42.34433-hfef2bbc_25.conda
+- win-64\vs_win-64-2022.12-hd920555_25.conda
+- win-64\vs2022_win-arm64-19.42.34433-hde107c4_25.conda
+- win-64\vs_win-arm64-2022.12-hde107c4_25.conda
+- win-64\vc14_runtime-14.42.34438-hfd919c2_25.conda
+- win-64\vs2022_win-64-19.43.34604-h070f0e0_25.conda
+- win-64\vc-14.3-hbf610ac_25.conda
+- win-64\vs2015_runtime-14.42.34438-h7142326_25.conda
+- win-64\vs_win-64-2022.13-h070f0e0_25.conda
+- win-64\vs2022_win-arm64-19.43.34604-hd28da34_25.conda
+- win-64\vs_win-arm64-2022.13-hd28da34_25.conda
