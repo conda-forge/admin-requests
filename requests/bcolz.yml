@@ -1,3 +1,4 @@
 action: archive
 feedstocks:
   - bcolz
+  - zipline
