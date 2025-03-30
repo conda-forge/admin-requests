@@ -1,9 +1,13 @@
 import os
 
+from conda_build.utils import create_file_with_permissions
+
 SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
 
+
 def _write_token(name, token):
-    with open(os.path.join(SMITHY_CONF, name + '.token'), 'w') as fh:
+    path = os.path.join(SMITHY_CONF, name + '.token')
+    with create_file_with_permissions(path, 0o600) as fh:
         fh.write(token)
 
 
