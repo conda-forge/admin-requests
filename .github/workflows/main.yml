@@ -50,7 +50,7 @@ jobs:
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         id: generate_token
-        uses: actions/create-github-app-token@0d564482f06ca65fa9e77e2510873638c82206f2 # v1.11.5
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1.12.0
         with:
           app-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
