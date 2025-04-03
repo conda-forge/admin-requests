@@ -1,6 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  - pyqt: pyqt6
-  - pyqt: pyqt6-sip
-  - pyqt: pyqt6-charts
-  - pyqt: pyqt6-webengine
