@@ -1,0 +1,14 @@
+action: broken
+packages:
+- linux-aarch64/tinyxml2-10.1.0-h5ad3122_1.conda
+- linux-ppc64le/tinyxml2-10.1.0-h2621725_1.conda
+- osx-arm64/tinyxml2-10.1.0-ha1acc90_1.conda
+- osx-64/tinyxml2-10.1.0-h92383a6_1.conda
+- win-64/tinyxml2-10.1.0-he0c23c2_1.conda
+- linux-64/tinyxml2-10.1.0-h3f2d84a_1.conda
+- linux-aarch64/tinyxml2-10.1.0-h5ad3122_0.conda
+- linux-ppc64le/tinyxml2-10.1.0-h2621725_0.conda
+- osx-arm64/tinyxml2-10.1.0-ha1acc90_0.conda
+- win-64/tinyxml2-10.1.0-he0c23c2_0.conda
+- osx-64/tinyxml2-10.1.0-h92383a6_0.conda
+- linux-64/tinyxml2-10.1.0-h3f2d84a_0.conda
