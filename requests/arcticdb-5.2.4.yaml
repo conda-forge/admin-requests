@@ -1,0 +1,8 @@
+action: broken
+packages:
+- linux-64/arcticdb-5.2.4-py39h4b16e89_3.conda
+- linux-64/arcticdb-5.2.4-py39h33f25f4_3.conda
+- linux-64/arcticdb-5.2.4-py39h2e674ff_2.conda
+- linux-64/arcticdb-5.2.4-py39h68d7ae4_2.conda
+- linux-64/arcticdb-5.2.4-py39hdf6f266_1.conda
+- linux-64/arcticdb-5.2.4-py39hfb3bcdd_1.conda
