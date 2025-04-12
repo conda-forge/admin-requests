@@ -1,9 +1,9 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
-  - mctc-lib: "mctc-lib-dev"
-  - toml-f: "toml-f-dev"
-  - simple-dftd3: "simple-dftd3-dev"
-  - dftd4: "dftd4-dev"
-  - xtb: "xtb-dev"
-  - multicharge: "multicharge-dev"
-  - tblite: "tblite-dev"
+  - mctc-lib: "mctc-lib-devel"
+  - toml-f: "toml-f-devel"
+  - simple-dftd3: "simple-dftd3-devel"
+  - dftd4: "dftd4-devel"
+  - xtb: "xtb-devel"
+  - multicharge: "multicharge-devel"
+  - tblite: "tblite-devel"
