@@ -6,7 +6,7 @@ set -x
 # Ensure we are on the latest commit
 # of the branch where we are converting
 # recipes from. Currently this is `main`.
-export CF_CURRENT_BRANCH="${GITHUB_REF/refs\/heads\//}"
+export CF_CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 git checkout "${CF_CURRENT_BRANCH}"
 
 # 2 core available on Travis CI Linux workers: https://docs.travis-ci.com/user/ci-environment/#Virtualization-environments
