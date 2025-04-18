@@ -18,7 +18,7 @@ jobs:
           token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
           path: staged-recipes
 
-      - name: checkout staged-recipes
+      - name: checkout admin-requests
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: conda-forge/admin-requests
