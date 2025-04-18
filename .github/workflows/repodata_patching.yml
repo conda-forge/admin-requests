@@ -47,6 +47,6 @@ jobs:
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
           git config --global user.name "conda-forge-curator[bot]"
           git config --global pull.rebase false
-          python update_repodata_patches.py
+          python scripts/update_repodata_patches.py
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
