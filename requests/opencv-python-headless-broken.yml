@@ -1,0 +1,20 @@
+action: broken
+packages:
+  - linux-64/opencv-python-headless-4.11.0.86-py313h46c70d0_1.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py39hf88036b_1.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py311hfdbb021_1.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py312haafddd8_1.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py310h6954a95_1.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py311hc356e98_1.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py313h14b76d3_1.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py39hdf37715_1.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py310hf71b8c6_1.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py312h2ec8cdc_1.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py310h6954a95_0.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py311hc356e98_0.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py39hdf37715_0.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py310hf71b8c6_0.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py311hfdbb021_0.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py312h2ec8cdc_0.conda
+  - osx-64/opencv-python-headless-4.11.0.86-py312haafddd8_0.conda
+  - linux-64/opencv-python-headless-4.11.0.86-py39hf88036b_0.conda
