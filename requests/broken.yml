@@ -1,6 +1,5 @@
 action: broken
 packages:
-- linux-64/umf-2025.1.0-hb3528f5_355.conda
 - win-64/umf-2025.1.0-h5f7dc08_356.conda
 - win-64/umf-2025.0.4-h5f7dc08_5.conda
 - linux-64/umf-2025.0.4-hb3528f5_6.conda
