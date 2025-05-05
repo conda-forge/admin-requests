@@ -1,0 +1,10 @@
+action: broken
+packages:
+  - linux-64/rav1e-0.6.6-h8fae777_3.conda
+  - linux-64/rav1e-0.6.6-h8fae777_3.conda
+  - linux-aarch64/rav1e-0.6.6-ha3529ed_3.conda
+  - linux-ppc64le/rav1e-0.6.6-hd104b0b_3.conda
+  - osx-64/rav1e-0.6.6-h371c88c_3.conda
+  - osx-arm64/rav1e-0.6.6-h0716509_3.conda
+  - win-64/rav1e-0.6.6-ha073cba_3.conda
+
