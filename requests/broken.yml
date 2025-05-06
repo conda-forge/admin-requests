@@ -1,0 +1,22 @@
+action: broken
+packages:
+- win-64/mayavi-4.8.2-py39h778c15f_310.conda
+- win-64/mayavi-4.8.2-py310h0c4d834_310.conda
+- win-64/mayavi-4.8.2-py311h1bbbcfc_310.conda
+- win-64/mayavi-4.8.2-py312ha812518_310.conda
+- win-64/mayavi-4.8.2-py313h385b50f_310.conda
+- osx-arm64/mayavi-4.8.2-py39h327f75f_310.conda
+- osx-arm64/mayavi-4.8.2-py310h9bca12f_310.conda
+- osx-arm64/mayavi-4.8.2-py311h2209fdc_310.conda
+- osx-arm64/mayavi-4.8.2-py312hfa66392_310.conda
+- osx-arm64/mayavi-4.8.2-py313hf139581_310.conda
+- osx-64/mayavi-4.8.2-py39h8bf2bb1_310.conda
+- osx-64/mayavi-4.8.2-py310heb62092_310.conda
+- osx-64/mayavi-4.8.2-py311h70999c7_310.conda
+- osx-64/mayavi-4.8.2-py312h67d12e1_310.conda
+- osx-64/mayavi-4.8.2-py313h04a6399_310.conda
+- linux-64/mayavi-4.8.2-py39h55c314e_310.conda
+- linux-64/mayavi-4.8.2-py310h821f1d5_310.conda
+- linux-64/mayavi-4.8.2-py311hbcf5d47_310.conda
+- linux-64/mayavi-4.8.2-py312h2b4169d_310.conda
+- linux-64/mayavi-4.8.2-py313h3097823_310.conda
