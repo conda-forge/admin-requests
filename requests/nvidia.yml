@@ -1,5 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-- libnvimgcodec: libnvimgcodec[0123456789]
-- libnvpl-fft: libnvpl-fft[0123456789]
-- libnvpl-tensor: libnvpl-tensor[0123456789]
