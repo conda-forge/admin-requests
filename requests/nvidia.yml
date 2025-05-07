@@ -1,0 +1,26 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - dav1d: libdav1d
+  - dav1d: libdav1d[0123456789]
+  - libnvimgcodec: libnvimgcodec
+  - libnvimgcodec: libnvimgcodec[0123456789]
+  - libnvjpeg2k-split: libnvjpeg2k
+  - libnvjpeg2k-split: libnvjpeg2k[0123456789]
+  - libnvpl-blas: libnvpl-blas
+  - libnvpl-blas: libnvpl-blas[0123456789]
+  - libnvpl-fft: libnvpl-fft
+  - libnvpl-fft: libnvpl-fft[0123456789]
+  - libnvpl-lapack: libnvpl-lapack
+  - libnvpl-lapack: libnvpl-lapack[0123456789]
+  - libnvpl-rand: libnvpl-rand
+  - libnvpl-rand: libnvpl-rand[0123456789]
+  - libnvpl-scalapack: libnvpl-scalapack
+  - libnvpl-scalapack: libnvpl-scalapack[0123456789]
+  - libnvpl-sparse: libnvpl-sparse
+  - libnvpl-sparse: libnvpl-sparse[0123456789]
+  - libnvpl-tensor: libnvpl-tensor
+  - libnvpl-tensor: libnvpl-tensor[0123456789]
+  - libnvshmem: libnvshmem
+  - libnvshmem: libnvshmem[0123456789]
+  - libnvtiff: libnvtiff
+  - libnvtiff: libnvtiff[0123456789]
