@@ -1,8 +1,0 @@
-action: cirun
-feedstocks:
-  - ray-packages
-resources:
-  - cirun-openstack-cpu-4xlarge
-pull_request: true  
-revoke: false
-send_pr: true
