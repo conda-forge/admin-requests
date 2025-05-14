@@ -1,0 +1,4 @@
+action: broken
+packages:
+  - osx-64/rhash-1.4.6-h6e16a3a_0.conda
+  - osx-arm64/rhash-1.4.6-h5505292_0.conda
