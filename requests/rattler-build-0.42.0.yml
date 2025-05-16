@@ -1,7 +1,0 @@
-action: broken
-packages:
-- win-64/rattler-build-0.42.0-h63977a8_0.conda
-- linux-ppc64le/rattler-build-0.42.0-hf2b012e_0.conda
-- linux-64/rattler-build-0.42.0-h2d22210_0.conda
-- linux-aarch64/rattler-build-0.42.0-h3618846_0.conda
-- osx-arm64/rattler-build-0.42.0-h8dba533_0.conda
