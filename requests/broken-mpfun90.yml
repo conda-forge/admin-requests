@@ -1,0 +1,4 @@
+action: broken
+packages:
+- osx-64/mpfun90-2024.12.6-h08ce06f_1.conda
+- osx-arm64/mpfun90-2024.12.6-ha0d2579_1.conda
