@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - apache-airflow-providers-common-sql: apache-airflow-providers-common-sql-with-pandas
+  - apache-airflow-providers-common-sql: apache-airflow-providers-common-sql-with-openlineage
+  - apache-airflow-providers-common-sql: apache-airflow-providers-common-sql-with-polars
