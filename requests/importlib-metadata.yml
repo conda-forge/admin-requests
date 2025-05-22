@@ -1,4 +1,0 @@
-action: broken
-packages:
-  - noarch/importlib-metadata-8.7.0-pyhe01879c_0.conda
-  - noarch/importlib_metadata-8.7.0-he374078_0.conda
