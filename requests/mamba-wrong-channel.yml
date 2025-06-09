@@ -1,6 +1,0 @@
-action: broken
-packages:
-- linux-64/libmambapy-2.2.0.post0dev0-py313hb2ac7cd_1.conda
-- osx-64/libmambapy-2.2.0.post0dev0-py39h1e1c297_1.conda
-- win-64/libmamba-2.2.0.post0dev0-py313h5149425_1.conda
-- win-64/libmambapy-2.2.0.post0dev0-py312h37b8e06_1.conda
