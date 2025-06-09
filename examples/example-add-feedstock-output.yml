@@ -4,5 +4,6 @@ feedstock_to_output_mapping:
   - clang-compiler-activation: clang_impl_osx-64
   # this entry adds another output to the same feedstock
   - clang-compiler-activation: clang_impl_osx-arm64
+  # While fully specified package names are preferred, you can also use
   # this entry adds an allowed glob pattern
   - llvmdev: "libllvm*"
