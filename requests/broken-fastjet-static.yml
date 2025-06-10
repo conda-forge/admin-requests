@@ -1,0 +1,7 @@
+action: broken
+packages:
+- linux-64/fastjet-contrib-static-1.101-h8c78083_2.conda
+- linux-aarch64/fastjet-contrib-static-1.101-hcf7ce5b_2.conda
+- linux-ppc64le/fastjet-contrib-static-1.101-hc0e5e00_2.conda
+- osx-64/fastjet-contrib-static-1.101-h86052f5_2.conda
+- osx-arm64/fastjet-contrib-static-1.101-h1dcfe2c_2.conda
