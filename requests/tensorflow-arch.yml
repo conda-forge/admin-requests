@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - tensorflow: "tensorflow-avx2"
+  - tensorflow: "tensorflow-avx512"
+  - tensorflow: "tensorflow-sse3"
