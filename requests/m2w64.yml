@@ -1,0 +1,7 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - m2w64-gcc: m2w64-sysroot_win-arm64
+  - m2w64-gcc: mingw-w64-clang-aarch64-windows-default-manifest
+  - m2w64-gcc: mingw-w64-clang-aarch64-crt-git
+  - m2w64-gcc: mingw-w64-clang-aarch64-headers-git
+  - m2w64-gcc: mingw-w64-clang-aarch64-winpthreads-git
