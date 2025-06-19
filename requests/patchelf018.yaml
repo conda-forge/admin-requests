@@ -1,0 +1,9 @@
+action: broken
+packages:
+- linux-64/patchelf-0.18.0-h3f2d84a_2.conda
+- osx-64/patchelf-0.18.0-h92383a6_2.conda
+- linux-aarch64/patchelf-0.18.0-h5ad3122_2.conda
+- osx-arm64/patchelf-0.18.0-ha1acc90_2.conda
+- linux-ppc64le/patchelf-0.18.0-h2621725_2.conda
+- osx-64/patchelf-0.18.0-h93d8f39_1.conda
+- osx-arm64/patchelf-0.18.0-h965bd2d_1.conda
