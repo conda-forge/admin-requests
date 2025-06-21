@@ -1,0 +1,4 @@
+action: broken
+packages:
+- win-arm64/getopt-win32-0.1-hb7845dc_2.conda
+- win-64/getopt-win32-0.1-h6a83c73_2.conda
