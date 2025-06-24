@@ -1,6 +1,0 @@
-action: broken
-packages:
-- noarch/altair-aitools-runtime-1.0b5-pyh29332c3_2.conda
-- noarch/altair-aitools-runtime-1.0rc1-pyh29332c3_0.conda
-- noarch/altair-aitools-devkit-1.0b5-pyh29332c3_0.conda
-- noarch/altair-aitools-devkit-1.0rc1-pyh29332c3_0.conda
