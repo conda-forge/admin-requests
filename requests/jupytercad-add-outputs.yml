@@ -1,6 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  - jupytercad: "jupytercad-core"
-  - jupytercad: "jupytercad-lab"
-  - jupytercad: "jupytercad-lite"
-  - jupytercad: "jupytercad-app"
