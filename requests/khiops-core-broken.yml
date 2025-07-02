@@ -1,6 +1,0 @@
-action: broken
-packages:
-  - osx-arm64/khiops-core-11.0.0a.0-h8d05ea9_0.conda
-  - osx-64/khiops-core-11.0.0a.0-h564503d_0.conda
-  - win-64/khiops-core-11.0.0a.0-ha39a721_0.conda
-  - linux-64/khiops-core-11.0.0a.0-h52f066e_0.conda
