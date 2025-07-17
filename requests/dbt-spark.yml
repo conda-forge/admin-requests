@@ -1,3 +1,0 @@
-action: broken
-packages:
-- noarch/dbt-spark-1.9.2-pyhd8ed1ab_0.conda
