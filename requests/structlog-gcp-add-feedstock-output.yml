@@ -1,0 +1,2 @@
+action: add_feedstock_output
+  - structlog-gcp: structlog-gcp
