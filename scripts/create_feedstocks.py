@@ -204,11 +204,11 @@ def print_rate_limiting_info(gh, user):
     # spending it and how to better optimize it.
 
     # Get GitHub API Rate Limit usage and total
-    gh_api_remaining = gh.get_rate_limit().core.remaining
-    gh_api_total = gh.get_rate_limit().core.limit
+    gh_api_remaining = gh.get_rate_limit().resources.core.remaining
+    gh_api_total = gh.get_rate_limit().resources.core.limit
 
     # Compute time until GitHub API Rate Limit reset
-    gh_api_reset_time = gh.get_rate_limit().core.reset
+    gh_api_reset_time = gh.get_rate_limit().resources.core.reset
     gh_api_reset_time -= datetime.now(timezone.utc)
 
     print("")
@@ -229,11 +229,11 @@ def sleep_until_reset(gh):
     # sleep the job with printing every minute if we are out
     # of github api requests
 
-    gh_api_remaining = gh.get_rate_limit().core.remaining
+    gh_api_remaining = gh.get_rate_limit().resources.core.remaining
 
     if gh_api_remaining == 0:
         # Compute time until GitHub API Rate Limit reset
-        gh_api_reset_time = gh.get_rate_limit().core.reset
+        gh_api_reset_time = gh.get_rate_limit().resources.core.reset
         gh_api_reset_time -= datetime.now(timezone.utc)
 
         mins_to_sleep = int(gh_api_reset_time.total_seconds() / 60)
