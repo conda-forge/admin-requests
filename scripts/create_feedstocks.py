@@ -195,6 +195,22 @@ def feedstock_token_exists(organization, name):
         return True
 
 
+def get_rate_limit(gh):
+    # Get GitHub API Rate Limit usage and total
+    rate_limit = gh.get_rate_limit()
+
+    # unfortunately, PyGithub doesn't have a __version__
+    # so we have to use hasattr/getattr tricks to
+    # ensure compatibility with older versions
+
+    # PyGithub 2.7.0 and later
+    # get_rate_limit return RateLimitOverview
+    # https://github.com/PyGithub/PyGithub/pull/3205
+    # If the attribute "resources" exists, we return it (2.7.0 and later).
+    # if it doesn't, we return the rate_limit object itself (older versions).
+    return getattr(rate_limit, "resources", rate_limit)
+
+
 def print_rate_limiting_info(gh, user):
     # Compute some info about our GitHub API Rate Limit.
     # Note that it doesn't count against our limit to
@@ -203,12 +219,12 @@ def print_rate_limiting_info(gh, user):
     # this will help us better understand where we are
     # spending it and how to better optimize it.
 
-    # Get GitHub API Rate Limit usage and total
-    gh_api_remaining = gh.get_rate_limit().resources.core.remaining
-    gh_api_total = gh.get_rate_limit().resources.core.limit
+    rate_limit = get_rate_limit(gh)
+    gh_api_remaining = rate_limit.core.remaining
+    gh_api_total = rate_limit.core.limit
 
     # Compute time until GitHub API Rate Limit reset
-    gh_api_reset_time = gh.get_rate_limit().resources.core.reset
+    gh_api_reset_time = rate_limit.core.reset
     gh_api_reset_time -= datetime.now(timezone.utc)
 
     print("")
@@ -229,11 +245,11 @@ def sleep_until_reset(gh):
     # sleep the job with printing every minute if we are out
     # of github api requests
 
-    gh_api_remaining = gh.get_rate_limit().resources.core.remaining
+    rate_limit = get_rate_limit(gh)
+    gh_api_remaining = rate_limit.core.remaining
 
     if gh_api_remaining == 0:
-        # Compute time until GitHub API Rate Limit reset
-        gh_api_reset_time = gh.get_rate_limit().resources.core.reset
+        gh_api_reset_time = rate_limit.core.reset
         gh_api_reset_time -= datetime.now(timezone.utc)
 
         mins_to_sleep = int(gh_api_reset_time.total_seconds() / 60)
