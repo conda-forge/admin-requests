@@ -1,5 +1,0 @@
-action: cfep3_copy
-anaconda_org_packages:
-- package: isuruf/osx-64/tensorflow-2.18.0-cpu_py310h3aec5c9_1.conda
-  sha256: 18f3b38866a24f363f1371984ee83fab927e8298fee7c409946b7a20e56e256e
-to_anaconda_org_label: main
