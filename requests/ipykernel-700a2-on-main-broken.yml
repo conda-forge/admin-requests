@@ -1,0 +1,5 @@
+action: broken
+packages:
+- noarch/ipykernel-7.0.0a2-pyh92f572d_0.conda
+- noarch/ipykernel-7.0.0a2-pyh3521513_0.conda
+- noarch/ipykernel-7.0.0a2-pyh82676e8_0.conda
