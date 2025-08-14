@@ -1,0 +1,8 @@
+# hmaarrfk Aug 14, 2025
+# We built the graphite2 package on windows for this specific
+# build number with the wrong flags
+# https://github.com/conda-forge/graphite2-feedstock/issues/21#issuecomment-3184562881
+# It was fixed in https://github.com/conda-forge/graphite2-feedstock/pull/22
+action: broken
+packages:
+- win-64/graphite2-1.3.14-hac47afa_1.conda
