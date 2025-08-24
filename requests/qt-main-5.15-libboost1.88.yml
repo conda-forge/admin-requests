@@ -1,7 +1,0 @@
-action: cfep3_copy
-anaconda_org_packages:
-  - package: mark.harfouche/label/cfep3/linux-aarch64/qt-main-5.15.15-hbe73643_5.conda
-    sha256: 88fa7acea70be2846842a3d8fc48a81b3d4ce2d90d7f2b1112227416a0135924
-  - package: mark.harfouche/label/cfep3/linux-ppc64le/qt-main-5.15.15-h01a0492_5.conda
-    sha256: 77a183cd754b6ece11a194620d9a5cd4c917cdc2c34d076cc83fe1f3c7466a40
-to_anaconda_org_label: main
