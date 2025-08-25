@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - libmagma: libmagma
+  - libmagma: libmagma_sparse
+  - libmagma: libmagma-dev
+  - libmagma: magma
