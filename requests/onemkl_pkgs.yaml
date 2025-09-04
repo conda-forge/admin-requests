@@ -1,4 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  - intel_repack: mkl-devel-dpcpp
-  - intel_repack: onemkl-sycl-include
