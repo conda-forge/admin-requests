@@ -2,6 +2,10 @@ action: broken
 packages:
 - linux-64/cog3pio-0.0.1-py312h3c9c56f_1.conda
 - linux-64/cog3pio-0.0.1-py313he12ec8d_1.conda
+- linux-aarch64/cog3pio-0.0.1-py312h9d52f4e_1.conda
+- linux-aarch64/cog3pio-0.0.1-py313h4f93c87_1.conda
+- linux-ppc64le/cog3pio-0.0.1-py312h52af3a1_1.conda
+- linux-ppc64le/cog3pio-0.0.1-py313h6a941fe_1.conda
 - osx-64/cog3pio-0.0.1-py312hd1bcd63_1.conda
 - osx-64/cog3pio-0.0.1-py313h3247b09_1.conda
 - osx-arm64/cog3pio-0.0.1-py312h89ed1e1_1.conda
