@@ -1,0 +1,7 @@
+action: cfep3_copy
+anaconda_org_packages:
+  - package: merv/label/cfep03/osx-arm64/r-duckdb-1.3.2-r43heef4dd5_1.conda
+    sha256: dc80f823a5f17a9070e65988f6e14cb3a1c9e343099752f80b95a975d5694364
+  - package: merv/label/cfep03/osx-arm64/r-duckdb-1.3.2-r44heef4dd5_1.conda
+    sha256: eb8d12abb9b205a0f18064be8f784a1c1c66780d6bf0f0c40eddc314e9bb9d5a
+to_anaconda_org_label: main
