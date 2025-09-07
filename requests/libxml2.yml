@@ -1,4 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  - libxml2: "libxml2-devel"
-  - libxml2: "libxml2-[0-9]*"
