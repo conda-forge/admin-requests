@@ -1,4 +1,0 @@
-action: archive
-feedstocks:
-  - cykdtree  # upstream source is a 404
-  - django-uuidfield  # most recent commit upstream was 11 years ago
