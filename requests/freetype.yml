@@ -1,0 +1,4 @@
+action: broken
+packages:
+ - win-arm64/libfreetype6-2.14.0-hcec1e58_0.conda
+ - win-64/libfreetype6-2.14.0-hdbac1cb_0.conda
