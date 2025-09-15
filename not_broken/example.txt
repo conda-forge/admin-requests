@@ -1,2 +1,0 @@
-win-64/cf-autotick-bot-test-package-0.4-py38_0.tar.bz2
-win-64/cf-autotick-bot-test-package-0.4-py27_0.tar.bz2

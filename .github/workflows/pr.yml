@@ -2,27 +2,28 @@ name: check
 on:
   pull_request:
     branches:
-      - master
+      - main
+
+env:
+  PYTHONUNBUFFERED: 1
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: cf
-        environment-file: environment.yml
-        auto-activate-base: true
+      - uses: conda-incubator/setup-miniconda@835234971496cad1653abb28a638a281cf32541f # v3.2.0
+        with:
+          activate-environment: cf
+          environment-file: environment.yml
+          auto-activate-base: true
+          miniforge-version: latest
 
-    - name: Check packages exist on main (or label/broken)
-      shell: bash -l {0}
-      run: |
+      - name: Check request YAML files
+        shell: bash -el {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           conda activate cf
-          python mark_broken.py check
-
-    - name: Check feedstocks exist for token reset
-      shell: bash -l {0}
-      run: |
-          conda activate cf
-          python token_reset.py check
+          python -m conda_forge_admin_requests check

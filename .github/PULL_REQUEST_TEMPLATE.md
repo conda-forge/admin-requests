@@ -2,13 +2,17 @@
 Hi!
 
 Thank you for making an admin request on this repo. We strive to make a decision
-on these requests within 24 hours. Note that if you are asking for a package to
-be marked as broken, please make sure to explain why in the PR text below.
+on these requests within 24 hours.
+
+Please use the text below to add context about this PR, especially if:
+- You want to mark packages as broken
+- You want to archive a feedstock
+- You want to request access to opt-in CI resources
 
 Cheers and thank you for contributing to conda-forge!
 -->
 
-Guidelines for marking packages as broken:
+## Guidelines for marking packages as broken:
 
 * We prefer to patch the repo data (see [here](https://github.com/conda-forge/conda-forge-repodata-patches-feedstock))
   instead of marking packages as broken. This alternative workflow makes environments more reproducible.
@@ -20,14 +24,38 @@ Guidelines for marking packages as broken:
   the maintainers only, we can allow packages to be marked broken more liberally.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
-Checklist:
+What will happen when a package is marked broken?
 
-* [ ] Make sure your package is in the right spot (`broken/*` for adding the
-  `broken` label, `not_broken/*` for removing the `broken` label, or `token_reset/*`
-  for token resets)
-* [ ] Added a description of the problem with the package in the PR description.
-* [ ] Added links to any relevant issues/PRs in the PR description.
-* [ ] Pinged the team for the package for their input.
+* Our bots will add the `broken` label to the package. The `main` label will remain on the package and this is normal.
+* Our bots will rebuild our repodata patches to remove this package from the repodata.
+* In a few hours after the `anaconda.org` CDN picks up the new patches, you will no longer be able to install the package from the `main` channel.
+
+
+## Checklist:
+
+* [ ] I want to mark a package as broken (or not broken):
+  * [ ] Added a description of the problem with the package in the PR description.
+  * [ ] Pinged the team for the package for their input.
+
+* [ ] I want to archive a feedstock:
+  * [ ] Pinged the team for that feedstock for their input.
+  * [ ] Make sure you have opened an issue on the feedstock explaining why it was archived.
+  * [ ] Linked that issue in this PR description.
+  * [ ] Added links to any other relevant issues/PRs in the PR description.
+
+* [ ] I want to request (or revoke) access to an opt-in CI resource:
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Added a small description explaining why access is needed
+
+* [ ] I want to copy an artifact following [CFEP-3](https://github.com/conda-forge/cfep/blob/main/cfep-03.md):
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Added a reference to the original PR
+  * [ ] Posted a link to the conda artifacts
+  * [ ] Posted a link to the build logs
+
+* [ ] I want to add a package output to a feedstock:
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Added a small description of why the output is being added.
 
 <!--
 For example if you are trying to mark a `foo` conda package as broken.

@@ -1,0 +1,15 @@
+action: cirun
+feedstocks:
+  # list of feedstock names (sans `-feedstock` suffix)
+  - pytorch-cpu
+resources:
+  # list of resource names you are applying to
+  # see https://github.com/conda-forge/.cirun for available options
+  - cirun-openstack-gpu-large
+  # - cirun-openstack-cpu-large
+# switch to true if you need it on pull-requests too
+pull_request: false  
+# revoke access to the gpu runner
+revoke: false
+# Send an automatic PR to the feedstock to enable cirun defaults
+send_pr: true
