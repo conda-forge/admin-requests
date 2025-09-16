@@ -79,5 +79,11 @@ By default, `conda-forge` feedstocks cannot push packages to our channel that an
 when building your package indicating that the given package was not allowed for your feedstock (e.g., you moved a package
 build from one feedstock to another), you should request the output be added to the new feedstock via this repository. An example request
 is located in [examples/example-add-feedstock-output.yml](examples/example-add-feedstock-output.yml). You can add both glob patterns
-and package names. We support the glob syntax of the Python `fnmatch` module. Make a PR putting your
-`.yml` request file in the `requests` directory and the `conda-forge/core` team will review it.
+and package names.
+
+While glob patterns are support, they should be used with care as they
+essentially "squat" on all future matched. If you are requesting a specific
+package output, please use the full name of the package output. We support the
+glob syntax of the Python `fnmatch` module. Make a PR putting your `.yml`
+request file in the `requests` directory and the `conda-forge/core` team will
+review it.
