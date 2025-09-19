@@ -1,5 +1,0 @@
-# add pycytominer.anndata to pycytominer feedstock
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  - pycytominer: pycytominer.anndata
-
