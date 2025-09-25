@@ -1,0 +1,8 @@
+action: broken
+packages:
+  - osx-64/glfw-3.5.0-h1c43f85_0.conda
+  - osx-arm64/glfw-3.5.0-h6caf38d_0.conda
+  - win-64/glfw-3.5.0-hfd05255_0.conda
+  - linux-aarch64/glfw-3.5.0-he30d5cf_0.conda
+  - linux-ppc64le/glfw-3.5.0-hfc7e52b_0.conda
+  - linux-64/glfw-3.5.0-hb03c661_0.conda
