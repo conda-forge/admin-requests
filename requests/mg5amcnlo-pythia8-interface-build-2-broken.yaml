@@ -1,0 +1,6 @@
+action: broken
+packages:
+- linux-64/mg5amcnlo-pythia8-interface-1.3.0-h9e02651_2.conda
+- linux-aarch64/mg5amcnlo-pythia8-interface-1.3.0-hbd9a09b_2.conda
+- linux-ppc64le/mg5amcnlo-pythia8-interface-1.3.0-h9f0e0e5_2.conda
+- osx-arm64/mg5amcnlo-pythia8-interface-1.3.0-h382d062_2.conda
