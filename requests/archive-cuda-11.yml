@@ -1,4 +1,5 @@
 action: archive
 feedstocks:
   - cudatoolkit
+  - cudatoolkit-dev
   - nvcc
