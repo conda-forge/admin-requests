@@ -9,7 +9,7 @@ feedstocks:
   - des-easyaccess
   - des-pixcorrect
   - des-pizza-cutter
-  - des-imsupport-dev
+  - des-imsupport
   - des-pizza-patches
   - des-pizza-cutter-masking
   - des-pizza-cutter-metadetect
