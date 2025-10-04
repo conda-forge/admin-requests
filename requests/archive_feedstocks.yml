@@ -1,0 +1,15 @@
+action: archive
+feedstocks:
+  - r-corbi
+  - r-crf
+  - r-genkern
+  - r-geoaxe
+  - r-ggrandomforests
+  - r-ggsn
+  - r-ifultools
+  - r-randomfields
+  - r-randomfieldsutils
+  - r-rsvgtipsdevice
+  - r-sdmtools
+  - r-spatstat.core
+  - r-wmtsa
