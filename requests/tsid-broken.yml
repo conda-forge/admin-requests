@@ -1,0 +1,27 @@
+action: broken
+packages:
+- osx-arm64/tsid-1.9.0-py311h13c97ad_0.conda
+- osx-64/tsid-1.9.0-py314h646b490_0.conda
+- osx-arm64/tsid-1.9.0-py314h1c9ff09_0.conda
+- osx-64/tsid-1.9.0-py311hcf07552_0.conda
+- osx-64/tsid-1.9.0-py312h160bf58_0.conda
+- osx-64/tsid-1.9.0-py310h48569be_0.conda
+- osx-arm64/tsid-1.9.0-py312hb262eaf_0.conda
+- osx-arm64/tsid-1.9.0-py313ha347755_0.conda
+- osx-arm64/tsid-1.9.0-py310h9d834e2_0.conda
+- linux-ppc64le/tsid-1.9.0-py311h7aaa9a0_0.conda
+- linux-ppc64le/tsid-1.9.0-py310h5554e13_0.conda
+- osx-64/tsid-1.9.0-py313h55395f7_0.conda
+- linux-ppc64le/tsid-1.9.0-py312h37b8ebd_0.conda
+- linux-aarch64/tsid-1.9.0-py312h228e25f_0.conda
+- linux-ppc64le/tsid-1.9.0-py313hbaa5b62_0.conda
+- linux-64/tsid-1.9.0-py314h341c59d_0.conda
+- linux-aarch64/tsid-1.9.0-py313he72ba37_0.conda
+- linux-aarch64/tsid-1.9.0-py310h9b9e361_0.conda
+- linux-aarch64/tsid-1.9.0-py311h006858d_0.conda
+- linux-64/tsid-1.9.0-py313hf05b793_0.conda
+- linux-aarch64/tsid-1.9.0-py314h94cb2a0_0.conda
+- linux-ppc64le/tsid-1.9.0-py314h08bbf7b_0.conda
+- linux-64/tsid-1.9.0-py311hd572313_0.conda
+- linux-64/tsid-1.9.0-py312hc5f9fb3_0.conda
+- linux-64/tsid-1.9.0-py310h8eaed0c_0.conda
