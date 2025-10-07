@@ -1,0 +1,32 @@
+action: broken
+packages:
+  - linux-64/newrelic-11.0.0-py310h139afa4_0.conda
+  - linux-64/newrelic-11.0.0-py311haee01d2_0.conda
+  - linux-64/newrelic-11.0.0-py312h5253ce2_0.conda
+  - linux-64/newrelic-11.0.0-py313h54dd161_0.conda
+  - linux-64/newrelic-11.0.0-py314h31f8a6b_0.conda
+  - linux-aarch64/newrelic-11.0.0-py310h3cefe83_0.conda
+  - linux-aarch64/newrelic-11.0.0-py311had3b7ee_0.conda
+  - linux-aarch64/newrelic-11.0.0-py312h2fc9c67_0.conda
+  - linux-aarch64/newrelic-11.0.0-py313hc37f9cf_0.conda
+  - linux-aarch64/newrelic-11.0.0-py314h34d0227_0.conda
+  - linux-ppc64le/newrelic-11.0.0-py310h83cf82f_0.conda
+  - linux-ppc64le/newrelic-11.0.0-py311he27f935_0.conda
+  - linux-ppc64le/newrelic-11.0.0-py312h2823968_0.conda
+  - linux-ppc64le/newrelic-11.0.0-py313hf141dbf_0.conda
+  - linux-ppc64le/newrelic-11.0.0-py314h51099d9_0.conda
+  - osx-64/newrelic-11.0.0-py310h3aa7efa_0.conda
+  - osx-64/newrelic-11.0.0-py311h62e9434_0.conda
+  - osx-64/newrelic-11.0.0-py312h01f6755_0.conda
+  - osx-64/newrelic-11.0.0-py313hcb05632_0.conda
+  - osx-64/newrelic-11.0.0-py314h12c88b1_0.conda
+  - osx-arm64/newrelic-11.0.0-py310hf151d32_0.conda
+  - osx-arm64/newrelic-11.0.0-py311h5bb9006_0.conda
+  - osx-arm64/newrelic-11.0.0-py312h37e1c23_0.conda
+  - osx-arm64/newrelic-11.0.0-py313h9734d34_0.conda
+  - osx-arm64/newrelic-11.0.0-py314h163e31d_0.conda
+  - win-64/newrelic-11.0.0-py310h1637853_0.conda
+  - win-64/newrelic-11.0.0-py311hf893f09_0.conda
+  - win-64/newrelic-11.0.0-py312he5662c2_0.conda
+  - win-64/newrelic-11.0.0-py313h5fd188c_0.conda
+  - win-64/newrelic-11.0.0-py314h4667ab5_0.conda
