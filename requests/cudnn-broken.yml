@@ -1,6 +1,34 @@
 action: broken
 packages:
-# libcudnn packages missing device code for pre-Turing, but built for CUDA 12
+# cudnn packages missing device code for pre-Turing, but built for CUDA 12
+# cudnn
+  - linux-64/cudnn-9.11.0.98-hbcb9cd8_0.conda
+  - linux-aarch64/cudnn-9.11.0.98-h0d6a024_0.conda
+  - win-64/cudnn-9.11.0.98-h32ff316_0.conda
+
+  - linux-64/cudnn-9.12.0.46-hbcb9cd8_0.conda
+  - linux-aarch64/cudnn-9.12.0.46-heed22b8_0.conda
+  - win-64/cudnn-9.12.0.46-h32ff316_0.conda
+
+  - linux-64/cudnn-9.13.0.50-hbcb9cd8_0.conda
+  - linux-aarch64/cudnn-9.13.0.50-heed22b8_0.conda
+  - win-64/cudnn-9.13.0.50-h32ff316_0.conda
+
+  - linux-64/cudnn-9.13.1.26-hbcb9cd8_0.conda
+  - linux-aarch64/cudnn-9.13.1.26-heed22b8_0.conda
+  - win-64/cudnn-9.13.1.26-h32ff316_0.conda
+
+# cudnn-jit
+  - linux-64/cudnn-jit-9.12.0.46-h58dd1b1_0.conda
+  - linux-aarch64/cudnn-jit-9.12.0.46-h4e4b990_0.conda
+
+  - linux-64/cudnn-jit-9.13.0.50-h58dd1b1_0.conda
+  - linux-aarch64/cudnn-jit-9.13.0.50-h4e4b990_0.conda
+
+  - linux-64/cudnn-jit-9.13.1.26-h58dd1b1_0.conda
+  - linux-aarch64/cudnn-jit-9.13.1.26-h4e4b990_0.conda
+
+# libcudnn
   - linux-64/libcudnn-9.11.0.98-hf7e9902_0.conda
   - linux-aarch64/libcudnn-9.11.0.98-h703c024_0.conda
   - win-64/libcudnn-9.11.0.98-hca898b4_0.conda
@@ -8,17 +36,48 @@ packages:
   - linux-64/libcudnn-9.12.0.46-hf7e9902_0.conda
   - linux-aarch64/libcudnn-9.12.0.46-hc13e719_0.conda
   - win-64/libcudnn-9.12.0.46-hca898b4_0.conda
-  - linux-64/libcudnn-jit-9.12.0.46-hf7e9902_0.conda
-  - linux-aarch64/libcudnn-jit-9.12.0.46-hc13e719_0.conda
 
   - linux-64/libcudnn-9.13.0.50-hf7e9902_0.conda
   - linux-aarch64/libcudnn-9.13.0.50-hc13e719_0.conda
   - win-64/libcudnn-9.13.0.50-hca898b4_0.conda
-  - linux-64/libcudnn-jit-9.13.0.50-hf7e9902_0.conda
-  - linux-aarch64/libcudnn-jit-9.13.0.50-hc13e719_0.conda
 
   - linux-64/libcudnn-9.13.1.26-hf7e9902_0.conda
   - linux-aarch64/libcudnn-9.13.1.26-hc13e719_0.conda
   - win-64/libcudnn-9.13.1.26-hca898b4_0.conda
+
+# libcudnn-jit
+  - linux-64/libcudnn-jit-9.12.0.46-hf7e9902_0.conda
+  - linux-aarch64/libcudnn-jit-9.12.0.46-hc13e719_0.conda
+
+  - linux-64/libcudnn-jit-9.13.0.50-hf7e9902_0.conda
+  - linux-aarch64/libcudnn-jit-9.13.0.50-hc13e719_0.conda
+
   - linux-64/libcudnn-jit-9.13.1.26-hf7e9902_0.conda
   - linux-aarch64/libcudnn-jit-9.13.1.26-hc13e719_0.conda
+
+# libcudnn-dev
+  - linux-64/libcudnn-dev-9.11.0.98-h58dd1b1_0.conda
+  - linux-aarch64/libcudnn-dev-9.11.0.98-hbff9e36_0.conda
+  - win-64/libcudnn-dev-9.11.0.98-hca898b4_0.conda
+
+  - linux-64/libcudnn-dev-9.12.0.46-h58dd1b1_0.conda
+  - linux-aarch64/libcudnn-dev-9.12.0.46-h4e4b990_0.conda
+  - win-64/libcudnn-dev-9.12.0.46-hca898b4_0.conda
+
+  - linux-64/libcudnn-dev-9.13.0.50-h58dd1b1_0.conda
+  - linux-aarch64/libcudnn-dev-9.13.0.50-h4e4b990_0.conda
+  - win-64/libcudnn-dev-9.13.0.50-hca898b4_0.conda
+
+  - linux-64/libcudnn-dev-9.13.1.26-h58dd1b1_0.conda
+  - linux-aarch64/libcudnn-dev-9.13.1.26-h4e4b990_0.conda
+  - win-64/libcudnn-dev-9.13.1.26-hca898b4_0.conda
+
+# libcudnn-jit-dev
+  - linux-64/libcudnn-jit-dev-9.12.0.46-h58dd1b1_0.conda
+  - linux-aarch64/libcudnn-jit-dev-9.12.0.46-h4e4b990_0.conda
+
+  - linux-64/libcudnn-jit-dev-9.13.0.50-h58dd1b1_0.conda
+  - linux-aarch64/libcudnn-jit-dev-9.13.0.50-h4e4b990_0.conda
+
+  - linux-64/libcudnn-jit-dev-9.13.1.26-h58dd1b1_0.conda
+  - linux-aarch64/libcudnn-jit-dev-9.13.1.26-h4e4b990_0.conda
