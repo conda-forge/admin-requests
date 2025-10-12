@@ -1,0 +1,7 @@
+action: cfep3_copy
+anaconda_org_packages:
+  - package: traversaro/label/cfep3/linux-aarch64/qt-main-5.15.15-h2f19be9_6.conda
+    sha256: a91610b6df6a4a3aadfe94356a217714841829ce71b965798ae219f5687ccf46
+  - package: traversaro/label/cfep3/linux-ppc64le/qt-main-5.15.15-h25f6ea9_6.conda
+    sha256: 786b0d13f648c23bbc04a27e38cda844f7ae507b3b66fafb0ccc4b5f3aee955f
+to_anaconda_org_label: main
