@@ -1,17 +1,6 @@
 action: cfep3_copy
 anaconda_org_packages:
-  # list of {package: channel[/label/<label>]/subdir/filename.extension, sha256: SHA256}
-  - package: mgorny/win-64/libtorch-2.8.0-cuda128_mkl_h0cdabd9_301.conda
-    sha256: 8b5c4819f2bca0da96346a62568245cd8cbe5d6dcdc67db90c5f840ddd9ef5ed
-  - package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py310_h0e81e94_301.conda
-    sha256: c6363b38a3680f98b2dc75d1965caf2c50495537edb40e5c7f8f016b798bc73b
-  - package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py311_h46abf5f_301.conda
-    sha256: 4c8b7c04bf8c9a7586f746eb5de56b2ac3e7b3e64d45e93f7cc08181c8a18854
-  - package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py312_h8d8d983_301.conda
-    sha256: 38e189ccbc3220ed96d192b60d732de9f2f25d6284d20c844fabbc28ffc21f1b
-  - package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py313_h074b05a_301.conda
-    sha256: b296b6632265a2e5fd057670cfe21bd689f926902a75bd16d51ff8482f66407a
-  - package: mgorny/win-64/pytorch-gpu-2.8.0-cuda128_mkl_h2fd0c33_301.conda
-    sha256: c2aa4d3b3b6da72257109927eb2b27d24b17c984e20852eb266c3f78ed15a8ce
-  - package: mgorny/win-64/pytorch-tests-2.8.0-cuda128_mkl_py310_hb52a60d_301.conda
-    sha256: 40577678da2fb171c63372ddcc63c939754f42e9a8aa17b233bb05ce230bee9a
+- package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py312_h8d8d983_301.conda
+  sha256: 38e189ccbc3220ed96d192b60d732de9f2f25d6284d20c844fabbc28ffc21f1b
+- package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py313_h074b05a_301.conda
+  sha256: b296b6632265a2e5fd057670cfe21bd689f926902a75bd16d51ff8482f66407a
