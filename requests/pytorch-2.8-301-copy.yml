@@ -1,6 +1,4 @@
 action: cfep3_copy
 anaconda_org_packages:
-- package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py312_h8d8d983_301.conda
-  sha256: 38e189ccbc3220ed96d192b60d732de9f2f25d6284d20c844fabbc28ffc21f1b
 - package: mgorny/win-64/pytorch-2.8.0-cuda128_mkl_py313_h074b05a_301.conda
   sha256: b296b6632265a2e5fd057670cfe21bd689f926902a75bd16d51ff8482f66407a
