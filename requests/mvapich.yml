@@ -1,0 +1,4 @@
+action: broken
+packages:
+- linux-aarch64/mvapich-4.1-shs_cuda_ha61c538_4.conda
+- linux-64/mvapich-4.1-shs_cuda_hded4a39_4.conda
