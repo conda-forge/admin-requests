@@ -1,0 +1,18 @@
+action: broken
+packages:
+  - noarch/ties20-3.0.0-pyhd8ed1ab_0.conda
+  - osx-64/ties20-2.0.2-py39hfc8b457_0.conda
+  - osx-64/ties20-2.0.2-py38h073b4c8_0.conda
+  - linux-64/ties20-2.0.2-py38h07e1bb6_0.conda
+  - linux-64/ties20-2.0.2-py39hf0d0a58_0.conda
+  - linux-64/ties20-2.0.2-py310h0a54255_0.conda
+  - osx-64/ties-20.10-py38hd2faf92_0.conda
+  - osx-64/ties-20.10-py39h57e1da4_0.conda
+  - linux-64/ties-20.10-py39h0f8d45d_0.conda
+  - linux-64/ties-20.10-py310h278f3c1_0.conda
+  - linux-64/ties-20.10-py38h31356c5_0.conda
+  - osx-64/ties-2.0.2-py38h073b4c8_1.conda
+  - osx-64/ties-2.0.2-py39hfc8b457_1.conda
+  - linux-64/ties-2.0.2-py310h0a54255_1.conda
+  - linux-64/ties-2.0.2-py39hf0d0a58_1.conda
+  - linux-64/ties-2.0.2-py38h07e1bb6_1.conda
