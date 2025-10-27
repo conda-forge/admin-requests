@@ -1,0 +1,12 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - ctng-compilers: libgcc-devel_osx-64
+  - ctng-compilers: libstdcxx-devel_osx-64
+  - ctng-compilers: gcc_impl_osx-64
+  - ctng-compilers: gxx_impl_osx-64
+  - ctng-compilers: gfortran_impl_osx-64
+  - ctng-compilers: libgcc-devel_osx-arm64
+  - ctng-compilers: libstdcxx-devel_osx-arm64
+  - ctng-compilers: gcc_impl_osx-arm64
+  - ctng-compilers: gxx_impl_osx-arm64
+  - ctng-compilers: gfortran_impl_osx-arm64
