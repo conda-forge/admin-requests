@@ -1,0 +1,13 @@
+action: broken
+packages:
+- linux-64/occt-7_9_1-all_hf72cfef_200.conda
+- linux-64/occt-7_9_1-novtk_h09ba48e_100.conda
+- linux-aarch64/occt-7_9_1-all_h05b3d1b_200.conda
+- linux-aarch64/occt-7_9_1-novtk_h37de982_100.conda
+- linux-ppc64le/occt-7_9_1-novtk_h93fa6b5_100.conda
+- osx-arm64/occt-7_9_1-all_h749081a_200.conda
+- osx-arm64/occt-7_9_1-novtk_hc73c4e0_100.conda
+- osx-64/occt-7_9_1-all_h5e0dac1_200.conda
+- osx-64/occt-7_9_1-novtk_h7eef8d4_100.conda
+- win-64/occt-7_9_1-all_h5eb6187_200.conda
+- win-64/occt-7_9_1-novtk_h9449c50_100.conda
