@@ -1,13 +1,5 @@
 action: broken
 packages:
-- linux-64/pyinterp-2025.11.0-mkl2726adb_.conda
-- linux-64/pyinterp-2025.11.0-mkl58f7663_.conda
-- linux-64/pyinterp-2025.11.0-mkl99d7e9f_.conda
-- linux-64/pyinterp-2025.11.0-mkle9f8188_.conda
-- linux-64/pyinterp-2025.11.0-openblas16aa1a0_.conda
-- linux-64/pyinterp-2025.11.0-openblas9c4b340_.conda
-- linux-64/pyinterp-2025.11.0-openblasb4a95e8_.conda
-- linux-64/pyinterp-2025.11.0-openblasec4b7d0_.conda
 - linux-aarch64/pyinterp-2025.11.0-openblas535cd56_.conda
 - linux-aarch64/pyinterp-2025.11.0-openblas75c9817_.conda
 - linux-aarch64/pyinterp-2025.11.0-openblasa733299_.conda
@@ -16,6 +8,14 @@ packages:
 - linux-ppc64le/pyinterp-2025.11.0-openblas35e08c9_.conda
 - linux-ppc64le/pyinterp-2025.11.0-openblas747cc05_.conda
 - linux-ppc64le/pyinterp-2025.11.0-openblas89cc039_.conda
+- linux-64/pyinterp-2025.11.0-mkl2726adb_.conda
+- linux-64/pyinterp-2025.11.0-mkl58f7663_.conda
+- linux-64/pyinterp-2025.11.0-mkl99d7e9f_.conda
+- linux-64/pyinterp-2025.11.0-mkle9f8188_.conda
+- linux-64/pyinterp-2025.11.0-openblas16aa1a0_.conda
+- linux-64/pyinterp-2025.11.0-openblas9c4b340_.conda
+- linux-64/pyinterp-2025.11.0-openblasb4a95e8_.conda
+- linux-64/pyinterp-2025.11.0-openblasec4b7d0_.conda
 - osx-64/pyinterp-2025.11.0-accelerate14554e8_.conda
 - osx-64/pyinterp-2025.11.0-acceleratebf31f27_.conda
 - osx-64/pyinterp-2025.11.0-accelerated1316d7_.conda
