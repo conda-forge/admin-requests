@@ -1,7 +1,0 @@
-action: broken
-packages:
-- win-64/pytango-10.1.0-np2py310hf8672a0_0.conda
-- win-64/pytango-10.1.0-np2py311hf4f7858_0.conda
-- win-64/pytango-10.1.0-np2py312h6d06127_0.conda
-- win-64/pytango-10.1.0-np2py313h73f1cee_0.conda
-- win-64/pytango-10.1.0-np2py314hb5280d6_0.conda
