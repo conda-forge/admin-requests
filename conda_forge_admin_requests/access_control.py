@@ -164,6 +164,8 @@ def _process_request_for_feedstock(
                 for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
                     for arg in value:
                         register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
+            elif all(resource.startswith("cirun-") for resource in resources):
+                pass
             else:
                 assert False, f"Unknown resources {resources}"
 
