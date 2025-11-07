@@ -157,8 +157,9 @@ def _process_request_for_feedstock(
 
             for resource in resources:
                 register_ci_cmd.extend(["--cirun-resources", resource])
-                assert resource.startswith("cirun-openstack"), f"Unknown resource {resource}"
+                assert resource.startswith("cirun-"), f"Unknown resource {resource}"
 
+            # this part is specific to github.com/Quansight/open-gpu-server
             if all(resource.startswith("cirun-openstack") for resource in resources):
                 for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
                     for arg in value:
@@ -255,7 +256,7 @@ def check(request: Dict[str, Any]) -> None:
         resources = request["resources"]
         assert resources, "Empty resources"
         for resource in resources:
-            assert resource.startswith("cirun-openstack")
+            assert resource.startswith("cirun-")
 
     if action == "travis":
         assert not request.get("revoke", False)
