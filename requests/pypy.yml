@@ -1,0 +1,3 @@
+action: archive
+feedstocks:
+  - pypy3.6
