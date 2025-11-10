@@ -1,0 +1,10 @@
+action: cirun
+feedstocks:
+  - pytorch_scatter
+resources:
+  - cirun-openstack-cpu-medium
+  - cirun-openstack-cpu-large
+  - cirun-openstack-cpu-xlarge
+pull_request: true
+revoke: false
+send_pr: true
