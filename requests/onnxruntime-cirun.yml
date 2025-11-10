@@ -8,4 +8,4 @@ resources:
   - cirun-openstack-cpu-2xlarge
 pull_request: true
 revoke: false
-send_pr: true
+send_pr: false
