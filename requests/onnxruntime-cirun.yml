@@ -2,9 +2,6 @@ action: cirun
 feedstocks:
   - onnxruntime
 resources:
-  - cirun-openstack-cpu-medium
-  - cirun-openstack-cpu-large
-  - cirun-openstack-cpu-xlarge
   - cirun-openstack-cpu-2xlarge
 pull_request: true
 revoke: false
