@@ -1,8 +1,0 @@
-action: cirun
-feedstocks:
-  - onnxruntime
-resources:
-  - cirun-openstack-cpu-2xlarge
-pull_request: true
-revoke: false
-send_pr: false
