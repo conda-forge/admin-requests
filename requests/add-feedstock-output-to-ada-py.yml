@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # this entry adds a package name
+  - ada-py: ada-py
+  # this entry adds another output to the same feedstock
+  - ada-py: ada-py-core
