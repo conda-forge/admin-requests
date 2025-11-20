@@ -1,0 +1,7 @@
+action: broken
+packages:
+# The first build after feedstock rerender improperly had the version metadata set to
+# 405 instead of 4.0.5. This now has the highest build number which is a mistake and
+# not intended, and will be installed instead of more recent builds.
+- linux-64/spheno-405-h66d597c_0.conda
+- osx-64/spheno-405-h8829b16_0.conda
