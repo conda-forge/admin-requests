@@ -1,0 +1,4 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - linux-sysroot: kernel-headers_linux-riscv64
+  - linux-sysroot: sysroot_linux-riscv64
