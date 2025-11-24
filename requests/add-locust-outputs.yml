@@ -1,7 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  - locust: locust-with-all
-  - locust: locust-with-dns
-  - locust: locust-with-milvus
-  - locust: locust-with-mqtt
-  - locust: locust-with-otel
