@@ -1,0 +1,4 @@
+action: broken
+packages:
+- osx-64/alacritty-0.16.1-hff5b9eb_1.conda
+- osx-arm64/alacritty-0.16.1-h413266f_1.conda
