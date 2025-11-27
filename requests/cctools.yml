@@ -1,0 +1,4 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - cctools-and-ld64: cctools_impl_osx-64
+  - cctools-and-ld64: cctools_impl_osx-arm64
