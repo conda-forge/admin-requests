@@ -1,0 +1,15 @@
+action: broken
+packages:
+# The PR that introduced the organisaiton build variants used conda-build
+# syntax instead of rattler-build syntax causing the build strings to be
+# invalid.
+# c.f. https://github.com/conda-forge/spheno-feedstock/pull/3
+# Fixed in https://github.com/conda-forge/spheno-feedstock/pull/4
+- linux-64/spheno-4.0.6-none_h_.conda
+- linux-64/spheno-4.0.6-atlas_h_.conda
+- linux-aarch64/spheno-4.0.6-none_h_.conda
+- linux-aarch64/spheno-4.0.6-atlas_h_.conda
+- osx-64/spheno-4.0.6-none_h_.conda
+- osx-64/spheno-4.0.6-atlas_h_.conda
+- osx-arm64/spheno-4.0.6-none_h_.conda
+- osx-arm64/spheno-4.0.6-atlas_h_.conda
