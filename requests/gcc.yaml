@@ -1,0 +1,14 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - ctng-compiler-activation: clang_impl_osx-64
+  - ctng-compiler-activation: clang_osx-64
+  - ctng-compiler-activation: gcc_osx-64
+  - ctng-compiler-activation: gxx_osx-64
+  - ctng-compiler-activation: gfortran_osx-64
+  - ctng-compiler-activation: gcc_bootstrap_osx-64
+  - ctng-compiler-activation: clang_impl_osx-arm64
+  - ctng-compiler-activation: clang_osx-arm64
+  - ctng-compiler-activation: gcc_osx-arm64
+  - ctng-compiler-activation: gxx_osx-arm64
+  - ctng-compiler-activation: gfortran_osx-arm64
+  - ctng-compiler-activation: gcc_bootstrap_osx-arm64
