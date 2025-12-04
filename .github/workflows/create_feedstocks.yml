@@ -11,11 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: checkout staged-recipes
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           repository: conda-forge/staged-recipes
           token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          path: staged-recipes
+
+      - name: checkout admin-requests
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          repository: conda-forge/admin-requests
+          path: admin-requests
 
       - name: prevent multiple jobs running in parallel
         id: conversion_lock
@@ -28,6 +35,8 @@ jobs:
 
       - name: commit any changes upon checkout
         run: |
+          pushd staged-recipes
+
           git config --global user.email "chrisburr73+conda-forge-admin@gmail.com"
           git config --global user.name "conda-forge-admin"
           git config --global pull.rebase false
@@ -38,10 +47,14 @@ jobs:
             git push
           done
 
+          popd
+
       - name: Run feedstock creation
         # outcome is evaluated before continue-on-error above
         if: ${{ steps.conversion_lock.outcome == 'success' }}
         run: |
+          pushd staged-recipes
+
           # Avoid wasting CI time if there are no recipes ready for conversion
           # Checks for both `meta.yaml` and `recipe.yaml` files in the recipes directory
           # Excludes the example recipe(s)
@@ -52,7 +65,11 @@ jobs:
 
           echo "Creating feedstocks from the recipe(s)."
 
-          source ./.github/workflows/scripts/create_feedstocks
+          source ../admin-requests/scripts/create_feedstocks
+
+          python ../admin-requests/scripts/create_feedstocks.py
+
+          popd
         env:
           STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
           GH_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
