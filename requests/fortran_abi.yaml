@@ -10,3 +10,7 @@ feedstock_to_output_mapping:
   - tblite: "tblite-devel"
   - numsa: "numsa-devel"
   - test-drive: "test-drive-devel"
+  - scalapackfx: "scalapackfx-devel"
+  - mpifx: "mpifx-devel"
+  - dftbplus: "dftbplus-devel"
+  - libnegf: "libnegf-devel"
