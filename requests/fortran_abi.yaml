@@ -1,9 +1,12 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
   - mctc-lib: "mctc-lib-devel"
+  - jonquil: "jonquil-devel"
   - toml-f: "toml-f-devel"
   - simple-dftd3: "simple-dftd3-devel"
   - dftd4: "dftd4-devel"
   - xtb: "xtb-devel"
   - multicharge: "multicharge-devel"
   - tblite: "tblite-devel"
+  - numsa: "numsa-devel"
+  - test-drive: "test-drive-devel"
