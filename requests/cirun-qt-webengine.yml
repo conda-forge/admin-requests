@@ -1,8 +1,0 @@
-action: cirun
-feedstocks:
-  - qt-webengine
-resources:
-  - cirun-openstack-cpu-medium
-pull_request: true
-revoke: false
-send_pr: true
