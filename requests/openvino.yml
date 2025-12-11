@@ -1,0 +1,8 @@
+action: cirun
+feedstocks:
+  - openvino
+resources:
+  - cirun-azure-windows-2xlarge
+pull_request: true  
+revoke: false
+send_pr: true
