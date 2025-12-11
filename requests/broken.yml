@@ -1,0 +1,4 @@
+action: broken
+packages:
+- noarch/anaconda-auth-0.12.1-pyhd8ed1ab_1.conda
+- noarch/anaconda-auth-0.12.1-pyhd8ed1ab_0.conda
