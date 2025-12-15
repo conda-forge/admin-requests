@@ -1,4 +1,0 @@
-action: broken
-# build number 0 of pyslha v3.3.0 uses 3.2.6 source given broken sdist on PyPI
-packages:
-- noarch/pyslha-3.3.0-pyhcf101f3_0.conda
