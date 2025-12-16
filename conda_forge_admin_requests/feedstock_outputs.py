@@ -83,20 +83,23 @@ def check(request):
     assert action == "add_feedstock_output"
 
     assert request.get("feedstock_to_output_mapping")
-    for req in request["feedstock_to_output_mapping"]:
-        for feedstock, pkg_name in req.items():
+    msg = "feedstock to output mapping syntax has changed and requires a dictionary now. See example."
+    assert isinstance(request["feedstock_to_output_mapping"], dict), msg
+
+    for feedstock, pkgs in request["feedstock_to_output_mapping"].items():
+        if feedstock.endswith("-feedstock"):
+            feedstock = feedstock[:-10]
+
+        r = requests.head(
+            f"https://github.com/conda-forge/{feedstock}-feedstock"
+        )
+        r.raise_for_status()
+        for pkg_name in pkgs:
             if not isinstance(pkg_name, str):
                 raise ValueError(
                     f"Value for '{feedstock}' entry must be a str (output name, or a glob), "
                     f"but you provided {pkg_name:!r}."
                 )
-            if feedstock.endswith("-feedstock"):
-                feedstock = feedstock[:-10]
-
-            r = requests.head(
-                f"https://github.com/conda-forge/{feedstock}-feedstock"
-            )
-            r.raise_for_status()
 
 
 def run(request):
@@ -104,19 +107,22 @@ def run(request):
     assert action == "add_feedstock_output"
 
     assert request.get("feedstock_to_output_mapping")
-    items_to_keep = []
-    for req in request["feedstock_to_output_mapping"]:
-        for feedstock, pkg_name in req.items():
+    items_to_keep = {}
+    for feedstock, pkgs in request["feedstock_to_output_mapping"].items():
+        if feedstock.endswith("-feedstock"):
+            feedstock = feedstock[:-10]
+        pkgs_to_keep = []
+        for pkg_name in pkgs:
             try:
-                if feedstock.endswith("-feedstock"):
-                    feedstock = feedstock[:-10]
                 if any(_c in pkg_name for _c in ["*", "?", "[", "]", "!"]):
                     _add_feedstock_output_glob(feedstock, pkg_name)
                 else:
                     _add_feedstock_output(feedstock, pkg_name)
             except Exception as e:
                 print(f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}", flush=True)
-                items_to_keep.append({feedstock: pkg_name})
+                pkgs_to_keep.append(pkg_name)
+        if pkgs_to_keep:
+            items_to_keep[feedstock] = pkgs_to_keep
 
     if items_to_keep:
         request["feedstock_to_output_mapping"] = items_to_keep
