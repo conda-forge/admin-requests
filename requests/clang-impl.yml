@@ -1,0 +1,10 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  clangdev:
+    - clang_impl_linux-64
+    - clang_impl_linux-aarch64
+    - clang_impl_linux-ppc64le
+    - clang_impl_osx-64
+    - clang_impl_osx-arm64
+    - clang_impl_win-64
+    - clang_impl_win-arm64
