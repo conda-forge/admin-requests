@@ -1,5 +1,6 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
-  - zlib-ng: libzlib
-  - zlib-ng: zlib
-  - zlib-ng: zlib-ng-compat
+  zlib-ng:
+    - libzlib
+    - zlib
+    - zlib-ng-compat
