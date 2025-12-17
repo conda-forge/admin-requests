@@ -1,0 +1,8 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  zlib-ng:
+    - libzlib
+    - zlib
+    - libzlib-wapi
+    - zlib-wapi
+    - zlib-ng-compat
