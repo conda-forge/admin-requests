@@ -1,3 +1,4 @@
 action: add_feedstock_output
-feedstocks:
-- pycrystal
+feedstock_to_output_mapping:
+  - pycrystal:
+    - "pycrystal"
