@@ -1,4 +1,0 @@
-action: broken
-packages:
-- noarch/conda-smithy-3.54.0-win_pyhf1ceabd_0.conda
-- noarch/conda-smithy-3.54.0-unix_pyh9ac5cc3_0.conda
