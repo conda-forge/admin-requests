@@ -1,5 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  clangdev:
-    # similar to gcc-no-specs
-    - clang-no-cfg
