@@ -3,3 +3,4 @@ feedstock_to_output_mapping:
   robotframework-robocop:
     - robotframework-robocop-with-mcp
     - robotframework-robocop-with-all
+    - robotframework-robocop-with-tests
