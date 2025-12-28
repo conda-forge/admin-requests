@@ -1,0 +1,14 @@
+action: archive
+feedstocks:
+  - cdat_info
+  - cdms2
+  - cdp
+  - cdtime
+  - cdutil
+  - distarray
+  - ezget
+  - genutil
+  - libcdms
+  - libcf
+  - libdrs
+  - libdrs_f
