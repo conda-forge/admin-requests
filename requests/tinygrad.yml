@@ -1,8 +1,0 @@
-action: cirun
-feedstocks:
-  - tinygrad
-resources:
-  - cirun-macos-m4-large
-pull_request: true  
-revoke: false
-send_pr: true
