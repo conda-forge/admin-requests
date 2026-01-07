@@ -1,5 +1,6 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
-  - xeus-python-shell: "xeus-python-shell-raw"
-  - xeus-python-shell: "xeus-python-shell"
-  - xeus-python-shell: "xeus-python-shell-lite"
+  xeus-python-shell:
+    - xeus-python-shell-raw
+    - xeus-python-shell
+    - xeus-python-shell-lite
