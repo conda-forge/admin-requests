@@ -95,7 +95,7 @@ def check(request):
         )
         r.raise_for_status()
         for pkg_name in pkgs:
-            if not isinstance(pkg_name, str) or len(pkg_name) == 1
+            if not isinstance(pkg_name, str) or len(pkg_name) == 1:
                 raise ValueError(
                     f"Value for '{feedstock}' entry must be a list of str (output name, or a glob), "
                     f"but you provided {pkg_name:!r} from {pkgs:!r}."
