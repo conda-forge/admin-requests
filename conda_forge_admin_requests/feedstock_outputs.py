@@ -2,6 +2,7 @@ import io
 import json
 import os
 import requests
+from textwrap import dedent
 
 import ruamel.yaml
 from conda_forge_metadata.feedstock_outputs import sharded_path as _get_sharded_path
@@ -94,11 +95,34 @@ def check(request):
             f"https://github.com/conda-forge/{feedstock}-feedstock"
         )
         r.raise_for_status()
+        if not isinstance(pkgs, list):
+            raise ValueError(
+                dedent(
+                    f"""\
+                    Value for '{feedstock}' entry must be a list of str (output name, or a glob),
+                    but you provided a string: {pkgs!r}; change it to either of
+                    ```
+                    feedstock_to_output_mapping:
+                      {feedstock}:
+                        - {pkgs}
+                    ```
+                    or
+                    ```
+                    feedstock_to_output_mapping:
+                      {feedstock}: [{pkgs}]
+                    ```
+                    """
+                )
+            )
         for pkg_name in pkgs:
-            if not isinstance(pkg_name, str) or len(pkg_name) == 1:
+            if not isinstance(pkg_name, str):
                 raise ValueError(
                     f"Value for '{feedstock}' entry must be a list of str (output name, or a glob), "
                     f"but you provided {pkg_name!r} from {pkgs!r}."
+                )
+            if len(pkg_name) == 1:
+                raise ValueError(
+                    f"Output names of length one are not allowed! Received {pkg_name!r} as part of {pkgs!r}"
                 )
 
 
