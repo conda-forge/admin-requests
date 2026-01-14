@@ -1,0 +1,6 @@
+action: broken
+packages:
+- win-64/cadet-6.0.0a1-had6b1f5_0.conda
+- osx-64/cadet-6.0.0a1-h9cb235d_0.conda
+- osx-arm64/cadet-6.0.0a1-hdd624bc_0.conda
+- linux-64/cadet-6.0.0a1-h068b0f8_0.conda
