@@ -1,0 +1,7 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  ocaml:
+    - ocaml_linux-aarch64
+    - ocaml_linux-ppc64le
+    - ocaml_osx-arm64
+    - ocaml-compiler
