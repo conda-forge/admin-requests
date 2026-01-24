@@ -3,5 +3,6 @@ feedstock_to_output_mapping:
   ocaml:
     - ocaml_linux-aarch64
     - ocaml_linux-ppc64le
+    - ocaml_linux-riscv64
     - ocaml_osx-arm64
     - ocaml-compiler
