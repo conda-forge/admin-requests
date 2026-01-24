@@ -11,20 +11,19 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: cf
-        environment-file: environment.yml
-        auto-activate-base: true
-        miniforge-version: latest
-        miniforge-variant: Mambaforge
+      - uses: conda-incubator/setup-miniconda@835234971496cad1653abb28a638a281cf32541f # v3.2.0
+        with:
+          activate-environment: cf
+          environment-file: environment.yml
+          auto-activate-base: true
+          miniforge-version: latest
 
-    - name: Check request YAML files
-      shell: bash -el {0}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
+      - name: Check request YAML files
+        shell: bash -el {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           conda activate cf
           python -m conda_forge_admin_requests check

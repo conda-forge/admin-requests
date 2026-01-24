@@ -2,7 +2,7 @@
 Hi!
 
 Thank you for making an admin request on this repo. We strive to make a decision
-on these requests within 24 hours. 
+on these requests within 24 hours.
 
 Please use the text below to add context about this PR, especially if:
 - You want to mark packages as broken
@@ -46,6 +46,16 @@ What will happen when a package is marked broken?
 * [ ] I want to request (or revoke) access to an opt-in CI resource:
   * [ ] Pinged the relevant feedstock team(s)
   * [ ] Added a small description explaining why access is needed
+
+* [ ] I want to copy an artifact following [CFEP-3](https://github.com/conda-forge/cfep/blob/main/cfep-03.md):
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Added a reference to the original PR
+  * [ ] Posted a link to the conda artifacts
+  * [ ] Posted a link to the build logs
+
+* [ ] I want to add a package output to a feedstock:
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Added a small description of why the output is being added.
 
 <!--
 For example if you are trying to mark a `foo` conda package as broken.

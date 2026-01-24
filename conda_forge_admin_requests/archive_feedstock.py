@@ -68,7 +68,7 @@ def run(request):
     if pkgs_to_do_again:
         request["feedstocks"] = pkgs_to_do_again
 
-    subprocess.check_call("git show", shell=True)
+    subprocess.check_call(["git", "show"])
 
 
 def check(request):

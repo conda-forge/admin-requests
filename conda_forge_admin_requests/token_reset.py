@@ -1,6 +1,5 @@
+import copy
 import os
-import sys
-import glob
 import requests
 import subprocess
 import tempfile
@@ -26,18 +25,21 @@ def feedstock_token_exists(feedstock_name):
 
 def get_feedstock_token_repo():
     global FEEDSTOCK_TOKENS_REPO
-    if FEEDSTOCK_TOKENS_REPO is None and "GITHUB_TOKEN" in os.environ:
+
+    if "GITHUB_TOKEN" not in os.environ:
+        raise RuntimeError(
+            "Cannot delete feedstock token since "
+            "we do not have a github token!"
+        )
+
+    if FEEDSTOCK_TOKENS_REPO is None:
         FEEDSTOCK_TOKENS_REPO = (
             github
             .Github(os.environ["GITHUB_TOKEN"])
             .get_repo("conda-forge/feedstock-tokens")
         )
-        return FEEDSTOCK_TOKENS_REPO
-    else:
-        raise RuntimeError(
-            "Cannot delete feedstock token since "
-            "we do not have a github token!"
-        )
+
+    return FEEDSTOCK_TOKENS_REPO
 
 
 def delete_feedstock_token(feedstock_name):
@@ -53,7 +55,12 @@ def delete_feedstock_token(feedstock_name):
     )
 
 
-def reset_feedstock_token(name, skips=None):
+def reset_feedstock_token(
+    name,
+    skips=None,
+    unique_token_per_provider=False,
+    existing_tokens_time_to_expiration=None,
+):
     from conda_smithy.ci_register import travis_get_repo_info
     skips = skips or []
 
@@ -66,20 +73,42 @@ def reset_feedstock_token(name, skips=None):
 
     owner_info = ['--organization', 'conda-forge']
     token_repo = (
-        'https://x-access-token:${GITHUB_TOKEN}@github.com/'
-        'conda-forge/feedstock-tokens'
+        f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/"
+        "conda-forge/feedstock-tokens"
     )
+    if unique_token_per_provider:
+        uniq_args = ['--unique-token-per-provider']
+    else:
+        uniq_args = []
+    if existing_tokens_time_to_expiration:
+        expire_args = [
+            '--existing-tokens-time-to-expiration',
+            str(existing_tokens_time_to_expiration),
+        ]
+    else:
+        expire_args = []
 
     with tempfile.TemporaryDirectory() as tmpdir:
         feedstock_dir = os.path.join(tmpdir, name + "-feedstock")
         os.makedirs(feedstock_dir)
 
-        if feedstock_token_exists(name + "-feedstock"):
+        if (
+            feedstock_token_exists(name + "-feedstock")
+            and (
+                existing_tokens_time_to_expiration is None
+                or int(existing_tokens_time_to_expiration) <= 0
+            )
+        ):
             delete_feedstock_token(name + "-feedstock")
 
         subprocess.check_call(
-            ['conda', 'smithy', 'generate-feedstock-token',
-             '--feedstock_directory', feedstock_dir] + owner_info)
+            [
+                'conda', 'smithy', 'generate-feedstock-token',
+                '--feedstock_directory', feedstock_dir
+            ]
+            + owner_info
+            + uniq_args
+        )
         subprocess.check_call(
             [
                 'conda', 'smithy', 'register-feedstock-token',
@@ -97,6 +126,8 @@ def reset_feedstock_token(name, skips=None):
             ]
             + owner_info
             + ['--token_repo', token_repo]
+            + uniq_args
+            + expire_args
         )
 
         subprocess.check_call(
@@ -123,22 +154,33 @@ def reset_feedstock_token(name, skips=None):
 
 
 def run(request):
-    assert "feedstocks" in request
+    check(request)
+    write_secrets_to_files()
+
     feedstocks = request["feedstocks"]
 
     skips = request.get("skip_providers", [])
+    unique_token_per_provider = True
+    existing_tokens_time_to_expiration = request.get(
+        "existing_tokens_time_to_expiration", None
+    )
 
     feedstocks_to_do_again = []
 
     for feedstock in feedstocks:
         try:
-            reset_feedstock_token(feedstock, skips=skips)
+            reset_feedstock_token(
+                feedstock,
+                skips=skips,
+                existing_tokens_time_to_expiration=existing_tokens_time_to_expiration,
+                unique_token_per_provider=unique_token_per_provider,
+            )
         except Exception as e:
             print(
                 "failed to reset token for '%s': %s" % (feedstock, repr(e)),
                 flush=True,
             )
-            feedstocks_to_do_again.append(pkg)
+            feedstocks_to_do_again.append(feedstock)
 
     if feedstocks_to_do_again:
         request = copy.deepcopy(request)

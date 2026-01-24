@@ -1,9 +1,13 @@
 import os
 
+from conda_build.utils import create_file_with_permissions
+
 SMITHY_CONF = os.path.expanduser('~/.conda-smithy')
 
+
 def _write_token(name, token):
-    with open(os.path.join(SMITHY_CONF, name + '.token'), 'w') as fh:
+    path = os.path.join(SMITHY_CONF, name + '.token')
+    with create_file_with_permissions(path, 0o600) as fh:
         fh.write(token)
 
 
@@ -22,3 +26,21 @@ def write_secrets_to_files():
         if token_name in os.environ:
             _write_token(token_fname, os.environ[token_name])
 
+
+def split_label_from_channel(channel: str) -> tuple[str, str]:
+    if "/label/" in channel:
+        return channel.split("/label/", 1)
+    return channel, "main"
+
+
+def parse_filename(filename: str) -> tuple[str, str, str, str]:  
+    if filename.endswith(".tar.bz2"):
+        basename = filename[:-len(".tar.bz2")]
+        extension = "tar.bz2"
+    elif filename.endswith(".conda"):
+        basename = filename[:-len(".conda")]
+        extension = "conda"
+    else:
+        raise ValueError(f"Unknown extension for {filename}")
+    pkg_name, version, build = basename.rsplit("-", 2)
+    return pkg_name, version, build, extension

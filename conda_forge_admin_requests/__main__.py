@@ -6,10 +6,31 @@ import subprocess
 from conda_forge_admin_requests import get_actions, register_actions
 
 def _get_task_files():
-    return list(glob.glob(os.path.join("requests", "*.yml")))
+    return (
+        list(glob.glob(os.path.join("requests", "*.yml")))
+        + list(glob.glob(os.path.join("requests", "*.yaml")))
+    )
 
 
 def check():
+    # error if people put thinks in old places
+    old_files = glob.glob("broken/*")
+    if old_files:
+        assert False, (
+            f"Found old files ({old_files}) in wrong location. "
+            "Please put YAML-formatted requests in the `requests` directory."
+        )
+
+    if not all(
+        fname.endswith(".yaml") or fname.endswith(".yml")
+        for fname in glob.glob("requests/*")
+    ):
+        assert False, (
+            "Found non-YAML files in the `requests` directory. Please "
+            "use only YAML-formatted requests with filename extensions "
+            "`.yml` or `.yaml`."
+        )
+
     filenames = _get_task_files()
 
     for filename in filenames:
@@ -47,17 +68,20 @@ def run():
         if try_again:
             with open(filename, "w") as fp:
                 yaml.dump(try_again, fp)
-            subprocess.check_call(f"git add {filename}", shell=True)
+            subprocess.check_call(["git", "add", filename])
             subprocess.check_call(
-                f"git commit --allow-empty -m 'Keeping {filename} "
-                f"after failed {action}'",
-                shell=True,
+                [
+                    "git",
+                    "commit",
+                    "--allow-empty",
+                    "-m",
+                    f"Keeping {filename} after failed {action}",
+                ]
             )
         else:
-            subprocess.check_call(f"git rm {filename}", shell=True)
+            subprocess.check_call(["git", "rm", filename])
             subprocess.check_call(
-                f"git commit -m 'Remove {filename} after {action}'",
-                shell=True,
+                ["git", "commit", "-m", f"Remove {filename} after {action}"]
             )
 
 

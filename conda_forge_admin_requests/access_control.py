@@ -51,7 +51,7 @@ def send_pr_cirun(
                 "conda_build_config.yaml")) as cbc, \
             update_conda_forge_config(
                 os.path.join(feedstock_dir, "conda-forge.yml")) as cfg:
-        if any(label.startwith("cirun-") for label in cbc.get(
+        if any(label.startswith("cirun-") for label in cbc.get(
                 "github_actions_labels", [])):
             return
         cfg["github_actions"] = {"self_hosted": True}
@@ -73,16 +73,17 @@ def send_pr_cirun(
     resource_str = ", ".join(resources)
 
     git_cmds = [
-        "git add recipe/conda_build_config.yaml conda-forge.yml",
-        f"git remote add {user.login} https://x-access-token:${{GITHUB_TOKEN}}@github.com/"
-        f"{user.login}/{feedstock}.git",
-        f"git commit -m 'Enable {resource_str} using Cirun' --author '{user.name} <{user.email}>'",
-        "conda-smithy rerender -c auto",
-        f"git push {user.login} HEAD:{base_branch}",
+        ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
+        ["git", "remote", "add", user.login, 
+         f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/{user.login}/{feedstock}.git"
+        ],
+        ["git", "commit", "-m", f"Enable {resource_str} using Cirun", "--author", f"{user.name} <{user.email}>"],
+        ["conda-smithy", "rerender", "-c", "auto", "--no-check-uptodate"],
+        ["git", "push", user.login, f"HEAD:{base_branch}"],
     ]
     for git_cmd in git_cmds:
-        print("Running:", git_cmd, " in ", feedstock_dir)
-        subprocess.check_call(git_cmd, shell=True, cwd=feedstock_dir)
+        print("Running:", git_cmd, "in", feedstock_dir)
+        subprocess.check_call(git_cmd, cwd=feedstock_dir)
 
     print("Creating PR:")
     repo.create_pull(
@@ -95,9 +96,6 @@ def send_pr_cirun(
         on Github actions via Cirun.
         - [ ] Maintainers have accepted the terms of service and privacy policy
           at https://github.com/Quansight/open-gpu-server
-
-        Also, note that rerendering with Github actions as CI provider must be done
-        locally in the future for this feedstock.
         """),
     )
 
@@ -138,8 +136,8 @@ def _process_request_for_feedstock(
 
         owner_info = ["--organization", GH_ORG]
         token_repo = (
-            'https://x-access-token:${GITHUB_TOKEN}@github.com/'
-            f'{GH_ORG}/feedstock-tokens'
+            f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/"
+            f"{GH_ORG}/feedstock-tokens"
         )
 
         register_ci_cmd = [
@@ -159,12 +157,15 @@ def _process_request_for_feedstock(
 
             for resource in resources:
                 register_ci_cmd.extend(["--cirun-resources", resource])
-                assert resource.startswith("cirun-openstack"), f"Unknown resource {resource}"
+                assert resource.startswith("cirun-"), f"Unknown resource {resource}"
 
+            # this part is specific to github.com/Quansight/open-gpu-server
             if all(resource.startswith("cirun-openstack") for resource in resources):
                 for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
                     for arg in value:
                         register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
+            elif all(resource.startswith("cirun-") for resource in resources):
+                pass
             else:
                 assert False, f"Unknown resources {resources}"
 
@@ -257,7 +258,7 @@ def check(request: Dict[str, Any]) -> None:
         resources = request["resources"]
         assert resources, "Empty resources"
         for resource in resources:
-            assert resource.startswith("cirun-openstack")
+            assert resource.startswith("cirun-")
 
     if action == "travis":
         assert not request.get("revoke", False)
