@@ -1,9 +1,10 @@
-import sys
-import subprocess
-import os
-import tempfile
-import github
 import datetime
+import os
+import subprocess
+import sys
+import tempfile
+
+import github
 
 
 def _commit_to_patches(tmpdir):

@@ -1,12 +1,13 @@
 import io
 import json
 import os
-import requests
 from textwrap import dedent
 
+import github
 import ruamel.yaml
 from conda_forge_metadata.feedstock_outputs import sharded_path as _get_sharded_path
-import github
+
+import requests
 
 
 def _test_and_raise_besides_file_not_exists(e: github.GithubException):

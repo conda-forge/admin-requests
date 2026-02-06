@@ -1,8 +1,10 @@
-import os
 import glob
-import yaml
-import sys
+import os
 import subprocess
+import sys
+
+import yaml
+
 from conda_forge_admin_requests import get_actions, register_actions
 
 

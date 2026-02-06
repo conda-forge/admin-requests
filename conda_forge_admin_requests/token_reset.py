@@ -1,9 +1,11 @@
 import copy
 import os
-import requests
 import subprocess
 import tempfile
+
 import github
+
+import requests
 
 from .utils import write_secrets_to_files
 

@@ -6,11 +6,11 @@ import copy
 import hmac
 import os
 import subprocess
-from typing import Dict, Any
+from typing import Any, Dict
 
 import requests
 
-from .utils import split_label_from_channel, parse_filename
+from .utils import parse_filename, split_label_from_channel
 
 
 def check_one(package: str, sha256: str):
