@@ -1,6 +1,6 @@
 action: token_reset
 feedstocks:
-- !!!PUT THE NAME OF YOUR FEEDSTOCK HERE!!!
+- "!!!PUT THE NAME OF YOUR FEEDSTOCK HERE!!!"
 # do not use this unless you have special requirements for your feedstock
 # can be a list with azure, travis, circle, drone, appveyor, github_actions
 # skip_providers: []
