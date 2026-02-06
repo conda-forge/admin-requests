@@ -18,7 +18,7 @@ import requests
 from .utils import write_secrets_to_files
 
 from conda_smithy.utils import update_conda_forge_config
-from conda_smithy.github import Github, gh_token
+from conda_smithy.github import Github
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
