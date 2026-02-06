@@ -22,11 +22,11 @@ def process_repo(repo, task):
 
     data = r.json()
     if task == "archive" and data["archived"]:
-        print("feedstock %s is already %s" % (repo, target_status), flush=True)
+        print(f"feedstock {repo} is already {target_status}", flush=True)
         return
 
     if task == "unarchive" and not data["archived"]:
-        print("feedstock %s is already %s" % (repo, target_status), flush=True)
+        print(f"feedstock {repo} is already {target_status}", flush=True)
         return
 
     r = requests.patch(
@@ -36,7 +36,7 @@ def process_repo(repo, task):
     )
     raise_json_for_status(r)
 
-    print("feedstock %s was %s" % (repo, target_status), flush=True)
+    print(f"feedstock {repo} was {target_status}", flush=True)
 
 
 def run(request):
@@ -48,10 +48,7 @@ def run(request):
         try:
             process_repo(f"{feedstock}-feedstock", task)
         except Exception as e:
-            print(
-                "failed to %s '%s': %s" % (task, feedstock, repr(e)),
-                flush=True,
-            )
+            print(f"failed to {task} '{feedstock}': {e!r}", flush=True)
             pkgs_to_do_again.append(feedstock)
 
     if pkgs_to_do_again:
@@ -72,5 +69,5 @@ def check(request):
 
     if missing_feedstocks:
         raise RuntimeError(
-            "feedstocks %s could not be found!" % list(set(missing_feedstocks))
+            f"{list(set(missing_feedstocks))} feedstocks could not be found!"
         )
