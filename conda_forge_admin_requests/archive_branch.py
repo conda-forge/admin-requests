@@ -1,4 +1,5 @@
 import copy
+
 import requests
 
 from .utils import get_gh_headers, raise_json_for_status
@@ -12,7 +13,7 @@ def check(request):
 
     if not isinstance(feedstocks, dict):
         raise ValueError(
-            f"'feedstocks' must be a mapping from feedstock names to lists of branches"
+            "'feedstocks' must be a mapping from feedstock names to lists of branches"
         )
     if task not in ("archive_branch", "unarchive_branch"):
         raise ValueError(f"Illegal value for action: {task}")
