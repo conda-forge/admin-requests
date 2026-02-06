@@ -1,8 +1,17 @@
 import importlib
 import pkgutil
-from . import archive_feedstock, mark_broken, token_reset, access_control, cfep3_copy, feedstock_outputs
+
+from . import (
+    access_control,
+    archive_feedstock,
+    cfep3_copy,
+    feedstock_outputs,
+    mark_broken,
+    token_reset,
+)
 
 actions = {}
+
 
 def get_actions():
     return actions.copy()
@@ -29,4 +38,3 @@ def register_actions():
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
             getattr(module, "register_actions")()
-
