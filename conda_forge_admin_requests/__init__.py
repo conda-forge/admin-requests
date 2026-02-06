@@ -3,6 +3,7 @@ import pkgutil
 
 from . import (
     access_control,
+    archive_branch,
     archive_feedstock,
     cfep3_copy,
     feedstock_outputs,
@@ -25,6 +26,8 @@ def register_action(name, module):
 def register_actions():
     register_action("archive", archive_feedstock)
     register_action("unarchive", archive_feedstock)
+    register_action("archive_branch", archive_branch)
+    register_action("unarchive_branch", archive_branch)
     register_action("broken", mark_broken)
     register_action("not_broken", mark_broken)
     register_action("token_reset", token_reset)
