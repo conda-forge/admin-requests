@@ -13,7 +13,13 @@ def _commit_to_patches(tmpdir):
     )
 
     subprocess.check_call(
-        ["git", "commit", "--allow-empty", "-am", "resync repo data for weekly cron-job"],
+        [
+            "git",
+            "commit",
+            "--allow-empty",
+            "-am",
+            "resync repo data for weekly cron-job",
+        ],
         cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
     )
 
@@ -37,7 +43,7 @@ Hi! Our weekly job found a non-zero repodata patch diff:
 """
 
     today = datetime.date.today().strftime("%Y-%m-%d")
-    gh = github.Github(os.environ['GITHUB_TOKEN'])
+    gh = github.Github(os.environ["GITHUB_TOKEN"])
     repo = gh.get_repo("conda-forge/conda-forge-repodata-patches-feedstock")
     repo.create_issue(
         f"[{today}] non-zero repodata patch diff",
@@ -98,10 +104,7 @@ def update_repodata_patches(dry_run):
         empty = True
         for line in d.splitlines():
             line = line.strip()
-            if len(line) > 0 and not (
-                line.startswith("Downloading")
-                or line in skipme
-            ):
+            if len(line) > 0 and not (line.startswith("Downloading") or line in skipme):
                 empty = False
 
         print("diff:\n" + d, flush=True)
@@ -116,7 +119,7 @@ def update_repodata_patches(dry_run):
 if __name__ == "__main__":
     if len(sys.argv) > 2:
         raise RuntimeError("Need 0 or 1 arguments")
-    if len(sys.argv) == 2 and sys.argv[1] == '--dry-run':
+    if len(sys.argv) == 2 and sys.argv[1] == "--dry-run":
         dry_run = True
     else:
         dry_run = False

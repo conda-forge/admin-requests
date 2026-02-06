@@ -7,7 +7,7 @@ def raise_json_for_status(request):
     try:
         request.raise_for_status()
     except Exception as exc:
-        exc.args = exc.args + (request.json(), )
+        exc.args = exc.args + (request.json(),)
         raise exc.with_traceback(exc.__traceback__)
 
 
@@ -43,7 +43,7 @@ def process_repo(repo, task):
     r = requests.patch(
         f"https://api.github.com/repos/{owner}/{repo}",
         headers=headers,
-        json={"archived": task == "archive"}
+        json={"archived": task == "archive"},
     )
     raise_json_for_status(r)
 
