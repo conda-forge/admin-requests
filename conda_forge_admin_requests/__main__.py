@@ -5,10 +5,10 @@ import sys
 import subprocess
 from conda_forge_admin_requests import get_actions, register_actions
 
+
 def _get_task_files():
-    return (
-        list(glob.glob(os.path.join("requests", "*.yml")))
-        + list(glob.glob(os.path.join("requests", "*.yaml")))
+    return list(glob.glob(os.path.join("requests", "*.yml"))) + list(
+        glob.glob(os.path.join("requests", "*.yaml"))
     )
 
 
@@ -96,4 +96,3 @@ if __name__ == "__main__":
         check()
     else:
         run()
-

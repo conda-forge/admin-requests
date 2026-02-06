@@ -405,7 +405,8 @@ if __name__ == "__main__":
 
             # now register with github
             subprocess.check_call(
-                ["conda", "smithy", "register-github", feedstock_dir] + owner_info
+                ["conda", "smithy", "register-github", feedstock_dir]
+                + owner_info
                 # hack to help travis work
                 # + ['--extra-admin-users', gh_travis.get_user().login]
                 # end of hack

@@ -7,7 +7,6 @@ import github
 
 from .utils import write_secrets_to_files
 
-
 FEEDSTOCK_TOKENS_REPO = None
 
 
@@ -28,15 +27,12 @@ def get_feedstock_token_repo():
 
     if "GITHUB_TOKEN" not in os.environ:
         raise RuntimeError(
-            "Cannot delete feedstock token since "
-            "we do not have a github token!"
+            "Cannot delete feedstock token since " "we do not have a github token!"
         )
 
     if FEEDSTOCK_TOKENS_REPO is None:
-        FEEDSTOCK_TOKENS_REPO = (
-            github
-            .Github(os.environ["GITHUB_TOKEN"])
-            .get_repo("conda-forge/feedstock-tokens")
+        FEEDSTOCK_TOKENS_REPO = github.Github(os.environ["GITHUB_TOKEN"]).get_repo(
+            "conda-forge/feedstock-tokens"
         )
 
     return FEEDSTOCK_TOKENS_REPO
@@ -62,6 +58,7 @@ def reset_feedstock_token(
     existing_tokens_time_to_expiration=None,
 ):
     from conda_smithy.ci_register import travis_get_repo_info
+
     skips = skips or []
 
     if "travis" not in skips:
@@ -71,18 +68,18 @@ def reset_feedstock_token(
         if not repo_info:
             raise RuntimeError("Travis-CI API token is not working!")
 
-    owner_info = ['--organization', 'conda-forge']
+    owner_info = ["--organization", "conda-forge"]
     token_repo = (
         f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/"
         "conda-forge/feedstock-tokens"
     )
     if unique_token_per_provider:
-        uniq_args = ['--unique-token-per-provider']
+        uniq_args = ["--unique-token-per-provider"]
     else:
         uniq_args = []
     if existing_tokens_time_to_expiration:
         expire_args = [
-            '--existing-tokens-time-to-expiration',
+            "--existing-tokens-time-to-expiration",
             str(existing_tokens_time_to_expiration),
         ]
     else:
@@ -92,54 +89,66 @@ def reset_feedstock_token(
         feedstock_dir = os.path.join(tmpdir, name + "-feedstock")
         os.makedirs(feedstock_dir)
 
-        if (
-            feedstock_token_exists(name + "-feedstock")
-            and (
-                existing_tokens_time_to_expiration is None
-                or int(existing_tokens_time_to_expiration) <= 0
-            )
+        if feedstock_token_exists(name + "-feedstock") and (
+            existing_tokens_time_to_expiration is None
+            or int(existing_tokens_time_to_expiration) <= 0
         ):
             delete_feedstock_token(name + "-feedstock")
 
         subprocess.check_call(
             [
-                'conda', 'smithy', 'generate-feedstock-token',
-                '--feedstock_directory', feedstock_dir
+                "conda",
+                "smithy",
+                "generate-feedstock-token",
+                "--feedstock_directory",
+                feedstock_dir,
             ]
             + owner_info
             + uniq_args
         )
         subprocess.check_call(
             [
-                'conda', 'smithy', 'register-feedstock-token',
-                '--without-circle', '--without-drone',
+                "conda",
+                "smithy",
+                "register-feedstock-token",
+                "--without-circle",
+                "--without-drone",
             ]
             + [
-                f"--without-{s.replace('_', '-')}" for s in skips
-                if s not in [
+                f"--without-{s.replace('_', '-')}"
+                for s in skips
+                if s
+                not in [
                     "circle",
                     "drone",
                 ]
             ]
             + [
-                '--feedstock_directory', feedstock_dir,
+                "--feedstock_directory",
+                feedstock_dir,
             ]
             + owner_info
-            + ['--token_repo', token_repo]
+            + ["--token_repo", token_repo]
             + uniq_args
             + expire_args
         )
 
         subprocess.check_call(
             [
-                'conda', 'smithy', 'rotate-binstar-token',
-                '--without-appveyor', '--without-azure',
-                '--without-circle', '--without-drone',
-                '--without-github-actions',
+                "conda",
+                "smithy",
+                "rotate-binstar-token",
+                "--without-appveyor",
+                "--without-azure",
+                "--without-circle",
+                "--without-drone",
+                "--without-github-actions",
             ]
             + [
-                f"--without-{s.replace('_', '-')}" for s in skips
-                if s not in [
+                f"--without-{s.replace('_', '-')}"
+                for s in skips
+                if s
+                not in [
                     "circle",
                     "drone",
                     "appveyor",
@@ -147,10 +156,9 @@ def reset_feedstock_token(
                     "github_actions",
                 ]
             ]
-            + [
-                '--token_name', 'STAGING_BINSTAR_TOKEN'
-            ],
-            cwd=feedstock_dir)
+            + ["--token_name", "STAGING_BINSTAR_TOKEN"],
+            cwd=feedstock_dir,
+        )
 
 
 def run(request):
@@ -196,13 +204,9 @@ def check(request):
     missing_feedstocks = []
 
     for feedstock in feedstocks:
-        r = requests.get(
-            f"https://github.com/conda-forge/{feedstock}-feedstock"
-        )
+        r = requests.get(f"https://github.com/conda-forge/{feedstock}-feedstock")
         if r.status_code != 200:
             missing_feedstocks.append(feedstock)
 
     if missing_feedstocks:
-        raise RuntimeError(
-            f"feedstocks {missing_feedstocks} could not be found!"
-        )
+        raise RuntimeError(f"feedstocks {missing_feedstocks} could not be found!")

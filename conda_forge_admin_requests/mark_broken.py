@@ -7,14 +7,14 @@ import copy
 
 def split_pkg(pkg):
     if pkg.endswith(".tar.bz2"):
-        pkg = pkg[:-len(".tar.bz2")]
+        pkg = pkg[: -len(".tar.bz2")]
     elif pkg.endswith(".conda"):
-        pkg = pkg[:-len(".conda")]
+        pkg = pkg[: -len(".conda")]
     else:
         raise RuntimeError("Can only process packages that end in .tar.bz2 or .conda!")
     plat, pkg_name = pkg.split("/")
-    name_ver, build = pkg_name.rsplit('-', 1)
-    name, ver = name_ver.rsplit('-', 1)
+    name_ver, build = pkg_name.rsplit("-", 1)
+    name, ver = name_ver.rsplit("-", 1)
     return plat, name, ver, build
 
 
@@ -40,7 +40,14 @@ def check(request):
         env = os.environ.copy()
         env["CONDA_SUBDIR"] = plat
         subprocess.check_call(
-            ["conda", "search", f"{name}={ver}={build}", "-c", channel, "--override-channels"],
+            [
+                "conda",
+                "search",
+                f"{name}={ver}={build}",
+                "-c",
+                channel,
+                "--override-channels",
+            ],
             env=env,
         )
 
@@ -55,12 +62,12 @@ def mark_broken_pkg(pkg, action):
 
     r = func(
         "https://api.anaconda.org/channels/conda-forge/broken",
-        headers={'Authorization': 'token {}'.format(os.environ["PROD_BINSTAR_TOKEN"])},
+        headers={"Authorization": "token {}".format(os.environ["PROD_BINSTAR_TOKEN"])},
         json={
             "basename": pkg,
             "package": name,
             "version": ver,
-        }
+        },
     )
     if r.status_code != 201:
         print(f"        could not mark {action}", flush=True)
@@ -92,7 +99,7 @@ def run(request):
             subprocess.check_call(
                 [
                     "git",
-                    "clone", 
+                    "clone",
                     "https://github.com/conda-forge/conda-forge-repodata-patches-feedstock.git",
                 ],
                 cwd=tmpdir,
