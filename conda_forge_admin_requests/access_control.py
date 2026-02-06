@@ -4,21 +4,21 @@ This script will process the `travis` and `cirun` requests.
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
 
+import copy
 import os
 import subprocess
 import tempfile
-import time
-from typing import Dict, List, Any
 import textwrap
-import copy
+import time
+from typing import Any, Dict, List
 from unittest import mock
+
+from conda_smithy.github import Github
+from conda_smithy.utils import update_conda_forge_config
 
 import requests
 
 from .utils import write_secrets_to_files
-
-from conda_smithy.utils import update_conda_forge_config
-from conda_smithy.github import Github
 
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 

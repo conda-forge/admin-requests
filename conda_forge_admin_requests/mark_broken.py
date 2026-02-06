@@ -1,8 +1,9 @@
-import subprocess
-import os
-import tempfile
-import requests
 import copy
+import os
+import subprocess
+import tempfile
+
+import requests
 
 
 def split_pkg(pkg):

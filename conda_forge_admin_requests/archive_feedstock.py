@@ -1,6 +1,7 @@
 import os
-import requests
 import subprocess
+
+import requests
 
 
 def raise_json_for_status(request):
