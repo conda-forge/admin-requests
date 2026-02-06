@@ -11,6 +11,12 @@ repos:
   hooks:
   - id: black
 
+- repo: https://github.com/PyCQA/isort
+  rev: 7.0.0
+  hooks:
+  - id: isort
+    args: ["--profile", "black"]
+
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: v0.14.14
   hooks:
