@@ -27,7 +27,8 @@ def check(request):
         api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
         r = requests.get(api_base_url, headers=headers)
-        raise_json_for_status(r)
+        if r.status_code != 200:
+            raise ValueError(f"Cannot find {owner}/{repo}!")
 
         if not isinstance(branches, list):
             raise ValueError(
@@ -43,7 +44,8 @@ def check(request):
             if task == "archive_branch":
                 # branch must exist
                 r = requests.get(f"{api_base_url}/branches/{branch}", headers=headers)
-                raise_json_for_status(r)
+                if r.status_code != 200:
+                    raise ValueError(f"{feedstock}: branch '{branch}' not found")
 
                 # tag must NOT exist
                 r = requests.get(
@@ -57,7 +59,8 @@ def check(request):
                 r = requests.get(
                     f"{api_base_url}/git/ref/tags/{branch}", headers=headers
                 )
-                raise_json_for_status(r)
+                if r.status_code != 200:
+                    raise ValueError(f"{feedstock}: tag '{branch}' not found")
 
                 # branch must NOT exist
                 r = requests.get(f"{api_base_url}/branches/{branch}", headers=headers)
