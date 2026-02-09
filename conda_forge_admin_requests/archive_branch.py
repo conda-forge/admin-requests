@@ -18,7 +18,7 @@ def check(request):
     if task not in ("archive_branch", "unarchive_branch"):
         raise ValueError(f"Illegal value for action: {task}")
 
-    task = request["action"]
+    print(f"received {feedstocks=}")
     owner = "conda-forge"
     headers = get_gh_headers()
 
