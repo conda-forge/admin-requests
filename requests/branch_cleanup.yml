@@ -1,4 +1,4 @@
-action: archive_branch
+action: unarchive_branch
 feedstocks:
   pyarrow:
     - 0.16.x
