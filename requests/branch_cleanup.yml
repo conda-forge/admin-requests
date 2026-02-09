@@ -1,0 +1,10 @@
+action: unarchive_branch
+feedstocks:
+  pyarrow:
+    - 0.16.x
+    - 16.x
+    - 17.x
+  lld:
+    - 6.x
+    - 14.x
+    - 15.x
