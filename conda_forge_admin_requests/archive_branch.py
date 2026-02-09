@@ -35,9 +35,10 @@ def check(request):
             )
 
         for branch in branches:
-            tag = f"{branch}_archived"
             if branch == "main":
-                raise ValueError(f"{feedstock}: {task}ing 'main' branch not allowed")
+                raise ValueError(
+                    f"{feedstock}: Task '{task}' is not allwed for 'main' branch"
+                )
 
             if task == "archive_branch":
                 # branch must exist
@@ -45,13 +46,17 @@ def check(request):
                 raise_json_for_status(r)
 
                 # tag must NOT exist
-                r = requests.get(f"{api_base_url}/git/ref/tags/{tag}", headers=headers)
+                r = requests.get(
+                    f"{api_base_url}/git/ref/tags/{branch}", headers=headers
+                )
                 if r.status_code == 200:
-                    raise ValueError(f"{feedstock}: tag '{tag}' already exists")
+                    raise ValueError(f"{feedstock}: tag '{branch}' already exists")
 
             elif task == "unarchive_branch":
                 # tag must exist
-                r = requests.get(f"{api_base_url}/git/ref/tags/{tag}", headers=headers)
+                r = requests.get(
+                    f"{api_base_url}/git/ref/tags/{branch}", headers=headers
+                )
                 raise_json_for_status(r)
 
                 # branch must NOT exist
@@ -61,7 +66,6 @@ def check(request):
 
 
 def _archive_branch(owner, repo, branch, headers):
-    tag = f"{branch}_archived"
     api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
     # get SHA of last commit on branch
@@ -73,7 +77,7 @@ def _archive_branch(owner, repo, branch, headers):
     r = requests.post(
         f"{api_base_url}/git/refs",
         headers=headers,
-        json={"ref": f"refs/tags/{tag}", "sha": sha},
+        json={"ref": f"refs/tags/{branch}", "sha": sha},
     )
     raise_json_for_status(r)
 
@@ -81,15 +85,14 @@ def _archive_branch(owner, repo, branch, headers):
     r = requests.delete(f"{api_base_url}/git/refs/heads/{branch}", headers=headers)
     raise_json_for_status(r)
 
-    print(f"{repo}: archived branch '{branch}' as tag '{tag}'", flush=True)
+    print(f"{repo}: archived branch '{branch}' as tag '{branch}'", flush=True)
 
 
 def _unarchive_branch(owner, repo, branch, headers):
-    tag = f"{branch}_archived"
     api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
     # get SHA of tag
-    r = requests.get(f"{api_base_url}/git/ref/tags/{tag}", headers=headers)
+    r = requests.get(f"{api_base_url}/git/ref/tags/{branch}", headers=headers)
     raise_json_for_status(r)
     sha = r.json()["object"]["sha"]
 
@@ -102,10 +105,10 @@ def _unarchive_branch(owner, repo, branch, headers):
     raise_json_for_status(r)
 
     # delete tag
-    r = requests.delete(f"{api_base_url}/git/refs/tags/{tag}", headers=headers)
+    r = requests.delete(f"{api_base_url}/git/refs/tags/{branch}", headers=headers)
     raise_json_for_status(r)
 
-    print(f"{repo}: restored branch '{branch}' from tag '{tag}'", flush=True)
+    print(f"{repo}: restored branch '{branch}' from tag '{branch}'", flush=True)
 
 
 def run(request):
