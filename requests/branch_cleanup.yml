@@ -7,5 +7,4 @@ feedstocks:
   lld:
     - 6.x
     - 14.x
-    - main
     - 15.x
