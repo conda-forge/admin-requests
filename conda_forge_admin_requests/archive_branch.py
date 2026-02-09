@@ -18,7 +18,7 @@ def check(request):
     if task not in ("archive_branch", "unarchive_branch"):
         raise ValueError(f"Illegal value for action: {task}")
 
-    print(f"received mapping from feedstocks to branches-to-be-archived: {feedstocks!r}")
+    print(f"received map from feedstocks to branches-to-be-archived: {feedstocks!r}")
     owner = "conda-forge"
     headers = get_gh_headers()
 
