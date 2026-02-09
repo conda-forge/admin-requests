@@ -1,0 +1,4 @@
+action: archive_branch
+feedstocks:
+  faiss_split:
+    - 1.6.x
