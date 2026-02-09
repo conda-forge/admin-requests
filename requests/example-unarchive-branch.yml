@@ -1,0 +1,4 @@
+action: unarchive_branch
+feedstocks:
+  faiss-split:
+    - 1.6.x
