@@ -5,6 +5,24 @@ from conda_build.utils import create_file_with_permissions
 SMITHY_CONF = os.path.expanduser("~/.conda-smithy")
 
 
+def get_gh_headers():
+    headers = {
+        "X-GitHub-Api-Version": "2022-11-28",
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "conda-forge/admin-requests",
+        "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
+    }
+    return headers
+
+
+def raise_json_for_status(request):
+    try:
+        request.raise_for_status()
+    except Exception as exc:
+        exc.args = exc.args + (request.json(),)
+        raise exc.with_traceback(exc.__traceback__)
+
+
 def _write_token(name, token):
     path = os.path.join(SMITHY_CONF, name + ".token")
     with create_file_with_permissions(path, 0o600) as fh:
