@@ -71,16 +71,37 @@ def check(request):
 def _archive_branch(owner, repo, branch, headers):
     api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
-    # get SHA of last commit on branch
+    # get SHA and date of last commit on branch
     r = requests.get(f"{api_base_url}/branches/{branch}", headers=headers)
     raise_json_for_status(r)
-    sha = r.json()["commit"]["sha"]
+    branch_data = r.json()
+    commit_sha = branch_data["commit"]["sha"]
+    commit_date = branch_data["commit"]["commit"]["committer"]["date"]
 
-    # create tag
+    # create annotated tag object with the commit's timestamp
+    r = requests.post(
+        f"{api_base_url}/git/tags",
+        headers=headers,
+        json={
+            "tag": branch,
+            "message": f"Archived branch {branch}",
+            "object": commit_sha,
+            "type": "commit",
+            "tagger": {
+                "name": "conda-forge-admin",
+                "email": "conda-forge-admin@conda-forge.org",
+                "date": commit_date,
+            },
+        },
+    )
+    raise_json_for_status(r)
+    tag_sha = r.json()["sha"]
+
+    # create ref pointing to the annotated tag object
     r = requests.post(
         f"{api_base_url}/git/refs",
         headers=headers,
-        json={"ref": f"refs/tags/{branch}", "sha": sha},
+        json={"ref": f"refs/tags/{branch}", "sha": tag_sha},
     )
     raise_json_for_status(r)
 
@@ -94,16 +115,19 @@ def _archive_branch(owner, repo, branch, headers):
 def _unarchive_branch(owner, repo, branch, headers):
     api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
-    # get SHA of tag
+    # get SHA of annotated tag, then dereference to the underlying commit
     r = requests.get(f"{api_base_url}/git/ref/tags/{branch}", headers=headers)
     raise_json_for_status(r)
-    sha = r.json()["object"]["sha"]
+    tag_sha = r.json()["object"]["sha"]
+    r = requests.get(f"{api_base_url}/git/tags/{tag_sha}", headers=headers)
+    raise_json_for_status(r)
+    commit_sha = r.json()["object"]["sha"]
 
     # create branch
     r = requests.post(
         f"{api_base_url}/git/refs",
         headers=headers,
-        json={"ref": f"refs/heads/{branch}", "sha": sha},
+        json={"ref": f"refs/heads/{branch}", "sha": commit_sha},
     )
     raise_json_for_status(r)
 
