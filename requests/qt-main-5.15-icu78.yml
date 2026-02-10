@@ -1,5 +1,5 @@
 action: cfep3_copy
 anaconda_org_packages:
-  - package: TobiasRobotics/qt-main/5.15.15/linux-aarch64/qt-main-5.15.15-h912a755_7.conda 
+  - package: TobiasRobotics/qt-main/5.15.15/linux-aarch64/qt-main-5.15.15-h912a755_7.conda
     sha256: 279ed48d551966178cfde61d84c1b6ea9f2c0ad68620eb61f8ab8dff62a813d4
 to_anaconda_org_label: main
