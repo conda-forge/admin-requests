@@ -1,8 +1,18 @@
 import importlib
 import pkgutil
-from . import archive_feedstock, mark_broken, token_reset, access_control, cfep3_copy, feedstock_outputs
+
+from . import (
+    access_control,
+    archive_branch,
+    archive_feedstock,
+    cfep3_copy,
+    feedstock_outputs,
+    mark_broken,
+    token_reset,
+)
 
 actions = {}
+
 
 def get_actions():
     return actions.copy()
@@ -16,6 +26,8 @@ def register_action(name, module):
 def register_actions():
     register_action("archive", archive_feedstock)
     register_action("unarchive", archive_feedstock)
+    register_action("archive_branch", archive_branch)
+    register_action("unarchive_branch", archive_branch)
     register_action("broken", mark_broken)
     register_action("not_broken", mark_broken)
     register_action("token_reset", token_reset)
@@ -29,4 +41,3 @@ def register_actions():
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
             getattr(module, "register_actions")()
-

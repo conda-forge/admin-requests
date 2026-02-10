@@ -54,6 +54,21 @@ why that decision was taken (e.g. it has been deprecated by a new feedstock),
 and link it in your PR description.
 
 
+## Archive or unarchive a branch on a feedstock
+
+Branches in conda-forge should generally not be deleted, because it is important to keep the
+history for the state of the feedstock for any packages that got published. To avoid the
+accumulation of many branches (esp. on feedstocks with regular LTS versions), it's possible
+to archive a branch by converting it into a tag (and vice-versa). The naming relationship
+between the branch and tag is fixed: for a branch `foo`, the tag will be called `foo_archived`.
+
+If you want to archive branches on a feedstock, send a Pull Request
+adding a new `.yml` file in `requests` folder with a dictionary of feedstock names
+(without `-feedstock`) mapping to a list of branch names that should be archived.
+See `examples/example-archive-branch.yml` for an example.
+For unarchiving, see `examples/example-unarchive-branch.yml` for an example.
+
+
 ## Request / revoke access to CI resources
 
 Certain CI resources are opt-in only. If you want to request access to these resources, please

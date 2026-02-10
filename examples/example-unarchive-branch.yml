@@ -1,0 +1,4 @@
+action: unarchive_branch
+feedstocks:
+  your_feedstock_name:
+    - your_branch_to_be_unarchived

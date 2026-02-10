@@ -11,34 +11,34 @@ Such as:
 
 """
 
-from __future__ import print_function
-from __future__ import annotations
+from __future__ import annotations, print_function
 
 import json
-from pathlib import Path
-from typing import Iterator
-from conda_build.metadata import MetaData
-from rattler_build_conda_compat.render import MetaData as RattlerBuildMetaData
-from conda_smithy.utils import get_feedstock_name_from_meta
-from contextlib import contextmanager
-from datetime import datetime, timezone
-from github import Github, GithubException
 import os.path
 import shutil
 import subprocess
 import sys
 import tempfile
-import traceback
 import time
+import traceback
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Iterator
 
 import github
-import requests
-from ruamel.yaml import YAML
+from conda_build.metadata import MetaData
+from conda_build.utils import create_file_with_permissions
 from conda_forge_feedstock_ops.parse_package_and_feedstock_names import (
     parse_package_and_feedstock_names,
 )
 from conda_forge_metadata.feedstock_outputs import sharded_path as _get_sharded_path
-from conda_build.utils import create_file_with_permissions
+from conda_smithy.utils import get_feedstock_name_from_meta
+from github import Github, GithubException
+from rattler_build_conda_compat.render import MetaData as RattlerBuildMetaData
+from ruamel.yaml import YAML
+
+import requests
 
 # Enable DEBUG to run the diagnostics, without actually creating new feedstocks.
 DEBUG = False
@@ -405,7 +405,8 @@ if __name__ == "__main__":
 
             # now register with github
             subprocess.check_call(
-                ["conda", "smithy", "register-github", feedstock_dir] + owner_info
+                ["conda", "smithy", "register-github", feedstock_dir]
+                + owner_info
                 # hack to help travis work
                 # + ['--extra-admin-users', gh_travis.get_user().login]
                 # end of hack
