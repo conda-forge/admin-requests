@@ -1,4 +1,0 @@
-action: remove_feedstock_output
-feedstock_to_output_mapping:
-  qemu-execve:
-    - qemu-shared-resources
