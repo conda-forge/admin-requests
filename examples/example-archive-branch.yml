@@ -1,0 +1,4 @@
+action: archive_branch
+feedstocks:
+  your_feedstock_name:
+    - your_branch_to_be_archived

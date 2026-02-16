@@ -3,28 +3,30 @@ This script will process the `travis` and `cirun` requests.
 
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
+
+import copy
 import os
 import subprocess
 import tempfile
-import time
-from typing import Dict, List, Any
 import textwrap
-import copy
+import time
+from typing import Any, Dict, List
 from unittest import mock
+
+from conda_smithy.github import Github
+from conda_smithy.utils import update_conda_forge_config
 
 import requests
 
 from .utils import write_secrets_to_files
 
-from conda_smithy.utils import update_conda_forge_config
-from conda_smithy.github import Github, gh_token
-
-
 GH_ORG = os.environ.get("GH_ORG", "conda-forge")
 
 DEFAULT_CIRUN_OPENSTACK_VALUES = {
     "cirun_roles": ["admin", "maintain", "write"],
-    "cirun_users_from_json": ["https://raw.githubusercontent.com/Quansight/open-gpu-server/main/access/conda-forge-users.json"]
+    "cirun_users_from_json": [
+        "https://raw.githubusercontent.com/Quansight/open-gpu-server/main/access/conda-forge-users.json"
+    ],
 }
 
 
@@ -45,14 +47,13 @@ def send_pr_cirun(
     """
 
     with update_conda_forge_config(
-            os.path.join(
-                feedstock_dir,
-                "recipe",
-                "conda_build_config.yaml")) as cbc, \
-            update_conda_forge_config(
-                os.path.join(feedstock_dir, "conda-forge.yml")) as cfg:
-        if any(label.startswith("cirun-") for label in cbc.get(
-                "github_actions_labels", [])):
+        os.path.join(feedstock_dir, "recipe", "conda_build_config.yaml")
+    ) as cbc, update_conda_forge_config(
+        os.path.join(feedstock_dir, "conda-forge.yml")
+    ) as cfg:
+        if any(
+            label.startswith("cirun-") for label in cbc.get("github_actions_labels", [])
+        ):
             return
         cfg["github_actions"] = {"self_hosted": True}
         if pull_request:
@@ -62,7 +63,7 @@ def send_pr_cirun(
         cfg["provider"]["linux_64"] = "github_actions"
         cbc["github_actions_labels"] = resources
 
-    gh = Github(os.environ['GITHUB_TOKEN'])
+    gh = Github(os.environ["GITHUB_TOKEN"])
     user = gh.get_user()
 
     repo = gh.get_repo(f"{GH_ORG}/{feedstock}")
@@ -74,10 +75,21 @@ def send_pr_cirun(
 
     git_cmds = [
         ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
-        ["git", "remote", "add", user.login, 
-         f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/{user.login}/{feedstock}.git"
+        [
+            "git",
+            "remote",
+            "add",
+            user.login,
+            f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/{user.login}/{feedstock}.git",
         ],
-        ["git", "commit", "-m", f"Enable {resource_str} using Cirun", "--author", f"{user.name} <{user.email}>"],
+        [
+            "git",
+            "commit",
+            "-m",
+            f"Enable {resource_str} using Cirun",
+            "--author",
+            f"{user.name} <{user.email}>",
+        ],
         ["conda-smithy", "rerender", "-c", "auto", "--no-check-uptodate"],
         ["git", "push", user.login, f"HEAD:{base_branch}"],
     ]
@@ -119,8 +131,9 @@ def _process_request_for_feedstock(
     """
 
     # We need a token with admin permissions for Cirun
-    with tempfile.TemporaryDirectory() as tmp_dir, \
-            mock.patch.dict('os.environ', {'GITHUB_TOKEN': os.environ['GITHUB_ADMIN_TOKEN']}):
+    with tempfile.TemporaryDirectory() as tmp_dir, mock.patch.dict(
+        "os.environ", {"GITHUB_TOKEN": os.environ["GITHUB_ADMIN_TOKEN"]}
+    ):
         feedstock_dir = os.path.join(tmp_dir, feedstock)
         assert GH_ORG
         clone_cmd = [
@@ -187,22 +200,32 @@ def _process_request_for_feedstock(
             print("Generating a new feedstock token")
             subprocess.check_call(
                 [
-                    'conda', 'smithy', 'generate-feedstock-token',
-                    '--unique-token-per-provider',
-                    '--feedstock_directory', feedstock_dir,
+                    "conda",
+                    "smithy",
+                    "generate-feedstock-token",
+                    "--unique-token-per-provider",
+                    "--feedstock_directory",
+                    feedstock_dir,
                     *owner_info,
                 ]
             )
 
-            print("Register new feedstock token with provider and feedstock-tokens repo.")
+            print(
+                "Register new feedstock token with provider and feedstock-tokens repo."
+            )
             subprocess.check_call(
                 [
-                    'conda', 'smithy', 'register-feedstock-token',
-                    '--unique-token-per-provider',
-                    '--feedstock_directory', feedstock_dir,
-                    '--without-all', with_cmd,
+                    "conda",
+                    "smithy",
+                    "register-feedstock-token",
+                    "--unique-token-per-provider",
+                    "--feedstock_directory",
+                    feedstock_dir,
+                    "--without-all",
+                    with_cmd,
                     *owner_info,
-                    '--token_repo', token_repo,
+                    "--token_repo",
+                    token_repo,
                 ]
             )
 
@@ -210,11 +233,16 @@ def _process_request_for_feedstock(
                 print("Add STAGING_BINSTAR_TOKEN to travis")
                 subprocess.check_call(
                     [
-                        'conda', 'smithy', 'rotate-binstar-token',
-                        '--feedstock_directory', feedstock_dir,
-                        '--without-all', with_cmd,
+                        "conda",
+                        "smithy",
+                        "rotate-binstar-token",
+                        "--feedstock_directory",
+                        feedstock_dir,
+                        "--without-all",
+                        with_cmd,
                         *owner_info,
-                        '--token_name', 'STAGING_BINSTAR_TOKEN',
+                        "--token_name",
+                        "STAGING_BINSTAR_TOKEN",
                     ]
                 )
 

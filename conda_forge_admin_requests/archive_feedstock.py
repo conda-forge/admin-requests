@@ -1,24 +1,13 @@
-import os
-import requests
 import subprocess
 
+import requests
 
-def raise_json_for_status(request):
-    try:
-        request.raise_for_status()
-    except Exception as exc:
-        exc.args = exc.args + (request.json(), )
-        raise exc.with_traceback(exc.__traceback__)
+from .utils import get_gh_headers, raise_json_for_status
 
 
 def process_repo(repo, task):
     owner = "conda-forge"
-    headers = {
-        "X-GitHub-Api-Version": "2022-11-28",
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "conda-forge/admin-requests",
-        "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
-    }
+    headers = get_gh_headers()
 
     r = requests.get(
         f"https://api.github.com/repos/{owner}/{repo}",
@@ -33,21 +22,21 @@ def process_repo(repo, task):
 
     data = r.json()
     if task == "archive" and data["archived"]:
-        print("feedstock %s is already %s" % (repo, target_status), flush=True)
+        print(f"feedstock {repo} is already {target_status}", flush=True)
         return
 
     if task == "unarchive" and not data["archived"]:
-        print("feedstock %s is already %s" % (repo, target_status), flush=True)
+        print(f"feedstock {repo} is already {target_status}", flush=True)
         return
 
     r = requests.patch(
         f"https://api.github.com/repos/{owner}/{repo}",
         headers=headers,
-        json={"archived": task == "archive"}
+        json={"archived": task == "archive"},
     )
     raise_json_for_status(r)
 
-    print("feedstock %s was %s" % (repo, target_status), flush=True)
+    print(f"feedstock {repo} was {target_status}", flush=True)
 
 
 def run(request):
@@ -59,10 +48,7 @@ def run(request):
         try:
             process_repo(f"{feedstock}-feedstock", task)
         except Exception as e:
-            print(
-                "failed to %s '%s': %s" % (task, feedstock, repr(e)),
-                flush=True,
-            )
+            print(f"failed to {task} '{feedstock}': {e!r}", flush=True)
             pkgs_to_do_again.append(feedstock)
 
     if pkgs_to_do_again:
@@ -83,5 +69,5 @@ def check(request):
 
     if missing_feedstocks:
         raise RuntimeError(
-            "feedstocks %s could not be found!" % list(set(missing_feedstocks))
+            f"{list(set(missing_feedstocks))} feedstocks could not be found!"
         )
