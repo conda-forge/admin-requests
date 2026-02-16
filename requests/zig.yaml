@@ -1,0 +1,20 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  zig:
+    - zig_linux-64
+    - zig_linux-aarch64
+    - zig_linux-ppc64le
+    - zig_linux-riscv64
+    - zig_osx-64
+    - zig_osx-arm64
+    - zig_win-64
+    - zig_win-arm64
+    - zig_impl_linux-64
+    - zig_impl_linux-aarch64
+    - zig_impl_linux-ppc64le
+    - zig_impl_linux-riscv64
+    - zig_impl_osx-64
+    - zig_impl_osx-arm64
+    - zig_impl_win-64
+    - zig_impl_win-arm64
+    - zig-compiler
