@@ -1,0 +1,8 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  lumen:
+    - lumen-ai
+    - lumen-ai-local
+    - lumen-ai-openai
+    - lumen-ai-mistralai
+    - lumen-ai-anthropic
