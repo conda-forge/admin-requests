@@ -3,4 +3,3 @@ feedstock_to_output_mapping:
   griffe:
     - griffecli
     - griffelib
-
