@@ -1,0 +1,35 @@
+action: broken
+packages:
+  - linux-64/cuda-gdb-12.5.39-hda18ab6_0.conda
+  - linux-64/cuda-gdb-12.5.82-hda18ab6_0.conda
+  - linux-64/cuda-gdb-12.6.37-hda18ab6_0.conda
+  - linux-64/cuda-gdb-12.6.68-hf8b0789_0.conda
+  - linux-64/cuda-gdb-12.6.77-h50b4baa_0.conda
+  - linux-64/cuda-gdb-12.6.77-h50b4baa_1.conda
+  - linux-64/cuda-gdb-12.8.55-h50b4baa_0.conda
+  - linux-64/cuda-gdb-12.8.90-h50b4baa_0.conda
+  - linux-64/cuda-gdb-12.8.90-ha677faa_1.conda
+  - linux-64/cuda-gdb-12.9.19-ha677faa_0.conda
+  - linux-64/cuda-gdb-12.9.79-h1b59fc5_1.conda
+  - linux-64/cuda-gdb-12.9.79-ha677faa_0.conda
+  - linux-64/cuda-gdb-13.0.39-h1b59fc5_0.conda
+  - linux-64/cuda-gdb-13.0.85-h1b59fc5_0.conda
+  - linux-64/cuda-gdb-13.1.68-h1b59fc5_0.conda
+  - linux-64/cuda-gdb-13.1.115-h1b59fc5_0.conda
+  - linux-aarch64/cuda-gdb-12.5.39-hb2ac22a_0.conda
+  - linux-aarch64/cuda-gdb-12.5.82-hb2ac22a_0.conda
+  - linux-aarch64/cuda-gdb-12.6.37-hb2ac22a_0.conda
+  - linux-aarch64/cuda-gdb-12.6.68-h4089c1d_0.conda
+  - linux-aarch64/cuda-gdb-12.6.77-h704f0fb_0.conda
+  - linux-aarch64/cuda-gdb-12.6.77-h704f0fb_1.conda
+  - linux-aarch64/cuda-gdb-12.8.55-h704f0fb_0.conda
+  - linux-aarch64/cuda-gdb-12.8.90-h704f0fb_0.conda
+  - linux-aarch64/cuda-gdb-12.8.90-hcf81205_1.conda
+  - linux-aarch64/cuda-gdb-12.9.19-hcf81205_0.conda
+  - linux-aarch64/cuda-gdb-12.9.79-h9acefd7_1.conda
+  - linux-aarch64/cuda-gdb-12.9.79-hcf81205_0.conda
+  - linux-aarch64/cuda-gdb-12.9.79-hf03484f_1.conda
+  - linux-aarch64/cuda-gdb-13.0.39-h94a0ef0_0.conda
+  - linux-aarch64/cuda-gdb-13.0.85-h94a0ef0_0.conda
+  - linux-aarch64/cuda-gdb-13.1.68-h94a0ef0_0.conda
+  - linux-aarch64/cuda-gdb-13.1.115-h94a0ef0_0.conda
