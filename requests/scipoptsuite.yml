@@ -1,0 +1,23 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  scipoptsuite:
+    # papilo is already feedstock output
+    - libpapilo
+    - libpapilo-static
+    - libpapilo-devel
+    # scip is already feedstock output
+    - libscip
+    - libscip-static
+    - libscip-devel
+    # gcg is already feedstock output
+    - libsoplex
+    - libsoplex-static
+    - libsoplex-devel
+    # zimpl is already feedstock output
+    - libzimpl
+    - libzimpl-static
+    - libzimpl-devel
+    # gcg is already feedstock output
+    - libgcg
+    - libgcg-static
+    - libgcg-devel
