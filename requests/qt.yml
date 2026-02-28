@@ -1,0 +1,6 @@
+action: archive_branch
+feedstocks:
+  qt-main:
+    - qt6
+  pyqt:
+    - qt6
