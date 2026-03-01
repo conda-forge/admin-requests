@@ -3,6 +3,6 @@ feedstocks:
   - llama.cpp
 resources:
   - cirun-azure-windows-2xlarge
-pull_request: true  
+pull_request: true
 revoke: false
 send_pr: true
