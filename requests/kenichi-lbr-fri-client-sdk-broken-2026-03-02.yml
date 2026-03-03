@@ -1,0 +1,5 @@
+action: broken
+packages:
+- osx-arm64/lbr-fri-client-sdk-1.15-hf6b4638_3.conda
+- osx-64/lbr-fri-client-sdk-1.15-hcc62823_3.conda
+- linux-aarch64/lbr-fri-client-sdk-1.15-hfae3067_3.conda
