@@ -22,6 +22,7 @@ Cheers and thank you for contributing to conda-forge!
   but should be patched in the repo data and be marked unbroken later.
 * In some cases where the number of users of a package is small or it is used by
   the maintainers only, we can allow packages to be marked broken more liberally.
+* You can use `pixi run find-name {matchspec}` to get a list of filenames matching given spec.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
 What will happen when a package is marked broken?
