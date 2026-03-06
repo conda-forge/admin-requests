@@ -4,6 +4,7 @@
 import asyncio
 import sys
 from itertools import chain
+
 from rattler import Gateway, Platform
 
 
