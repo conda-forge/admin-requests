@@ -23,6 +23,8 @@ Guidelines for marking packages as broken:
   but should be patched in the repo data and be marked unbroken later.
 * In some cases where the number of users of a package is small or it is used by
   the maintainers only, we can allow packages to be marked broken more liberally.
+* The paths to broken files can be located on [anaconda.org](https://anaconda.org/),
+  by searching for the conda-forge package and switching to the files tab.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
 
