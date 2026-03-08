@@ -10,3 +10,5 @@ access_control:
     - feedstock: cf-autotick-bot-test-package-feedstock
     - feedstock: conda-smithy-feedstock
     - feedstock: conda-forge-ci-setup-feedstock
+    - feedstock: pytorch-cpu-feedstock
+    - feedstock: libmagma-feedstock

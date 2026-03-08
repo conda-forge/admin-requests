@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["conda_forge_admin_requests"]
+
+[project]
+name = "conda_forge_admin_requests"
+version = "2024.01.08"
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
+
+[tool.pixi.feature.find-filenames.tasks]
+find-filenames = "python ./conda_forge_admin_requests/find_filenames.py"
+
+[tool.pixi.feature.find-filenames.dependencies]
+py-rattler = ">=0.22.0,<0.23"
+
+[tool.pixi.environments]
+find-filenames = ["find-filenames"]

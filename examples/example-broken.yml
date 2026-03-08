@@ -1,0 +1,4 @@
+action: broken
+packages:
+- linux-aarch64/cf-autotick-bot-test-package-0.13-py38h2063c64_0.tar.bz2
+- linux-aarch64/cf-autotick-bot-test-package-0.13-py37hd9ded2f_0.tar.bz2

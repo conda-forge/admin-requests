@@ -11,45 +11,19 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: cf
-        environment-file: environment.yml
-        auto-activate-base: true
-        miniforge-version: latest
-        miniforge-variant: Mambaforge
+      - uses: conda-incubator/setup-miniconda@fc2d68f6413eb2d87b895e92f8584b5b94a10167 # v3.3.0
+        with:
+          activate-environment: cf
+          environment-file: environment.yml
+          auto-activate-base: true
+          miniforge-version: latest
 
-    - name: Check packages exist on main (or label/broken)
-      shell: bash -el {0}
-      run: |
-          ls -1 broken/example.txt
-          ls -1 not_broken/example.txt
+      - name: Check request YAML files
+        shell: bash -el {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           conda activate cf
-          python mark_broken.py check
-
-    - name: Check feedstocks exist for token reset
-      shell: bash -el {0}
-      run: |
-          ls -1 token_reset/example.txt
-          conda activate cf
-          python token_reset.py check
-
-    - name: Check feedstocks can be (un)archived
-      shell: bash -el {0}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-          ls -1 archive/example.txt
-          ls -1 unarchive/example.txt
-          conda activate cf
-          python archive_feedstock.py check
-
-    - name: Check resources exist and can be granted access
-      shell: bash -el {0}
-      run: |
-          ls -1 grant_access/*/example.txt
-          ls -1 revoke_access/*/example.txt
-          conda activate cf
-          python access_control.py check
+          python -m conda_forge_admin_requests check

@@ -1,2 +1,0 @@
-# file contents: feedstock name(s), sans -feedstock, one per line
-foo
