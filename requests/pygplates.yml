@@ -1,0 +1,17 @@
+action: broken
+packages:
+- win-64/pygplates-1.0.0-py39hd29594f_0.conda
+- win-64/pygplates-1.0.0-py310h3511b68_0.conda
+- win-64/pygplates-1.0.0-py311h2a8a849_0.conda
+- win-64/pygplates-1.0.0-py312h306849a_0.conda
+- win-64/pygplates-1.0.0-py313h2f373fc_0.conda
+- win-64/pygplates-1.0.0-py39h1fd0738_2.conda
+- win-64/pygplates-1.0.0-py310h35cee7e_2.conda
+- win-64/pygplates-1.0.0-py311h3c4e371_2.conda
+- win-64/pygplates-1.0.0-py312h94cb8cc_2.conda
+- win-64/pygplates-1.0.0-py313hb9324e7_2.conda
+- win-64/pygplates-1.0.0-py310h7fc059b_3.conda
+- win-64/pygplates-1.0.0-py311h9dafba3_3.conda
+- win-64/pygplates-1.0.0-py312hd8c18f9_3.conda
+- win-64/pygplates-1.0.0-py313h82fdc14_3.conda
+- win-64/pygplates-1.0.0-py314h65b212b_3.conda
