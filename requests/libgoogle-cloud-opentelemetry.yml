@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  google-cloud-cpp-core:
+    - libgoogle-cloud-opentelemetry
+    - libgoogle-cloud-opentelemetry-devel
