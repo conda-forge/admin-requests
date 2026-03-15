@@ -1,0 +1,8 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # this entry adds a package name
+  arviz-stats:
+    - arviz-stats-core
+  arviz:
+    - arviz-bokeh
+    - arviz-plotly
