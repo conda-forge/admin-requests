@@ -1,0 +1,35 @@
+action: cfep3_copy
+anaconda_org_packages:
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cuda129_py314h463dc09_200.conda
+    sha256: 9cc51adaf2c8f22e84bad45eddb716af1e89dc002967a98e1f94672ad9a1ff61
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cuda129_py313h4e43a44_200.conda
+    sha256: 5003679f990b30bc49a0046f2911b320af014c14283e9321c0b36a2ed5c535c2
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cuda129_py312hf4a62f4_200.conda
+    sha256: e0c375c4873e058deacd396c3b10ab1b9271b5b264e1641ab437381f3d100515
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cuda129_py311h22d6ac1_200.conda
+    sha256: a3277cf5070f5f29fef7e43327216691b18287eece7f59204bfad2d497b056a2
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cpu_py314h76936b7_0.conda
+    sha256: d26b9b5660a14e2d53450e51f1f5d304a62b5377f263c1f2a765711bf03fbcec
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cpu_py313h7c752d1_0.conda
+    sha256: 7a953bb04d46c5598be25dc58074d27e43ac03aa63cccaa1d7833b8fa3aad49b
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cpu_py312h88dcde8_0.conda
+    sha256: 769636a7420afed4328977c89e42ec2011fdb0bb59719087040e980a89a3d11a
+  - package: uwe.korn/label/main/linux-64/jaxlib-0.9.0-cpu_py311ha68bf88_0.conda
+    sha256: 2f86ce8a1c8db6b1fbae948870603dc20f457ae6bfa6ddd83aafb29abb5b921b
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cuda129_py314h81b2849_200.conda
+    sha256: 344a1d3397f0bc59490646d1f9993805cb703ce5daee4ac48b8048ad6a865c29
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cuda129_py313hce7d47e_200.conda
+    sha256: 7297250712c80be7858287eae42dc6da2ee5b60cc67453709df3037ef4fe6ca9
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cuda129_py312h891bb9e_200.conda
+    sha256: 685713359834c311a6dc304bb416725a147b1c518ef7a69b380e85b18e4d4d98
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cuda129_py311h2239342_200.conda
+    sha256: ecfd1cdd6b602b096fe9a78970945bd6c0d59b2d641609e3ccdef79971453f29
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cpu_py314ha887342_0.conda
+    sha256: c72b242cd2881c99aecd3892d6a66a31c829f56312bf91739c2f76b6c27adad2
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cpu_py313h325b92b_0.conda
+    sha256: 869bb493bcd980fc437fc71c733b6136c9024b45ab1f9c7c57f01ca855cc09b3
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cpu_py312h668f448_0.conda
+    sha256: 57603e2df56c7ee1f4a60a238e0d5551c9eb2735af8aad8cff5a475146bc18d1
+  - package: uwe.korn/label/main/linux-aarch64/jaxlib-0.9.0-cpu_py311hba9015f_0.conda
+    sha256: 871e53a9fce3eba93af3e66f007769ccbbd954cece63c5e931a3f6f0e6158d91
+to_anaconda_org_label: main
