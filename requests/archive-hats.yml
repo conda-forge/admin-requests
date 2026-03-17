@@ -1,0 +1,4 @@
+action: archive
+feedstocks:
+  - hats-feedstock
+  - hats-import-feedstock
