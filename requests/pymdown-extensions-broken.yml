@@ -1,0 +1,3 @@
+action: broken
+packages:
+- noarch/pymdown-extensions-10.21.1-pyhd8ed1ab_0.conda
