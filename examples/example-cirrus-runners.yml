@@ -1,0 +1,6 @@
+action: cirrus-runners
+feedstocks:
+  # list of feedstock names (sans `-feedstock` suffix)
+  - pytorch-cpu
+# revoke access to the runners
+revoke: false
