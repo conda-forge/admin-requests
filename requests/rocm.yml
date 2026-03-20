@@ -1,5 +1,0 @@
-action: archive
-feedstocks:
-  - rocm-opencl-runtime
-  - rocm-bandwidth-test
-  - hcc
