@@ -4,6 +4,8 @@ from conda_build.utils import create_file_with_permissions
 
 SMITHY_CONF = os.path.expanduser("~/.conda-smithy")
 
+GH_ORG = os.environ.get("GH_ORG", "conda-forge")
+
 
 def get_gh_headers():
     headers = {

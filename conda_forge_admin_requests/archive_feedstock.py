@@ -2,11 +2,11 @@ import subprocess
 
 import requests
 
-from .utils import get_gh_headers, raise_json_for_status
+from .utils import GH_ORG, get_gh_headers, raise_json_for_status
 
 
 def process_repo(repo, task):
-    owner = "conda-forge"
+    owner = GH_ORG
     headers = get_gh_headers()
 
     r = requests.get(

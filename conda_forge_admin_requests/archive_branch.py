@@ -2,7 +2,7 @@ import copy
 
 import requests
 
-from .utils import get_gh_headers, raise_json_for_status
+from .utils import GH_ORG, get_gh_headers, raise_json_for_status
 
 
 def check(request):
@@ -19,7 +19,7 @@ def check(request):
         raise ValueError(f"Illegal value for action: {task}")
 
     print(f"received map from feedstocks to branches-to-be-archived: {feedstocks!r}")
-    owner = "conda-forge"
+    owner = GH_ORG
     headers = get_gh_headers()
 
     for feedstock, branches in feedstocks.items():
@@ -142,7 +142,7 @@ def run(request):
     check(request)
 
     task = request["action"]
-    owner = "conda-forge"
+    owner = GH_ORG
     headers = get_gh_headers()
 
     failed_feedstocks = {}
