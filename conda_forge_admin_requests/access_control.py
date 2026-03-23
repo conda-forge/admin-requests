@@ -18,9 +18,7 @@ from conda_smithy.utils import update_conda_forge_config
 
 import requests
 
-from .utils import write_secrets_to_files
-
-GH_ORG = os.environ.get("GH_ORG", "conda-forge")
+from .utils import GH_ORG, write_secrets_to_files
 
 DEFAULT_CIRUN_OPENSTACK_VALUES = {
     "cirun_roles": ["admin", "maintain", "write"],
