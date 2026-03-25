@@ -23,6 +23,7 @@ Guidelines for marking packages as broken:
   but should be patched in the repo data and be marked unbroken later.
 * In some cases where the number of users of a package is small or it is used by
   the maintainers only, we can allow packages to be marked broken more liberally.
+* You can use `pixi run find-name {matchspec}` to get a list of filenames matching given spec.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
 
@@ -77,7 +78,8 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 Available opt-in resources:
 
 - Travis CI: See `examples/example-travis.yml`
-- [`open-gpu-server`](https://github.com/Quansight/open-gpu-server) (includes GPU CI and long-running builds): See `examples/example-open-gpu-server.yml`.
+- Cirrus Runners: See `examples/example-cirrus-runners.yml`
+- Cirun: Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
 
 ## Request a CFEP-3 copy to conda-forge
 
