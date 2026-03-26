@@ -1,0 +1,7 @@
+action: cfep3_copy
+anaconda_org_packages:
+  - package: uwe.korn/label/main/linux-aarch64/nodejs-24.14.1-he5f9b4c_0.conda
+    sha256: 537c9938cc6a180e1aff7f5cd737f3f248feff8c2a4ec831324ab9797adc93f1
+  - package: uwe.korn/label/main/linux-64/nodejs-24.14.1-h3d65ac4_0.conda
+    sha256: 116de7e13c8211217ffcb4ed333202052e6c1d565c5ee439bbaeb97c2aeb8271
+to_anaconda_org_label: main
