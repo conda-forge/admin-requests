@@ -23,6 +23,7 @@ Guidelines for marking packages as broken:
   but should be patched in the repo data and be marked unbroken later.
 * In some cases where the number of users of a package is small or it is used by
   the maintainers only, we can allow packages to be marked broken more liberally.
+* You can use `pixi run find-name {matchspec}` to get a list of filenames matching given spec.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
 
@@ -54,6 +55,21 @@ why that decision was taken (e.g. it has been deprecated by a new feedstock),
 and link it in your PR description.
 
 
+## Archive or unarchive a branch on a feedstock
+
+Branches in conda-forge should generally not be deleted, because it is important to keep the
+history for the state of the feedstock for any packages that got published. To avoid the
+accumulation of many branches (esp. on feedstocks with regular LTS versions), it's possible
+to archive a branch by converting it into a tag (and vice-versa). The naming relationship
+between the branch and tag is fixed: for a branch `foo`, the tag will be called `foo_archived`.
+
+If you want to archive branches on a feedstock, send a Pull Request
+adding a new `.yml` file in `requests` folder with a dictionary of feedstock names
+(without `-feedstock`) mapping to a list of branch names that should be archived.
+See `examples/example-archive-branch.yml` for an example.
+For unarchiving, see `examples/example-unarchive-branch.yml` for an example.
+
+
 ## Request / revoke access to CI resources
 
 Certain CI resources are opt-in only. If you want to request access to these resources, please
@@ -62,7 +78,8 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 Available opt-in resources:
 
 - Travis CI: See `examples/example-travis.yml`
-- [`open-gpu-server`](https://github.com/Quansight/open-gpu-server) (includes GPU CI and long-running builds): See `examples/example-open-gpu-server.yml`.
+- Cirrus Runners: See `examples/example-cirrus-runners.yml`
+- Cirun: Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
 
 ## Request a CFEP-3 copy to conda-forge
 
