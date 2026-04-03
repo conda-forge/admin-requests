@@ -77,9 +77,10 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 
 Available opt-in resources:
 
-- Travis CI: See `examples/example-travis.yml`
-- Cirrus Runners: See `examples/example-cirrus-runners.yml`
-- Cirun: Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
+- Travis CI (`action: travis`): See `examples/example-travis.yml`
+- [Self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/), provided by:
+  - Cirrus Runners (`action: cirrus-runners`). See `examples/example-cirrus-runners.yml`. Available runners are documented in [cirrus-runners.app> Setup> Resource classes](https://cirrus-runners.app/setup/#resource-classes). Only Linux x86 for now (e.g. `ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-md`).
+  - Cirun (`action: cirun`): Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
 
 ## Request a CFEP-3 copy to conda-forge
 
