@@ -1,5 +1,0 @@
-action: broken
-packages:
-- osx-64/sparrow-ipc-1.0.0-h5201dac_0.conda
-- win-64/sparrow-ipc-1.0.0-h0dee859_0.conda
-- linux-64/sparrow-ipc-1.0.0-h747dbc5_0.conda
