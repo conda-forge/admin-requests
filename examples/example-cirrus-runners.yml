@@ -1,4 +1,4 @@
-action: cirrus-runners
+action: cirrus_runners
 feedstocks:
   # list of feedstock names (sans `-feedstock` suffix)
   - pytorch-cpu
