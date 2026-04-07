@@ -1,0 +1,7 @@
+action: broken
+packages:
+  - win-64/proj-9.8.0-hd30e2cd_0.conda
+  - osx-arm64/proj-9.8.0-hfb14a63_0.conda
+  - osx-64/proj-9.8.0-he69a98e_0.conda
+  - linux-ppc64le/proj-9.8.0-h506498c_0.conda
+  - linux-aarch64/proj-9.8.0-hd211770_0.conda
