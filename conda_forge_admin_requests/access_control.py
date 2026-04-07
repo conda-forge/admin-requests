@@ -297,7 +297,7 @@ def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
     2. Process the access control requests.
     """
     check(request)
-    write_secrets_to_files()
+    write_secrets_to_files(github_token_key="GITHUB_ADMIN_TOKEN")
 
     feedstocks = request["feedstocks"]
     failed_feedstocks = []
@@ -306,8 +306,8 @@ def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
         del request_copy["feedstocks"]
         try:
             _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
-        except Exception:
-            print(f"Feedstock {feedstock}-feedstock failed, trying later...")
+        except Exception as e:
+            print(f"Feedstock {feedstock}-feedstock failed with '{e}', trying later...")
             failed_feedstocks.append(feedstock)
     if failed_feedstocks:
         request = copy.deepcopy(request)
