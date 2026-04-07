@@ -466,6 +466,7 @@ if __name__ == "__main__":
                         "--without-travis",
                         "--without-drone",
                         "--without-cirun",
+                        "--without-cirrus-runners",
                         "--without-webservice",
                         "--feedstock_directory",
                         feedstock_dir,
@@ -516,7 +517,7 @@ if __name__ == "__main__":
                         + owner_info
                     )
 
-                # add staging token env var to all CI probiders except appveyor
+                # add staging token env var to all CI providers except appveyor
                 # and azure
                 # azure has it by default and appveyor is not used
                 subprocess.check_call(

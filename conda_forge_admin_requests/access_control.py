@@ -128,7 +128,7 @@ def _process_request_for_feedstock(
     pull_request (bool): Whether to allow PRs for resource.
     """
 
-    # We need a token with admin permissions for Cirun
+    # We need a token with admin permissions for Cirun & Cirrus
     with tempfile.TemporaryDirectory() as tmp_dir, mock.patch.dict(
         "os.environ", {"GITHUB_TOKEN": os.environ["GITHUB_ADMIN_TOKEN"]}
     ):
@@ -175,12 +175,7 @@ def _process_request_for_feedstock(
                 register_ci_cmd.extend(["--cirun-resources", resource])
                 assert resource.startswith("cirun-"), f"Unknown resource {resource}"
 
-            # this part is specific to github.com/Quansight/open-gpu-server
-            if all(resource.startswith("cirun-openstack") for resource in resources):
-                for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
-                    for arg in value:
-                        register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
-            elif all(resource.startswith("cirun-") for resource in resources):
+            if all(resource.startswith("cirun-") for resource in resources):
                 pass
             else:
                 assert False, f"Unknown resources {resources}"
@@ -295,7 +290,7 @@ def check(request: Dict[str, Any]) -> None:
         assert not request.get("revoke", False)
 
 
-def run(request: Dict[str, Any]) -> None:
+def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
     """
     The main function to process the access control requests. It performs the following steps:
     1. Check if the requests are valid.
@@ -305,7 +300,17 @@ def run(request: Dict[str, Any]) -> None:
     write_secrets_to_files()
 
     feedstocks = request["feedstocks"]
+    failed_feedstocks = []
     for feedstock in feedstocks:
         request_copy = copy.deepcopy(request)
         del request_copy["feedstocks"]
-        _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        try:
+            _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        except Exception:
+            print(f"Feedstock {feedstock}-feedstock failed, trying later...")
+            failed_feedstocks.append(feedstock)
+    if failed_feedstocks:
+        request = copy.deepcopy(request)
+        request["feedstocks"] = failed_feedstocks
+        return request
+    return None
