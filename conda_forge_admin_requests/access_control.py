@@ -290,7 +290,7 @@ def check(request: Dict[str, Any]) -> None:
         assert not request.get("revoke", False)
 
 
-def run(request: Dict[str, Any]) -> None:
+def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
     """
     The main function to process the access control requests. It performs the following steps:
     1. Check if the requests are valid.
@@ -300,7 +300,18 @@ def run(request: Dict[str, Any]) -> None:
     write_secrets_to_files()
 
     feedstocks = request["feedstocks"]
+    failed_feedstocks = []
     for feedstock in feedstocks:
         request_copy = copy.deepcopy(request)
         del request_copy["feedstocks"]
-        _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        try:
+            _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        except Exception as e:
+            print(f"Feedstock {feedstock}-feedstock failed, trying later...")
+            failed_feedstocks.append(feedstock)
+    if failed_feedstocks:
+        request = copy.deepcopy(request)
+        request["feedstocks"] = failed_feedstocks
+        return request
+    return None
+
