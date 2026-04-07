@@ -163,7 +163,7 @@ def _process_request_for_feedstock(
         if action == "travis":
             register_ci_cmd.append("--with-travis")
 
-        elif action == "cirrus-runners":
+        elif action == "cirrus_runners":
             register_ci_cmd.append("--with-cirrus-runners")
             if revoke:
                 register_ci_cmd.append("--remove")
@@ -197,7 +197,7 @@ def _process_request_for_feedstock(
         if not revoke:
             if action == "travis":
                 with_cmd = "--with-travis"
-            elif action in ("cirun", "cirrus-runners"):
+            elif action in ("cirun", "cirrus_runners"):
                 with_cmd = "--with-github-actions"
 
             print("Generating a new feedstock token")
@@ -282,7 +282,7 @@ def check(request: Dict[str, Any]) -> None:
         check_if_repo_exists(feedstock)
 
     action = request["action"]
-    assert action in ("travis", "cirun", "cirrus-runners"), f"Unknown action {action}"
+    assert action in ("travis", "cirun", "cirrus_runners"), f"Unknown action {action}"
 
     if action == "cirun":
         assert "resources" in request, "No resources field in request"
