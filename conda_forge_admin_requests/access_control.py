@@ -128,7 +128,7 @@ def _process_request_for_feedstock(
     pull_request (bool): Whether to allow PRs for resource.
     """
 
-    # We need a token with admin permissions for Cirun
+    # We need a token with admin permissions for Cirun & Cirrus
     with tempfile.TemporaryDirectory() as tmp_dir, mock.patch.dict(
         "os.environ", {"GITHUB_TOKEN": os.environ["GITHUB_ADMIN_TOKEN"]}
     ):
@@ -175,12 +175,7 @@ def _process_request_for_feedstock(
                 register_ci_cmd.extend(["--cirun-resources", resource])
                 assert resource.startswith("cirun-"), f"Unknown resource {resource}"
 
-            # this part is specific to github.com/Quansight/open-gpu-server
-            if all(resource.startswith("cirun-openstack") for resource in resources):
-                for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
-                    for arg in value:
-                        register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
-            elif all(resource.startswith("cirun-") for resource in resources):
+            if all(resource.startswith("cirun-") for resource in resources):
                 pass
             else:
                 assert False, f"Unknown resources {resources}"
