@@ -306,7 +306,7 @@ def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
         del request_copy["feedstocks"]
         try:
             _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
-        except Exception as e:
+        except Exception:
             print(f"Feedstock {feedstock}-feedstock failed, trying later...")
             failed_feedstocks.append(feedstock)
     if failed_feedstocks:
@@ -314,4 +314,3 @@ def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
         request["feedstocks"] = failed_feedstocks
         return request
     return None
-
