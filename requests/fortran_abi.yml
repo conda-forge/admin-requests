@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - gcp-correction: "gcp-correction-devel"
+  - fortran_stdlib: "fortran_stdlib-devel"
+  - cpcm-x: "cpxm-x-devel"
+  - fpm: "fpm-devel"
