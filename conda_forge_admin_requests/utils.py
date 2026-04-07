@@ -31,7 +31,7 @@ def _write_token(name, token):
         fh.write(token)
 
 
-def write_secrets_to_files():
+def write_secrets_to_files(github_token_key: str = "GITHUB_TOKEN"):
     if not os.path.exists(SMITHY_CONF):
         os.makedirs(SMITHY_CONF, exist_ok=True)
 
@@ -40,7 +40,7 @@ def write_secrets_to_files():
         ("azure", "AZURE_TOKEN"),
         ("drone", "DRONE_TOKEN"),
         ("travis", "TRAVIS_TOKEN"),
-        ("github", "GITHUB_TOKEN"),
+        ("github", github_token_key),
         ("anaconda", "STAGING_BINSTAR_TOKEN"),
     ]:
         if token_name in os.environ:
