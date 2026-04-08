@@ -290,8 +290,8 @@ if __name__ == "__main__":
         write_token("azure", os.environ["AZURE_TOKEN"])
     # if "DRONE_TOKEN" in os.environ:
     #     write_token("drone", os.environ["DRONE_TOKEN"])
-    if "TRAVIS_TOKEN" in os.environ:
-        write_token("travis", os.environ["TRAVIS_TOKEN"])
+    # if "TRAVIS_TOKEN" in os.environ:
+    #     write_token("travis", os.environ["TRAVIS_TOKEN"])
     if "STAGING_BINSTAR_TOKEN" in os.environ:
         write_token("anaconda", os.environ["STAGING_BINSTAR_TOKEN"])
 
