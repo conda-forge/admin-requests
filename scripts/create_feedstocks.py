@@ -284,14 +284,14 @@ if __name__ == "__main__":
 
     if "APPVEYOR_TOKEN" in os.environ:
         write_token("appveyor", os.environ["APPVEYOR_TOKEN"])
-    if "CIRCLE_TOKEN" in os.environ:
-        write_token("circle", os.environ["CIRCLE_TOKEN"])
+    # if "CIRCLE_TOKEN" in os.environ:
+    #     write_token("circle", os.environ["CIRCLE_TOKEN"])
     if "AZURE_TOKEN" in os.environ:
         write_token("azure", os.environ["AZURE_TOKEN"])
-    if "DRONE_TOKEN" in os.environ:
-        write_token("drone", os.environ["DRONE_TOKEN"])
-    if "TRAVIS_TOKEN" in os.environ:
-        write_token("travis", os.environ["TRAVIS_TOKEN"])
+    # if "DRONE_TOKEN" in os.environ:
+    #     write_token("drone", os.environ["DRONE_TOKEN"])
+    # if "TRAVIS_TOKEN" in os.environ:
+    #     write_token("travis", os.environ["TRAVIS_TOKEN"])
     if "STAGING_BINSTAR_TOKEN" in os.environ:
         write_token("anaconda", os.environ["STAGING_BINSTAR_TOKEN"])
 
