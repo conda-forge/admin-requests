@@ -1,6 +1,6 @@
 action: archive
 # The reason will be used to create the archival issue on the feedstock.
-# If one is already present, remove it.
+# If one is already present, remove the "reason:" key to disable creating a new issue.
 reason: >
   The project has been archived upstream.
 feedstocks:
