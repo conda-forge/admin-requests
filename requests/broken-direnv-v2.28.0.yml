@@ -1,0 +1,5 @@
+action: broken
+packages:
+- win-64/direnv-v2.28.0-hd02998f_0.tar.bz2
+- linux-64/direnv-v2.28.0-ha8f183a_0.tar.bz2
+- osx-64/direnv-v2.28.0-h990441c_0.tar.bz2
