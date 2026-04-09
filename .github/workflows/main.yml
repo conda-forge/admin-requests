@@ -67,13 +67,13 @@ jobs:
         env:
           PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-          CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-          TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
+          # CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
+          # Smithy will request a Travis token using a Github token if needed
+          # TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
           AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
-          DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
+          # DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
           CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
           GITHUB_ADMIN_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
-          CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
           STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
 
       - name: pull and push changes
