@@ -27,6 +27,12 @@ DEFAULT_CIRUN_OPENSTACK_VALUES = {
     ],
 }
 
+GHA_PROVIDERS = (
+    "blacksmith",
+    "cirun",
+    "namespace",
+)
+VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
 
 def send_pr_cirun(
     feedstock: str,
@@ -163,8 +169,8 @@ def _process_request_for_feedstock(
         if action == "travis":
             register_ci_cmd.append("--with-travis")
 
-        elif action == "cirrus_runners":
-            register_ci_cmd.append("--with-cirrus-runners")
+        elif action in ("blacksmith", "namespace"):
+            register_ci_cmd.append(f"--with-{action}")
             if revoke:
                 register_ci_cmd.append("--remove")
 
@@ -192,7 +198,7 @@ def _process_request_for_feedstock(
         if not revoke:
             if action == "travis":
                 with_cmd = "--with-travis"
-            elif action in ("cirun", "cirrus_runners"):
+            elif action in GHA_PROVIDERS:
                 with_cmd = "--with-github-actions"
 
             print("Generating a new feedstock token")
@@ -277,7 +283,7 @@ def check(request: Dict[str, Any]) -> None:
         check_if_repo_exists(feedstock)
 
     action = request["action"]
-    assert action in ("travis", "cirun", "cirrus_runners"), f"Unknown action {action}"
+    assert action in VALID_ACTIONS, f"Unknown action {action}"
 
     if action == "cirun":
         assert "resources" in request, "No resources field in request"

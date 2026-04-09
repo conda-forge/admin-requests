@@ -1,4 +1,4 @@
-action: cirrus_runners
+action: pick-one-of #: blacksmith, namespace
 feedstocks:
   # list of feedstock names (sans `-feedstock` suffix)
   - pytorch-cpu
