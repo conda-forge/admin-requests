@@ -34,6 +34,7 @@ GHA_PROVIDERS = (
 )
 VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
 
+
 def send_pr_cirun(
     feedstock: str,
     feedstock_dir: str,
