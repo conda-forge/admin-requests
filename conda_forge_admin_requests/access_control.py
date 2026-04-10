@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 import textwrap
 import time
+from functools import lru_cache
 from typing import Any, Dict, List
 from unittest import mock
 
@@ -30,6 +31,7 @@ DEFAULT_CIRUN_OPENSTACK_VALUES = {
 GHA_PROVIDERS = (
     "blacksmith",
     "cirun",
+    "cirrus_runners",
     "namespace",
 )
 VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
@@ -256,7 +258,8 @@ def _process_request_for_feedstock(
                 send_pr_cirun(feedstock, feedstock_dir, resources, pull_request)
 
 
-def check_if_repo_exists(feedstock_name: str) -> None:
+@lru_cache
+def check_if_repo_exists(feedstock_name: str) -> bool:
     """
     Check if a repository exists on GitHub.
 
@@ -269,9 +272,15 @@ def check_if_repo_exists(feedstock_name: str) -> None:
     repo = f"{feedstock_name}-feedstock"
     owner_repo = f"{GH_ORG}/{repo}"
     print(f"Checking if {owner_repo} exists")
-    response = requests.get(f"https://api.github.com/repos/{owner_repo}")
-    if response.status_code != 200:
-        raise ValueError(f"Repository: {owner_repo} not found!")
+    kwargs = {}
+    if token := os.environ.get("GITHUB_TOKEN"):
+        kwargs["headers"] = {"Authorization": f"Bearer {token}"}
+    response = requests.get(
+        f"https://api.github.com/repos/{owner_repo}",
+        **kwargs,
+    )
+    response.raise_for_status()
+    return True
 
 
 def check(request: Dict[str, Any]) -> None:
@@ -282,6 +291,7 @@ def check(request: Dict[str, Any]) -> None:
     feedstocks = request["feedstocks"]
     for feedstock in feedstocks:
         check_if_repo_exists(feedstock)
+        time.sleep(0.1)
 
     action = request["action"]
     assert action in VALID_ACTIONS, f"Unknown action {action}"
