@@ -30,6 +30,7 @@ DEFAULT_CIRUN_OPENSTACK_VALUES = {
 GHA_PROVIDERS = (
     "blacksmith",
     "cirun",
+    "cirrus_runners",
     "namespace",
 )
 VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
