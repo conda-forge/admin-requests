@@ -81,13 +81,13 @@ Available opt-in resources:
 
 - `action` key: `travis`
 - Example `examples/example-travis.yml`
-  
+
 ### Larger runners for Github Actions
 
 - We have partnered with different providers for [self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/).
 - `action` key: `namespace` ([namespace.so](https://namespace.so)) or `blacksmith` ([blacksmith.sh](https://blacksmith.sh))
 - Example `examples/example-gha-self-hosted.yml`
-  
+
 Github Actions labels for `conda_build_config.yaml`:
 
 | `github_actions_labels` value              | Platform        | CPUs    | RAM   |
