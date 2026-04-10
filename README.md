@@ -79,8 +79,25 @@ Available opt-in resources:
 
 - Travis CI (`action: travis`): See `examples/example-travis.yml`
 - [Self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/), provided by:
-  - Cirrus Runners (`action: cirrus_runners`). See `examples/example-cirrus-runners.yml`. Available runners are documented in [cirrus-runners.app> Setup> Resource classes](https://cirrus-runners.app/setup/#resource-classes). Only Linux x86 for now (e.g. `ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-md`).
-  - Cirun (`action: cirun`): Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
+  - [Namespace.so](https://namespace.so) (`action: namespace`): Large CPU runners for all platforms. Example at `examples/example-gha-self-hosted.yml`. Available `github_actions_labels` values:
+    - `namespace-profile-8cpu-on-linux-64`: 16GB RAM.
+    - `namespace-profile-16cpu-on-linux-64`: 32GB RAM.
+    - `namespace-profile-8cpu-on-linux-aarch64`: 16GB RAM.
+    - `namespace-profile-16cpu-on-linux-aarch64`: 32GB RAM.
+    - `namespace-profile-6cpu-on-osx-arm64`: 14GB RAM.
+    - `namespace-profile-12cpu-on-osx-arm64`: 28GB RAM.
+    - `namespace-profile-8cpu-on-win-64`: 16GB RAM.
+    - `namespace-profile-16cpu-on-win-64`: 32GB RAM.
+  - [Blacksmith.sh](https://blacksmith.sh) (`action: blacksmith`): Large CPU runners for all platforms. Example at `examples/example-gha-self-hosted.yml`. Available `github_actions_labels` values:
+    - `blacksmith-8vcpu-ubuntu-2404`: 32GB RAM.
+    - `blacksmith-16vcpu-ubuntu-2404`: 64GB RAM.
+    - `blacksmith-8vcpu-ubuntu-2404-arm`: 24GB RAM.
+    - `blacksmith-16vcpu-ubuntu-2404-arm`: 48GB RAM.
+    - `blacksmith-6vcpu-macos-latest`: 24GB RAM.
+    - `blacksmith-12vcpu-macos-latest`: 48GB RAM.
+    - `blacksmith-8vcpu-windows-2025`: 28GB RAM.
+    - `blacksmith-16vcpu-windows-2025`: 56GB RAM.
+  - Others, via cirun (`action: cirun`): Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
 
 ## Request a CFEP-3 copy to conda-forge
 
