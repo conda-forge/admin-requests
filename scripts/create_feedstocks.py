@@ -334,8 +334,7 @@ if __name__ == "__main__":
             try:
                 subprocess.check_call(
                     [
-                        "conda",
-                        "smithy",
+                        "conda-smithy",
                         "init",
                         recipe_dir,
                         "--feedstock-directory",
@@ -405,7 +404,7 @@ if __name__ == "__main__":
 
             # now register with github
             subprocess.check_call(
-                ["conda", "smithy", "register-github", feedstock_dir]
+                ["conda-smithy", "register-github", feedstock_dir]
                 + owner_info
                 # hack to help travis work
                 # + ['--extra-admin-users', gh_travis.get_user().login]
@@ -458,8 +457,7 @@ if __name__ == "__main__":
             try:
                 subprocess.check_call(
                     [
-                        "conda",
-                        "smithy",
+                        "conda-smithy",
                         "register-ci",
                         "--without-appveyor",
                         "--without-circle",
@@ -467,6 +465,8 @@ if __name__ == "__main__":
                         "--without-drone",
                         "--without-cirun",
                         "--without-cirrus-runners",
+                        "--without-namespace",
+                        "--without-blacksmith",
                         "--without-webservice",
                         "--feedstock_directory",
                         feedstock_dir,
@@ -474,7 +474,7 @@ if __name__ == "__main__":
                     + owner_info
                 )
                 subprocess.check_call(
-                    ["conda", "smithy", "rerender", "--no-check-uptodate"],
+                    ["conda-smithy", "rerender", "--no-check-uptodate"],
                     cwd=feedstock_dir,
                 )
             except subprocess.CalledProcessError:
@@ -493,8 +493,7 @@ if __name__ == "__main__":
                 if not feedstock_token_exists("conda-forge", name + "-feedstock"):
                     subprocess.check_call(
                         [
-                            "conda",
-                            "smithy",
+                            "conda-smithy",
                             "generate-feedstock-token",
                             "--unique-token-per-provider",
                             "--feedstock_directory",
@@ -504,8 +503,7 @@ if __name__ == "__main__":
                     )
                     subprocess.check_call(
                         [
-                            "conda",
-                            "smithy",
+                            "conda-smithy",
                             "register-feedstock-token",
                             "--unique-token-per-provider",
                             "--without-circle",
@@ -522,8 +520,7 @@ if __name__ == "__main__":
                 # azure has it by default and appveyor is not used
                 subprocess.check_call(
                     [
-                        "conda",
-                        "smithy",
+                        "conda-smithy",
                         "rotate-binstar-token",
                         "--without-appveyor",
                         "--without-azure",
@@ -547,7 +544,7 @@ if __name__ == "__main__":
                     ["git", "add", "conda-forge.yml"], cwd=feedstock_dir
                 )
                 subprocess.check_call(
-                    ["conda", "smithy", "rerender", "--no-check-uptodate"],
+                    ["conda-smithy", "rerender", "--no-check-uptodate"],
                     cwd=feedstock_dir,
                 )
 
