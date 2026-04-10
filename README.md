@@ -77,27 +77,40 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 
 Available opt-in resources:
 
-- Travis CI (`action: travis`): See `examples/example-travis.yml`
-- [Self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/), provided by:
-  - [Namespace.so](https://namespace.so) (`action: namespace`): Large CPU runners for all platforms. Example at `examples/example-gha-self-hosted.yml`. Available `github_actions_labels` values:
-    - `namespace-profile-8cpu-on-linux-64`: 16GB RAM.
-    - `namespace-profile-16cpu-on-linux-64`: 32GB RAM.
-    - `namespace-profile-8cpu-on-linux-aarch64`: 16GB RAM.
-    - `namespace-profile-16cpu-on-linux-aarch64`: 32GB RAM.
-    - `namespace-profile-6cpu-on-osx-arm64`: 14GB RAM.
-    - `namespace-profile-12cpu-on-osx-arm64`: 28GB RAM.
-    - `namespace-profile-8cpu-on-win-64`: 16GB RAM.
-    - `namespace-profile-16cpu-on-win-64`: 32GB RAM.
-  - [Blacksmith.sh](https://blacksmith.sh) (`action: blacksmith`): Large CPU runners for all platforms. Example at `examples/example-gha-self-hosted.yml`. Available `github_actions_labels` values:
-    - `blacksmith-8vcpu-ubuntu-2404`: 32GB RAM.
-    - `blacksmith-16vcpu-ubuntu-2404`: 64GB RAM.
-    - `blacksmith-8vcpu-ubuntu-2404-arm`: 24GB RAM.
-    - `blacksmith-16vcpu-ubuntu-2404-arm`: 48GB RAM.
-    - `blacksmith-6vcpu-macos-latest`: 24GB RAM.
-    - `blacksmith-12vcpu-macos-latest`: 48GB RAM.
-    - `blacksmith-8vcpu-windows-2025`: 28GB RAM.
-    - `blacksmith-16vcpu-windows-2025`: 56GB RAM.
-  - Others, via cirun (`action: cirun`): Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
+### [Travis CI](https://www.travis-ci.com)
+
+- `action` key: `travis`
+- Example `examples/example-travis.yml`
+  
+### Larger runners for Github Actions
+
+- We have partnered with different providers for [self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/).
+- `action` key: `namespace` ([namespace.so](https://namespace.so)) or `blacksmith` ([blacksmith.sh](https://blacksmith.sh))
+- Example `examples/example-gha-self-hosted.yml`
+  
+Github Actions labels for `conda_build_config.yaml`:
+
+| `github_actions_labels` value              | Platform        | CPUs    | RAM   |
+| :----------------------------------------- | :-------------: | :-----: | :---: |
+| `namespace-profile-8cpu-on-linux-64`       | `linux-64`      | 8       | 16 GB |
+| `namespace-profile-16cpu-on-linux-64`      | `linux-64`      | 16      | 32 GB |
+| `namespace-profile-8cpu-on-linux-aarch64`  | `linux-aarch64` | 8       | 16 GB |
+| `namespace-profile-16cpu-on-linux-aarch64` | `linux-aarch64` | 16      | 32 GB |
+| `namespace-profile-6cpu-on-osx-arm64`      | `osx-arm64`     | 6       | 14 GB |
+| `namespace-profile-12cpu-on-osx-arm64`     | `osx-arm64`     | 12      | 28 GB |
+| `namespace-profile-8cpu-on-win-64`         | `win-64`        | 8       | 16 GB |
+| `namespace-profile-16cpu-on-win-64`        | `win-64`        | 16      | 32 GB |
+| | | | |
+| `blacksmith-8vcpu-ubuntu-2404`             | `linux-64`      | 8       | 32 GB |
+| `blacksmith-16vcpu-ubuntu-2404`            | `linux-64`      | 16      | 64 GB |
+| `blacksmith-8vcpu-ubuntu-2404-arm`         | `linux-aarch64` | 8       | 24 GB |
+| `blacksmith-16vcpu-ubuntu-2404-arm`        | `linux-aarch64` | 16      | 48 GB |
+| `blacksmith-6vcpu-macos-latest`            | `osx-arm64`     | 6       | 24 GB |
+| `blacksmith-12vcpu-macos-latest`           | `osx-arm64`     | 12      | 48 GB |
+| `blacksmith-8vcpu-windows-2025`            | `win-64`        | 8       | 28 GB |
+| `blacksmith-16vcpu-windows-2025`           | `win-64`        | 16      | 56 GB |
+
+> Other providers may be available via [cirun.io](https://cirun.io) (`action: cirun`). Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details. See `examples/example-cirun.yml`.
 
 ## Request a CFEP-3 copy to conda-forge
 
