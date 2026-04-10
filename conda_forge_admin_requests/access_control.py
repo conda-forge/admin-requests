@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 import textwrap
 import time
+from functools import lru_cache
 from typing import Any, Dict, List
 from unittest import mock
 
@@ -257,7 +258,8 @@ def _process_request_for_feedstock(
                 send_pr_cirun(feedstock, feedstock_dir, resources, pull_request)
 
 
-def check_if_repo_exists(feedstock_name: str) -> None:
+@lru_cache
+def check_if_repo_exists(feedstock_name: str) -> bool:
     """
     Check if a repository exists on GitHub.
 
@@ -278,6 +280,7 @@ def check_if_repo_exists(feedstock_name: str) -> None:
         **kwargs,
     )
     response.raise_for_status()
+    return True
 
 
 def check(request: Dict[str, Any]) -> None:
