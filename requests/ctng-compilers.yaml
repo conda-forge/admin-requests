@@ -1,0 +1,8 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  ctng-compilers:
+    - libstdcxx-devel_linux-riscv64
+    - libgcc-devel_linux-riscv64
+    - gfortran_impl_linux-riscv64
+    - gcc_impl_linux-riscv64
+    - gxx_impl_linux-riscv64
