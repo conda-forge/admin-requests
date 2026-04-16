@@ -3,7 +3,7 @@ feedstocks:
   # list of feedstock names (sans `-feedstock` suffix)
   - clangdev
   - gstreamer
-  - llamacpp
+  - llama-cpp
   - llvmdev
   - openvino
   - pixi-pack
