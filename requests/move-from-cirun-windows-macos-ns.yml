@@ -1,10 +1,4 @@
 action: namespace
 feedstocks:
-- clangdev
 - gstreamer
-- llama.cpp
-- llvmdev
-- openvino
-- pixi-pack
-- temporalio-cli
 revoke: false
