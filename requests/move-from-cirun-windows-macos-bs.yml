@@ -1,0 +1,12 @@
+action: blacksmith
+feedstocks:
+  # list of feedstock names (sans `-feedstock` suffix)
+  - clangdev
+  - gstreamer
+  - llama.cpp
+  - llvmdev
+  - openvino
+  - pixi-pack
+  - temporalio-cli
+# revoke access to the runners
+revoke: false
