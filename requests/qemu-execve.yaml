@@ -1,0 +1,11 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  qemu-execve:
+    - qemu-user-linux-aarch64
+    - qemu-user-linux-ppc64le
+    - qemu-user-linux-riscv64
+    - qemu-user-linux-s390x
+    - qemu-zig-linux-aarch64
+    - qemu-zig-linux-ppc64le
+    - qemu-zig-linux-riscv64
+    - qemu-zig-linux-s390x
