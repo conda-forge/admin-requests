@@ -1,4 +1,0 @@
-action: namespace
-feedstocks:
-- gstreamer
-revoke: false
