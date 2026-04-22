@@ -23,6 +23,7 @@ Guidelines for marking packages as broken:
   but should be patched in the repo data and be marked unbroken later.
 * In some cases where the number of users of a package is small or it is used by
   the maintainers only, we can allow packages to be marked broken more liberally.
+* You can use `pixi run find-name {matchspec}` to get a list of filenames matching given spec.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
 
@@ -54,6 +55,21 @@ why that decision was taken (e.g. it has been deprecated by a new feedstock),
 and link it in your PR description.
 
 
+## Archive or unarchive a branch on a feedstock
+
+Branches in conda-forge should generally not be deleted, because it is important to keep the
+history for the state of the feedstock for any packages that got published. To avoid the
+accumulation of many branches (esp. on feedstocks with regular LTS versions), it's possible
+to archive a branch by converting it into a tag (and vice-versa). The naming relationship
+between the branch and tag is fixed: for a branch `foo`, the tag will be called `foo_archived`.
+
+If you want to archive branches on a feedstock, send a Pull Request
+adding a new `.yml` file in `requests` folder with a dictionary of feedstock names
+(without `-feedstock`) mapping to a list of branch names that should be archived.
+See `examples/example-archive-branch.yml` for an example.
+For unarchiving, see `examples/example-unarchive-branch.yml` for an example.
+
+
 ## Request / revoke access to CI resources
 
 Certain CI resources are opt-in only. If you want to request access to these resources, please
@@ -61,8 +77,40 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 
 Available opt-in resources:
 
-- Travis CI: See `examples/example-travis.yml`
-- [`open-gpu-server`](https://github.com/Quansight/open-gpu-server) (includes GPU CI and long-running builds): See `examples/example-open-gpu-server.yml`.
+### [Travis CI](https://www.travis-ci.com)
+
+- `action` key: `travis`
+- Example `examples/example-travis.yml`
+
+### Larger runners for Github Actions
+
+- We have partnered with different providers for [self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/).
+- `action` key: `namespace` ([namespace.so](https://namespace.so)) or `blacksmith` ([blacksmith.sh](https://blacksmith.sh))
+- Example `examples/example-gha-self-hosted.yml`
+
+Github Actions labels for `conda_build_config.yaml`:
+
+| `github_actions_labels` value              | Platform        | CPUs    | RAM   |
+| :----------------------------------------- | :-------------: | :-----: | :---: |
+| `namespace-profile-8cpu-on-linux-64`       | `linux-64`      | 8       | 16 GB |
+| `namespace-profile-16cpu-on-linux-64`      | `linux-64`      | 16      | 32 GB |
+| `namespace-profile-8cpu-on-linux-aarch64`  | `linux-aarch64` | 8       | 16 GB |
+| `namespace-profile-16cpu-on-linux-aarch64` | `linux-aarch64` | 16      | 32 GB |
+| `namespace-profile-6cpu-on-osx-arm64`      | `osx-arm64`     | 6       | 14 GB |
+| `namespace-profile-12cpu-on-osx-arm64`     | `osx-arm64`     | 12      | 28 GB |
+| `namespace-profile-8cpu-on-win-64`         | `win-64`        | 8       | 16 GB |
+| `namespace-profile-16cpu-on-win-64`        | `win-64`        | 16      | 32 GB |
+| | | | |
+| `blacksmith-8vcpu-ubuntu-2404`             | `linux-64`      | 8       | 32 GB |
+| `blacksmith-16vcpu-ubuntu-2404`            | `linux-64`      | 16      | 64 GB |
+| `blacksmith-8vcpu-ubuntu-2404-arm`         | `linux-aarch64` | 8       | 24 GB |
+| `blacksmith-16vcpu-ubuntu-2404-arm`        | `linux-aarch64` | 16      | 48 GB |
+| `blacksmith-6vcpu-macos-latest`            | `osx-arm64`     | 6       | 24 GB |
+| `blacksmith-12vcpu-macos-latest`           | `osx-arm64`     | 12      | 48 GB |
+| `blacksmith-8vcpu-windows-2025`            | `win-64`        | 8       | 28 GB |
+| `blacksmith-16vcpu-windows-2025`           | `win-64`        | 16      | 56 GB |
+
+> Other providers may be available via [cirun.io](https://cirun.io) (`action: cirun`). Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details. See `examples/example-cirun.yml`.
 
 ## Request a CFEP-3 copy to conda-forge
 

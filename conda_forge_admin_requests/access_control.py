@@ -3,29 +3,38 @@ This script will process the `travis` and `cirun` requests.
 
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
+
+import copy
 import os
 import subprocess
 import tempfile
-import time
-from typing import Dict, List, Any
 import textwrap
-import copy
+import time
+from functools import lru_cache
+from typing import Any, Dict, List
 from unittest import mock
+
+from conda_smithy.github import Github
+from conda_smithy.utils import update_conda_forge_config
 
 import requests
 
-from .utils import write_secrets_to_files
-
-from conda_smithy.utils import update_conda_forge_config
-from conda_smithy.github import Github, gh_token
-
-
-GH_ORG = os.environ.get("GH_ORG", "conda-forge")
+from .utils import GH_ORG, write_secrets_to_files
 
 DEFAULT_CIRUN_OPENSTACK_VALUES = {
     "cirun_roles": ["admin", "maintain", "write"],
-    "cirun_users_from_json": ["https://raw.githubusercontent.com/Quansight/open-gpu-server/main/access/conda-forge-users.json"]
+    "cirun_users_from_json": [
+        "https://raw.githubusercontent.com/Quansight/open-gpu-server/main/access/conda-forge-users.json"
+    ],
 }
+
+GHA_PROVIDERS = (
+    "blacksmith",
+    "cirun",
+    "cirrus_runners",
+    "namespace",
+)
+VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
 
 
 def send_pr_cirun(
@@ -45,14 +54,13 @@ def send_pr_cirun(
     """
 
     with update_conda_forge_config(
-            os.path.join(
-                feedstock_dir,
-                "recipe",
-                "conda_build_config.yaml")) as cbc, \
-            update_conda_forge_config(
-                os.path.join(feedstock_dir, "conda-forge.yml")) as cfg:
-        if any(label.startswith("cirun-") for label in cbc.get(
-                "github_actions_labels", [])):
+        os.path.join(feedstock_dir, "recipe", "conda_build_config.yaml")
+    ) as cbc, update_conda_forge_config(
+        os.path.join(feedstock_dir, "conda-forge.yml")
+    ) as cfg:
+        if any(
+            label.startswith("cirun-") for label in cbc.get("github_actions_labels", [])
+        ):
             return
         cfg["github_actions"] = {"self_hosted": True}
         if pull_request:
@@ -62,7 +70,7 @@ def send_pr_cirun(
         cfg["provider"]["linux_64"] = "github_actions"
         cbc["github_actions_labels"] = resources
 
-    gh = Github(os.environ['GITHUB_TOKEN'])
+    gh = Github(os.environ["GITHUB_TOKEN"])
     user = gh.get_user()
 
     repo = gh.get_repo(f"{GH_ORG}/{feedstock}")
@@ -74,10 +82,21 @@ def send_pr_cirun(
 
     git_cmds = [
         ["git", "add", "recipe/conda_build_config.yaml", "conda-forge.yml"],
-        ["git", "remote", "add", user.login, 
-         f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/{user.login}/{feedstock}.git"
+        [
+            "git",
+            "remote",
+            "add",
+            user.login,
+            f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/{user.login}/{feedstock}.git",
         ],
-        ["git", "commit", "-m", f"Enable {resource_str} using Cirun", "--author", f"{user.name} <{user.email}>"],
+        [
+            "git",
+            "commit",
+            "-m",
+            f"Enable {resource_str} using Cirun",
+            "--author",
+            f"{user.name} <{user.email}>",
+        ],
         ["conda-smithy", "rerender", "-c", "auto", "--no-check-uptodate"],
         ["git", "push", user.login, f"HEAD:{base_branch}"],
     ]
@@ -118,9 +137,10 @@ def _process_request_for_feedstock(
     pull_request (bool): Whether to allow PRs for resource.
     """
 
-    # We need a token with admin permissions for Cirun
-    with tempfile.TemporaryDirectory() as tmp_dir, \
-            mock.patch.dict('os.environ', {'GITHUB_TOKEN': os.environ['GITHUB_ADMIN_TOKEN']}):
+    # We need a token with admin permissions for Cirun & Cirrus
+    with tempfile.TemporaryDirectory() as tmp_dir, mock.patch.dict(
+        "os.environ", {"GITHUB_TOKEN": os.environ["GITHUB_ADMIN_TOKEN"]}
+    ):
         feedstock_dir = os.path.join(tmp_dir, feedstock)
         assert GH_ORG
         clone_cmd = [
@@ -152,6 +172,11 @@ def _process_request_for_feedstock(
         if action == "travis":
             register_ci_cmd.append("--with-travis")
 
+        elif action in ("blacksmith", "namespace"):
+            register_ci_cmd.append(f"--with-{action}")
+            if revoke:
+                register_ci_cmd.append("--remove")
+
         elif action == "cirun":
             register_ci_cmd.append("--with-cirun")
 
@@ -159,12 +184,7 @@ def _process_request_for_feedstock(
                 register_ci_cmd.extend(["--cirun-resources", resource])
                 assert resource.startswith("cirun-"), f"Unknown resource {resource}"
 
-            # this part is specific to github.com/Quansight/open-gpu-server
-            if all(resource.startswith("cirun-openstack") for resource in resources):
-                for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
-                    for arg in value:
-                        register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
-            elif all(resource.startswith("cirun-") for resource in resources):
+            if all(resource.startswith("cirun-") for resource in resources):
                 pass
             else:
                 assert False, f"Unknown resources {resources}"
@@ -181,28 +201,38 @@ def _process_request_for_feedstock(
         if not revoke:
             if action == "travis":
                 with_cmd = "--with-travis"
-            elif action == "cirun":
+            elif action in GHA_PROVIDERS:
                 with_cmd = "--with-github-actions"
 
             print("Generating a new feedstock token")
             subprocess.check_call(
                 [
-                    'conda', 'smithy', 'generate-feedstock-token',
-                    '--unique-token-per-provider',
-                    '--feedstock_directory', feedstock_dir,
+                    "conda",
+                    "smithy",
+                    "generate-feedstock-token",
+                    "--unique-token-per-provider",
+                    "--feedstock_directory",
+                    feedstock_dir,
                     *owner_info,
                 ]
             )
 
-            print("Register new feedstock token with provider and feedstock-tokens repo.")
+            print(
+                "Register new feedstock token with provider and feedstock-tokens repo."
+            )
             subprocess.check_call(
                 [
-                    'conda', 'smithy', 'register-feedstock-token',
-                    '--unique-token-per-provider',
-                    '--feedstock_directory', feedstock_dir,
-                    '--without-all', with_cmd,
+                    "conda",
+                    "smithy",
+                    "register-feedstock-token",
+                    "--unique-token-per-provider",
+                    "--feedstock_directory",
+                    feedstock_dir,
+                    "--without-all",
+                    with_cmd,
                     *owner_info,
-                    '--token_repo', token_repo,
+                    "--token_repo",
+                    token_repo,
                 ]
             )
 
@@ -210,11 +240,16 @@ def _process_request_for_feedstock(
                 print("Add STAGING_BINSTAR_TOKEN to travis")
                 subprocess.check_call(
                     [
-                        'conda', 'smithy', 'rotate-binstar-token',
-                        '--feedstock_directory', feedstock_dir,
-                        '--without-all', with_cmd,
+                        "conda",
+                        "smithy",
+                        "rotate-binstar-token",
+                        "--feedstock_directory",
+                        feedstock_dir,
+                        "--without-all",
+                        with_cmd,
                         *owner_info,
-                        '--token_name', 'STAGING_BINSTAR_TOKEN',
+                        "--token_name",
+                        "STAGING_BINSTAR_TOKEN",
                     ]
                 )
 
@@ -223,7 +258,8 @@ def _process_request_for_feedstock(
                 send_pr_cirun(feedstock, feedstock_dir, resources, pull_request)
 
 
-def check_if_repo_exists(feedstock_name: str) -> None:
+@lru_cache
+def check_if_repo_exists(feedstock_name: str) -> bool:
     """
     Check if a repository exists on GitHub.
 
@@ -236,9 +272,15 @@ def check_if_repo_exists(feedstock_name: str) -> None:
     repo = f"{feedstock_name}-feedstock"
     owner_repo = f"{GH_ORG}/{repo}"
     print(f"Checking if {owner_repo} exists")
-    response = requests.get(f"https://api.github.com/repos/{owner_repo}")
-    if response.status_code != 200:
-        raise ValueError(f"Repository: {owner_repo} not found!")
+    kwargs = {}
+    if token := os.environ.get("GITHUB_TOKEN"):
+        kwargs["headers"] = {"Authorization": f"Bearer {token}"}
+    response = requests.get(
+        f"https://api.github.com/repos/{owner_repo}",
+        **kwargs,
+    )
+    response.raise_for_status()
+    return True
 
 
 def check(request: Dict[str, Any]) -> None:
@@ -249,9 +291,10 @@ def check(request: Dict[str, Any]) -> None:
     feedstocks = request["feedstocks"]
     for feedstock in feedstocks:
         check_if_repo_exists(feedstock)
+        time.sleep(0.1)
 
     action = request["action"]
-    assert action in ("travis", "cirun"), f"Unknown action {action}"
+    assert action in VALID_ACTIONS, f"Unknown action {action}"
 
     if action == "cirun":
         assert "resources" in request, "No resources field in request"
@@ -264,17 +307,27 @@ def check(request: Dict[str, Any]) -> None:
         assert not request.get("revoke", False)
 
 
-def run(request: Dict[str, Any]) -> None:
+def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
     """
     The main function to process the access control requests. It performs the following steps:
     1. Check if the requests are valid.
     2. Process the access control requests.
     """
     check(request)
-    write_secrets_to_files()
+    write_secrets_to_files(github_token_key="GITHUB_ADMIN_TOKEN")
 
     feedstocks = request["feedstocks"]
+    failed_feedstocks = []
     for feedstock in feedstocks:
         request_copy = copy.deepcopy(request)
         del request_copy["feedstocks"]
-        _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        try:
+            _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        except Exception as e:
+            print(f"Feedstock {feedstock}-feedstock failed with '{e}', trying later...")
+            failed_feedstocks.append(feedstock)
+    if failed_feedstocks:
+        request = copy.deepcopy(request)
+        request["feedstocks"] = failed_feedstocks
+        return request
+    return None

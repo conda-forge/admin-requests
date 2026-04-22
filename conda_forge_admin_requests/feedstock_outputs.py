@@ -1,12 +1,13 @@
 import io
 import json
 import os
-import requests
 from textwrap import dedent
 
+import github
 import ruamel.yaml
 from conda_forge_metadata.feedstock_outputs import sharded_path as _get_sharded_path
-import github
+
+import requests
 
 
 def _test_and_raise_besides_file_not_exists(e: github.GithubException):
@@ -21,7 +22,7 @@ def _add_feedstock_output(
     feedstock,
     pkg_name,
 ):
-    gh_token = os.environ['GITHUB_TOKEN']
+    gh_token = os.environ["GITHUB_TOKEN"]
     gh = github.Github(auth=github.Auth.Token(gh_token))
     repo = gh.get_repo("conda-forge/feedstock-outputs")
     try:
@@ -37,7 +38,10 @@ def _add_feedstock_output(
             f"[cf admin skip] ***NO_CI*** add output {pkg_name} for conda-forge/{feedstock}-feedstock",
             json.dumps(data),
         )
-        print(f"    output {pkg_name} added for feedstock conda-forge/{feedstock}-feedstock", flush=True)
+        print(
+            f"    output {pkg_name} added for feedstock conda-forge/{feedstock}-feedstock",
+            flush=True,
+        )
     else:
         data = json.loads(contents.decoded_content.decode("utf-8"))
         if feedstock not in data["feedstocks"]:
@@ -48,16 +52,22 @@ def _add_feedstock_output(
                 json.dumps(data),
                 contents.sha,
             )
-            print(f"    output {pkg_name} added for feedstock conda-forge/{feedstock}-feedstock", flush=True)
+            print(
+                f"    output {pkg_name} added for feedstock conda-forge/{feedstock}-feedstock",
+                flush=True,
+            )
         else:
-            print(f"    output {pkg_name} already exists for feedstock conda-forge/{feedstock}-feedstock", flush=True)
+            print(
+                f"    output {pkg_name} already exists for feedstock conda-forge/{feedstock}-feedstock",
+                flush=True,
+            )
 
 
 def _add_feedstock_output_glob(
     feedstock,
     glob_str,
 ):
-    gh_token = os.environ['GITHUB_TOKEN']
+    gh_token = os.environ["GITHUB_TOKEN"]
     gh = github.Github(auth=github.Auth.Token(gh_token))
     repo = gh.get_repo("conda-forge/feedstock-outputs")
     contents = repo.get_contents("feedstock_outputs_autoreg_allowlist.yml")
@@ -76,7 +86,10 @@ def _add_feedstock_output_glob(
         fp.getvalue(),
         contents.sha,
     )
-    print(f"    glob {glob_str} added for feedstock conda-forge/{feedstock}-feedstock", flush=True)
+    print(
+        f"    glob {glob_str} added for feedstock conda-forge/{feedstock}-feedstock",
+        flush=True,
+    )
 
 
 def check(request):
@@ -91,14 +104,10 @@ def check(request):
         if feedstock.endswith("-feedstock"):
             feedstock = feedstock[:-10]
 
-        r = requests.head(
-            f"https://github.com/conda-forge/{feedstock}-feedstock"
-        )
+        r = requests.head(f"https://github.com/conda-forge/{feedstock}-feedstock")
         r.raise_for_status()
         if not isinstance(pkgs, list):
-            raise ValueError(
-                dedent(
-                    f"""\
+            raise ValueError(dedent(f"""\
                     Value for '{feedstock}' entry must be a list of str (output name, or a glob),
                     but you provided a string: {pkgs!r}; change it to either of
                     ```
@@ -111,9 +120,7 @@ def check(request):
                     feedstock_to_output_mapping:
                       {feedstock}: [{pkgs}]
                     ```
-                    """
-                )
-            )
+                    """))
         for pkg_name in pkgs:
             if not isinstance(pkg_name, str):
                 raise ValueError(
@@ -143,7 +150,10 @@ def run(request):
                 else:
                     _add_feedstock_output(feedstock, pkg_name)
             except Exception as e:
-                print(f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}", flush=True)
+                print(
+                    f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}",
+                    flush=True,
+                )
                 pkgs_to_keep.append(pkg_name)
         if pkgs_to_keep:
             items_to_keep[feedstock] = pkgs_to_keep

@@ -1,0 +1,6 @@
+action: pick-one-of #: blacksmith, namespace
+feedstocks:
+  # list of feedstock names (sans `-feedstock` suffix)
+  - pytorch-cpu
+# revoke access to the runners
+revoke: false

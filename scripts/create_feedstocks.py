@@ -11,34 +11,34 @@ Such as:
 
 """
 
-from __future__ import print_function
-from __future__ import annotations
+from __future__ import annotations, print_function
 
 import json
-from pathlib import Path
-from typing import Iterator
-from conda_build.metadata import MetaData
-from rattler_build_conda_compat.render import MetaData as RattlerBuildMetaData
-from conda_smithy.utils import get_feedstock_name_from_meta
-from contextlib import contextmanager
-from datetime import datetime, timezone
-from github import Github, GithubException
 import os.path
 import shutil
 import subprocess
 import sys
 import tempfile
-import traceback
 import time
+import traceback
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Iterator
 
 import github
-import requests
-from ruamel.yaml import YAML
+from conda_build.metadata import MetaData
+from conda_build.utils import create_file_with_permissions
 from conda_forge_feedstock_ops.parse_package_and_feedstock_names import (
     parse_package_and_feedstock_names,
 )
 from conda_forge_metadata.feedstock_outputs import sharded_path as _get_sharded_path
-from conda_build.utils import create_file_with_permissions
+from conda_smithy.utils import get_feedstock_name_from_meta
+from github import Github, GithubException
+from rattler_build_conda_compat.render import MetaData as RattlerBuildMetaData
+from ruamel.yaml import YAML
+
+import requests
 
 # Enable DEBUG to run the diagnostics, without actually creating new feedstocks.
 DEBUG = False
@@ -284,14 +284,14 @@ if __name__ == "__main__":
 
     if "APPVEYOR_TOKEN" in os.environ:
         write_token("appveyor", os.environ["APPVEYOR_TOKEN"])
-    if "CIRCLE_TOKEN" in os.environ:
-        write_token("circle", os.environ["CIRCLE_TOKEN"])
+    # if "CIRCLE_TOKEN" in os.environ:
+    #     write_token("circle", os.environ["CIRCLE_TOKEN"])
     if "AZURE_TOKEN" in os.environ:
         write_token("azure", os.environ["AZURE_TOKEN"])
-    if "DRONE_TOKEN" in os.environ:
-        write_token("drone", os.environ["DRONE_TOKEN"])
-    if "TRAVIS_TOKEN" in os.environ:
-        write_token("travis", os.environ["TRAVIS_TOKEN"])
+    # if "DRONE_TOKEN" in os.environ:
+    #     write_token("drone", os.environ["DRONE_TOKEN"])
+    # if "TRAVIS_TOKEN" in os.environ:
+    #     write_token("travis", os.environ["TRAVIS_TOKEN"])
     if "STAGING_BINSTAR_TOKEN" in os.environ:
         write_token("anaconda", os.environ["STAGING_BINSTAR_TOKEN"])
 
@@ -334,8 +334,7 @@ if __name__ == "__main__":
             try:
                 subprocess.check_call(
                     [
-                        "conda",
-                        "smithy",
+                        "conda-smithy",
                         "init",
                         recipe_dir,
                         "--feedstock-directory",
@@ -405,7 +404,8 @@ if __name__ == "__main__":
 
             # now register with github
             subprocess.check_call(
-                ["conda", "smithy", "register-github", feedstock_dir] + owner_info
+                ["conda-smithy", "register-github", feedstock_dir]
+                + owner_info
                 # hack to help travis work
                 # + ['--extra-admin-users', gh_travis.get_user().login]
                 # end of hack
@@ -457,13 +457,16 @@ if __name__ == "__main__":
             try:
                 subprocess.check_call(
                     [
-                        "conda",
-                        "smithy",
+                        "conda-smithy",
                         "register-ci",
                         "--without-appveyor",
                         "--without-circle",
+                        "--without-travis",
                         "--without-drone",
                         "--without-cirun",
+                        "--without-cirrus-runners",
+                        "--without-namespace",
+                        "--without-blacksmith",
                         "--without-webservice",
                         "--feedstock_directory",
                         feedstock_dir,
@@ -471,7 +474,7 @@ if __name__ == "__main__":
                     + owner_info
                 )
                 subprocess.check_call(
-                    ["conda", "smithy", "rerender", "--no-check-uptodate"],
+                    ["conda-smithy", "rerender", "--no-check-uptodate"],
                     cwd=feedstock_dir,
                 )
             except subprocess.CalledProcessError:
@@ -490,8 +493,7 @@ if __name__ == "__main__":
                 if not feedstock_token_exists("conda-forge", name + "-feedstock"):
                     subprocess.check_call(
                         [
-                            "conda",
-                            "smithy",
+                            "conda-smithy",
                             "generate-feedstock-token",
                             "--unique-token-per-provider",
                             "--feedstock_directory",
@@ -501,11 +503,11 @@ if __name__ == "__main__":
                     )
                     subprocess.check_call(
                         [
-                            "conda",
-                            "smithy",
+                            "conda-smithy",
                             "register-feedstock-token",
                             "--unique-token-per-provider",
                             "--without-circle",
+                            "--without-travis",
                             "--without-drone",
                             "--feedstock_directory",
                             feedstock_dir,
@@ -513,19 +515,19 @@ if __name__ == "__main__":
                         + owner_info
                     )
 
-                # add staging token env var to all CI probiders except appveyor
+                # add staging token env var to all CI providers except appveyor
                 # and azure
                 # azure has it by default and appveyor is not used
                 subprocess.check_call(
                     [
-                        "conda",
-                        "smithy",
+                        "conda-smithy",
                         "rotate-binstar-token",
                         "--without-appveyor",
                         "--without-azure",
                         "--without-github-actions",
                         "--without-circle",
                         "--without-drone",
+                        "--without-travis",
                         "--token_name",
                         "STAGING_BINSTAR_TOKEN",
                     ],
@@ -542,7 +544,19 @@ if __name__ == "__main__":
                     ["git", "add", "conda-forge.yml"], cwd=feedstock_dir
                 )
                 subprocess.check_call(
-                    ["conda", "smithy", "rerender", "--no-check-uptodate"],
+                    ["conda-smithy", "rerender", "--no-check-uptodate"],
+                    cwd=feedstock_dir,
+                )
+
+                # add empty IDs file - this will allow the webservices
+                # to update the maintainers
+                with open(
+                    os.path.join(feedstock_dir, ".recipe_maintainers.json"),
+                    "w",
+                ) as fp:
+                    fp.write("{}")
+                subprocess.check_call(
+                    ["git", "add", "-f", ".recipe_maintainers.json"],
                     cwd=feedstock_dir,
                 )
 
