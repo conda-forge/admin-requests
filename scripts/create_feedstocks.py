@@ -548,6 +548,18 @@ if __name__ == "__main__":
                     cwd=feedstock_dir,
                 )
 
+                # add empty IDs file - this will allow the webservices
+                # to update the maintainers
+                with open(
+                    os.path.join(feedstock_dir, ".recipe_maintainers.json"),
+                    "w",
+                ) as fp:
+                    fp.write("{}")
+                subprocess.check_call(
+                    ["git", "add", "-f", ".recipe_maintainers.json"],
+                    cwd=feedstock_dir,
+                )
+
                 # pre-register outputs
                 print("registering outputs...")
                 _, pkg_names, _ = parse_package_and_feedstock_names(
