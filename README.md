@@ -98,8 +98,8 @@ Github Actions labels for `conda_build_config.yaml`:
 | `namespace-profile-16cpu-on-linux-aarch64` | `linux-aarch64` | 16      | 64 GB |
 | `namespace-profile-6cpu-on-osx-arm64`      | `osx-arm64`     | 6       | 14 GB |
 | `namespace-profile-12cpu-on-osx-arm64`     | `osx-arm64`     | 12      | 28 GB |
-| `namespace-profile-8cpu-on-win-64`         | `win-64`        | 8       | 32 GB |
-| `namespace-profile-16cpu-on-win-64`        | `win-64`        | 16      | 64 GB |
+| `namespace-profile-8cpu-on-win-64` ‡       | `win-64`        | 8       | 32 GB |
+| `namespace-profile-16cpu-on-win-64` ‡      | `win-64`        | 16      | 64 GB |
 | | | | |
 | `blacksmith-8vcpu-ubuntu-2404`             | `linux-64`      | 8       | 32 GB |
 | `blacksmith-16vcpu-ubuntu-2404`            | `linux-64`      | 16      | 64 GB |
@@ -110,7 +110,22 @@ Github Actions labels for `conda_build_config.yaml`:
 | `blacksmith-8vcpu-windows-2025`            | `win-64`        | 8       | 28 GB |
 | `blacksmith-16vcpu-windows-2025`           | `win-64`        | 16      | 56 GB |
 
-> Other providers may be available via [cirun.io](https://cirun.io) (`action: cirun`). Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details. See `examples/example-cirun.yml`.
+> ‡ Namespace runners on Windows need to use `D:` as the main drive for the installation and build workspace directories. In `conda-forge.yml`:
+>
+> ```yaml
+> workflow_settings:
+>   tools_install_dir:
+>     - provider: github_actions
+>       platform: win
+>       value: D:\Miniforge3
+>   build_workspace_dir:
+>     - provider: github_actions
+>       platform: win
+>       value: D:\bld
+> ```
+
+Other providers may be available via [cirun.io](https://cirun.io) (`action: cirun`, see `examples/example-cirun.yml`).
+Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
 
 ## Request a CFEP-3 copy to conda-forge
 
