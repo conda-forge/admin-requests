@@ -100,7 +100,7 @@ Github Actions labels for `conda_build_config.yaml`:
 | `namespace-profile-12cpu-on-osx-arm64`     | `osx-arm64`     | 12      | 28 GB | 160 GB  |
 | `namespace-profile-8cpu-on-win-64`         | `win-64`        | 8       | 32 GB | 160 GB  |
 | `namespace-profile-16cpu-on-win-64`        | `win-64`        | 16      | 64 GB | 288 GB  |
-| | | | |
+| | | | | |
 | `blacksmith-8vcpu-ubuntu-2404`             | `linux-64`      | 8       | 32 GB | 160 GB  |
 | `blacksmith-16vcpu-ubuntu-2404`            | `linux-64`      | 16      | 64 GB | 750 GB  |
 | `blacksmith-8vcpu-ubuntu-2404-arm`         | `linux-aarch64` | 8       | 24 GB | 160 GB  |
