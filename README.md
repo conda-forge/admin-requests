@@ -90,25 +90,25 @@ Available opt-in resources:
 
 Github Actions labels for `conda_build_config.yaml`:
 
-| `github_actions_labels` value              | Platform        | CPUs    | RAM   |
-| :----------------------------------------- | :-------------: | :-----: | :---: |
-| `namespace-profile-8cpu-on-linux-64`       | `linux-64`      | 8       | 32 GB |
-| `namespace-profile-16cpu-on-linux-64`      | `linux-64`      | 16      | 64 GB |
-| `namespace-profile-8cpu-on-linux-aarch64`  | `linux-aarch64` | 8       | 32 GB |
-| `namespace-profile-16cpu-on-linux-aarch64` | `linux-aarch64` | 16      | 64 GB |
-| `namespace-profile-6cpu-on-osx-arm64`      | `osx-arm64`     | 6       | 14 GB |
-| `namespace-profile-12cpu-on-osx-arm64`     | `osx-arm64`     | 12      | 28 GB |
-| `namespace-profile-8cpu-on-win-64`         | `win-64`        | 8       | 32 GB |
-| `namespace-profile-16cpu-on-win-64`        | `win-64`        | 16      | 64 GB |
+| `github_actions_labels` value              | Platform        | CPUs    | RAM   | Storage |
+| :----------------------------------------- | :-------------: | :-----: | :---: | :-----: |
+| `namespace-profile-8cpu-on-linux-64`       | `linux-64`      | 8       | 32 GB | 160 GB  |
+| `namespace-profile-16cpu-on-linux-64`      | `linux-64`      | 16      | 64 GB | 288 GB  |
+| `namespace-profile-8cpu-on-linux-aarch64`  | `linux-aarch64` | 8       | 32 GB | 160 GB  |
+| `namespace-profile-16cpu-on-linux-aarch64` | `linux-aarch64` | 16      | 64 GB | 288 GB  |
+| `namespace-profile-6cpu-on-osx-arm64`      | `osx-arm64`     | 6       | 14 GB | 104 GB  |
+| `namespace-profile-12cpu-on-osx-arm64`     | `osx-arm64`     | 12      | 28 GB | 160 GB  |
+| `namespace-profile-8cpu-on-win-64`         | `win-64`        | 8       | 32 GB | 160 GB  |
+| `namespace-profile-16cpu-on-win-64`        | `win-64`        | 16      | 64 GB | 288 GB  |
 | | | | |
-| `blacksmith-8vcpu-ubuntu-2404`             | `linux-64`      | 8       | 32 GB |
-| `blacksmith-16vcpu-ubuntu-2404`            | `linux-64`      | 16      | 64 GB |
-| `blacksmith-8vcpu-ubuntu-2404-arm`         | `linux-aarch64` | 8       | 24 GB |
-| `blacksmith-16vcpu-ubuntu-2404-arm`        | `linux-aarch64` | 16      | 48 GB |
-| `blacksmith-6vcpu-macos-latest`            | `osx-arm64`     | 6       | 24 GB |
-| `blacksmith-12vcpu-macos-latest`           | `osx-arm64`     | 12      | 48 GB |
-| `blacksmith-8vcpu-windows-2025`            | `win-64`        | 8       | 28 GB |
-| `blacksmith-16vcpu-windows-2025`           | `win-64`        | 16      | 56 GB |
+| `blacksmith-8vcpu-ubuntu-2404`             | `linux-64`      | 8       | 32 GB | 160 GB  |
+| `blacksmith-16vcpu-ubuntu-2404`            | `linux-64`      | 16      | 64 GB | 750 GB  |
+| `blacksmith-8vcpu-ubuntu-2404-arm`         | `linux-aarch64` | 8       | 24 GB | 160 GB  |
+| `blacksmith-16vcpu-ubuntu-2404-arm`        | `linux-aarch64` | 16      | 48 GB | 750 GB  |
+| `blacksmith-6vcpu-macos-latest`            | `osx-arm64`     | 6       | 24 GB | 150 GB  |
+| `blacksmith-12vcpu-macos-latest`           | `osx-arm64`     | 12      | 48 GB | 250 GB  |
+| `blacksmith-8vcpu-windows-2025`            | `win-64`        | 8       | 28 GB | 130 GB  |
+| `blacksmith-16vcpu-windows-2025`           | `win-64`        | 16      | 56 GB | 130 GB  |
 
 > Other providers may be available via [cirun.io](https://cirun.io) (`action: cirun`). Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details. See `examples/example-cirun.yml`.
 
