@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  airflow:
+    - apache-airflow-core
+    - apache-airflow-core-with-all
+    - apache-airflow-task-sdk
