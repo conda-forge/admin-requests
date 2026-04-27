@@ -1,7 +1,0 @@
-action: broken
-packages:
-- "osx-64/tmux-3.6-ha44d9b9_0.conda"
-- "osx-arm64/tmux-3.6-h96f0305_0.conda"
-- "linux-ppc64le/tmux-3.6-h4b366eb_0.conda"
-- "linux-aarch64/tmux-3.6-h2fb902b_0.conda"
-- "linux-64/tmux-3.6-hb764a82_0.conda"
