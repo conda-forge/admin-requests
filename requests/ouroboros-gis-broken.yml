@@ -1,0 +1,14 @@
+action: broken
+packages:
+  - noarch/ouroboros-gis-1.0.8-pyha770c72_3.conda
+  - noarch/ouroboros-gis-1.0.8-pyha770c72_2.conda
+  - noarch/ouroboros-gis-1.0.8-pyha770c72_1.conda
+  - noarch/ouroboros-gis-1.0.8-pyhd8ed1ab_0.conda
+  - noarch/ouroboros-gis-1.0.7-pyhd8ed1ab_0.conda
+  - noarch/ouroboros-gis-1.0.6-pyhd8ed1ab_0.conda
+  - noarch/ouroboros-gis-1.0.5-pyhd8ed1ab_0.conda
+  - noarch/ouroboros-gis-1.0.4-pyhd8ed1ab_0.conda
+  - noarch/ouroboros-gis-1.0.3-pyhd8ed1ab_0.conda
+  - noarch/ouroboros-gis-1.0.2-pyhd8ed1ab_1.conda
+  - noarch/ouroboros-gis-1.0.2-pyhd8ed1ab_0.conda
+  - noarch/ouroboros-gis-1.0.0-pyhd8ed1ab_0.conda
