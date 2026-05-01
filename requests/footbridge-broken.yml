@@ -1,0 +1,5 @@
+action: broken
+packages:
+- noarch/footbridge-1.0.9-pyhc364b38_2.conda
+- noarch/footbridge-1.0.9-pyhc364b38_1.conda
+- noarch/footbridge-1.0.9-pyhc364b38_0.conda
