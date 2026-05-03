@@ -1,4 +1,0 @@
-action: blacksmith
-feedstocks:
-  - polars
-revoke: false
