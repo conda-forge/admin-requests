@@ -1,4 +1,4 @@
 action: namespace
 feedstocks:
-  - polars
+- polars
 revoke: false
