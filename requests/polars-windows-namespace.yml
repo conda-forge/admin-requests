@@ -1,4 +1,0 @@
-action: namespace
-feedstocks:
-- polars
-revoke: false
