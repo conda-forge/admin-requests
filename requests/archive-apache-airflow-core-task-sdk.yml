@@ -1,0 +1,4 @@
+action: archive
+feedstocks:
+  - apache-airflow-core-split
+  - apache-airflow-task-sdk
