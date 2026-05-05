@@ -1,0 +1,7 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  hydra-python:
+    - hydra-kernel
+    - hydra-rdf
+    - hydra-pg
+    - hydra-ext
