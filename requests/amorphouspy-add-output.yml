@@ -1,4 +1,4 @@
-action: add-feedstock-output
-feedstock: amorphouspy
-outputs:
-  - amorphouspy-api
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  amorphouspy:
+    - amorphouspy-api
