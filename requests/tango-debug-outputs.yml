@@ -1,0 +1,12 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  tango-admin:
+    - tango-admin-dbg
+  tango-database:
+    - tango-database-dbg
+  tango-starter:
+    - tango-starter-dbg
+  libhdbpp:
+    - libhdbpp-dbg
+  hdbpp-cm:
+    - hdbpp-cm-dbg
