@@ -1,0 +1,7 @@
+action: broken
+packages:
+- linux-64/pixi-build-python-0.4.9-h993bfcc_0.conda
+- linux-aarch64/pixi-build-python-0.4.9-h50215e9_0.conda
+- osx-64/pixi-build-python-0.4.9-h212e2c2_0.conda
+- osx-arm64/pixi-build-python-0.4.9-h8e4c5dd_0.conda
+- win-64/pixi-build-python-0.4.9-h9d14792_0.conda
