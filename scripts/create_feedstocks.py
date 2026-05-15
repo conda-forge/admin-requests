@@ -159,7 +159,7 @@ def repo_default_branch(gh, organization, name):
 def _set_default_branch(feedstock_dir, default_branch):
     yaml = YAML()
     with open(os.path.join(feedstock_dir, "conda-forge.yml"), "r") as fp:
-        cfg = yaml.load(fp.read())
+cfg = yaml.safe_load(fp.read())
 
     if "github" not in cfg:
         cfg["github"] = {}
@@ -536,7 +536,7 @@ if __name__ == "__main__":
 
                 yaml = YAML()
                 with open(os.path.join(feedstock_dir, "conda-forge.yml"), "r") as fp:
-                    _cfg = yaml.load(fp.read())
+_cfg = yaml.safe_load(fp.read())
                 _cfg["conda_forge_output_validation"] = True
                 with open(os.path.join(feedstock_dir, "conda-forge.yml"), "w") as fp:
                     yaml.dump(_cfg, fp)
