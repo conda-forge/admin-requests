@@ -2,4 +2,3 @@ action: add_feedstock_output
 feedstock_to_output_mapping:
   fastmcp:
     - fastmcp-slim
-
