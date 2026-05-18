@@ -1,0 +1,7 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  earthlens:
+    - earthlens-s3
+    - earthlens-ecmwf
+    - earthlens-gee
+    - earthlens-all
