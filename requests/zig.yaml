@@ -1,7 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  zig:
-    - zig_linux-s390x
-    - zig_win-32
-    - zig_impl_linux-s390x
-    - zig_impl_win-32
