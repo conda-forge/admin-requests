@@ -1,4 +1,6 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
   yjs-widgets:
+    - yjs-widgets-assets
     - yjs-widgets-collection
+    - yjs-widgets-collection-assets
