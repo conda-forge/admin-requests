@@ -5,7 +5,3 @@ feedstock_to_output_mapping:
     - zig-llvm
     - "zig-libllvm*"
     - zig-tblgen
-    # Temporarily for riscv64
-    - zig-libxml2
-    - zig-zlib
-    - zig-zstd
