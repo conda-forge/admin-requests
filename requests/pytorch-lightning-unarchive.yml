@@ -1,4 +1,0 @@
-action: unarchive
-feedstocks:
-  - pytorch-lightning
-  - lightning
