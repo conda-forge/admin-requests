@@ -1,3 +1,5 @@
 action: unarchive
 feedstocks:
-  - cf-autotick-bot-test-package
+  cf-autotick-bot-test-package:
+    - new-maintainer-1
+    - new-maintainer-2

@@ -48,7 +48,15 @@ If you want to request a feedstock to be archived, send a Pull Request
 adding a new `.yml` file in `requests` folder with a list of the feedstock names
 without `-feedstock`. See `examples/example-archive.yml` for an example.
 (e.g., for `python-feedstock`, the feedstocks list must contain `python`).
-For unarchiving, see `examples/example-unarchive.yml` for an example.
+For unarchiving, see `examples/example-unarchive.yml` for an example. Unarchive
+requests must name one or more new maintainer GitHub usernames per feedstock;
+those usernames will replace the recipe's `extra.recipe-maintainers` list in a
+commit pushed to the default branch immediately after the repo is unarchived.
+The old maintainers list is assumed to be stale by the time a feedstock is being
+unarchived, and unarchiving without a responsible new maintainer is rejected.
+
+Archiving a feedstock also clears the `extra.recipe-maintainers` list (pushed as
+a commit to the default branch before the repo is flipped to archived).
 
 For feedstocks that need to be archived, please leave an open issue with some details about
 why that decision was taken (e.g. it has been deprecated by a new feedstock),
