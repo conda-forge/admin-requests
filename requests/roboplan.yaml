@@ -2,7 +2,6 @@ action: add_feedstock_output
 feedstock_to_output_mapping:
   roboplan:
     - roboplan-example-models-python
-    - roboplan-python
     - roboplan-oink-python
     - roboplan-rrt-python
     - roboplan-simple-ik-python
