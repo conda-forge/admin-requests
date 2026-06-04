@@ -1,7 +1,0 @@
-action: broken
-packages:
-- noarch/jupytergis-0.16.0a0-pyhd8ed1ab_0.conda
-- noarch/jupytergis-core-0.16.0a0-pyhd8ed1ab_0.conda
-- noarch/jupytergis-lab-0.16.0a0-pyhd8ed1ab_0.conda
-- noarch/jupytergis-lite-0.16.0a0-pyhd8ed1ab_0.conda
-- noarch/jupytergis-qgis-0.16.0a0-pyhd8ed1ab_0.conda
