@@ -5,4 +5,3 @@ feedstock_to_output_mapping:
     - gcc_linux-riscv64
     - gcc_bootstrap_linux-riscv64
     - gfortran_linux-riscv64
-  
