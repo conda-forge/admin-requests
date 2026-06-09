@@ -5,7 +5,7 @@ import requests
 from .utils import GH_ORG, get_gh_headers, raise_json_for_status
 
 
-def process_repo(repo, task):
+def process_repo(repo, task, reason=None):
     owner = GH_ORG
     headers = get_gh_headers()
 
@@ -29,6 +29,18 @@ def process_repo(repo, task):
         print(f"feedstock {repo} is already {target_status}", flush=True)
         return
 
+    if task == "archive" and reason is not None:
+        r = requests.post(
+            f"https://api.github.com/repos/{owner}/{repo}/issues",
+            headers=headers,
+            json={
+                "title": "Archive the feedstock",
+                "body": reason,
+            },
+        )
+        raise_json_for_status(r)
+        print(f"archival issue created: {r.json()['html_url']}", flush=True)
+
     r = requests.patch(
         f"https://api.github.com/repos/{owner}/{repo}",
         headers=headers,
@@ -46,7 +58,7 @@ def run(request):
     pkgs_to_do_again = []
     for feedstock in feedstocks:
         try:
-            process_repo(f"{feedstock}-feedstock", task)
+            process_repo(f"{feedstock}-feedstock", task, reason=request.get("reason"))
         except Exception as e:
             print(f"failed to {task} '{feedstock}': {e!r}", flush=True)
             pkgs_to_do_again.append(feedstock)
