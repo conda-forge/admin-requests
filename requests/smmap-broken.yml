@@ -1,0 +1,5 @@
+action: broken
+packages:
+- noarch/smmap-6.0.0-pyhd8ed1ab_2.conda
+- noarch/smmap-6.0.0-pyhd8ed1ab_1.conda
+- noarch/smmap-6.0.0-pyhd8ed1ab_0.conda
