@@ -1,6 +1,0 @@
-action: broken
-packages:
-- linux-64/nebi-desktop-0.10.5-h3250057_0.conda
-- linux-64/nebi-desktop-0.11-h3250057_0.conda
-- linux-64/nebi-0.10.5-hfc2019e_0.conda
-- linux-64/nebi-0.11-hfc2019e_0.conda
