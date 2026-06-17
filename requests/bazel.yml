@@ -1,0 +1,15 @@
+action: archive_branch
+feedstocks:
+  bazel:
+    - 2.0
+    - 3.1.x
+    - 4.2.1
+    - 4.2.x
+    - 6.1.x
+    - 7.4.1
+  singlejar:
+    - 5.2.x
+    - 6.3.2
+    - 6.1.x
+    - 7.2.1
+    - 7.4.1
