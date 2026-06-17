@@ -1,4 +1,4 @@
 action: archive_branch
 feedstocks:
   bazel:
-  - 2.0
+  - "2.0"
