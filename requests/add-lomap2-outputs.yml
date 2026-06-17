@@ -1,0 +1,4 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  - lomap2: "lomap2-base"
+  - lomap2: "lomap2-extra"
