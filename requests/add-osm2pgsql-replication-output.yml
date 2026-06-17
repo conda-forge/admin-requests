@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # While fully specified package names are preferred, you can also use
+  # this entry to add an allowed glob pattern
+  osm2pgsql:
+    - "osm2pgsql-replication"
