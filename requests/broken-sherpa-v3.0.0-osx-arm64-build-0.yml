@@ -1,0 +1,6 @@
+action: broken
+packages:
+- osx-arm64/sherpa-3.0.0-py310hb66c7b8_0.conda
+- osx-arm64/sherpa-3.0.0-py311h0261e34_0.conda
+- osx-arm64/sherpa-3.0.0-py312hb2e9adc_0.conda
+- osx-arm64/sherpa-3.0.0-py313hc2f74bd_0.conda
