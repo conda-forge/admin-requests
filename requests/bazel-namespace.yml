@@ -1,4 +1,0 @@
-action: namespace
-feedstocks:
-  - bazel
-revoke: false
