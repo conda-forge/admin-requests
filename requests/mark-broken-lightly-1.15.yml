@@ -1,0 +1,4 @@
+action: broken
+packages:
+- noarch/lightly-1.15.21-pyhd8ed1ab_0.conda
+- noarch/lightly-1.15.22-pyhd8ed1ab_0.conda
