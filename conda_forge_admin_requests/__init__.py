@@ -36,6 +36,7 @@ def register_actions():
     register_action("blacksmith", access_control)
     register_action("cirrus_runners", access_control)
     register_action("namespace", access_control)
+    register_action("depot", access_control)
     register_action("cfep3_copy", cfep3_copy)
     register_action("add_feedstock_output", feedstock_outputs)
     for pkg in pkgutil.iter_modules():

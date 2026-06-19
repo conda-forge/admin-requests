@@ -32,6 +32,7 @@ GHA_PROVIDERS = (
     "blacksmith",
     "cirun",
     "cirrus_runners",
+    "depot",
     "namespace",
 )
 VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
@@ -172,7 +173,7 @@ def _process_request_for_feedstock(
         if action == "travis":
             register_ci_cmd.append("--with-travis")
 
-        elif action in ("blacksmith", "namespace"):
+        elif action in ("blacksmith", "namespace", "depot"):
             register_ci_cmd.append(f"--with-{action}")
             if revoke:
                 register_ci_cmd.append("--remove")
