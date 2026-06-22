@@ -1,0 +1,10 @@
+action: broken
+packages:
+- osx-64/qca-2.3.10-he2dbd5d_0.conda
+- osx-arm64/qca-2.3.10-h8fcddeb_0.conda
+- win-64/qca-2.3.10-h2d28131_0.conda
+- linux-aarch64/qca-2.3.10-hf3f976f_0.conda
+- linux-64/qca-2.3.10-hf6b9f1b_0.conda
+- osx-arm64/qca-2.3.10-h54f3ccc_1.conda
+
+
