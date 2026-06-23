@@ -1,7 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  # crewai 1.14.7 includes two new packages, crewai-core and crewai-cli.
-  # ref: https://github.com/conda-forge/crewai-suite-feedstock/pull/4
-  crewai-suite:
-    - crewai-core
-    - crewai-cli
