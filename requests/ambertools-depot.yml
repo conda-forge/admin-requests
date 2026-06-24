@@ -1,4 +1,4 @@
 action: depot
 feedstocks:
-  - ambertools
+- ambertools
 revoke: false
