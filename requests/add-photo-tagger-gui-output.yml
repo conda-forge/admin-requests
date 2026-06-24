@@ -1,6 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  # New optional GUI metapackage output added to the photo-tagger feedstock.
-  # See https://github.com/conda-forge/photo-tagger-feedstock/pull/3
-  photo-tagger:
-    - photo-tagger-gui
