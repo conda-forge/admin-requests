@@ -9,7 +9,7 @@ dependencies:
   - pygithub
   - pydantic
   - cirun
-  - conda-smithy >=3.30.1
+  - conda-smithy >=2026
   - conda-forge-metadata >=0.9.1
   - ruamel.yaml
   - conda-build >=25.3.1
