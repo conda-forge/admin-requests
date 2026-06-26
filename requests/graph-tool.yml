@@ -1,4 +1,4 @@
 action: blacksmith
 feedstocks:
-  - graph-tool
+- graph-tool
 revoke: false
