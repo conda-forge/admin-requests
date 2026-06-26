@@ -1,0 +1,4 @@
+action: blacksmith
+feedstocks:
+- ambertools
+revoke: false
