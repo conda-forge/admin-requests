@@ -85,30 +85,10 @@ Available opt-in resources:
 ### Larger runners for Github Actions
 
 - We have partnered with different providers for [self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/).
-- `action` key: `namespace` ([namespace.so](https://namespace.so)) or `blacksmith` ([blacksmith.sh](https://blacksmith.sh))
+- `action` key: `namespace` ([namespace.so](https://namespace.so)), `blacksmith` ([blacksmith.sh](https://blacksmith.sh)), or `depot` ([depot.dev](https://depot.dev))
 - Example `examples/example-gha-self-hosted.yml`
 
-Github Actions labels for `conda_build_config.yaml`:
-
-| `github_actions_labels` value              | Platform        | CPUs    | RAM   | Storage |
-| :----------------------------------------- | :-------------: | :-----: | :---: | :-----: |
-| `namespace-profile-8cpu-on-linux-64`       | `linux-64`      | 8       | 32 GB | 160 GB  |
-| `namespace-profile-16cpu-on-linux-64`      | `linux-64`      | 16      | 64 GB | 288 GB  |
-| `namespace-profile-8cpu-on-linux-aarch64`  | `linux-aarch64` | 8       | 32 GB | 160 GB  |
-| `namespace-profile-16cpu-on-linux-aarch64` | `linux-aarch64` | 16      | 64 GB | 288 GB  |
-| `namespace-profile-6cpu-on-osx-arm64`      | `osx-arm64`     | 6       | 14 GB | 104 GB  |
-| `namespace-profile-12cpu-on-osx-arm64`     | `osx-arm64`     | 12      | 28 GB | 160 GB  |
-| `namespace-profile-8cpu-on-win-64`         | `win-64`        | 8       | 32 GB | 160 GB  |
-| `namespace-profile-16cpu-on-win-64`        | `win-64`        | 16      | 64 GB | 288 GB  |
-| | | | | |
-| `blacksmith-8vcpu-ubuntu-2404`             | `linux-64`      | 8       | 32 GB | 160 GB  |
-| `blacksmith-16vcpu-ubuntu-2404`            | `linux-64`      | 16      | 64 GB | 750 GB  |
-| `blacksmith-8vcpu-ubuntu-2404-arm`         | `linux-aarch64` | 8       | 24 GB | 160 GB  |
-| `blacksmith-16vcpu-ubuntu-2404-arm`        | `linux-aarch64` | 16      | 48 GB | 750 GB  |
-| `blacksmith-6vcpu-macos-latest`            | `osx-arm64`     | 6       | 24 GB | 150 GB  |
-| `blacksmith-12vcpu-macos-latest`           | `osx-arm64`     | 12      | 48 GB | 250 GB  |
-| `blacksmith-8vcpu-windows-2025`            | `win-64`        | 8       | 28 GB | 130 GB  |
-| `blacksmith-16vcpu-windows-2025`           | `win-64`        | 16      | 56 GB | 130 GB  |
+Github Actions labels for `conda_build_config.yaml` are listed in [Reference> Build runners](https://conda-forge.org/docs/reference/runners/).
 
 > Other providers may be available via [cirun.io](https://cirun.io) (`action: cirun`). Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details. See `examples/example-cirun.yml`.
 

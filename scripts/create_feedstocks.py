@@ -467,6 +467,7 @@ if __name__ == "__main__":
                         "--without-cirrus-runners",
                         "--without-namespace",
                         "--without-blacksmith",
+                        "--without-depot",
                         "--without-webservice",
                         "--feedstock_directory",
                         feedstock_dir,
