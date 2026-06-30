@@ -1,0 +1,4 @@
+action: namespace
+feedstocks:
+- graph-tool
+revoke: false
