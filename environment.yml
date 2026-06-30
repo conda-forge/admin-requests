@@ -4,7 +4,7 @@ channels:
   - nodefaults
 dependencies:
   - anaconda-client
-  - python =3.11
+  - python =3.12
   - requests
   - pygithub
   - pydantic
