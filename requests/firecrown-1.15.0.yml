@@ -1,0 +1,19 @@
+action: broken
+
+packages:
+  - linux-64/firecrown-1.15.0-py311h38be061_0.conda
+  - linux-64/firecrown-1.15.0-py312h7900ff3_0.conda
+  - linux-64/firecrown-1.15.0-py313h78bf25f_0.conda
+  - linux-64/firecrown-1.15.0-py314hdafbbf9_0.conda
+  - linux-aarch64/firecrown-1.15.0-py311hec3470c_0.conda
+  - linux-aarch64/firecrown-1.15.0-py312h996f985_0.conda
+  - linux-aarch64/firecrown-1.15.0-py313hd81a959_0.conda
+  - linux-aarch64/firecrown-1.15.0-py314h28a4750_0.conda
+  - osx-64/firecrown-1.15.0-py311h6eed73b_0.conda
+  - osx-64/firecrown-1.15.0-py312hb401068_0.conda
+  - osx-64/firecrown-1.15.0-py313habf4b1d_0.conda
+  - osx-64/firecrown-1.15.0-py314hee6578b_0.conda
+  - osx-arm64/firecrown-1.15.0-py311h267d04e_0.conda
+  - osx-arm64/firecrown-1.15.0-py312h81bd7bf_0.conda
+  - osx-arm64/firecrown-1.15.0-py313h8f79df9_0.conda
+  - osx-arm64/firecrown-1.15.0-py314h4dc9dd8_0.conda
