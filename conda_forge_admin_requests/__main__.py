@@ -33,6 +33,14 @@ def check():
             "`.yml` or `.yaml`."
         )
 
+    if any(
+        not fname.startswith("examples/example-") for fname in glob.glob("examples/*")
+    ):
+        assert False, (
+            "Found non-example files in the `examples` directory. Please "
+            "make sure you put your requests in the `requests` directory."
+        )
+
     filenames = _get_task_files()
 
     for filename in filenames:
