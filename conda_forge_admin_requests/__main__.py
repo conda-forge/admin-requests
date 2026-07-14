@@ -92,12 +92,11 @@ def run():
                     ]
                 )
             else:
-                # How old is this failing file? Raise issue after 6h
+                # How old is this failing file? Raise issue after 6h of last modification
                 added_at = subprocess.check_output(
                     [
                         "git",
                         "log",
-                        "--diff-filter=A",
                         "-1",
                         "--format=%aI",
                         "--",
