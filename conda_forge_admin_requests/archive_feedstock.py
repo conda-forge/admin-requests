@@ -56,7 +56,7 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
 
     if pkgs_to_do_again:
         request = copy.deepcopy(request)
-        request["packages"] = pkgs_to_do_again
+        request["feedstocks"] = pkgs_to_do_again
         return request
     else:
         return None
