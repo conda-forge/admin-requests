@@ -84,7 +84,7 @@ jobs:
           git push
 
       - name: raise issue if needed
-        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP && ! env.FAILING_FILENAMES_TO_RAISE
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP && env.FAILING_FILENAMES_TO_RAISE
         shell: bash -el {0}
         run: |
           RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
