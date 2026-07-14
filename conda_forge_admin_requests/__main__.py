@@ -107,6 +107,7 @@ def run():
                 ).strip()
                 if added_at:
                     added_at_dt = datetime.fromisoformat(added_at)
+                    # Keep this magic number in sync with the issue message in GHA's main.yml
                     if datetime.now(tz=timezone.utc) - added_at_dt > timedelta(hours=6):
                         failing_filenames_to_raise.append(filename)
                 else:
