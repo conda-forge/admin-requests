@@ -40,6 +40,7 @@ def process_repo(repo, task):
 
 
 def run(request):
+    check(request)
     feedstocks = request["feedstocks"]
     task = request["action"]
 
@@ -52,9 +53,11 @@ def run(request):
             pkgs_to_do_again.append(feedstock)
 
     if pkgs_to_do_again:
-        request["feedstocks"] = pkgs_to_do_again
-
-    subprocess.check_call(["git", "show"])
+        request = copy.deepcopy(request)
+        request["packages"] = pkgs_to_do_again
+        return request
+    else:
+        return None
 
 
 def check(request):

@@ -133,7 +133,8 @@ def check(request):
                 )
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
+    check(request)
     action = request["action"]
     assert action == "add_feedstock_output"
 
@@ -159,6 +160,7 @@ def run(request):
             items_to_keep[feedstock] = pkgs_to_keep
 
     if items_to_keep:
+        request = copy.deepcopy(request)
         request["feedstock_to_output_mapping"] = items_to_keep
         return request
     else:
