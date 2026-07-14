@@ -82,3 +82,19 @@ jobs:
         run: |
           git pull
           git push
+
+      - name: raise issue if needed
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP && ! env.FAILING_FILENAMES_TO_RAISE
+        shell: bash -el {0}
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          for fn in $FAILING_FILENAMES_TO_RAISE; do  # env var maybe exported by __main__.py
+            title="Request $fn is failing"
+            # Only create issue if there are no open ones with the same title
+            if [[ "$(gh issue list --state open --search "\"$title\" in:title" --json number --jq 'length')" == "0" ]]; then
+              gh issue create \
+                --title "$title" \
+                --body "This request has been failing for more than 6 hours, please inspect logs at $RUN_URL" \
+                --label ci-error
+            fi
+          done
