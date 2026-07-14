@@ -2,6 +2,7 @@ import glob
 import os
 import subprocess
 import sys
+from datetime import datetime, timedelta, timezone
 
 import yaml
 
@@ -61,6 +62,7 @@ def check():
 def run():
     filenames = _get_task_files()
 
+    failing_filenames_to_raise = []
     for filename in filenames:
         with open(filename) as f:
             request = yaml.safe_load(f)
@@ -80,6 +82,7 @@ def run():
                 yaml.dump(try_again, fp)
             subprocess.check_call(["git", "add", filename])
             if subprocess.call(["git", "diff", "--cached", "--quiet"]) != 0:
+                # Only commit if there are changes
                 subprocess.check_call(
                     [
                         "git",
@@ -88,10 +91,34 @@ def run():
                         f"Keeping {filename} after failed {action}",
                     ]
                 )
+            else:
+                # How old is this failing file? Raise issue after 6h
+                added_at = datetime.fromisoformat(
+                    subprocess.check_output(
+                        [
+                            "git",
+                            "log",
+                            "--diff-filter=A",
+                            "-1",
+                            "--format=%aI",
+                            "--",
+                            filename,
+                        ],
+                        text=True,
+                    ).strip()
+                )
+                # Keep the timedelta value aligned with the issue message in `main.yml`
+                if datetime.now(tz=timezone.utc) - added_at > timedelta(hours=6):
+                    failing_filenames_to_raise.append(filename)
         else:
             subprocess.check_call(["git", "rm", filename])
             subprocess.check_call(
                 ["git", "commit", "-m", f"Remove {filename} after {action}"]
+            )
+    if failing_filenames_to_raise:
+        with open(os.environ["GITHUB_ENV"], "a") as f:
+            f.write(
+                f"FAILING_FILENAMES_TO_RAISE={' '.join(failing_filenames_to_raise)}\n"
             )
 
 
