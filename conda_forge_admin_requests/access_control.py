@@ -4,6 +4,8 @@ This script will process the `travis` and `cirun` requests.
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
 
+from __future__ import annotations
+
 import copy
 import os
 import subprocess
@@ -11,7 +13,6 @@ import tempfile
 import textwrap
 import time
 from functools import lru_cache
-from typing import Any, Dict, List
 from unittest import mock
 
 from conda_smithy.github import Github
@@ -41,7 +42,7 @@ VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
 def send_pr_cirun(
     feedstock: str,
     feedstock_dir: str,
-    resources: List[str],
+    resources: list[str],
     pull_request: bool,
 ) -> None:
     """
@@ -50,7 +51,7 @@ def send_pr_cirun(
     Parameters:
     feedstock (str): The name of the feedstock.
     feedstock_dir (str): Path to a git checkout of the feedstock.
-    resources (List[str]): The names of the resources for access control.
+    resources (list[str]): The names of the resources for access control.
     pull_request (bool): Whether to allow Pull Requests.
     """
 
@@ -123,7 +124,7 @@ def send_pr_cirun(
 def _process_request_for_feedstock(
     feedstock: str,
     action: str,
-    resources: List[str] = None,
+    resources: list[str] = None,
     revoke: bool = False,
     pull_request: bool = False,
     send_pr: bool = True,
@@ -133,7 +134,7 @@ def _process_request_for_feedstock(
 
     Parameters:
     feedstock (str): The name of the feedstock.
-    resources (List[str]): The names of the resources for access control.
+    resources (list[str]): The names of the resources for access control.
     revoke (bool): Whether to remove the access control.
     pull_request (bool): Whether to allow PRs for resource.
     """
@@ -284,7 +285,7 @@ def check_if_repo_exists(feedstock_name: str) -> bool:
     return True
 
 
-def check(request: Dict[str, Any]) -> None:
+def check(request: dict[str, str | list[str]]) -> None:
     """Check if the access control requests in both 'grant_access'
     and 'revoke_access' directories are valid."""
     print("Checking access control request")
@@ -308,7 +309,7 @@ def check(request: Dict[str, Any]) -> None:
         assert not request.get("revoke", False)
 
 
-def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
+def run(request: dict[str, object]) -> dict[str, object] | None:
     """
     The main function to process the access control requests. It performs the following steps:
     1. Check if the requests are valid.

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 import os
 import subprocess
@@ -155,7 +157,7 @@ def reset_feedstock_token(
         )
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
     check(request)
     write_secrets_to_files()
 

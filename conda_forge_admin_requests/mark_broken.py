@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 import os
 import subprocess
@@ -78,6 +80,7 @@ def mark_broken_pkg(pkg, action):
         return True
 
 
+def run(request: dict[str, object]) -> dict[str, object] | None:
     check(request)
 
     if "PROD_BINSTAR_TOKEN" not in os.environ:
