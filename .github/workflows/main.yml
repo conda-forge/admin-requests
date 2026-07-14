@@ -25,6 +25,7 @@ jobs:
         if: steps.conversion_lock.outcome == 'success'
         with:
           token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          fetch-depth: 0  # needed for accurate creation timestamps while checking failing requests
 
       - name: fast finish
         if: ${{ steps.conversion_lock.outcome == 'success' }}
@@ -82,3 +83,21 @@ jobs:
         run: |
           git pull
           git push
+
+      - name: raise issue if needed
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP && env.FAILING_FILENAMES_TO_RAISE
+        shell: bash -el {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          for fn in $FAILING_FILENAMES_TO_RAISE; do  # env var maybe exported by __main__.py
+            title="Request $fn is failing"
+            # Only create issue if there are no open ones with the same title
+            if [[ "$(gh issue list --state open --search "\"$title\" in:title" --json number --jq 'length')" == "0" ]]; then
+              gh issue create \
+                --title "$title" \
+                --body "This request has been failing for more than 6 hours, please inspect logs at $RUN_URL" \
+                --label ci-error
+            fi
+          done
