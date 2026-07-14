@@ -25,6 +25,7 @@ jobs:
         if: steps.conversion_lock.outcome == 'success'
         with:
           token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          fetch-depth: 0  # needed for accurate creation timestamps while checking failing requests
 
       - name: fast finish
         if: ${{ steps.conversion_lock.outcome == 'success' }}

@@ -93,23 +93,28 @@ def run():
                 )
             else:
                 # How old is this failing file? Raise issue after 6h
-                added_at = datetime.fromisoformat(
-                    subprocess.check_output(
-                        [
-                            "git",
-                            "log",
-                            "--diff-filter=A",
-                            "-1",
-                            "--format=%aI",
-                            "--",
-                            filename,
-                        ],
-                        text=True,
-                    ).strip()
-                )
-                # Keep the timedelta value aligned with the issue message in `main.yml`
-                if datetime.now(tz=timezone.utc) - added_at > timedelta(hours=6):
-                    failing_filenames_to_raise.append(filename)
+                added_at = subprocess.check_output(
+                    [
+                        "git",
+                        "log",
+                        "--diff-filter=A",
+                        "-1",
+                        "--format=%aI",
+                        "--",
+                        filename,
+                    ],
+                    text=True,
+                ).strip()
+                if added_at:
+                    added_at_dt = datetime.fromisoformat(added_at)
+                    if datetime.now(tz=timezone.utc) - added_at_dt > timedelta(hours=6):
+                        failing_filenames_to_raise.append(filename)
+                else:
+                    print(
+                        "::error::No timestamp information for",
+                        filename,
+                        file=sys.stderr,
+                    )
         else:
             subprocess.check_call(["git", "rm", filename])
             subprocess.check_call(
