@@ -48,12 +48,6 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
 
     pkgs_to_do_again = []
     for feedstock in feedstocks:
-        # TODO: Remove once debugged
-        if feedstock == "eslint-config-prettier":
-            print("Forcing error for debugging", flush=True)
-            pkgs_to_do_again.append(feedstock)
-            continue
-        # /TODO
         try:
             process_repo(f"{feedstock}-feedstock", task)
         except Exception as e:
