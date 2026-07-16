@@ -1,0 +1,5 @@
+action: archive
+feedstocks:
+  - ngspicesimserver-feedstock
+  - jupyterlab-mosaic-feedstock
+  - pyttoresque-feedstock
