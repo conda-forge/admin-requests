@@ -1,0 +1,4 @@
+linux-64/couchdb-3.2.2-h1822d9b_0.tar.bz2
+linux-64/couchdb-3.2.2-h55805fa_1.tar.bz2
+linux-64/couchdb-3.2.2-h0ba284d_2.tar.bz2
+osx-64/couchdb-3.2.2-hd545a06_2.tar.bz2
