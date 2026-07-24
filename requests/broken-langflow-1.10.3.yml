@@ -1,0 +1,9 @@
+action: broken
+packages:
+- noarch/langflow-1.10.3-pyhc5c1524_0.conda
+- noarch/langflow-1.10.3-pyhaf0af83_1.conda
+- noarch/langflow-base-1.10.3-pyh7de08d0_0.conda
+- noarch/langflow-base-1.10.3-pyhf1e8ddc_1.conda
+- noarch/lfx-1.10.3-pyh3edcccd_0.conda
+- noarch/lfx-1.10.3-pyh62f3024_1.conda
+- noarch/langflow-sdk-0.2.3-pyhc364b38_1.conda
