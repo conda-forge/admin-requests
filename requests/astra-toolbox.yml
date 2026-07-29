@@ -1,5 +1,5 @@
 action: broken
 packages:
 - win-64/astra-toolbox-2.5.0-py314h2cf69cb_0.conda
-- win-64/astra-toolbox-2.5.0-cudapy314hafe868c_100
-- win-64/astra-toolbox-2.5.0-cudapy314h5af1362_100
+- win-64/astra-toolbox-2.5.0-cudapy314hafe868c_100.conda
+- win-64/astra-toolbox-2.5.0-cudapy314h5af1362_100.conda
