@@ -1,0 +1,4 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  g2o:
+    - libg2o
