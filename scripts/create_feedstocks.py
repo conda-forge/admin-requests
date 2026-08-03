@@ -11,7 +11,7 @@ Such as:
 
 """
 
-from __future__ import annotations, print_function
+from __future__ import annotations
 
 import json
 import os.path
@@ -21,10 +21,10 @@ import sys
 import tempfile
 import time
 import traceback
+from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterator
 
 import github
 from conda_build.metadata import MetaData
@@ -227,17 +227,15 @@ def print_rate_limiting_info(gh, user):
     gh_api_reset_time = rate_limit.core.reset
     gh_api_reset_time -= datetime.now(timezone.utc)
 
-    print("")
+    print()
     print("GitHub API Rate Limit Info:")
     print("---------------------------")
     print("token: ", user)
     print(
-        "Currently remaining {remaining} out of {total}.".format(
-            remaining=gh_api_remaining, total=gh_api_total
-        )
+        f"Currently remaining {gh_api_remaining} out of {gh_api_total}."
     )
-    print("Will reset in {time}.".format(time=gh_api_reset_time))
-    print("")
+    print(f"Will reset in {gh_api_reset_time}.")
+    print()
     return gh_api_remaining
 
 
@@ -259,9 +257,7 @@ def sleep_until_reset(gh):
         for i in range(mins_to_sleep):
             time.sleep(60)
             print(
-                "slept for minute {curr} out of {tot}.".format(
-                    curr=i + 1, tot=mins_to_sleep
-                )
+                f"slept for minute {i + 1} out of {mins_to_sleep}."
             )
         return True
     else:
@@ -330,7 +326,7 @@ if __name__ == "__main__":
                 sys.exit(1)
 
             feedstock_dir = os.path.join(feedstocks_dir, name + "-feedstock")
-            print("Making feedstock for {}".format(name))
+            print(f"Making feedstock for {name}")
             try:
                 subprocess.check_call(
                     [
@@ -486,7 +482,7 @@ if __name__ == "__main__":
             # slow down so we make sure we are registered
             for i in range(1, 13):
                 time.sleep(10)
-                print("Waiting for registration: {i} s".format(i=i * 10))
+                print(f"Waiting for registration: {i * 10} s")
 
             # if we get here, now we make the feedstock token and add the staging token
             print("making the feedstock token and adding the staging binstar token")
@@ -712,7 +708,7 @@ if __name__ == "__main__":
                 stderr=subprocess.STDOUT,
             )
         else:
-            print("Would git commit, with the following message: \n   {}".format(msg))
+            print(f"Would git commit, with the following message: \n   {msg}")
 
     if gh:
         # Get our final rate limit info.
