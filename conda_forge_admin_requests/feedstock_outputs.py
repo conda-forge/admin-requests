@@ -104,8 +104,7 @@ def check(request):
     assert isinstance(request["feedstock_to_output_mapping"], dict), msg
 
     for feedstock, pkgs in request["feedstock_to_output_mapping"].items():
-        if feedstock.endswith("-feedstock"):
-            feedstock = feedstock[:-10]
+        feedstock = feedstock.removesuffix("-feedstock")
 
         r = requests.head(f"https://github.com/conda-forge/{feedstock}-feedstock")
         r.raise_for_status()
@@ -144,8 +143,7 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
     assert request.get("feedstock_to_output_mapping")
     items_to_keep = {}
     for feedstock, pkgs in request["feedstock_to_output_mapping"].items():
-        if feedstock.endswith("-feedstock"):
-            feedstock = feedstock[:-10]
+        feedstock = feedstock.removesuffix("-feedstock")
         pkgs_to_keep = []
         for pkg_name in pkgs:
             try:
