@@ -1,0 +1,9 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  earthlens:
+    - earthlens-core
+    - earthlens-atmosphere
+    - earthlens-ocean
+    - earthlens-imagery
+    - earthlens-land
+    - earthlens-hazards
