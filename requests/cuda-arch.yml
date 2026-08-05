@@ -1,0 +1,22 @@
+action: broken
+packages:
+- noarch/cuda-arch-5.0-h298fea6_0.conda
+- noarch/cuda-arch-5.2-hadaf22c_0.conda
+- noarch/cuda-arch-5.3-hf14485d_0.conda
+- noarch/cuda-arch-6.0-h9992a59_0.conda
+- noarch/cuda-arch-6.1-hbb6c628_0.conda
+- noarch/cuda-arch-6.2-h09e4f6d_0.conda
+- noarch/cuda-arch-7.0-hcdc4724_0.conda
+- noarch/cuda-arch-7.2-h4872900_0.conda
+- noarch/cuda-arch-7.5-ha81fa10_0.conda
+- noarch/cuda-arch-8.0-h8a184a3_0.conda
+- noarch/cuda-arch-8.6-h28f3438_0.conda
+- noarch/cuda-arch-8.7-hafa5d8b_0.conda
+- noarch/cuda-arch-8.9-h737a35b_0.conda
+- noarch/cuda-arch-9.0-h66387ac_0.conda
+- noarch/cuda-arch-10.0-ha25fd66_0.conda
+- noarch/cuda-arch-10.1-he9e726a_0.conda
+- noarch/cuda-arch-10.3-h9c5c1b5_0.conda
+- noarch/cuda-arch-11.0-h77e8c25_0.conda
+- noarch/cuda-arch-12.0-hd97341d_0.conda
+- noarch/cuda-arch-12.1-h52f2e6e_0.conda
