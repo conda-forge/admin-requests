@@ -102,7 +102,12 @@ def list_recipes() -> Iterator[tuple[str, str]]:
         # to be helpful.
         # .DS_Store is created by macOS to store custom attributes of its
         # containing folder.
-        if recipe_dir.name in ["example", "example-v1", ".DS_Store"]:
+        if recipe_dir.name in [
+            "example",
+            "example-v0-deprecated",
+            "example-v1",
+            ".DS_Store",
+        ]:
             continue
 
         # Try to look for a conda-build recipe.
