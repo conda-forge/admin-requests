@@ -36,10 +36,15 @@ for which the label `broken` will be removed. See `examples/example-not-broken.y
 
 ## Reset your Feedstock Token
 
-If you want to reset your feedstock token to fix issues with uploads, send a Pull Request
+If you want to reset your feedstock token to fix authentication issues with uploads, send a Pull Request
 adding a new `.yml` file in `requests` folder with a list of the feedstock names
 without `-feedstock`. See `examples/example-token-reset.yml` for an example.
 (e.g., for `python-feedstock`, the feedstocks list must contain `python`).
+
+Note: a token reset only re-authenticates uploads. It does not register which
+outputs a feedstock is allowed to produce. If your build fails with an
+"output not allowed for your feedstock" validation error, a token reset will
+not fix it. See [Add a package output to a feedstock](#add-a-package-output-to-a-feedstock) instead.
 
 
 ## Archive or unarchive a feedstock
@@ -104,10 +109,18 @@ For provenance and transparency, the PR description must include a link to the o
 ## Add a package output to a feedstock
 
 By default, `conda-forge` feedstocks cannot push packages to our channel that another feedstock makes. If you encountered an error
-when building your package indicating that the given package was not allowed for your feedstock (e.g., you moved a package
-build from one feedstock to another), you should request the output be added to the new feedstock via this repository. An example request
-is located in [examples/example-add-feedstock-output.yml](examples/example-add-feedstock-output.yml). You can add both glob patterns
-and package names.
+when building your package indicating that the given package was not allowed for your feedstock, you should request the output be
+added to the feedstock via this repository. This commonly happens when:
+
+- you moved a package build from one feedstock to another, or
+- the feedstock has not been built and uploaded in a long time, so its output
+  was never registered. Feedstocks created before output registration existed do
+  not have their outputs registered until their next successful upload, and a
+  build from a pull request will fail output validation until the mapping is added here.
+
+This is not fixed by a feedstock token reset, which only re-authenticates uploads.
+An example request is located in [examples/example-add-feedstock-output.yml](examples/example-add-feedstock-output.yml).
+You can add both glob patterns and package names.
 
 While glob patterns are support, they should be used with care as they
 essentially "squat" on all future matched. If you are requesting a specific

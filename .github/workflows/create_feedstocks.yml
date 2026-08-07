@@ -58,7 +58,7 @@ jobs:
           # Avoid wasting CI time if there are no recipes ready for conversion
           # Checks for both `meta.yaml` and `recipe.yaml` files in the recipes directory
           # Excludes the example recipe(s)
-          if [ "$(ls recipes/*/meta.yaml recipes/*/recipe.yaml 2>/dev/null | grep -vE 'recipes/example/meta.yaml|recipes/example/recipe.yaml' --count)" -eq 0 ]; then
+          if [ "$(ls recipes/*/meta.yaml recipes/*/recipe.yaml 2>/dev/null | grep -vE '^recipes/(example|example-v0-deprecated|example-v1)/(meta|recipe)\.yaml$' --count)" -eq 0 ]; then
             echo "No new recipes found, exiting..."
             exit 0
           fi
