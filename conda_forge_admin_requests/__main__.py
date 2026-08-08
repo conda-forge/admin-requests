@@ -56,7 +56,7 @@ def check():
         if action not in actions:
             assert False, f"Unknown action: {action}"
 
-        getattr(actions[action], "check")(request)
+        actions[action].check(request)
 
 
 def run():
@@ -75,7 +75,7 @@ def run():
         if action not in actions:
             assert False, f"Unknown action: {action}"
 
-        try_again = getattr(actions[action], "run")(request)
+        try_again = actions[action].run(request)
 
         if try_again:
             with open(filename, "w") as fp:
