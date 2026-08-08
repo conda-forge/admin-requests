@@ -1,0 +1,9 @@
+# Archival requested in:
+#   conda-forge/amzn-sagemaker-ray-feedstock#2
+#   conda-forge/amzn-sagemaker-ray-jupyterlab-extension-feedstock#1
+# Both packages renamed for AWS OSS naming compliance; superseded by
+# toolkit-for-ray-on-sagemaker-ai and extension-ray-jupyterlab-sagemaker-ai.
+action: archive
+feedstocks:
+  - amzn-sagemaker-ray
+  - amzn-sagemaker-ray-jupyterlab-extension
