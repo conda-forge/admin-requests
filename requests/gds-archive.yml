@@ -1,0 +1,8 @@
+action: archive
+feedstocks:
+  - gds-dmt
+  - gds-gui
+  - gds-lowlatency-tools
+  - gds-monitor-apps
+  - gds-swig
+  - igwn-lldd-lsmp
