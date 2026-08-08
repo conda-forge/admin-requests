@@ -1,0 +1,4 @@
+action: broken
+packages:
+  - noarch/bg_mpl_stylesheets-0.3.0-pyhd8ed1ab_1.conda
+  - noarch/bg_mpl_stylesheets-0.3.0-pyhd8ed1ab_0.conda
