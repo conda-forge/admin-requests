@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 import os
 import subprocess
@@ -59,16 +61,8 @@ def reset_feedstock_token(
     unique_token_per_provider=False,
     existing_tokens_time_to_expiration=None,
 ):
-    from conda_smithy.ci_register import travis_get_repo_info
-
-    skips = skips or []
-
-    if "travis" not in skips:
-        # test to make sure travis ci api is working
-        # if not skip migration
-        repo_info = travis_get_repo_info("conda-forge", name + "-feedstock")
-        if not repo_info:
-            raise RuntimeError("Travis-CI API token is not working!")
+    # always skip travis
+    skips = (skips or []) + ["travis"]
 
     owner_info = ["--organization", "conda-forge"]
     token_repo = (
@@ -163,7 +157,7 @@ def reset_feedstock_token(
         )
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
     check(request)
     write_secrets_to_files()
 

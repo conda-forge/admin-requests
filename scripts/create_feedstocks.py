@@ -102,7 +102,12 @@ def list_recipes() -> Iterator[tuple[str, str]]:
         # to be helpful.
         # .DS_Store is created by macOS to store custom attributes of its
         # containing folder.
-        if recipe_dir.name in ["example", "example-v1", ".DS_Store"]:
+        if recipe_dir.name in [
+            "example",
+            "example-v0-deprecated",
+            "example-v1",
+            ".DS_Store",
+        ]:
             continue
 
         # Try to look for a conda-build recipe.
@@ -467,6 +472,7 @@ if __name__ == "__main__":
                         "--without-cirrus-runners",
                         "--without-namespace",
                         "--without-blacksmith",
+                        "--without-depot",
                         "--without-webservice",
                         "--feedstock_directory",
                         feedstock_dir,
@@ -690,7 +696,6 @@ if __name__ == "__main__":
         msg = "Removed recipe{s} ({}) after converting into feedstock{s}.".format(
             ", ".join(removed_recipes), s=("s" if len(removed_recipes) > 1 else "")
         )
-        msg += " [ci skip]"
         if is_merged_pr:
             # Capture the output, as it may contain the GH_TOKEN.
             out = subprocess.check_output(

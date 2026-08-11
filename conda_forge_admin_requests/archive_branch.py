@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 
 import requests
@@ -138,7 +140,7 @@ def _unarchive_branch(owner, repo, branch, headers):
     print(f"{repo}: restored branch '{branch}' from tag '{branch}'", flush=True)
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
     check(request)
 
     task = request["action"]

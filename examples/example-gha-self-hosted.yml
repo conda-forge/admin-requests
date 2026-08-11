@@ -1,4 +1,4 @@
-action: pick-one-of #: blacksmith, namespace
+action: pick-one-of #: blacksmith, namespace, depot
 feedstocks:
   # list of feedstock names (sans `-feedstock` suffix)
   - pytorch-cpu

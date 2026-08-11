@@ -20,11 +20,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         # outcome is evaluated before continue-on-error above
         if: steps.conversion_lock.outcome == 'success'
         with:
           token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          fetch-depth: 0  # needed for accurate creation timestamps while checking failing requests
 
       - name: fast finish
         if: ${{ steps.conversion_lock.outcome == 'success' }}
@@ -50,9 +51,9 @@ jobs:
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         id: generate_token
-        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          client-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
@@ -82,3 +83,21 @@ jobs:
         run: |
           git pull
           git push
+
+      - name: raise issue if needed
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP && env.FAILING_FILENAMES_TO_RAISE
+        shell: bash -el {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          for fn in $FAILING_FILENAMES_TO_RAISE; do  # env var maybe exported by __main__.py
+            title="Request $fn is failing"
+            # Only create issue if there are no open ones with the same title
+            if [[ "$(gh issue list --state open --search "\"$title\" in:title" --json number --jq 'length')" == "0" ]]; then
+              gh issue create \
+                --title "$title" \
+                --body "This request has been failing for more than 6 hours, please inspect logs at $RUN_URL" \
+                --label ci-error
+            fi
+          done

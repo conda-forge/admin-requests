@@ -1,4 +1,6 @@
-import subprocess
+from __future__ import annotations
+
+import copy
 
 import requests
 
@@ -39,7 +41,8 @@ def process_repo(repo, task):
     print(f"feedstock {repo} was {target_status}", flush=True)
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
+    check(request)
     feedstocks = request["feedstocks"]
     task = request["action"]
 
@@ -52,9 +55,11 @@ def run(request):
             pkgs_to_do_again.append(feedstock)
 
     if pkgs_to_do_again:
+        request = copy.deepcopy(request)
         request["feedstocks"] = pkgs_to_do_again
-
-    subprocess.check_call(["git", "show"])
+        return request
+    else:
+        return None
 
 
 def check(request):

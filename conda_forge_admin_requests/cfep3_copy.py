@@ -2,11 +2,12 @@
 Copy approved artifacts from an external channel to production conda-forge.
 """
 
+from __future__ import annotations
+
 import copy
 import hmac
 import os
 import subprocess
-from typing import Any, Dict
 
 import requests
 
@@ -44,7 +45,7 @@ def check_one(package: str, sha256: str):
         )
 
 
-def check(request: Dict[str, Any]) -> None:
+def check(request: dict[str, object]) -> None:
     packages = request.get("anaconda_org_packages")
     if not packages or not isinstance(packages[0], dict):
         raise ValueError(
@@ -60,7 +61,7 @@ def check(request: Dict[str, Any]) -> None:
         check_one(item["package"], item["sha256"])
 
 
-def run(request: Dict[str, Any]) -> Dict[str, Any] | None:
+def run(request: dict[str, object]) -> dict[str, object] | None:
     if "PROD_BINSTAR_TOKEN" not in os.environ:
         return copy.deepcopy(request)
 
