@@ -3,5 +3,3 @@ feedstock_to_output_mapping:
   groundingdino-py:
     - groundingdino-py
     - groundingdino-py-cuda
-    - groundingdino-py-rocm
-    - groundingdino-py-vulkan
