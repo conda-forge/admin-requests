@@ -1,4 +1,0 @@
-action: not_broken
-packages:
-- win-64/rattler-build-0.74.0-he94b42d_0.conda
-- win-arm64/rattler-build-0.74.0-hbd70cef_0.conda
