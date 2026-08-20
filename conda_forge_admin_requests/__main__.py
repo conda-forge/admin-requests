@@ -24,10 +24,7 @@ def check():
             "Please put YAML-formatted requests in the `requests` directory."
         )
 
-    if not all(
-        fname.endswith(".yaml") or fname.endswith(".yml")
-        for fname in glob.glob("requests/*")
-    ):
+    if not all(fname.endswith((".yaml", ".yml")) for fname in glob.glob("requests/*")):
         assert False, (
             "Found non-YAML files in the `requests` directory. Please "
             "use only YAML-formatted requests with filename extensions "

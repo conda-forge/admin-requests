@@ -109,7 +109,7 @@ def check(request):
         r = requests.head(f"https://github.com/conda-forge/{feedstock}-feedstock")
         r.raise_for_status()
         if not isinstance(pkgs, list):
-            raise ValueError(dedent(f"""\
+            raise TypeError(dedent(f"""\
                     Value for '{feedstock}' entry must be a list of str (output name, or a glob),
                     but you provided a string: {pkgs!r}; change it to either of
                     ```
@@ -125,7 +125,7 @@ def check(request):
                     """))
         for pkg_name in pkgs:
             if not isinstance(pkg_name, str):
-                raise ValueError(
+                raise TypeError(
                     f"Value for '{feedstock}' entry must be a list of str (output name, or a glob), "
                     f"but you provided {pkg_name!r} from {pkgs!r}."
                 )
@@ -151,7 +151,7 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
                     _add_feedstock_output_glob(feedstock, pkg_name)
                 else:
                     _add_feedstock_output(feedstock, pkg_name)
-            except Exception as e:
+            except Exception as e:  # noqa
                 print(
                     f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}",
                     flush=True,
