@@ -1,0 +1,3 @@
+action: archive
+feedstocks:
+  - m2w64-muparser
