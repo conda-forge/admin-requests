@@ -1,5 +1,4 @@
 action: add_feedstock_output
 feedstock_to_output_mapping:
   petsird:
-    - libpetsird_linux-64
-    - libpetsird_osx-arm64
+    - libpetsird
