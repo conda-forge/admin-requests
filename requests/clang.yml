@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  clangdev:
+    - clang_impl_linux-riscv64
+    - clangxx_impl_linux-riscv64
