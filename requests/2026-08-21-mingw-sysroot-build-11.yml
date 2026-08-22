@@ -9,3 +9,4 @@ packages:
 - noarch/mingw-w64-ucrt-x86_64-winpthreads-git-12.0.0.r4.gg4f2fc60ca-h85d9b49_11.conda
 - noarch/mingw-w64-ucrt-x86_64-winpthreads-git-12.0.0.r4.gg4f2fc60ca-h8858e54_11.conda
 - win-64/libwinpthread-12.0.0.r4.gg4f2fc60ca-h11686cb_11.conda
+- win-64/winpthreads-devel-12.0.0.r4.gg4f2fc60ca-hf969427_11.conda
