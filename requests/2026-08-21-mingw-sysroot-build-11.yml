@@ -1,0 +1,12 @@
+action: broken
+packages:
+- noarch/m2w64-sysroot_win-64-12.0.0.r4.gg4f2fc60ca-h2e8b153_11.conda
+- noarch/m2w64-sysroot_win-64-12.0.0.r4.gg4f2fc60ca-h42d2897_11.conda
+- noarch/mingw-w64-ucrt-x86_64-crt-git-12.0.0.r4.gg4f2fc60ca-h85d9b49_11.conda
+- noarch/mingw-w64-ucrt-x86_64-crt-git-12.0.0.r4.gg4f2fc60ca-h8858e54_11.conda
+- noarch/mingw-w64-ucrt-x86_64-headers-git-12.0.0.r4.gg4f2fc60ca-h98f672e_11.conda
+- noarch/mingw-w64-ucrt-x86_64-headers-git-12.0.0.r4.gg4f2fc60ca-hc364b38_11.conda
+- noarch/mingw-w64-ucrt-x86_64-winpthreads-git-12.0.0.r4.gg4f2fc60ca-h85d9b49_11.conda
+- noarch/mingw-w64-ucrt-x86_64-winpthreads-git-12.0.0.r4.gg4f2fc60ca-h8858e54_11.conda
+- win-64/libwinpthread-12.0.0.r4.gg4f2fc60ca-h11686cb_11.conda
+- win-64/winpthreads-devel-12.0.0.r4.gg4f2fc60ca-hf969427_11.conda
