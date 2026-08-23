@@ -1,0 +1,8 @@
+action: archive
+feedstocks:
+  - apache-airflow-providers-apache-sqoop
+  - apache-airflow-providers-daskexecutor
+  - apache-airflow-providers-jira
+  - apache-airflow-providers-plexus
+  - apache-airflow-providers-qubole
+  - apache-airflow-providers-tabular
