@@ -21,4 +21,3 @@ feedstock_to_output_mapping:
     - mesa-venus
     - mesa-virgl
     - mesa-zink
-    - mesa-kosmickrisp
