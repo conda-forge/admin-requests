@@ -21,8 +21,4 @@ feedstock_to_output_mapping:
     - mesa-venus
     - mesa-virgl
     - mesa-zink
-    # osx-arm64 only (Vulkan on Metal). The osx builds of the PR failed to
-    # solve before reaching output validation, so this name does not appear in
-    # the logs, but it is an output of the same recipe and would fail the same
-    # way.
     - mesa-kosmickrisp
