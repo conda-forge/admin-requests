@@ -1,0 +1,23 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # mesalib now splits each hardware driver into its own output, see
+  # https://github.com/conda-forge/mesalib-feedstock/pull/150
+  # The names below are the outputs reported as `false` (not allowed) by the
+  # output validation step of that PR's CI.
+  mesalib:
+    - mesa-anv
+    - mesa-crocus
+    - mesa-d3d12
+    - mesa-dzn
+    - mesa-hasvk
+    - mesa-i915
+    - mesa-intel
+    - mesa-iris
+    - mesa-libgallium
+    - mesa-nouveau
+    - mesa-r300
+    - mesa-r600
+    - mesa-svga
+    - mesa-venus
+    - mesa-virgl
+    - mesa-zink
