@@ -1,0 +1,14 @@
+action: broken
+packages:
+- win-64/libgcc-14.4.0-hf074559_3.conda
+- win-64/libgcc-15.3.0-h045dfae_3.conda
+- win-64/libgcc-16.1.0-h110b43a_3.conda
+- win-64/libgomp-14.4.0-h8ee18e1_3.conda
+- win-64/libgomp-15.3.0-h8ee18e1_3.conda
+- win-64/libgomp-16.1.0-h8ee18e1_3.conda
+- win-64/libstdcxx-14.4.0-hae5796f_3.conda
+- win-64/libstdcxx-15.3.0-hae5796f_3.conda
+- win-64/libstdcxx-16.1.0-hae5796f_3.conda
+- win-64/libgfortran5-14.4.0-h91fa7be_3.conda
+- win-64/libgfortran5-15.3.0-hb70172a_3.conda
+- win-64/libgfortran5-16.1.0-h94075d5_3.conda
