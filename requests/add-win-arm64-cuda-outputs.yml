@@ -1,0 +1,14 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  cuda-cccl:
+    - "cuda-cccl_*"
+  cuda-cudart:
+    - "cuda-cudart_*"
+    - "cuda-cudart-dev_*"
+    - "cuda-cudart-static_*"
+  cuda-nvcc:
+    - "cuda-nvcc_*"
+  cuda-nvcc-impl:
+    - "cuda-crt-dev_*"
+    - "cuda-nvcc-dev_*"
+    - "cuda-nvvm-dev_*"
