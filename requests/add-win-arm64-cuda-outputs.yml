@@ -1,0 +1,14 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  cuda-cccl:
+    - "cuda-cccl_win-arm64"
+  cuda-cudart:
+    - "cuda-cudart_win-arm64"
+    - "cuda-cudart-dev_win-arm64"
+    - "cuda-cudart-static_win-arm64"
+  cuda-nvcc:
+    - "cuda-nvcc_win-arm64"
+  cuda-nvcc-impl:
+    - "cuda-crt-dev_win-arm64"
+    - "cuda-nvcc-dev_win-arm64"
+    - "cuda-nvvm-dev_win-arm64"
