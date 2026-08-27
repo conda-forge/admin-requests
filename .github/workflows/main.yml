@@ -1,0 +1,103 @@
+name: run
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0,15,30,45 * * * *"
+  workflow_dispatch: null
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prevent multiple jobs running in parallel
+        id: conversion_lock
+        uses: beckermr/turnstyle-python@3bb8204643f71a223e0447605958ef3ec5651038 # v3
+        with:
+          abort-after-seconds: 3
+          poll-interval-seconds: 2
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # outcome is evaluated before continue-on-error above
+        if: steps.conversion_lock.outcome == 'success'
+        with:
+          token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          fetch-depth: 0  # needed for accurate creation timestamps while checking failing requests
+
+      - name: fast finish
+        if: ${{ steps.conversion_lock.outcome == 'success' }}
+        run: |
+          set -x
+          # avoid wasting CI time if there is nothing to do
+          count_yml=$(ls requests/*.yml | wc -l)
+          count_yaml=$(ls requests/*.yaml | wc -l)
+          count=$(($count_yml + $count_yaml))
+          if [[ "${count}" == "0" ]]; then
+            echo "nothing to do, setting ci skip!"
+            echo "CI_SKIP=true" >> $GITHUB_ENV
+          fi
+
+      - uses: conda-incubator/setup-miniconda@8ee1f361103df19b6f8c8655fd3967a8ecb162d5 # v4.0.1
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        with:
+          activate-environment: cf
+          environment-file: environment.yml
+          auto-activate-base: true
+          miniforge-version: latest
+
+      - name: Generate token
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        id: generate_token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Process requests based on YAML files
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        shell: bash -el {0}
+        run: |
+          git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
+          git config --global user.name "conda-forge-curator[bot]"
+          git config --global pull.rebase false
+          python -m conda_forge_admin_requests run
+        env:
+          PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          # CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
+          # Smithy will request a Travis token using a Github token if needed
+          # TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
+          AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
+          # DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
+          CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
+          GITHUB_ADMIN_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
+
+      - name: pull and push changes
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
+        shell: bash -el {0}
+        run: |
+          git pull
+          git push
+
+      - name: raise issue if needed
+        if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP && env.FAILING_FILENAMES_TO_RAISE
+        shell: bash -el {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          for fn in $FAILING_FILENAMES_TO_RAISE; do  # env var maybe exported by __main__.py
+            title="Request $fn is failing"
+            # Only create issue if there are no open ones with the same title
+            if [[ "$(gh issue list --state open --search "\"$title\" in:title" --json number --jq 'length')" == "0" ]]; then
+              gh issue create \
+                --title "$title" \
+                --body "This request has been failing for more than 6 hours, please inspect logs at $RUN_URL" \
+                --label ci-error
+            fi
+          done

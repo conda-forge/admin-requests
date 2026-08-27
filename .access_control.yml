@@ -1,0 +1,14 @@
+# This file is exclusively handled by the existing automation or the core team.
+# Please DO NOT submit modifications to this document.
+version: 1
+access_control:
+  travis:
+    - feedstock: example
+  cirun-gpu-small:
+    - feedstock: example
+  cirun-openstack-gpu-large:
+    - feedstock: cf-autotick-bot-test-package-feedstock
+    - feedstock: conda-smithy-feedstock
+    - feedstock: conda-forge-ci-setup-feedstock
+    - feedstock: pytorch-cpu-feedstock
+    - feedstock: libmagma-feedstock
