@@ -11,15 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - name: checkout staged-recipes
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: conda-forge/staged-recipes
           token: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
+          path: staged-recipes
+
+      - name: checkout admin-requests
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: conda-forge/admin-requests
+          path: admin-requests
 
       - name: prevent multiple jobs running in parallel
         id: conversion_lock
-        uses: beckermr/turnstyle-python@d50fd7e1de14639af00d8dc8e0f60176a99153d9 # v2
+        uses: beckermr/turnstyle-python@3bb8204643f71a223e0447605958ef3ec5651038 # v3
         with:
           abort-after-seconds: 3
           poll-interval-seconds: 2
@@ -28,8 +35,11 @@ jobs:
 
       - name: commit any changes upon checkout
         run: |
+          pushd staged-recipes
+
           git config --global user.email "chrisburr73+conda-forge-admin@gmail.com"
           git config --global user.name "conda-forge-admin"
+          git config --global pull.rebase false
           git add *
           git commit -am "make sure we have no windows line endings" || exit 0
           for i in `seq 1 5`; do
@@ -37,23 +47,31 @@ jobs:
             git push
           done
 
+          popd
+
       - name: Run feedstock creation
         # outcome is evaluated before continue-on-error above
         if: ${{ steps.conversion_lock.outcome == 'success' }}
         run: |
+          pushd staged-recipes
+
           # Avoid wasting CI time if there are no recipes ready for conversion
           # Checks for both `meta.yaml` and `recipe.yaml` files in the recipes directory
           # Excludes the example recipe(s)
-          if [ "$(ls recipes/*/meta.yaml recipes/*/recipe.yaml 2>/dev/null | grep -vE 'recipes/example/meta.yaml|recipes/example/recipe.yaml' --count)" -eq 0 ]; then
+          if [ "$(ls recipes/*/meta.yaml recipes/*/recipe.yaml 2>/dev/null | grep -vE '^recipes/(example|example-v0-deprecated|example-v1)/(meta|recipe)\.yaml$' --count)" -eq 0 ]; then
             echo "No new recipes found, exiting..."
             exit 0
           fi
 
           echo "Creating feedstocks from the recipe(s)."
 
-          source ./.github/workflows/scripts/create_feedstocks
+          source ../admin-requests/scripts/create_feedstocks
+
+          python ../admin-requests/scripts/create_feedstocks.py
+
+          popd
         env:
           STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
           GH_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
-          TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
+          # TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
           AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}

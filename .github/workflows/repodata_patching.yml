@@ -11,32 +11,31 @@ jobs:
     steps:
       - name: Prevent multiple jobs running in parallel
         id: conversion_lock
-        uses: beckermr/turnstyle-python@d50fd7e1de14639af00d8dc8e0f60176a99153d9 # v2
+        uses: beckermr/turnstyle-python@3bb8204643f71a223e0447605958ef3ec5651038 # v3
         with:
           abort-after-seconds: 3
           poll-interval-seconds: 2
           github-token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
 
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         # outcome is evaluated before continue-on-error above
         if: steps.conversion_lock.outcome == 'success'
 
-      - uses: conda-incubator/setup-miniconda@a4260408e20b96e80095f42ff7f1a15b27dd94ca # v2
+      - uses: conda-incubator/setup-miniconda@8ee1f361103df19b6f8c8655fd3967a8ecb162d5 # v4.0.1
         if: steps.conversion_lock.outcome == 'success'
         with:
           activate-environment: cf
           environment-file: environment.yml
           auto-activate-base: true
           miniforge-version: latest
-          miniforge-variant: Mambaforge
 
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success'
         id: generate_token
-        uses: actions/create-github-app-token@ad38cffc07bac6e3857755914c4c88bfd2db4da4 # v1
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v1
         with:
-          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          client-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
@@ -48,6 +47,6 @@ jobs:
           git config --global user.email "79913779+conda-forge-curator[bot]@users.noreply.github.com"
           git config --global user.name "conda-forge-curator[bot]"
           git config --global pull.rebase false
-          python update_repodata_patches.py
+          python scripts/update_repodata_patches.py
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}

@@ -1,20 +1,23 @@
-import subprocess
-import os
-import tempfile
-import requests
+from __future__ import annotations
+
 import copy
+import os
+import subprocess
+import tempfile
+
+import requests
 
 
 def split_pkg(pkg):
     if pkg.endswith(".tar.bz2"):
-        pkg = pkg[:-len(".tar.bz2")]
+        pkg = pkg[: -len(".tar.bz2")]
     elif pkg.endswith(".conda"):
-        pkg = pkg[:-len(".conda")]
+        pkg = pkg[: -len(".conda")]
     else:
         raise RuntimeError("Can only process packages that end in .tar.bz2 or .conda!")
     plat, pkg_name = pkg.split("/")
-    name_ver, build = pkg_name.rsplit('-', 1)
-    name, ver = name_ver.rsplit('-', 1)
+    name_ver, build = pkg_name.rsplit("-", 1)
+    name, ver = name_ver.rsplit("-", 1)
     return plat, name, ver, build
 
 
@@ -37,10 +40,18 @@ def check(request):
 
         # check it is on the right channel
         plat, name, ver, build = split_pkg(pkg)
+        env = os.environ.copy()
+        env["CONDA_SUBDIR"] = plat
         subprocess.check_call(
-            f"CONDA_SUBDIR={plat} conda search {name}={ver}={build} "
-            f"-c {channel} --override-channels",
-            shell=True,
+            [
+                "conda",
+                "search",
+                f"{name}={ver}={build}",
+                "-c",
+                channel,
+                "--override-channels",
+            ],
+            env=env,
         )
 
 
@@ -54,12 +65,12 @@ def mark_broken_pkg(pkg, action):
 
     r = func(
         "https://api.anaconda.org/channels/conda-forge/broken",
-        headers={'Authorization': 'token {}'.format(os.environ["PROD_BINSTAR_TOKEN"])},
+        headers={"Authorization": "token {}".format(os.environ["PROD_BINSTAR_TOKEN"])},
         json={
             "basename": pkg,
             "package": name,
             "version": ver,
-        }
+        },
     )
     if r.status_code != 201:
         print(f"        could not mark {action}", flush=True)
@@ -69,7 +80,9 @@ def mark_broken_pkg(pkg, action):
         return True
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
+    check(request)
+
     if "PROD_BINSTAR_TOKEN" not in os.environ:
         return copy.deepcopy(request)
 
@@ -89,33 +102,46 @@ def run(request):
     if did_any:
         with tempfile.TemporaryDirectory() as tmpdir:
             subprocess.check_call(
-                "git clone https://github.com/conda-forge/"
-                "conda-forge-repodata-patches-feedstock.git",
+                [
+                    "git",
+                    "clone",
+                    "https://github.com/conda-forge/conda-forge-repodata-patches-feedstock.git",
+                ],
                 cwd=tmpdir,
-                shell=True,
             )
 
+            origin_url = (
+                f"https://x-access-token:{os.environ['GITHUB_TOKEN']}@github.com/conda-forge/"
+                "conda-forge-repodata-patches-feedstock.git"
+            )
             subprocess.check_call(
-                "git remote set-url --push origin "
-                "https://x-access-token:${GITHUB_TOKEN}@github.com/conda-forge/"
-                "conda-forge-repodata-patches-feedstock.git",
+                [
+                    "git",
+                    "remote",
+                    "set-url",
+                    "--push",
+                    "origin",
+                    origin_url,
+                ],
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-                shell=True,
             )
 
             success_pkgs = set(packages) - set(pkgs_to_try_again)
             fstr = " ".join(f for f in success_pkgs)
             subprocess.check_call(
-                "git commit --allow-empty -am 'resync repo data "
-                "for broken/notbroken packages %s'" % fstr,
+                [
+                    "git",
+                    "commit",
+                    "--allow-empty",
+                    "-am",
+                    f"resync repo data for broken/not-broken packages {fstr}",
+                ],
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-                shell=True,
             )
 
             subprocess.check_call(
-                "git push",
+                ["git", "push"],
                 cwd=os.path.join(tmpdir, "conda-forge-repodata-patches-feedstock"),
-                shell=True,
             )
 
     if pkgs_to_try_again:
