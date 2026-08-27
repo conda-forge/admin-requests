@@ -1,0 +1,9 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # tomviz-pipeline is moving out of the tomviz repository into its own
+  # repo (github.com/openchemistry/tomviz-pipeline) and its own
+  # feedstock. The tomviz feedstock currently owns this output name and
+  # will drop it in its next release; see the staged-recipes submission
+  # for the new feedstock.
+  tomviz-pipeline:
+    - tomviz-pipeline
