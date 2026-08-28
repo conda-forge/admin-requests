@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  clang-win-activation:
+    - clang_win-arm64
+    - clangxx_win-arm64
+    - clang-cl_win-arm64
