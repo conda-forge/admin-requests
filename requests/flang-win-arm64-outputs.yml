@@ -1,0 +1,7 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  flang-rt:
+    - flang-rt_win-arm64
+  flang-activation:
+    - flang_impl_win-arm64
+    - flang_win-arm64
