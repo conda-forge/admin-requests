@@ -1,5 +1,0 @@
-action: depot
-feedstocks:
-  - flash-attn
-# revoke access to the runners
-revoke: false
