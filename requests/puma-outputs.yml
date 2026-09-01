@@ -3,3 +3,5 @@ feedstock_to_output_mapping:
   puma:
     - libpuma
     - pumapy
+    - libpuma-devel
+    - puma-python
