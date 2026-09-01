@@ -1,20 +1,12 @@
 action: broken
 packages:
 - linux-64/srsly-3.0.0-py310hea6c23e_0.conda
-- linux-64/srsly-3.0.0-py313h7033f15_0.conda
-- linux-64/srsly-3.0.0-py311h1ddb823_0.conda
 - linux-64/srsly-3.0.0-py312h1289d80_0.conda
 - linux-64/srsly-3.0.0-py314ha160325_0.conda
 - linux-aarch64/srsly-3.0.0-py314h02b5315_0.conda
-- linux-aarch64/srsly-3.0.0-py313he352c24_0.conda
-- linux-aarch64/srsly-3.0.0-py312h1ab2c47_0.conda
-- linux-aarch64/srsly-3.0.0-py311h2cb90db_0.conda
-- linux-aarch64/srsly-3.0.0-py310h57cea71_0.conda
 - linux-ppc64le/srsly-3.0.0-py311h1606a6e_0.conda
 - linux-ppc64le/srsly-3.0.0-py312h14a853b_0.conda
 - linux-ppc64le/srsly-3.0.0-py313h24dd98d_0.conda
-- linux-ppc64le/srsly-3.0.0-py314hbe52dbf_0.conda
-- linux-ppc64le/srsly-3.0.0-py310h16b79ff_0.conda
 - osx-64/srsly-3.0.0-py314h7008281_0.conda
 - osx-64/srsly-3.0.0-py311hb6485ad_0.conda
 - osx-64/srsly-3.0.0-py312h959a22e_0.conda
