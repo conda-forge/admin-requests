@@ -1,0 +1,31 @@
+action: broken
+packages:
+  - linux-64/srsly-3.0.0-py310hea6c23e_0.conda
+  - linux-64/srsly-3.0.0-py313h7033f15_0.conda
+  - linux-64/srsly-3.0.0-py311h1ddb823_0.conda
+  - linux-64/srsly-3.0.0-py312h1289d80_0.conda
+  - linux-64/srsly-3.0.0-py314ha160325_0.conda
+  - linux-aarch64/srsly-3.0.0-py314h02b5315_0.conda
+  - linux-aarch64/srsly-3.0.0-py313he352c24_0.conda
+  - linux-aarch64/srsly-3.0.0-py312h1ab2c47_0.conda
+  - linux-aarch64/srsly-3.0.0-py311h2cb90db_0.conda
+  - linux-aarch64/srsly-3.0.0-py310h57cea71_0.conda
+  - linux-ppc64le/srsly-3.0.0-py311h1606a6e_0.conda
+  - linux-ppc64le/srsly-3.0.0-py312h14a853b_0.conda
+  - linux-ppc64le/srsly-3.0.0-py313h24dd98d_0.conda
+  - linux-ppc64le/srsly-3.0.0-py314hbe52dbf_0.conda
+  - linux-ppc64le/srsly-3.0.0-py310h16b79ff_0.conda
+  - osx-64/srsly-3.0.0-py314h7008281_0.conda
+  - osx-64/srsly-3.0.0-py311hb6485ad_0.conda
+  - osx-64/srsly-3.0.0-py312h959a22e_0.conda
+  - osx-64/srsly-3.0.0-py313hbc4457e_0.conda
+  - osx-arm64/srsly-3.0.0-py313h6deaedc_0.conda
+  - osx-arm64/srsly-3.0.0-py312h6d95f44_0.conda
+  - osx-arm64/srsly-3.0.0-py311h8325047_0.conda
+  - osx-arm64/srsly-3.0.0-py310h8616463_0.conda
+  - osx-arm64/srsly-3.0.0-py314h4ed92d5_0.conda
+  - win-64/srsly-3.0.0-py314h13fbf68_0.conda
+  - win-64/srsly-3.0.0-py313hfe59770_0.conda
+  - win-64/srsly-3.0.0-py312hbb81ca0_0.conda
+  - win-64/srsly-3.0.0-py311h3e6a449_0.conda
+  - win-64/srsly-3.0.0-py310h73ae2b4_0.conda
