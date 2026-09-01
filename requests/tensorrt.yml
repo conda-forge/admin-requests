@@ -1,0 +1,4 @@
+action: depot
+feedstocks:
+  - tensorrt
+revoke: false
