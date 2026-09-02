@@ -1,22 +1,4 @@
 action: broken
 packages:
-  - linux-64/libpython-3.12.14-h0c77377_2_cpython.conda
-  - linux-64/libpython-static-3.12.14-hd2095e1_2_cpython.conda
-  - linux-64/python-3.12.14-h5f976f7_2_cpython.conda
-  - linux-aarch64/libpython-3.12.14-hc3dd739_2_cpython.conda
-  - linux-aarch64/libpython-static-3.12.14-h4154aff_2_cpython.conda
-  - linux-aarch64/python-3.12.14-h94ad73b_2_cpython.conda
-  - linux-ppc64le/libpython-3.12.14-h0f911eb_2_cpython.conda
-  - linux-ppc64le/libpython-static-3.12.14-h4240cd9_2_cpython.conda
-  - linux-ppc64le/python-3.12.14-h9242c39_2_cpython.conda
-  - noarch/cpython-3.12.14-py312hd8ed1ab_2.conda
-  - noarch/python-gil-3.12.14-hd8ed1ab_2.conda
-  - osx-64/libpython-3.12.14-h31af0e7_2_cpython.conda
-  - osx-64/libpython-static-3.12.14-h6e061ac_2_cpython.conda
-  - osx-64/python-3.12.14-h6907cb8_2_cpython.conda
-  - osx-arm64/libpython-3.12.14-h4e5ec87_2_cpython.conda
-  - osx-arm64/libpython-static-3.12.14-h6111c0a_2_cpython.conda
-  - osx-arm64/python-3.12.14-hd05a0c4_2_cpython.conda
-  - win-64/libpython-3.12.14-hcc31f7b_2_cpython.conda
-  - win-64/libpython-static-3.12.14-hac47afa_2_cpython.conda
-  - win-64/python-3.12.14-hb12b558_2_cpython.conda
+- linux-64/python-3.12.14-h5f976f7_2_cpython.conda
+- linux-aarch64/python-3.12.14-h94ad73b_2_cpython.conda
