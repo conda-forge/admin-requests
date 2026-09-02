@@ -1,0 +1,5 @@
+action: archive
+feedstocks:
+  - arraylias
+  - qiskit-dynamics
+  - qiskit-ibm-experiment
