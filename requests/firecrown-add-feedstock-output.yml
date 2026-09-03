@@ -1,8 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  # this entry adds a package name
-  firecrown:
-    - firecrown-deps
-    - firecrown-deps-validated
-    - firecrown-devenv
-    - firecrown-validated
