@@ -44,4 +44,4 @@ def register_actions():
             spec = importlib.util.find_spec(pkg.name)
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
-            getattr(module, "register_actions")()
+            module.register_actions()
