@@ -20,7 +20,7 @@ def get_gh_headers():
 def raise_json_for_status(request):
     try:
         request.raise_for_status()
-    except Exception as exc:
+    except Exception as exc:  # noqa
         exc.args = exc.args + (request.json(),)
         raise exc.with_traceback(exc.__traceback__)
 

@@ -50,7 +50,7 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
     for feedstock in feedstocks:
         try:
             process_repo(f"{feedstock}-feedstock", task)
-        except Exception as e:
+        except Exception as e:  # noqa
             print(f"failed to {task} '{feedstock}': {e!r}", flush=True)
             pkgs_to_do_again.append(feedstock)
 

@@ -124,7 +124,7 @@ def send_pr_cirun(
 def _process_request_for_feedstock(
     feedstock: str,
     action: str,
-    resources: list[str] = None,
+    resources: list[str] | None = None,
     revoke: bool = False,
     pull_request: bool = False,
     send_pr: bool = True,
@@ -325,7 +325,7 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
         del request_copy["feedstocks"]
         try:
             _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
-        except Exception as e:
+        except Exception as e:  # noqa
             print(f"Feedstock {feedstock}-feedstock failed with '{e}', trying later...")
             failed_feedstocks.append(feedstock)
     if failed_feedstocks:

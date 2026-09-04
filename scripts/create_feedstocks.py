@@ -11,7 +11,7 @@ Such as:
 
 """
 
-from __future__ import annotations, print_function
+from __future__ import annotations
 
 import json
 import os.path
@@ -21,10 +21,10 @@ import sys
 import tempfile
 import time
 import traceback
+from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterator
 
 import github
 from conda_build.metadata import MetaData
@@ -102,7 +102,12 @@ def list_recipes() -> Iterator[tuple[str, str]]:
         # to be helpful.
         # .DS_Store is created by macOS to store custom attributes of its
         # containing folder.
-        if recipe_dir.name in ["example", "example-v1", ".DS_Store"]:
+        if recipe_dir.name in [
+            "example",
+            "example-v0-deprecated",
+            "example-v1",
+            ".DS_Store",
+        ]:
             continue
 
         # Try to look for a conda-build recipe.
@@ -185,14 +190,11 @@ def _set_default_branch(feedstock_dir, default_branch):
 
 def feedstock_token_exists(organization, name):
     r = requests.get(
-        "https://api.github.com/repos/%s/"
-        "feedstock-tokens/contents/tokens/%s.json" % (organization, name),
-        headers={"Authorization": "token %s" % os.environ["GH_TOKEN"]},
+        f"https://api.github.com/repos/{organization}/"
+        f"feedstock-tokens/contents/tokens/{name}.json",
+        headers={"Authorization": f"token {os.environ['GH_TOKEN']}"},
     )
-    if r.status_code != 200:
-        return False
-    else:
-        return True
+    return r.status_code == 200
 
 
 def get_rate_limit(gh):
@@ -227,17 +229,13 @@ def print_rate_limiting_info(gh, user):
     gh_api_reset_time = rate_limit.core.reset
     gh_api_reset_time -= datetime.now(timezone.utc)
 
-    print("")
+    print()
     print("GitHub API Rate Limit Info:")
     print("---------------------------")
     print("token: ", user)
-    print(
-        "Currently remaining {remaining} out of {total}.".format(
-            remaining=gh_api_remaining, total=gh_api_total
-        )
-    )
-    print("Will reset in {time}.".format(time=gh_api_reset_time))
-    print("")
+    print(f"Currently remaining {gh_api_remaining} out of {gh_api_total}.")
+    print(f"Will reset in {gh_api_reset_time}.")
+    print()
     return gh_api_remaining
 
 
@@ -258,11 +256,7 @@ def sleep_until_reset(gh):
         print("Sleeping until GitHub API resets.")
         for i in range(mins_to_sleep):
             time.sleep(60)
-            print(
-                "slept for minute {curr} out of {tot}.".format(
-                    curr=i + 1, tot=mins_to_sleep
-                )
-            )
+            print(f"slept for minute {i + 1} out of {mins_to_sleep}.")
         return True
     else:
         return False
@@ -330,7 +324,7 @@ if __name__ == "__main__":
                 sys.exit(1)
 
             feedstock_dir = os.path.join(feedstocks_dir, name + "-feedstock")
-            print("Making feedstock for {}".format(name))
+            print(f"Making feedstock for {name}")
             try:
                 subprocess.check_call(
                     [
@@ -382,7 +376,7 @@ if __name__ == "__main__":
                             "checkout",
                             "-b",
                             default_branch,
-                            "upstream_with_token/%s" % default_branch,
+                            f"upstream_with_token/{default_branch}",
                         ],
                         cwd=feedstock_dir,
                     )
@@ -438,7 +432,7 @@ if __name__ == "__main__":
         ):
             if name.lower() in REPO_SKIP_LIST:
                 continue
-            print("\n\nregistering CI services for %s..." % name)
+            print(f"\n\nregistering CI services for {name}...")
             if num >= 10:
                 exit_code = 0
                 break
@@ -486,7 +480,7 @@ if __name__ == "__main__":
             # slow down so we make sure we are registered
             for i in range(1, 13):
                 time.sleep(10)
-                print("Waiting for registration: {i} s".format(i=i * 10))
+                print(f"Waiting for registration: {i * 10} s")
 
             # if we get here, now we make the feedstock token and add the staging token
             print("making the feedstock token and adding the staging binstar token")
@@ -592,7 +586,7 @@ if __name__ == "__main__":
                             "git",
                             "push",
                             "upstream_with_token",
-                            "HEAD:%s" % default_branch,
+                            f"HEAD:{default_branch}",
                         ],
                         cwd=feedstock_dir,
                         stderr=subprocess.STDOUT,
@@ -613,7 +607,7 @@ if __name__ == "__main__":
                         [
                             "git",
                             "rebase",
-                            "upstream_with_token/%s" % default_branch,
+                            f"upstream_with_token/{default_branch}",
                             default_branch,
                         ],
                         cwd=feedstock_dir,
@@ -664,12 +658,10 @@ if __name__ == "__main__":
     # Add all files from AU conflicts. They are new files that we
     # weren't tracking previously.
     # Adding them resolves the conflict and doesn't actually add anything to the index.
-    new_file_conflicts = filter(lambda _: _.startswith("AU "), changed_files)
-    new_file_conflicts = map(
-        lambda _: _.replace("AU", "", 1).lstrip(), new_file_conflicts
-    )
-    for each_new_file in new_file_conflicts:
-        subprocess.check_call(["git", "add", each_new_file])
+    for change in changed_files:
+        if change.startswith("AU "):
+            change = change.replace("AU", "", 1).lstrip()
+            subprocess.check_call(["git", "add", change])
 
     # Generate a fresh listing of recipes removed.
     #
@@ -677,12 +669,14 @@ if __name__ == "__main__":
     # * We narrow the list down to recipes that are staged for deletion
     #   (ignores examples).
     # * Then we clean up the list so that it only has the recipe names.
-    removed_recipes = filter(lambda _: _.startswith("D "), changed_files)
-    removed_recipes = map(lambda _: _.replace("D", "", 1).lstrip(), removed_recipes)
-    removed_recipes = map(
-        lambda _: os.path.relpath(_, recipe_directory_name), removed_recipes
-    )
-    removed_recipes = map(lambda _: _.split(os.path.sep)[0], removed_recipes)
+    removed_recipes = set()
+    for change in changed_files:
+        if not change.startswith("D "):
+            continue
+        change = change.replace("D", "", 1).lstrip()
+        change = os.path.relpath(change, recipe_directory_name)
+        change = change.split(os.path.sep)[0]
+        removed_recipes.add(change)
     removed_recipes = sorted(set(removed_recipes))
 
     # Commit any removed packages.
@@ -708,11 +702,11 @@ if __name__ == "__main__":
             # Capture the output, as it may contain the GH_TOKEN.
             branch = os.environ.get("CF_CURRENT_BRANCH")
             out = subprocess.check_output(
-                ["git", "push", "upstream_with_token", "HEAD:%s" % branch],
+                ["git", "push", "upstream_with_token", f"HEAD:{branch}"],
                 stderr=subprocess.STDOUT,
             )
         else:
-            print("Would git commit, with the following message: \n   {}".format(msg))
+            print(f"Would git commit, with the following message: \n   {msg}")
 
     if gh:
         # Get our final rate limit info.
