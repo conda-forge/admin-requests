@@ -2,4 +2,5 @@ action: add_feedstock_output
 feedstock_to_output_mapping:
   roboplan:
     - libroboplan-core
+    - roboplan-common
     - roboplan-core-python
