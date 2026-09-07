@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  zig:
+    - zig_win-arm64
+    - zig_impl_win-arm64
