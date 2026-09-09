@@ -1,9 +1,0 @@
-action: broken
-packages:
-- linux-64/perl-5.32.1-8_hb03c661_perl5.conda
-- linux-aarch64/perl-5.32.1-8_he30d5cf_perl5.conda
-- linux-ppc64le/perl-5.32.1-8_hfc7e52b_perl5.conda
-- linux-riscv64/perl-5.32.1-8_h63d4614_perl5.conda
-- osx-64/perl-5.32.1-8_ha1e9b39_perl5.conda
-- osx-arm64/perl-5.32.1-8_h88b7d96_perl5.conda
-- win-64/perl-5.32.1.1-8_h57928b3_strawberry.conda
