@@ -1,0 +1,38 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  smspp-project:
+    - libsmspp
+    - libsmspp-bds
+    - libsmspp-bkb
+    - libsmspp-bnx
+    - libsmspp-bundle
+    - libsmspp-cflb
+    - libsmspp-frankwolfe
+    - libsmspp-investment
+    - libsmspp-lds
+    - libsmspp-lukfi
+    - libsmspp-mcf
+    - libsmspp-mcfclass
+    - libsmspp-mcflemon
+    - libsmspp-milp
+    - libsmspp-mmcf
+    - libsmspp-mssb
+    - libsmspp-sddp
+    - libsmspp-sfdcr
+    - libsmspp-srs
+    - libsmspp-stochastic
+    - libsmspp-svm
+    - libsmspp-tssb
+    - libsmspp-ucblock
+    - smspp-bkb
+    - smspp-cflb
+    - smspp-investment
+    - smspp-mcf
+    - smspp-mmcf
+    - smspp-mssb
+    - smspp-sddp
+    - smspp-sfdcr
+    - smspp-svm
+    - smspp-tools
+    - smspp-tssb
+    - smspp-ucblock
