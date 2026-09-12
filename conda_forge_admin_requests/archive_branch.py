@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 import copy
 
 import requests
 
-from .utils import get_gh_headers, raise_json_for_status
+from .utils import GH_ORG, get_gh_headers, raise_json_for_status
 
 
 def check(request):
@@ -12,14 +14,14 @@ def check(request):
     task = request["action"]
 
     if not isinstance(feedstocks, dict):
-        raise ValueError(
+        raise TypeError(
             "'feedstocks' must be a mapping from feedstock names to lists of branches"
         )
     if task not in ("archive_branch", "unarchive_branch"):
         raise ValueError(f"Illegal value for action: {task}")
 
     print(f"received map from feedstocks to branches-to-be-archived: {feedstocks!r}")
-    owner = "conda-forge"
+    owner = GH_ORG
     headers = get_gh_headers()
 
     for feedstock, branches in feedstocks.items():
@@ -27,10 +29,11 @@ def check(request):
         api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
         r = requests.get(api_base_url, headers=headers)
-        raise_json_for_status(r)
+        if r.status_code != 200:
+            raise ValueError(f"Cannot find {owner}/{repo}!")
 
         if not isinstance(branches, list):
-            raise ValueError(
+            raise TypeError(
                 f"branches for '{feedstock}' must be a list, got {branches!r}"
             )
 
@@ -43,7 +46,8 @@ def check(request):
             if task == "archive_branch":
                 # branch must exist
                 r = requests.get(f"{api_base_url}/branches/{branch}", headers=headers)
-                raise_json_for_status(r)
+                if r.status_code != 200:
+                    raise ValueError(f"{feedstock}: branch '{branch}' not found")
 
                 # tag must NOT exist
                 r = requests.get(
@@ -57,7 +61,8 @@ def check(request):
                 r = requests.get(
                     f"{api_base_url}/git/ref/tags/{branch}", headers=headers
                 )
-                raise_json_for_status(r)
+                if r.status_code != 200:
+                    raise ValueError(f"{feedstock}: tag '{branch}' not found")
 
                 # branch must NOT exist
                 r = requests.get(f"{api_base_url}/branches/{branch}", headers=headers)
@@ -68,16 +73,37 @@ def check(request):
 def _archive_branch(owner, repo, branch, headers):
     api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
-    # get SHA of last commit on branch
+    # get SHA and date of last commit on branch
     r = requests.get(f"{api_base_url}/branches/{branch}", headers=headers)
     raise_json_for_status(r)
-    sha = r.json()["commit"]["sha"]
+    branch_data = r.json()
+    commit_sha = branch_data["commit"]["sha"]
+    commit_date = branch_data["commit"]["commit"]["committer"]["date"]
 
-    # create tag
+    # create annotated tag object with the commit's timestamp
+    r = requests.post(
+        f"{api_base_url}/git/tags",
+        headers=headers,
+        json={
+            "tag": branch,
+            "message": f"Archived branch {branch}",
+            "object": commit_sha,
+            "type": "commit",
+            "tagger": {
+                "name": "conda-forge-admin",
+                "email": "conda-forge-admin@conda-forge.org",
+                "date": commit_date,
+            },
+        },
+    )
+    raise_json_for_status(r)
+    tag_sha = r.json()["sha"]
+
+    # create ref pointing to the annotated tag object
     r = requests.post(
         f"{api_base_url}/git/refs",
         headers=headers,
-        json={"ref": f"refs/tags/{branch}", "sha": sha},
+        json={"ref": f"refs/tags/{branch}", "sha": tag_sha},
     )
     raise_json_for_status(r)
 
@@ -91,16 +117,19 @@ def _archive_branch(owner, repo, branch, headers):
 def _unarchive_branch(owner, repo, branch, headers):
     api_base_url = f"https://api.github.com/repos/{owner}/{repo}"
 
-    # get SHA of tag
+    # get SHA of annotated tag, then dereference to the underlying commit
     r = requests.get(f"{api_base_url}/git/ref/tags/{branch}", headers=headers)
     raise_json_for_status(r)
-    sha = r.json()["object"]["sha"]
+    tag_sha = r.json()["object"]["sha"]
+    r = requests.get(f"{api_base_url}/git/tags/{tag_sha}", headers=headers)
+    raise_json_for_status(r)
+    commit_sha = r.json()["object"]["sha"]
 
     # create branch
     r = requests.post(
         f"{api_base_url}/git/refs",
         headers=headers,
-        json={"ref": f"refs/heads/{branch}", "sha": sha},
+        json={"ref": f"refs/heads/{branch}", "sha": commit_sha},
     )
     raise_json_for_status(r)
 
@@ -111,11 +140,11 @@ def _unarchive_branch(owner, repo, branch, headers):
     print(f"{repo}: restored branch '{branch}' from tag '{branch}'", flush=True)
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
     check(request)
 
     task = request["action"]
-    owner = "conda-forge"
+    owner = GH_ORG
     headers = get_gh_headers()
 
     failed_feedstocks = {}
@@ -130,7 +159,7 @@ def run(request):
                     _archive_branch(owner, repo, branch, headers)
                 else:
                     _unarchive_branch(owner, repo, branch, headers)
-            except Exception as e:
+            except Exception as e:  # noqa
                 print(
                     f"failed to {task} branch '{branch}' on '{feedstock}': {e!r}",
                     flush=True,

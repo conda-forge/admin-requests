@@ -4,13 +4,15 @@ This script will process the `travis` and `cirun` requests.
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
 
+from __future__ import annotations
+
 import copy
 import os
 import subprocess
 import tempfile
 import textwrap
 import time
-from typing import Any, Dict, List
+from functools import lru_cache
 from unittest import mock
 
 from conda_smithy.github import Github
@@ -18,9 +20,7 @@ from conda_smithy.utils import update_conda_forge_config
 
 import requests
 
-from .utils import write_secrets_to_files
-
-GH_ORG = os.environ.get("GH_ORG", "conda-forge")
+from .utils import GH_ORG, write_secrets_to_files
 
 DEFAULT_CIRUN_OPENSTACK_VALUES = {
     "cirun_roles": ["admin", "maintain", "write"],
@@ -29,11 +29,20 @@ DEFAULT_CIRUN_OPENSTACK_VALUES = {
     ],
 }
 
+GHA_PROVIDERS = (
+    "blacksmith",
+    "cirun",
+    "cirrus_runners",
+    "depot",
+    "namespace",
+)
+VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
+
 
 def send_pr_cirun(
     feedstock: str,
     feedstock_dir: str,
-    resources: List[str],
+    resources: list[str],
     pull_request: bool,
 ) -> None:
     """
@@ -42,7 +51,7 @@ def send_pr_cirun(
     Parameters:
     feedstock (str): The name of the feedstock.
     feedstock_dir (str): Path to a git checkout of the feedstock.
-    resources (List[str]): The names of the resources for access control.
+    resources (list[str]): The names of the resources for access control.
     pull_request (bool): Whether to allow Pull Requests.
     """
 
@@ -115,7 +124,7 @@ def send_pr_cirun(
 def _process_request_for_feedstock(
     feedstock: str,
     action: str,
-    resources: List[str] = None,
+    resources: list[str] | None = None,
     revoke: bool = False,
     pull_request: bool = False,
     send_pr: bool = True,
@@ -125,12 +134,12 @@ def _process_request_for_feedstock(
 
     Parameters:
     feedstock (str): The name of the feedstock.
-    resources (List[str]): The names of the resources for access control.
+    resources (list[str]): The names of the resources for access control.
     revoke (bool): Whether to remove the access control.
     pull_request (bool): Whether to allow PRs for resource.
     """
 
-    # We need a token with admin permissions for Cirun
+    # We need a token with admin permissions for Cirun & Cirrus
     with tempfile.TemporaryDirectory() as tmp_dir, mock.patch.dict(
         "os.environ", {"GITHUB_TOKEN": os.environ["GITHUB_ADMIN_TOKEN"]}
     ):
@@ -165,6 +174,11 @@ def _process_request_for_feedstock(
         if action == "travis":
             register_ci_cmd.append("--with-travis")
 
+        elif action in ("blacksmith", "namespace", "depot"):
+            register_ci_cmd.append(f"--with-{action}")
+            if revoke:
+                register_ci_cmd.append("--remove")
+
         elif action == "cirun":
             register_ci_cmd.append("--with-cirun")
 
@@ -172,12 +186,7 @@ def _process_request_for_feedstock(
                 register_ci_cmd.extend(["--cirun-resources", resource])
                 assert resource.startswith("cirun-"), f"Unknown resource {resource}"
 
-            # this part is specific to github.com/Quansight/open-gpu-server
-            if all(resource.startswith("cirun-openstack") for resource in resources):
-                for key, value in DEFAULT_CIRUN_OPENSTACK_VALUES.items():
-                    for arg in value:
-                        register_ci_cmd.extend((f"--{key.replace('_', '-')}", arg))
-            elif all(resource.startswith("cirun-") for resource in resources):
+            if all(resource.startswith("cirun-") for resource in resources):
                 pass
             else:
                 assert False, f"Unknown resources {resources}"
@@ -194,7 +203,7 @@ def _process_request_for_feedstock(
         if not revoke:
             if action == "travis":
                 with_cmd = "--with-travis"
-            elif action == "cirun":
+            elif action in GHA_PROVIDERS:
                 with_cmd = "--with-github-actions"
 
             print("Generating a new feedstock token")
@@ -251,7 +260,8 @@ def _process_request_for_feedstock(
                 send_pr_cirun(feedstock, feedstock_dir, resources, pull_request)
 
 
-def check_if_repo_exists(feedstock_name: str) -> None:
+@lru_cache
+def check_if_repo_exists(feedstock_name: str) -> bool:
     """
     Check if a repository exists on GitHub.
 
@@ -264,12 +274,18 @@ def check_if_repo_exists(feedstock_name: str) -> None:
     repo = f"{feedstock_name}-feedstock"
     owner_repo = f"{GH_ORG}/{repo}"
     print(f"Checking if {owner_repo} exists")
-    response = requests.get(f"https://api.github.com/repos/{owner_repo}")
-    if response.status_code != 200:
-        raise ValueError(f"Repository: {owner_repo} not found!")
+    kwargs = {}
+    if token := os.environ.get("GITHUB_TOKEN"):
+        kwargs["headers"] = {"Authorization": f"Bearer {token}"}
+    response = requests.get(
+        f"https://api.github.com/repos/{owner_repo}",
+        **kwargs,
+    )
+    response.raise_for_status()
+    return True
 
 
-def check(request: Dict[str, Any]) -> None:
+def check(request: dict[str, str | list[str]]) -> None:
     """Check if the access control requests in both 'grant_access'
     and 'revoke_access' directories are valid."""
     print("Checking access control request")
@@ -277,9 +293,10 @@ def check(request: Dict[str, Any]) -> None:
     feedstocks = request["feedstocks"]
     for feedstock in feedstocks:
         check_if_repo_exists(feedstock)
+        time.sleep(0.1)
 
     action = request["action"]
-    assert action in ("travis", "cirun"), f"Unknown action {action}"
+    assert action in VALID_ACTIONS, f"Unknown action {action}"
 
     if action == "cirun":
         assert "resources" in request, "No resources field in request"
@@ -292,17 +309,27 @@ def check(request: Dict[str, Any]) -> None:
         assert not request.get("revoke", False)
 
 
-def run(request: Dict[str, Any]) -> None:
+def run(request: dict[str, object]) -> dict[str, object] | None:
     """
     The main function to process the access control requests. It performs the following steps:
     1. Check if the requests are valid.
     2. Process the access control requests.
     """
     check(request)
-    write_secrets_to_files()
+    write_secrets_to_files(github_token_key="GITHUB_ADMIN_TOKEN")
 
     feedstocks = request["feedstocks"]
+    failed_feedstocks = []
     for feedstock in feedstocks:
         request_copy = copy.deepcopy(request)
         del request_copy["feedstocks"]
-        _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        try:
+            _process_request_for_feedstock(f"{feedstock}-feedstock", **request_copy)
+        except Exception as e:  # noqa
+            print(f"Feedstock {feedstock}-feedstock failed with '{e}', trying later...")
+            failed_feedstocks.append(feedstock)
+    if failed_feedstocks:
+        request = copy.deepcopy(request)
+        request["feedstocks"] = failed_feedstocks
+        return request
+    return None

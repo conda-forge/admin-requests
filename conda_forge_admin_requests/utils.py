@@ -4,6 +4,8 @@ from conda_build.utils import create_file_with_permissions
 
 SMITHY_CONF = os.path.expanduser("~/.conda-smithy")
 
+GH_ORG = os.environ.get("GH_ORG", "conda-forge")
+
 
 def get_gh_headers():
     headers = {
@@ -18,7 +20,7 @@ def get_gh_headers():
 def raise_json_for_status(request):
     try:
         request.raise_for_status()
-    except Exception as exc:
+    except Exception as exc:  # noqa
         exc.args = exc.args + (request.json(),)
         raise exc.with_traceback(exc.__traceback__)
 
@@ -29,16 +31,16 @@ def _write_token(name, token):
         fh.write(token)
 
 
-def write_secrets_to_files():
+def write_secrets_to_files(github_token_key: str = "GITHUB_TOKEN"):
     if not os.path.exists(SMITHY_CONF):
         os.makedirs(SMITHY_CONF, exist_ok=True)
 
     for token_fname, token_name in [
-        ("circle", "CIRCLE_TOKEN"),
+        # ("circle", "CIRCLE_TOKEN"),
         ("azure", "AZURE_TOKEN"),
-        ("drone", "DRONE_TOKEN"),
+        # ("drone", "DRONE_TOKEN"),
         ("travis", "TRAVIS_TOKEN"),
-        ("github", "GITHUB_TOKEN"),
+        ("github", github_token_key),
         ("anaconda", "STAGING_BINSTAR_TOKEN"),
     ]:
         if token_name in os.environ:
