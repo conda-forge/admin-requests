@@ -20,7 +20,7 @@ def get_gh_headers():
 def raise_json_for_status(request):
     try:
         request.raise_for_status()
-    except Exception as exc:
+    except Exception as exc:  # noqa
         exc.args = exc.args + (request.json(),)
         raise exc.with_traceback(exc.__traceback__)
 
@@ -36,9 +36,9 @@ def write_secrets_to_files(github_token_key: str = "GITHUB_TOKEN"):
         os.makedirs(SMITHY_CONF, exist_ok=True)
 
     for token_fname, token_name in [
-        ("circle", "CIRCLE_TOKEN"),
+        # ("circle", "CIRCLE_TOKEN"),
         ("azure", "AZURE_TOKEN"),
-        ("drone", "DRONE_TOKEN"),
+        # ("drone", "DRONE_TOKEN"),
         ("travis", "TRAVIS_TOKEN"),
         ("github", github_token_key),
         ("anaconda", "STAGING_BINSTAR_TOKEN"),

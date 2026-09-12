@@ -23,7 +23,7 @@ Guidelines for marking packages as broken:
   but should be patched in the repo data and be marked unbroken later.
 * In some cases where the number of users of a package is small or it is used by
   the maintainers only, we can allow packages to be marked broken more liberally.
-* You can use `pixi run find-name {matchspec}` to get a list of filenames matching given spec.
+* You can use `pixi run find-filenames {matchspec}` to get a list of filenames matching given spec.
 * We (`conda-forge/core`) try to make a decision on these requests within 24 hours.
 
 
@@ -36,10 +36,15 @@ for which the label `broken` will be removed. See `examples/example-not-broken.y
 
 ## Reset your Feedstock Token
 
-If you want to reset your feedstock token to fix issues with uploads, send a Pull Request
+If you want to reset your feedstock token to fix authentication issues with uploads, send a Pull Request
 adding a new `.yml` file in `requests` folder with a list of the feedstock names
 without `-feedstock`. See `examples/example-token-reset.yml` for an example.
 (e.g., for `python-feedstock`, the feedstocks list must contain `python`).
+
+Note: a token reset only re-authenticates uploads. It does not register which
+outputs a feedstock is allowed to produce. If your build fails with an
+"output not allowed for your feedstock" validation error, a token reset will
+not fix it. See [Add a package output to a feedstock](#add-a-package-output-to-a-feedstock) instead.
 
 
 ## Archive or unarchive a feedstock
@@ -77,10 +82,20 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 
 Available opt-in resources:
 
-- Travis CI (`action: travis`): See `examples/example-travis.yml`
-- [Self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/), provided by:
-  - Cirrus Runners (`action: cirrus_runners`). See `examples/example-cirrus-runners.yml`. Available runners are documented in [cirrus-runners.app> Setup> Resource classes](https://cirrus-runners.app/setup/#resource-classes). Only Linux x86 for now (e.g. `ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-md`).
-  - Cirun (`action: cirun`): Provides integration with selected cloud providers. Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details.
+### [Travis CI](https://www.travis-ci.com)
+
+- `action` key: `travis`
+- Example `examples/example-travis.yml`
+
+### Larger runners for Github Actions
+
+- We have partnered with different providers for [self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/).
+- `action` key: `namespace` ([namespace.so](https://namespace.so)), `blacksmith` ([blacksmith.sh](https://blacksmith.sh)), or `depot` ([depot.dev](https://depot.dev))
+- Example `examples/example-gha-self-hosted.yml`
+
+Github Actions labels for `conda_build_config.yaml` are listed in [Reference> Build runners](https://conda-forge.org/docs/reference/runners/).
+
+> Other providers may be available via [cirun.io](https://cirun.io) (`action: cirun`). Check the [`conda-forge/.cirun`](https://github.com/conda-forge/.cirun) repository for more details. See `examples/example-cirun.yml`.
 
 ## Request a CFEP-3 copy to conda-forge
 
@@ -94,10 +109,18 @@ For provenance and transparency, the PR description must include a link to the o
 ## Add a package output to a feedstock
 
 By default, `conda-forge` feedstocks cannot push packages to our channel that another feedstock makes. If you encountered an error
-when building your package indicating that the given package was not allowed for your feedstock (e.g., you moved a package
-build from one feedstock to another), you should request the output be added to the new feedstock via this repository. An example request
-is located in [examples/example-add-feedstock-output.yml](examples/example-add-feedstock-output.yml). You can add both glob patterns
-and package names.
+when building your package indicating that the given package was not allowed for your feedstock, you should request the output be
+added to the feedstock via this repository. This commonly happens when:
+
+- you moved a package build from one feedstock to another, or
+- the feedstock has not been built and uploaded in a long time, so its output
+  was never registered. Feedstocks created before output registration existed do
+  not have their outputs registered until their next successful upload, and a
+  build from a pull request will fail output validation until the mapping is added here.
+
+This is not fixed by a feedstock token reset, which only re-authenticates uploads.
+An example request is located in [examples/example-add-feedstock-output.yml](examples/example-add-feedstock-output.yml).
+You can add both glob patterns and package names.
 
 While glob patterns are support, they should be used with care as they
 essentially "squat" on all future matched. If you are requesting a specific

@@ -33,7 +33,10 @@ def register_actions():
     register_action("token_reset", token_reset)
     register_action("travis", access_control)
     register_action("cirun", access_control)
+    register_action("blacksmith", access_control)
     register_action("cirrus_runners", access_control)
+    register_action("namespace", access_control)
+    register_action("depot", access_control)
     register_action("cfep3_copy", cfep3_copy)
     register_action("add_feedstock_output", feedstock_outputs)
     for pkg in pkgutil.iter_modules():
@@ -41,4 +44,4 @@ def register_actions():
             spec = importlib.util.find_spec(pkg.name)
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
-            getattr(module, "register_actions")()
+            module.register_actions()
