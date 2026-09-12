@@ -37,7 +37,7 @@ def process_repo(repo, task, reason=None):
             headers=headers,
             json={
                 "title": "Archive the feedstock",
-                "body": reason,
+                "body": f"If you need to unarchive this feedstock, open a PR to unarchive at https://github.com/conda-forge/admin-requests. This feedstock has been archived for the following reason: {reason}",
             },
         )
         raise_json_for_status(r)
