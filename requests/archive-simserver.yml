@@ -1,7 +1,0 @@
-action: archive
-reason: >
-  The project has been archived upstream. https://github.com/conda-forge/admin-requests/pull/1879/
-feedstocks:
-  - ngspicesimserver
-  - jupyterlab-mosaic
-  - pyttoresque
