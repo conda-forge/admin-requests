@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  binutils:
+    - ld_impl_win-arm64
+    - binutils_impl_win-arm64
+    - binutils_win-arm64
