@@ -1,0 +1,11 @@
+action: add_feedstock_output
+
+feedstock_to_output_mapping:
+  smact:
+    - smact-mp
+    - smact-crystal-space
+    - smact-featurisers
+    - smact-visualisation
+    - smact-ml
+    - smact-property-prediction
+    - smact-optional
