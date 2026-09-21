@@ -1,0 +1,6 @@
+action: broken
+packages:
+- win-64/libpython-2.2-py312h2e8e312_3.conda
+- win-64/libpython-2.0-py38h32f6830_0.tar.bz2
+- win-64/libpython-2.0-py36_0.tar.bz2
+- win-64/libpython-2.0-py27_0.tar.bz2
