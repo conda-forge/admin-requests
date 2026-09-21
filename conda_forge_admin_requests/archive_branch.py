@@ -14,7 +14,7 @@ def check(request):
     task = request["action"]
 
     if not isinstance(feedstocks, dict):
-        raise ValueError(
+        raise TypeError(
             "'feedstocks' must be a mapping from feedstock names to lists of branches"
         )
     if task not in ("archive_branch", "unarchive_branch"):
@@ -33,7 +33,7 @@ def check(request):
             raise ValueError(f"Cannot find {owner}/{repo}!")
 
         if not isinstance(branches, list):
-            raise ValueError(
+            raise TypeError(
                 f"branches for '{feedstock}' must be a list, got {branches!r}"
             )
 
@@ -159,7 +159,7 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
                     _archive_branch(owner, repo, branch, headers)
                 else:
                     _unarchive_branch(owner, repo, branch, headers)
-            except Exception as e:
+            except Exception as e:  # noqa
                 print(
                     f"failed to {task} branch '{branch}' on '{feedstock}': {e!r}",
                     flush=True,
