@@ -1,6 +1,0 @@
-action: broken
-packages:
-  - noarch/conda-smithy-2026.9.22-unix_pyh707e725_0.conda
-  - noarch/conda-smithy-2026.9.22-win_pyh7428d3b_0.conda
-  - noarch/conda-smithy-2026.9.21-unix_pyh707e725_0.conda
-  - noarch/conda-smithy-2026.9.21-win_pyh7428d3b_0.conda
