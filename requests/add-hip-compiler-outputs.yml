@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  hip:
+    - hip-rocm-clang_linux-64
+    - hip-compiler
