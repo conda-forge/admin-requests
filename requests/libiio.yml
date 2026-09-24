@@ -2,4 +2,4 @@ action: add_feedstock_output
 feedstock_to_output_mapping:
   libiio:
     - libiio1
-    - libiio-dev
+    - libiio-devel
