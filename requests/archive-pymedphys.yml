@@ -1,0 +1,8 @@
+action: archive
+reason: >
+  PyMedPhys is no longer packaged for conda. Releases are published to PyPI only;
+  conda users should run `pip install pymedphys` inside their environment.
+  See https://github.com/pymedphys/pymedphys/issues/1886.
+feedstocks:
+  - pymedphys
+  
