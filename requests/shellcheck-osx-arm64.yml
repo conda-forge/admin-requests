@@ -1,0 +1,5 @@
+action: broken
+packages:
+- osx-arm64/shellcheck-0.8.0-hecfb573_0.tar.bz2
+- osx-arm64/shellcheck-0.9.0-hecfb573_0.conda
+- osx-arm64/shellcheck-0.10.0-hecfb573_0.conda
