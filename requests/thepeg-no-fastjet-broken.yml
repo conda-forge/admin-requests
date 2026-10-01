@@ -1,0 +1,10 @@
+action: broken
+packages:
+- linux-64/thepeg-2.2.3-h6f20a71_4.conda
+- linux-aarch64/thepeg-2.2.3-hebca8f3_4.conda
+- osx-64/thepeg-2.2.3-h8beed01_4.conda
+- osx-arm64/thepeg-2.2.3-h41004cd_4.conda
+- linux-64/thepeg-2.3.0-h6f20a71_0.conda
+- linux-aarch64/thepeg-2.3.0-hebca8f3_0.conda
+- osx-64/thepeg-2.3.0-h8beed01_0.conda
+- osx-arm64/thepeg-2.3.0-h41004cd_0.conda
