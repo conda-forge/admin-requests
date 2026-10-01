@@ -1,5 +1,0 @@
-action: archive
-reason: >
-  We no longer need this project on newer python versions.
-feedstocks:
-  - des-y6utils
