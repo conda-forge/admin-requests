@@ -1,0 +1,26 @@
+action: broken
+packages:
+- linux-64/libcamera-0.7.1-15ac456_102_upstream.conda
+- linux-64/libcamera-0.7.1-1c4ad43_100_upstream.conda
+- linux-64/libcamera-0.7.1-1c4ad43_101_upstream.conda
+- linux-64/libcamera-0.7.1-1c4ad43_102_upstream.conda
+- linux-64/libcamera-0.7.1-2c81457_100_upstream.conda
+- linux-64/libcamera-0.7.1-2c81457_101_upstream.conda
+- linux-64/libcamera-0.7.1-2c81457_102_upstream.conda
+- linux-64/libcamera-0.7.1-4fce5db_102_upstream.conda
+- linux-64/libcamera-0.7.1-79a0474_100_upstream.conda
+- linux-64/libcamera-0.7.1-79a0474_101_upstream.conda
+- linux-64/libcamera-0.7.1-79a0474_102_upstream.conda
+- linux-64/libcamera-0.7.1-95f42b7_100_upstream.conda
+- linux-64/libcamera-0.7.1-95f42b7_101_upstream.conda
+- linux-64/libcamera-0.7.1-95f42b7_102_upstream.conda
+- linux-64/libcamera-0.7.1-9b15532_102_upstream.conda
+- linux-64/libcamera-0.7.1-f9ad178_102_upstream.conda
+- linux-aarch64/libcamera-0.7.1-07c840e_202_rpi_fork.conda
+- linux-aarch64/libcamera-0.7.1-0fc77e4_202_rpi_fork.conda
+- linux-aarch64/libcamera-0.7.1-21edfab_202_rpi_fork.conda
+- linux-aarch64/libcamera-0.7.1-37a7e19_102_upstream.conda
+- linux-aarch64/libcamera-0.7.1-a4a37ac_102_upstream.conda
+- linux-aarch64/libcamera-0.7.1-b61ee98_202_rpi_fork.conda
+- linux-aarch64/libcamera-0.7.1-d85ed62_102_upstream.conda
+- linux-aarch64/libcamera-0.7.1-fa482b3_102_upstream.conda
