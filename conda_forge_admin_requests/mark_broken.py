@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 import os
 import subprocess
@@ -54,7 +56,7 @@ def check(request):
 
 
 def mark_broken_pkg(pkg, action):
-    plat, name, ver, build = split_pkg(pkg)
+    _, name, ver, _ = split_pkg(pkg)
 
     if action == "broken":
         func = requests.post
@@ -78,7 +80,9 @@ def mark_broken_pkg(pkg, action):
         return True
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
+    check(request)
+
     if "PROD_BINSTAR_TOKEN" not in os.environ:
         return copy.deepcopy(request)
 

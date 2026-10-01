@@ -1,11 +1,13 @@
-import subprocess
+from __future__ import annotations
+
+import copy
 
 import requests
 
 from .utils import GH_ORG, get_gh_headers, raise_json_for_status
 
 
-def process_repo(repo, task):
+def process_repo(repo, task, reason=None):
     owner = GH_ORG
     headers = get_gh_headers()
 
@@ -29,6 +31,18 @@ def process_repo(repo, task):
         print(f"feedstock {repo} is already {target_status}", flush=True)
         return
 
+    if task == "archive" and reason is not None:
+        r = requests.post(
+            f"https://api.github.com/repos/{owner}/{repo}/issues",
+            headers=headers,
+            json={
+                "title": "Archive the feedstock",
+                "body": f"If you need to unarchive this feedstock, open a PR to unarchive at https://github.com/conda-forge/admin-requests. This feedstock has been archived for the following reason: {reason}",
+            },
+        )
+        raise_json_for_status(r)
+        print(f"archival issue created: {r.json()['html_url']}", flush=True)
+
     r = requests.patch(
         f"https://api.github.com/repos/{owner}/{repo}",
         headers=headers,
@@ -39,22 +53,25 @@ def process_repo(repo, task):
     print(f"feedstock {repo} was {target_status}", flush=True)
 
 
-def run(request):
+def run(request: dict[str, object]) -> dict[str, object] | None:
+    check(request)
     feedstocks = request["feedstocks"]
     task = request["action"]
 
     pkgs_to_do_again = []
     for feedstock in feedstocks:
         try:
-            process_repo(f"{feedstock}-feedstock", task)
-        except Exception as e:
+            process_repo(f"{feedstock}-feedstock", task, reason=request.get("reason"))
+        except Exception as e:  # noqa
             print(f"failed to {task} '{feedstock}': {e!r}", flush=True)
             pkgs_to_do_again.append(feedstock)
 
     if pkgs_to_do_again:
+        request = copy.deepcopy(request)
         request["feedstocks"] = pkgs_to_do_again
-
-    subprocess.check_call(["git", "show"])
+        return request
+    else:
+        return None
 
 
 def check(request):

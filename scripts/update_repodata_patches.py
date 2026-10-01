@@ -43,7 +43,7 @@ Hi! Our weekly job found a non-zero repodata patch diff:
 </details>
 """
 
-    today = datetime.date.today().strftime("%Y-%m-%d")
+    today = datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y-%m-%d")
     gh = github.Github(os.environ["GITHUB_TOKEN"])
     repo = gh.get_repo("conda-forge/conda-forge-repodata-patches-feedstock")
     repo.create_issue(
@@ -111,10 +111,9 @@ def update_repodata_patches(dry_run):
         print("diff:\n" + d, flush=True)
         print("is empty:", empty, flush=True)
 
-        if len(d) > 0 and not empty:
-            if not dry_run:
-                _post_issue_with_diff(d)
-                _commit_to_patches(tmpdir)
+        if len(d) > 0 and not empty and not dry_run:
+            _post_issue_with_diff(d)
+            _commit_to_patches(tmpdir)
 
 
 if __name__ == "__main__":

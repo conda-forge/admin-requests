@@ -13,8 +13,7 @@ Cheers and thank you for contributing to conda-forge!
 
 * [x] I want to archive a feedstock:
   * [ ] Pinged the team for that feedstock for their input.
-  * [ ] Make sure you have opened an issue on the feedstock explaining why it was archived.
-  * [ ] Linked that issue in this PR description.
+  * [ ] Specified the reason for archiving the feedstock in the request.
   * [ ] Added links to any other relevant issues/PRs in the PR description.
 
 <!--
