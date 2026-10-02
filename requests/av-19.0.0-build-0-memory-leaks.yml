@@ -1,0 +1,34 @@
+# av 19.0.0 build 1 backports upstream memory leak fixes:
+# https://github.com/conda-forge/av-feedstock/pull/109
+action: broken
+packages:
+- linux-64/av-19.0.0-py312hc7def48_0.conda
+- linux-64/av-19.0.0-py313hd0c2636_0.conda
+- linux-64/av-19.0.0-py314h88f17a2_0.conda
+- linux-64/av-19.0.0-py314hcf68860_0.conda
+- linux-64/av-19.0.0-py315h92eb96d_0.conda
+- linux-aarch64/av-19.0.0-py312ha8f96f4_0.conda
+- linux-aarch64/av-19.0.0-py313hb6f3eae_0.conda
+- linux-aarch64/av-19.0.0-py314h1e85c89_0.conda
+- linux-aarch64/av-19.0.0-py314h317868a_0.conda
+- linux-aarch64/av-19.0.0-py315hc0cb1c4_0.conda
+- linux-ppc64le/av-19.0.0-py312ha358603_0.conda
+- linux-ppc64le/av-19.0.0-py313h4dbf82a_0.conda
+- linux-ppc64le/av-19.0.0-py314hb8d9538_0.conda
+- linux-ppc64le/av-19.0.0-py314hf1c54da_0.conda
+- linux-ppc64le/av-19.0.0-py315hfeeaa1d_0.conda
+- osx-64/av-19.0.0-py312hb4a3709_0.conda
+- osx-64/av-19.0.0-py313h81a4fbf_0.conda
+- osx-64/av-19.0.0-py314h57d1fb4_0.conda
+- osx-64/av-19.0.0-py314h6f926b6_0.conda
+- osx-64/av-19.0.0-py315hd89e905_0.conda
+- osx-arm64/av-19.0.0-py312hf4557c9_0.conda
+- osx-arm64/av-19.0.0-py313hfb5423a_0.conda
+- osx-arm64/av-19.0.0-py314h6fd1035_0.conda
+- osx-arm64/av-19.0.0-py314hd366f71_0.conda
+- osx-arm64/av-19.0.0-py315h5c107db_0.conda
+- win-64/av-19.0.0-py312hb2f1342_0.conda
+- win-64/av-19.0.0-py313h414490b_0.conda
+- win-64/av-19.0.0-py314h2c90e75_0.conda
+- win-64/av-19.0.0-py314hc59ccdc_0.conda
+- win-64/av-19.0.0-py315h98868ba_0.conda
