@@ -1,0 +1,6 @@
+action: archive
+reason: >
+  We do not use these anymore.
+feedstocks:
+  - shredx
+  - mof
