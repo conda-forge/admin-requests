@@ -1,6 +1,0 @@
-action: archive
-reason: >
-  pygments-style-solarized has been removed from PyPI and its upstream repository
-  (shkumagai/pygments-style-solarized) is archived, so there will be no further releases.
-feedstocks:
-  - pygments-style-solarized
