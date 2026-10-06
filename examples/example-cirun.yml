@@ -5,11 +5,10 @@ feedstocks:
 resources:
   # list of resource names you are applying to
   # see https://github.com/conda-forge/.cirun for available options
-  - cirun-openstack-gpu-large
-  # - cirun-openstack-cpu-large
+  - cirun-azure-windows-2xlarge
 # switch to true if you need it on pull-requests too
-pull_request: false  
-# revoke access to the gpu runner
+pull_request: false
+# revoke access to the cirun runner
 revoke: false
 # Send an automatic PR to the feedstock to enable cirun defaults
 send_pr: true
