@@ -1,0 +1,7 @@
+action: archive
+reason: >
+  mvt is no longer maintained on conda-forge. The feedstock is stuck at 1.4.11, while
+  upstream (2026.10.5) now pins exact versions of dependencies that are not packaged on
+  conda-forge (betterproto2, iphone_backup_decrypt), and the sole maintainer is stepping down.
+feedstocks:
+  - mvt
