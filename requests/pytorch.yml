@@ -1,0 +1,4 @@
+action: depot
+feedstocks:
+  - pytorch-cpu
+revoke: false
