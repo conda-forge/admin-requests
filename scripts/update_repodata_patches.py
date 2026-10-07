@@ -58,6 +58,7 @@ def update_repodata_patches(dry_run):
         "================================================================================",
         "linux-armv7l",
         "linux-ppc64le",
+        "linux-riscv64",
         "linux-aarch64",
         "noarch",
         "win-32",
@@ -65,6 +66,7 @@ def update_repodata_patches(dry_run):
         "osx-64",
         "linux-64",
         "win-64",
+        "win-arm64",
     ]
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(
