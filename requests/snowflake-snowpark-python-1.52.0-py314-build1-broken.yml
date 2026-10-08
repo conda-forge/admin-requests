@@ -1,0 +1,7 @@
+action: broken
+packages:
+  - linux-64/snowflake-snowpark-python-1.52.0-py314hdafbbf9_1.conda
+  - linux-aarch64/snowflake-snowpark-python-1.52.0-py314h28a4750_1.conda
+  - osx-64/snowflake-snowpark-python-1.52.0-py314hee6578b_1.conda
+  - osx-arm64/snowflake-snowpark-python-1.52.0-py314h4dc9dd8_1.conda
+  - win-64/snowflake-snowpark-python-1.52.0-py314h86ab7b2_1.conda
