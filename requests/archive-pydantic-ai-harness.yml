@@ -1,7 +1,0 @@
-action: archive
-# The reason will be used to create the archival issue on the feedstock.
-reason: >
-  pydantic-ai-harness moved into the pydantic/pydantic-ai monorepo and is now
-  built as an output of https://github.com/conda-forge/pydantic_ai-feedstock.
-feedstocks:
-  - pydantic-ai-harness
