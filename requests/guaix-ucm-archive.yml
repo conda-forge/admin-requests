@@ -1,0 +1,13 @@
+action: archive
+# The reason will be used to create the archival issue on the feedstock.
+reason: >
+  numina, megaradrp and pyemir are no longer distributed through conda-forge.
+  Some dependencies of numina (for example teareduce) are not in conda-forge,
+  and PyPI has prebuilt wheels of numina for Linux and macOS (x86_64 and
+  arm64). The documentation of the three packages is being updated to recommend
+  creating the environment with conda and installing them with pip. The existing
+  packages stay available, but they will not be updated.
+feedstocks:
+  - megaradrp
+  - numina
+  - pyemir
