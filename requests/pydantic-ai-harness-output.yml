@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # pydantic-ai-harness moved into the pydantic-ai monorepo; build it from pydantic_ai-feedstock
+  pydantic_ai:
+    - pydantic-ai-harness
