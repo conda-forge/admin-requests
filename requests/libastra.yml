@@ -1,0 +1,7 @@
+action: archive
+# The reason will be used to create the archival issue on the feedstock.
+# If one is already present, remove the "reason:" key to disable creating a new issue.
+reason: >
+  The output of this feedstock has been merged into the [astra-toolbox-feedstock](https://github.com/conda-forge/astra-toolbox-feedstock).
+feedstocks:
+  - libastra
