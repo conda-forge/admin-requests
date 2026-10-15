@@ -21,4 +21,5 @@ For example if you are trying to archive a `foo` feedstock.
 
   ping @conda-forge/foo
 
+ALWAYS PING EVEN IF YOU ARE A MAINTAINER OF THE FEEDSTOCK.
 -->
