@@ -1,0 +1,17 @@
+action: archive
+# The reason will be used to create the archival issue on the feedstock.
+reason: >
+  This package is no longer maintained upstream. The upstream repository is
+  archived, has had no code changes in years, or the project was renamed, and
+  there have been no new releases for several years. The existing packages stay
+  available, but they will not be updated.
+feedstocks:
+  - django-rest-swagger
+  - geoalchemy-odm2
+  - gevent-websocket
+  - nbserverproxy
+  - openapi-codec
+  - python-wget
+  - rio-mucho
+  - rio-toa
+  - yodapy
