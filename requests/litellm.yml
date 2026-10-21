@@ -1,0 +1,5 @@
+action: archive
+reason: >
+  compromised release: https://github.com/BerriAI/litellm/issues/47826
+feedstocks:
+  - litellm
