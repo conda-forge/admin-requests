@@ -1,0 +1,19 @@
+action: archive
+# Reason for archiving: these packages are no longer maintained upstream. The
+# upstream repositories are archived, have had no code changes in years, or the
+# project was renamed (nbserverproxy -> jupyter-server-proxy), and there have
+# been no new releases for several years. The existing packages stay available,
+# but they will not be updated.
+#
+# Archival issues are already open on each feedstock (linked in the PR
+# description), so the "reason:" key is left out to avoid duplicate issues.
+feedstocks:
+  - django-rest-swagger
+  - geoalchemy-odm2
+  - gevent-websocket
+  - nbserverproxy
+  - openapi-codec
+  - python-wget
+  - rio-mucho
+  - rio-toa
+  - yodapy
