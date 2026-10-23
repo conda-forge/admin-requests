@@ -1,4 +1,0 @@
-action: broken
-packages:
-- linux-64/libmambapy-2.10.0-py312h9618fe0_0.conda
-- linux-aarch64/mamba-2.10.0-hd58db01_0.conda
