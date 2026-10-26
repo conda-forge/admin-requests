@@ -1,0 +1,6 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  # pycolmap is built from the same repository as colmap and moves from
+  # pycolmap-feedstock into colmap-feedstock as a second output.
+  colmap:
+    - pycolmap
