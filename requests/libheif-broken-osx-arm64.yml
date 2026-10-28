@@ -1,0 +1,8 @@
+action: broken
+packages:
+- osx-arm64/libheif-1.23.4-gpl_hea44f65_100.conda
+- osx-arm64/libheif-1.23.4-lgpl_hdbfea7f_0.conda
+- osx-arm64/libheif-1.23.5-gpl_hea44f65_100.conda
+- osx-arm64/libheif-1.23.5-lgpl_hdbfea7f_0.conda
+- osx-arm64/libheif-1.23.6-gpl_hea44f65_100.conda
+- osx-arm64/libheif-1.23.6-lgpl_hdbfea7f_0.conda
