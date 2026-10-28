@@ -1,6 +1,0 @@
-action: archive
-reason: >
-  pycolmap is now built from the same repository as colmap and is published as
-  a second output of colmap-feedstock (https://github.com/conda-forge/colmap-feedstock).
-feedstocks:
-  - pycolmap
