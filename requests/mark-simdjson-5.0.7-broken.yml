@@ -1,0 +1,10 @@
+action: broken
+packages:
+- linux-64/simdjson-5.0.7-h4dbf13b_0.conda
+- linux-aarch64/simdjson-5.0.7-h45ce4d5_0.conda
+- linux-ppc64le/simdjson-5.0.7-hf4a8189_0.conda
+- linux-riscv64/simdjson-5.0.7-he88cb37_0.conda
+- osx-64/simdjson-5.0.7-h41675c4_0.conda
+- osx-arm64/simdjson-5.0.7-he80e296_0.conda
+- win-64/simdjson-5.0.7-h477610d_0.conda
+- win-arm64/simdjson-5.0.7-h11ae69d_0.conda
