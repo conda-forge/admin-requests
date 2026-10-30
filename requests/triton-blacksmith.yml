@@ -1,0 +1,6 @@
+action: blacksmith
+feedstocks:
+  # list of feedstock names (sans `-feedstock` suffix)
+  - triton
+# revoke access to the runners
+revoke: false
