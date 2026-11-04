@@ -43,7 +43,7 @@ Hi! Our weekly job found a non-zero repodata patch diff:
 </details>
 """
 
-    today = datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.datetime.now(tz=datetime.UTC).strftime("%Y-%m-%d")
     gh = github.Github(os.environ["GITHUB_TOKEN"])
     repo = gh.get_repo("conda-forge/conda-forge-repodata-patches-feedstock")
     repo.create_issue(
