@@ -13,7 +13,7 @@ dependencies:
   - conda-forge-metadata >=0.9.1
   - ruamel.yaml
   - conda-build >=25.3.1
-  # These come from conda-forge-repodata-patches-feedstock's run requirements
+  # These come from conda-forge-repodata-patches-feedstock's build requirements
   - requests
   - tqdm
   - license-expression
