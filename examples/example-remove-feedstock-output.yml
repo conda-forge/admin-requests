@@ -1,0 +1,5 @@
+action: remove_feedstock_output
+feedstock_to_output_mapping:
+  # this entry stops the feedstock from publishing a package name
+  onnxruntime:
+    - onnxruntime-ep-openvino
