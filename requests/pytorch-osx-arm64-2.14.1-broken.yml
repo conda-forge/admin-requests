@@ -1,0 +1,39 @@
+# osx-arm64 pytorch 2.14.1 builds 0-2 lack pytorch's Metal 4 kernels but still
+# dispatch to them on macOS 26.2+, so MPS SDPA (float16/bfloat16), cholesky,
+# solve, inv and lu_factor fail there. Replaced by build 1304 (macOS 13.0+,
+# with the pytorch/pytorch#196881 backport so it never dispatches to missing
+# kernels) and build 2604 (macOS 26.0+, with the Metal 4 kernels) from
+# https://github.com/conda-forge/pytorch-cpu-feedstock/pull/563
+# See https://github.com/conda-forge/pytorch-cpu-feedstock/issues/562
+action: broken
+packages:
+- osx-arm64/libtorch-2.14.1-cpu_generic_h8539c7d_0.conda
+- osx-arm64/libtorch-2.14.1-cpu_generic_h8539c7d_1.conda
+- osx-arm64/libtorch-2.14.1-cpu_generic_h9daf48b_2.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py311_h0c155a7_0.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py311_h0c155a7_1.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py311_h88aca85_2.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py312_h32059f8_0.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py312_h32059f8_1.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py312_hd1c9886_2.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py313_hdbf00ca_2.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py313_hf1850e0_0.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py313_hf1850e0_1.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py314_h416c425_2.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py314_hac9b002_0.conda
+- osx-arm64/pytorch-2.14.1-cpu_generic_py314_hac9b002_1.conda
+- osx-arm64/pytorch-cpu-2.14.1-cpu_generic_hcc7c195_0.conda
+- osx-arm64/pytorch-cpu-2.14.1-cpu_generic_hcc7c195_1.conda
+- osx-arm64/pytorch-cpu-2.14.1-cpu_generic_hcc7c195_2.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py311_h4feaede_0.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py311_h4feaede_1.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py311_h4feaede_2.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py312_h6e203fe_0.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py312_h6e203fe_1.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py312_h6e203fe_2.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py313_h1e1af72_0.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py313_h1e1af72_1.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py313_h1e1af72_2.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py314_hcb0c132_0.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py314_hcb0c132_1.conda
+- osx-arm64/pytorch-tests-2.14.1-cpu_generic_py314_hcb0c132_2.conda
