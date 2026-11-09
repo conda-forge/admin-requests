@@ -1,7 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  clang-win-activation:
-    - msvc-headers-libs_win-64
-    - msvc-headers-libs_win-arm64
-    - winsdk_win-64
-    - winsdk_win-arm64
