@@ -1,5 +1,0 @@
-action: archive
-reason: >
-  The sagelib feedstock has been merged into the sage feedstock.
-feedstocks:
-  - sagelib
