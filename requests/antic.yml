@@ -1,0 +1,5 @@
+action: archive
+reason: >
+  The upstream project has been merged into the FLINT project.
+feedstocks:
+  - antic
