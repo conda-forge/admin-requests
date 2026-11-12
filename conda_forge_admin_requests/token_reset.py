@@ -58,8 +58,7 @@ def reset_feedstock_token(
     unique_token_per_provider=False,
     existing_tokens_time_to_expiration=None,
 ):
-    # always skip travis
-    skips = (skips or []) + ["travis"]
+    skips = skips or []
 
     owner_info = ["--organization", "conda-forge"]
     token_repo = (
@@ -104,18 +103,8 @@ def reset_feedstock_token(
                 "conda",
                 "smithy",
                 "register-feedstock-token",
-                "--without-circle",
-                "--without-drone",
             ]
-            + [
-                f"--without-{s.replace('_', '-')}"
-                for s in skips
-                if s
-                not in [
-                    "circle",
-                    "drone",
-                ]
-            ]
+            + [f"--without-{s.replace('_', '-')}" for s in skips]
             + [
                 "--feedstock_directory",
                 feedstock_dir,
@@ -131,10 +120,7 @@ def reset_feedstock_token(
                 "conda",
                 "smithy",
                 "rotate-binstar-token",
-                "--without-appveyor",
                 "--without-azure",
-                "--without-circle",
-                "--without-drone",
                 "--without-github-actions",
             ]
             + [
@@ -142,9 +128,6 @@ def reset_feedstock_token(
                 for s in skips
                 if s
                 not in [
-                    "circle",
-                    "drone",
-                    "appveyor",
                     "azure",
                     "github_actions",
                 ]

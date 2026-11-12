@@ -51,7 +51,7 @@ jobs:
       - name: Generate token
         if: steps.conversion_lock.outcome == 'success' && ! env.CI_SKIP
         id: generate_token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           client-id: ${{ secrets.CF_CURATOR_APP_ID }}
           private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
@@ -68,11 +68,7 @@ jobs:
         env:
           PROD_BINSTAR_TOKEN: ${{ secrets.PROD_BINSTAR_TOKEN }}
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-          # CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-          # Smithy will request a Travis token using a Github token if needed
-          # TRAVIS_TOKEN: ${{ secrets.CF_ADMIN_TRAVIS_TOKEN }}
           AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
-          # DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
           CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
           GITHUB_ADMIN_TOKEN: ${{ secrets.CF_ADMIN_GITHUB_TOKEN }}
           STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}

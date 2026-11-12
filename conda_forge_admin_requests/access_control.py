@@ -1,5 +1,5 @@
 """
-This script will process the `travis` and `cirun` requests.
+This script will process the `cirun` requests.
 
 Main logic lives in conda-smithy. This is just a wrapper for admin-requests infra.
 """
@@ -32,11 +32,10 @@ DEFAULT_CIRUN_OPENSTACK_VALUES = {
 GHA_PROVIDERS = (
     "blacksmith",
     "cirun",
-    "cirrus_runners",
     "depot",
     "namespace",
 )
-VALID_ACTIONS = ("travis", *GHA_PROVIDERS)
+VALID_ACTIONS = (*GHA_PROVIDERS,)
 
 
 def send_pr_cirun(
@@ -171,10 +170,7 @@ def _process_request_for_feedstock(
             "--without-anaconda-token",
             *owner_info,
         ]
-        if action == "travis":
-            register_ci_cmd.append("--with-travis")
-
-        elif action in ("blacksmith", "namespace", "depot"):
+        if action in ("blacksmith", "namespace", "depot"):
             register_ci_cmd.append(f"--with-{action}")
             if revoke:
                 register_ci_cmd.append("--remove")
@@ -201,9 +197,7 @@ def _process_request_for_feedstock(
         subprocess.check_call(register_ci_cmd)
 
         if not revoke:
-            if action == "travis":
-                with_cmd = "--with-travis"
-            elif action in GHA_PROVIDERS:
+            if action in GHA_PROVIDERS:
                 with_cmd = "--with-github-actions"
 
             print("Generating a new feedstock token")
@@ -237,23 +231,6 @@ def _process_request_for_feedstock(
                     token_repo,
                 ]
             )
-
-            if action == "travis":
-                print("Add STAGING_BINSTAR_TOKEN to travis")
-                subprocess.check_call(
-                    [
-                        "conda",
-                        "smithy",
-                        "rotate-binstar-token",
-                        "--feedstock_directory",
-                        feedstock_dir,
-                        "--without-all",
-                        with_cmd,
-                        *owner_info,
-                        "--token_name",
-                        "STAGING_BINSTAR_TOKEN",
-                    ]
-                )
 
             if action == "cirun" and send_pr:
                 print("Sending PR to feedstock")
@@ -304,9 +281,6 @@ def check(request: dict[str, str | list[str]]) -> None:
         assert resources, "Empty resources"
         for resource in resources:
             assert resource.startswith("cirun-")
-
-    if action == "travis":
-        assert not request.get("revoke", False)
 
 
 def run(request: dict[str, object]) -> dict[str, object] | None:

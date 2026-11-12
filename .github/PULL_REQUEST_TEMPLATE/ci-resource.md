@@ -20,4 +20,5 @@ For example if you are trying to request access for the `foo` feedstock.
 
   ping @conda-forge/foo
 
+ALWAYS PING EVEN IF YOU ARE A MAINTAINER OF THE FEEDSTOCK.
 -->
