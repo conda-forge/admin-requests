@@ -1,0 +1,5 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  vc:
+    - vs2022_win-32
+    - vs_win-32
