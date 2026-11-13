@@ -1,6 +1,0 @@
-action: add_feedstock_output
-feedstock_to_output_mapping:
-  h5netcdf:
-    - h5netcdf-h5py
-    - h5netcdf-pyfive
-    - h5netcdf-h5pyd
