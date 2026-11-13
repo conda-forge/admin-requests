@@ -1,0 +1,9 @@
+action: archive
+# The reason will be used to create the archival issue on the feedstock.
+reason: >
+  The upstream R package inctools is no longer maintained and has been
+  superseded by a replacement that is not distributed via CRAN or
+  conda-forge. Existing builds should remain available; no further
+  updates or rebuilds are planned.
+feedstocks:
+  - r-inctools
