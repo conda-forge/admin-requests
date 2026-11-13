@@ -95,9 +95,51 @@ def _add_feedstock_output_glob(
     )
 
 
+def _remove_feedstock_output(
+    feedstock,
+    pkg_name,
+):
+    gh_token = os.environ["GITHUB_TOKEN"]
+    gh = github.Github(auth=github.Auth.Token(gh_token))
+    repo = gh.get_repo("conda-forge/feedstock-outputs")
+    try:
+        contents = repo.get_contents(_get_sharded_path(pkg_name))
+    except github.GithubException as e:
+        _test_and_raise_besides_file_not_exists(e)
+        contents = None
+
+    data = {"feedstocks": []}
+    if contents is not None:
+        data = json.loads(contents.decoded_content.decode("utf-8"))
+
+    if feedstock not in data["feedstocks"]:
+        print(
+            f"    output {pkg_name} is not registered for feedstock conda-forge/{feedstock}-feedstock",
+            flush=True,
+        )
+        return
+
+    data["feedstocks"].remove(feedstock)
+    if not data["feedstocks"]:
+        raise ValueError(
+            f"refusing to remove the last feedstock registered for output {pkg_name}"
+        )
+
+    repo.update_file(
+        contents.path,
+        f"[cf admin skip] ***NO_CI*** remove output {pkg_name} for conda-forge/{feedstock}-feedstock",
+        json.dumps(data),
+        contents.sha,
+    )
+    print(
+        f"    output {pkg_name} removed for feedstock conda-forge/{feedstock}-feedstock",
+        flush=True,
+    )
+
+
 def check(request):
     action = request["action"]
-    assert action == "add_feedstock_output"
+    assert action in ("add_feedstock_output", "remove_feedstock_output")
 
     assert request.get("feedstock_to_output_mapping")
     msg = "feedstock to output mapping syntax has changed and requires a dictionary now. See example."
@@ -133,27 +175,33 @@ def check(request):
                 raise ValueError(
                     f"Output names of length one are not allowed! Received {pkg_name!r} as part of {pkgs!r}"
                 )
+            if action == "remove_feedstock_output" and any(
+                _c in pkg_name for _c in ["*", "?", "[", "]", "!"]
+            ):
+                raise ValueError(
+                    f"Removing glob patterns is not supported! Received {pkg_name!r} as part of {pkgs!r}"
+                )
 
 
 def run(request: dict[str, object]) -> dict[str, object] | None:
     check(request)
     action = request["action"]
-    assert action == "add_feedstock_output"
 
-    assert request.get("feedstock_to_output_mapping")
     items_to_keep = {}
     for feedstock, pkgs in request["feedstock_to_output_mapping"].items():
         feedstock = feedstock.removesuffix("-feedstock")
         pkgs_to_keep = []
         for pkg_name in pkgs:
             try:
-                if any(_c in pkg_name for _c in ["*", "?", "[", "]", "!"]):
+                if action == "remove_feedstock_output":
+                    _remove_feedstock_output(feedstock, pkg_name)
+                elif any(_c in pkg_name for _c in ["*", "?", "[", "]", "!"]):
                     _add_feedstock_output_glob(feedstock, pkg_name)
                 else:
                     _add_feedstock_output(feedstock, pkg_name)
             except Exception as e:  # noqa
                 print(
-                    f"    could not add output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}",
+                    f"    could not process output {pkg_name} for feedstock conda-forge/{feedstock}-feedstock: {e}",
                     flush=True,
                 )
                 pkgs_to_keep.append(pkg_name)
