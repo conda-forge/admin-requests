@@ -1,0 +1,5 @@
+action: archive
+reason: >
+  Ongoing supply chain attack. Archiving out of caution.
+feedstocks:
+  - agent-framework-core
