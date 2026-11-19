@@ -1,0 +1,7 @@
+action: archive_branch
+feedstocks:
+  openjdk:
+    - 7.x
+    - java9
+    - java10
+    - java23
