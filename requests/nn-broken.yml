@@ -1,0 +1,9 @@
+action: broken
+packages:
+# The bundled Triangle is compiled with fused multiply-add contraction,
+# which makes the Delaunay triangulation hang, see
+# https://github.com/conda-forge/nn-feedstock/pull/25
+- linux-aarch64/nn-1.86.0-h86ecc28_2003.conda
+- linux-aarch64/nn-1.86.0-h29ee22c_2004.conda
+- linux-ppc64le/nn-1.86.0-h190368a_2003.conda
+- linux-ppc64le/nn-1.86.0-he76f63b_2004.conda
