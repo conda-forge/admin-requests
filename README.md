@@ -123,3 +123,9 @@ package output, please use the full name of the package output. We support the
 glob syntax of the Python `fnmatch` module. Make a PR putting your `.yml`
 request file in the `requests` directory and the `conda-forge/core` team will
 review it.
+
+To stop a feedstock from publishing an output, for example after moving it to
+another feedstock, use the `remove_feedstock_output` action. An example request is
+located in [examples/example-remove-feedstock-output.yml](examples/example-remove-feedstock-output.yml).
+It only accepts full package names, and it is retried rather than applied while
+that feedstock is the only one registered for the output, so an output always keeps an owner.
