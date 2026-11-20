@@ -1,0 +1,4 @@
+action: broken
+packages:
+- noarch/foundry-platform-sdk-0.104.0-pyhd8ed1ab_0.conda
+- noarch/foundry-platform-sdk-0.105.0-pyhd8ed1ab_0.conda
