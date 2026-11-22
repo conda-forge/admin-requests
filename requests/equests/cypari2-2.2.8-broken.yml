@@ -1,0 +1,27 @@
+action: broken
+packages:
+- linux-64/cypari2-2.2.8-py313h7b72f4c_0.conda
+- linux-64/cypari2-2.2.8-py314ha128bd5_0.conda
+- linux-64/cypari2-2.2.8-py314hf5b8713_0.conda
+- linux-64/cypari2-2.2.8-py315h36e752c_0.conda
+- linux-64/cypari2-2.2.8-py315h747a02b_0.conda
+- linux-aarch64/cypari2-2.2.8-py313hf32f856_0.conda
+- linux-aarch64/cypari2-2.2.8-py314h10498bb_0.conda
+- linux-aarch64/cypari2-2.2.8-py314h6fad7e3_0.conda
+- linux-aarch64/cypari2-2.2.8-py315h0f5d514_0.conda
+- linux-aarch64/cypari2-2.2.8-py315he30719d_0.conda
+- linux-ppc64le/cypari2-2.2.8-py313hee51932_0.conda
+- linux-ppc64le/cypari2-2.2.8-py314h83faa3d_0.conda
+- linux-ppc64le/cypari2-2.2.8-py314hc0df900_0.conda
+- linux-ppc64le/cypari2-2.2.8-py315h0d2da42_0.conda
+- linux-ppc64le/cypari2-2.2.8-py315hfaba4e3_0.conda
+- osx-64/cypari2-2.2.8-py313hd2df8c4_0.conda
+- osx-64/cypari2-2.2.8-py314h452e031_0.conda
+- osx-64/cypari2-2.2.8-py314hb76c90c_0.conda
+- osx-64/cypari2-2.2.8-py315h82fc0b5_0.conda
+- osx-64/cypari2-2.2.8-py315hfed411e_0.conda
+- osx-arm64/cypari2-2.2.8-py313hfb13f23_0.conda
+- osx-arm64/cypari2-2.2.8-py314h0db1d90_0.conda
+- osx-arm64/cypari2-2.2.8-py314h6296058_0.conda
+- osx-arm64/cypari2-2.2.8-py315hb820489_0.conda
+- osx-arm64/cypari2-2.2.8-py315hcd186f5_0.conda
