@@ -44,3 +44,9 @@
      - lerobot-vla-jepa
      - lerobot-wall-oss-05
      - lerobot-wallx
+     - lerobot-fineart-vla-kernels
+     - lerobot-metaworld
+     - lerobot-motorbridge-dep
+     - lerobot-motorbridge-smart-servo-dep
+     - lerobot-rebot
+     - lerobot-yam
