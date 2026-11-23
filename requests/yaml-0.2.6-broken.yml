@@ -1,0 +1,8 @@
+action: broken
+packages:
+- linux-64/yaml-0.2.6-hebe6cf0_0.conda
+- linux-aarch64/yaml-0.2.6-h29ee22c_0.conda
+- linux-ppc64le/yaml-0.2.6-h3324e94_0.conda
+- linux-riscv64/yaml-0.2.6-h999c864_0.conda
+- osx-64/yaml-0.2.6-h9ec13f6_0.conda
+- osx-arm64/yaml-0.2.6-h602ebc4_0.conda
