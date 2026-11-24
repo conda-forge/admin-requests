@@ -1,0 +1,9 @@
+action: archive
+# The reason will be used to create the archival issue on the feedstock.
+reason: >
+  haystack-experimental has been archived upstream
+  (https://github.com/deepset-ai/haystack-experimental). Its final release is
+  0.19.0.post1 and no further versions will be published, so the package is no
+  longer maintained on conda-forge.
+feedstocks:
+  - haystack-experimental
