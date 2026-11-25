@@ -1,0 +1,8 @@
+action: archive
+reason: >
+  openlineage-airflow was dropped after 1.41.0. The package is no longer
+  maintained and must not be used with Airflow 2.7+; ongoing development
+  moved to the apache-airflow-providers-openlineage package instead. Refer
+  https://pypi.org/project/openlineage-airflow/1.41.0/.
+feedstocks:
+  - openlineage-airflow
