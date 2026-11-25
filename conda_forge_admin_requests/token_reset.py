@@ -28,7 +28,7 @@ def get_feedstock_token_repo():
 
     if "GITHUB_TOKEN" not in os.environ:
         raise RuntimeError(
-            "Cannot delete feedstock token since " "we do not have a github token!"
+            "Cannot delete feedstock token since we do not have a github token!"
         )
 
     if FEEDSTOCK_TOKENS_REPO is None:
@@ -113,27 +113,6 @@ def reset_feedstock_token(
             + ["--token_repo", token_repo]
             + uniq_args
             + expire_args
-        )
-
-        subprocess.check_call(
-            [
-                "conda",
-                "smithy",
-                "rotate-binstar-token",
-                "--without-azure",
-                "--without-github-actions",
-            ]
-            + [
-                f"--without-{s.replace('_', '-')}"
-                for s in skips
-                if s
-                not in [
-                    "azure",
-                    "github_actions",
-                ]
-            ]
-            + ["--token_name", "STAGING_BINSTAR_TOKEN"],
-            cwd=feedstock_dir,
         )
 
 
