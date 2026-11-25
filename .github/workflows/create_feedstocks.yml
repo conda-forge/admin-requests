@@ -9,6 +9,7 @@ jobs:
   create_feedstocks:
     name: create feedstocks
     runs-on: ubuntu-latest
+    if: github.repository == 'conda-forge/admin-requests' || github.repository == ''
 
     steps:
       - name: checkout staged-recipes
