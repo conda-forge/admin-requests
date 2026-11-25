@@ -1,0 +1,23 @@
+action: add_feedstock_output
+feedstock_to_output_mapping:
+  dotnet:
+    # Unversioned host package: the dotnet muxer and the environment
+    # activation scripts, split out of dotnet-runtime so that several
+    # major versions can share one $PREFIX/lib/dotnet.
+    - dotnet-host
+    # Major-versioned outputs for the two currently supported lines.
+    - dotnet-runtime-10
+    - dotnet-runtime-11
+    - dotnet-aspnetcore-10
+    - dotnet-aspnetcore-11
+    - dotnet-sdk-10
+    - dotnet-sdk-11
+    - dotnet-desktop-10
+    - dotnet-desktop-11
+    # .NET ships a new major every November. These globs are anchored on a
+    # digit so they cover only future major-versioned names (dotnet-runtime-12,
+    # ...) and not unrelated names such as a hypothetical dotnet-runtime-deps.
+    - "dotnet-runtime-[0-9]*"
+    - "dotnet-aspnetcore-[0-9]*"
+    - "dotnet-sdk-[0-9]*"
+    - "dotnet-desktop-[0-9]*"
