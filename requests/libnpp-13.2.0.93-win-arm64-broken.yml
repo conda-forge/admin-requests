@@ -1,4 +1,0 @@
-action: broken
-packages:
-- win-arm64/libnpp-13.2.0.93-h5d29faa_0.conda
-- win-arm64/libnpp-dev-13.2.0.93-h5d29faa_0.conda
