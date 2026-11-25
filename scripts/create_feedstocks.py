@@ -383,9 +383,8 @@ if __name__ == "__main__":
                 # Get our final rate limit info.
                 print_rate_limiting_info(gh, "GH_TOKEN")
 
-        # Break the previous loop to allow the TravisCI registering
-        # to take place only once per function call.
-        # Without this, intermittent failures to synch the TravisCI repos ensue.
+        # Register CI in a separate loop after all feedstocks have been created
+        # on GitHub, so that at most 10 are registered per run.
         # Hang on to any CI registration errors that occur and raise them at the end.
         for num, (feedstock_dir, name, recipe_dir, default_branch) in enumerate(
             feedstock_dirs

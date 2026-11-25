@@ -138,7 +138,7 @@ def _process_request_for_feedstock(
     pull_request (bool): Whether to allow PRs for resource.
     """
 
-    # We need a token with admin permissions for Cirun & Cirrus
+    # We need a token with admin permissions for Cirun
     with tempfile.TemporaryDirectory() as tmp_dir, mock.patch.dict(
         "os.environ", {"GITHUB_TOKEN": os.environ["GITHUB_ADMIN_TOKEN"]}
     ):
