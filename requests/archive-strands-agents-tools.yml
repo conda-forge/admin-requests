@@ -1,0 +1,11 @@
+action: archive
+# The reason will be used to create the archival issue on the feedstock.
+reason: >
+  strands-agents-tools has been archived upstream
+  (https://github.com/strands-agents/tools). Its final release is 0.9.0, in
+  which each tool points to its replacement in the Strands SDK or elsewhere
+  (https://strandsagents.com/docs/user-guide/migrate/strands-agents-tools/).
+  No further versions will be published, so the package is no longer
+  maintained on conda-forge.
+feedstocks:
+  - strands-agents-tools
