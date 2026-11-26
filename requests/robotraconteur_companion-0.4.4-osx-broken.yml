@@ -1,0 +1,4 @@
+action: broken
+packages:
+- osx-64/robotraconteur_companion-0.4.4-h4f12fea_0.conda
+- osx-arm64/robotraconteur_companion-0.4.4-h18b5e9d_0.conda
