@@ -1,0 +1,6 @@
+action: archive
+reason: >
+  lb-telemetry has been decommissioned upstream (https://gitlab.cern.ch/lhcb/lb-telemetry)
+  because the MONIT InfluxDB instance it sent data to has been retired.
+feedstocks:
+  - lb-telemetry
