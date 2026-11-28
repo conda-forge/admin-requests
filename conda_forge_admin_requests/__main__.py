@@ -2,7 +2,7 @@ import glob
 import os
 import subprocess
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import yaml
 
@@ -24,10 +24,7 @@ def check():
             "Please put YAML-formatted requests in the `requests` directory."
         )
 
-    if not all(
-        fname.endswith(".yaml") or fname.endswith(".yml")
-        for fname in glob.glob("requests/*")
-    ):
+    if not all(fname.endswith((".yaml", ".yml")) for fname in glob.glob("requests/*")):
         assert False, (
             "Found non-YAML files in the `requests` directory. Please "
             "use only YAML-formatted requests with filename extensions "
@@ -56,7 +53,7 @@ def check():
         if action not in actions:
             assert False, f"Unknown action: {action}"
 
-        getattr(actions[action], "check")(request)
+        actions[action].check(request)
 
 
 def run():
@@ -75,7 +72,7 @@ def run():
         if action not in actions:
             assert False, f"Unknown action: {action}"
 
-        try_again = getattr(actions[action], "run")(request)
+        try_again = actions[action].run(request)
 
         if try_again:
             with open(filename, "w") as fp:
@@ -107,7 +104,7 @@ def run():
                 if added_at:
                     added_at_dt = datetime.fromisoformat(added_at)
                     # Keep this magic number in sync with the issue message in GHA's main.yml
-                    if datetime.now(tz=timezone.utc) - added_at_dt > timedelta(hours=6):
+                    if datetime.now(tz=UTC) - added_at_dt > timedelta(hours=6):
                         failing_filenames_to_raise.append(filename)
                 else:
                     print(

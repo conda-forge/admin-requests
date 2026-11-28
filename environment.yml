@@ -9,7 +9,18 @@ dependencies:
   - pygithub
   - pydantic
   - cirun
-  - conda-smithy >=2026
+  - conda-smithy >=2026.10.20
   - conda-forge-metadata >=0.9.1
   - ruamel.yaml
   - conda-build >=25.3.1
+  # These come from conda-forge-repodata-patches-feedstock's build requirements
+  - requests
+  - tqdm
+  - license-expression
+  - packaging
+  - pyyaml
+  - pydantic !=2.9.*
+  - pytest
+  - conda-build
+  - zstandard
+  - sortedcontainers

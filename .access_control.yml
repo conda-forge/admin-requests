@@ -2,8 +2,6 @@
 # Please DO NOT submit modifications to this document.
 version: 1
 access_control:
-  travis:
-    - feedstock: example
   cirun-gpu-small:
     - feedstock: example
   cirun-openstack-gpu-large:

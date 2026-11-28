@@ -12,9 +12,8 @@ Cheers and thank you for contributing to conda-forge!
 ## Checklist:
 
 * [x] I want to archive a feedstock:
-  * [ ] Pinged the team for that feedstock for their input.
-  * [ ] Make sure you have opened an issue on the feedstock explaining why it was archived.
-  * [ ] Linked that issue in this PR description.
+  * [ ] Pinged the relevant feedstock team(s)
+  * [ ] Specified the reason for archiving the feedstock in the request.
   * [ ] Added links to any other relevant issues/PRs in the PR description.
 
 <!--
@@ -22,4 +21,5 @@ For example if you are trying to archive a `foo` feedstock.
 
   ping @conda-forge/foo
 
+ALWAYS PING EVEN IF YOU ARE A MAINTAINER OF THE FEEDSTOCK.
 -->

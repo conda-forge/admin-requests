@@ -33,11 +33,12 @@ What will happen when a package is marked broken?
 
 * [x] I want to mark a package as broken (or not broken):
   * [ ] Added a description of the problem with the package in the PR description.
-  * [ ] Pinged the team for the package for their input.
+  * [ ] Pinged the relevant feedstock team(s)
 
 <!--
 For example if you are trying to mark a `foo` conda package as broken.
 
   ping @conda-forge/foo
 
+ALWAYS PING EVEN IF YOU ARE A MAINTAINER OF THE FEEDSTOCK.
 -->

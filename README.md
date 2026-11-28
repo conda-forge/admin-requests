@@ -82,11 +82,6 @@ submit a PR adding your feedstock name to a new `.yml` file in `requests` folder
 
 Available opt-in resources:
 
-### [Travis CI](https://www.travis-ci.com)
-
-- `action` key: `travis`
-- Example `examples/example-travis.yml`
-
 ### Larger runners for Github Actions
 
 - We have partnered with different providers for [self-hosted runners for Github Actions](https://conda-forge.org/docs/how-to/advanced/self-hosted-runners/).

@@ -88,7 +88,7 @@ def run(request: dict[str, object]) -> dict[str, object] | None:
             spec,
         ]
         print("Copying", item["package"], "...")
-        p = subprocess.run(cmd)
+        p = subprocess.run(cmd, check=False)
         if p.returncode == 0:
             print("... OK!")
         else:

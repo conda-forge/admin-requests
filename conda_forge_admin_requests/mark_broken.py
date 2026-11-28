@@ -56,7 +56,7 @@ def check(request):
 
 
 def mark_broken_pkg(pkg, action):
-    plat, name, ver, build = split_pkg(pkg)
+    _, name, ver, _ = split_pkg(pkg)
 
     if action == "broken":
         func = requests.post
