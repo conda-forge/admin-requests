@@ -10,6 +10,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    if: github.repository == 'conda-forge/admin-requests' || github.repository == ''
     steps:
       - name: Prevent multiple jobs running in parallel
         id: conversion_lock
