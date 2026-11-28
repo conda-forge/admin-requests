@@ -1,0 +1,6 @@
+action: broken
+packages:
+- noarch/hypso-1.7.3-pyhd8ed1ab_0.conda
+- noarch/hypso-1.7.1-pyhd8ed1ab_0.conda
+- noarch/hypso-1.6.1-pyhd8ed1ab_0.conda
+- noarch/hypso-1.7.4-pyhd8ed1ab_0.conda
