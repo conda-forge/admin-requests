@@ -1,0 +1,7 @@
+action: broken
+packages:
+# gridgen_generategrid2 crashes with an access violation for any boundary that
+# splits into more than one quadrilateral, because map_quadrilaterals inserts
+# into a hash table inside an assert that -DNDEBUG removes, see
+# https://github.com/conda-forge/gridgen-feedstock/pull/12
+- win-64/gridgen-1.51.5-h836b3ad_1002.conda
